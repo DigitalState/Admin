@@ -1,0 +1,52 @@
+<div class="card animated fadeIn">
+	<div class="card-header">
+		<div class="row justify-content-between">
+			<div class="col-4">
+				<h3 class="card-title" translate="" ng-reflect-translate="">Service `Show` template</h3>
+			</div>
+			<div class="col-4">
+				<ul class="btn-list clearfix">
+					<li *ngIf="entity">
+						<button [routerLink]="[entity.uuid, 'edit']" type="button" class="btn btn-default btn-with-icon"><i class="ion-stats-bars">Edit</i></button>
+					</li>
+					<li>
+						<button (click)="deleteEntity()" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">Delete</i></button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="card-block">
+		<div class=row>
+			<div class="col-sm-6 col-sm-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-heading relative">
+						<h3 class="panel-title">Detail</h3>
+						<button class="btn btn-link btn-right close" (click)="deleteHero()"><span
+								class="glyphicon glyphicon-trash"></span></button>
+					</div>
+					<div class="panel-body relative">
+						<h4 *ngIf="entity && !editable">Name: {{entity.name}}</h4>
+						<div class="col-xs-10">
+							<input type=text class="form-control col-xs-5" [(ngModel)]="entity.name" *ngIf="editable">
+						</div>
+						<button class="btn btn-link pull-right btn-right close" (click)="editHero()" *ngIf="!editable">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button class="btn btn-link pull-right btn-right close btn-ok" (click)="editHero()" *ngIf="editable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+					<div class="panel-footer"><a [routerLink]="['/']" class="btn btn-default">Back</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer clearfix">
+		<ul class="btn-list clearfix">
+			<li *ngIf="entity">
+				<button [routerLink]="[entity.uuid, 'activate']" type="button" class="btn btn-default btn-with-icon"><i class="ion-stats-bars">Activate</i></button>
+			</li>
+		</ul>
+	</div>
+</div>
