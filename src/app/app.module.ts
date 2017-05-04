@@ -1,8 +1,9 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, ViewContainerRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,6 +26,10 @@ import * as _ from 'lodash';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { FormioModule, FormioAppConfig } from 'ng2-formio';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ToastModule, ToastOptions, ToastsManager } from 'ng2-toastr/ng2-toastr';
+// import { UiModule } from './pages/ui/ui.module';
+// import { DefaultModal } from './pages/ui/components/modals/default-modal/default-modal.component';
+import { DsMicroservicesModule } from './digitalstate/microservices.module';
 
 
 // Application wide providers
@@ -54,7 +59,7 @@ export function RestangularConfigFactory (restangularProvider) {
   restangularProvider.addResponseInterceptor(function(data, operation) {
     // Remove trailing slash to make Restangular working
     function populateHref(record) {
-      if (record['@id']) {
+      if (!_.isEmpty(record) && record['@id']) {
         record.href = record['@id'].substring(1);
       }
     }
@@ -95,15 +100,21 @@ export function RestangularConfigFactory (restangularProvider) {
   ],
   imports: [ // import Angular's modules
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     RouterModule,
     FormsModule,
-    RestangularModule.forRoot(RestangularConfigFactory),
     ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory),
+    ToastModule.forRoot(),
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
+    DsMicroservicesModule,
     routing
+  ],
+  entryComponents: [
+    // DefaultModal,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -113,6 +124,22 @@ export function RestangularConfigFactory (restangularProvider) {
       useValue: {
         appUrl: 'https://examples.form.io',
         apiUrl: 'https://api.form.io'
+      }
+    },
+    {
+      provide: ToastOptions,
+      useValue: {
+        positionClass: 'toast-bottom-right',
+        maxShown: 5,
+        newestOnTop: false,
+        animate: 'flyRight',
+        // override-able propertie,
+        toastLife: 5000,
+        enableHTML: true,
+        dismiss: 'auto', // 'auto' | 'click' | 'controlled
+        messageClass: 'toast-message',
+        titleClass: 'toast-title',
+        showCloseButton: true,
       }
     }
   ]

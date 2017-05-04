@@ -1,0 +1,53 @@
+<form #form="ngForm">
+	<div *ngIf="entity" class="card entity-card animated fadeIn">
+		<div class="card-header">
+			<div class="row justify-content-between">
+				<div class="col-6">
+					<h3 class="card-title" translate="" ng-reflect-translate="">Service `Edit` template</h3>
+				</div>
+				<div class="col-6">
+					<div class="container">
+						<ul class="row btn-list clearfix">
+							<li class="col-6">
+								<button (click)="submitForm(form)" class="btn btn-primary">Save</button>
+								<button (click)="cancelForm()" class="btn btn-secondary">Cancel</button>
+							</li>
+							<li class="col-6 align-right">
+								<button (click)="deleteEntity()" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">Delete</i></button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="card-block">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="title">Title</label>
+						<input id="title" name="title" type="text" [(ngModel)]="entity.title" class="form-control" placeholder="Title">
+					</div>
+					<div class="form-group">
+						<label for="presentation">Presentation</label>
+						<input id="presentation" name="presentation" type="text" [(ngModel)]="entity.presentation" class="form-control" placeholder="Presentation">
+					</div>
+					<div class="form-group">
+						<label for="form">Form</label>
+						<input id="form" name="form" type="text" [(ngModel)]="entity.form" class="form-control" placeholder="Form">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="description">Description</label>
+						<textarea id="description" name="description" type="text" [(ngModel)]="entity.description" class="form-control" placeholder="Description"></textarea>
+					</div>
+					<!--<div class="form-group">-->
+						<!--<label for="enabled">Enabled</label>-->
+						<!--<input id="enabled" name="enabled" type="checkbox" [(ngModel)]="entity.enabled" class="form-control" placeholder="Enabled"/>-->
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

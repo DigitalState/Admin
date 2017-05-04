@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import 'rxjs/Rx';
 
-import 'style-loader!../styles/buttons.scss';
+import 'style-loader!../styles/style.scss';
 
 @Component({
     selector: 'ds-service-list',

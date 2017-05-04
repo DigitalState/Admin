@@ -7,8 +7,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormioModule } from 'ng2-formio';
 
 import { routing } from './service.routing';
+import { DsServiceComponent } from './service.component';
 import { DsServiceListComponent } from './components/list.component';
 import { DsServiceShowComponent } from './components/show.component';
+import { DsServiceCreateComponent } from './components/create.component';
+import { DsServiceEditComponent } from './components/edit.component';
 import { DsServiceActivateComponent } from './components/activate.component';
 
 @NgModule({
@@ -21,8 +24,11 @@ import { DsServiceActivateComponent } from './components/activate.component';
         routing,
     ],
     declarations: [
+        DsServiceComponent,
         DsServiceListComponent,
         DsServiceShowComponent,
+        DsServiceCreateComponent,
+        DsServiceEditComponent,
         DsServiceActivateComponent,
     ]
 })

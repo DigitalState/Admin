@@ -3,6 +3,7 @@ export const PAGES_MENU = [
     path: 'pages',
     children: [
       {
+        // path: ['services/list'],
         path: 'services',
         data: {
           menu: {
