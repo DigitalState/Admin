@@ -4,6 +4,9 @@ import 'rxjs/Rx';
 
 import 'style-loader!../styles/style.scss';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
+import {Page} from '../../models/page';
+import {Service} from '../models/service';
+import {EntityApiService} from '../entity-api.service';
 
 @Component({
     selector: 'ds-service-list',
@@ -24,13 +27,17 @@ export class DsServiceListComponent {
 
     entityApiRoute = 'services';
     entities;
-    rows = [];
+    // rows = [];
+    page = new Page();
+    rows = new Array<Service>();
     columns = [];
     allServices;
 
+
     private temp = [];
 
-    constructor(private restangular: Restangular) {
+    constructor(private restangular: Restangular,
+                private entityApiService: EntityApiService) {
 
     }
 
@@ -66,5 +73,17 @@ export class DsServiceListComponent {
         this.rows = temp;
         // Whenever the filter changes, always go back to the first page
         this.datatable.offset = 0;
+    }
+
+    /**
+     * Populate the table with new data based on the page number
+     * @param page The page to select
+     */
+    setPage(pageInfo){
+        this.page.pageNumber = pageInfo.offset;
+        this.serverResultsService.getResults(this.page).subscribe(pagedData => {
+            this.page = pagedData.page;
+            this.rows = pagedData.data;
+        });
     }
 }

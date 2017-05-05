@@ -7,6 +7,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormioModule } from 'ng2-formio';
 
 import { routing } from './service.routing';
+import { EntityApiService } from './entity-api.service';
 import { DsServiceComponent } from './service.component';
 import { DsServiceListComponent } from './components/list.component';
 import { DsServiceShowComponent } from './components/show.component';
@@ -30,6 +31,9 @@ import { DsServiceActivateComponent } from './components/activate.component';
         DsServiceCreateComponent,
         DsServiceEditComponent,
         DsServiceActivateComponent,
+    ],
+    providers: [
+        EntityApiService
     ]
 })
 export class DsServiceModule {
