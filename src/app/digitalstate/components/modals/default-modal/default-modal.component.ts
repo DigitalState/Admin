@@ -17,7 +17,7 @@ export class DefaultModal implements OnInit {
 
   ngOnInit() {}
 
-  closeModal() {
-    this.activeModal.close();
+  closeModal(action?: any) {
+    this.activeModal.close(action);
   }
 }

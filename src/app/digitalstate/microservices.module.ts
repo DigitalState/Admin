@@ -10,6 +10,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
 
 @NgModule({
     imports: [
+        CommonModule,
         DsServiceModule,
         RouterModule
     ],

@@ -8,7 +8,8 @@
   <div class="modal-body" [innerHTML]="modalContent">
     {{modalContent}}
   </div>
-  <!--<div class="modal-footer">-->
+  <div *ngIf="actions" class="modal-footer">
+    <button *ngFor="let action of actions" class="btn confirm-btn" (click)="closeModal(action)" >{{ action.label }}</button>
     <!--<button class="btn btn-primary confirm-btn" (click)="closeModal()">Save changes</button>-->
-  <!--</div>-->
+  </div>
 </div>

@@ -1,41 +1,37 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { Restangular } from 'ngx-restangular';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { DsEntityFormComponent } from './entity-form.component';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'ds-service-edit',
-    templateUrl: '../templates/edit.template.html'
+    selector: 'ds-service-create',
+    templateUrl: '../templates/form.template.html'
 })
-export class DsServiceCreateComponent {
+export class DsServiceCreateComponent extends DsEntityFormComponent {
 
-    public entity;
+    formTitle = 'Create Service';
 
-    private id: number;
-
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private restangular: Restangular,
-                private toastr: ToastsManager) {
-
+    constructor(route: ActivatedRoute,
+                router: Router,
+                location: Location,
+                restangular: Restangular,
+                toastr: ToastsManager) {
+        super(route, router, location, restangular, toastr);
     }
 
     ngOnInit() {
+        this.isNew = true;
         this.entity = {};
-        // this.route.params.forEach((params: Params) => {
-        //     this.id = params['id'];
-        //     console.log(this.id);
-        // });
-        //
-        // this.restangular.one('services', this.id).get().subscribe(res => {
-        //     this.entity = res;
-        // });
     }
 
-    submitForm(form) {
-        console.log(form.value);
-        this.restangular.all('services').post(form.value)
+    onSubmit() {
+        console.log(this.entityForm.value);
+        this.submitted = true;
+        this.restangular.all('services').post(this.entityForm.value)
             .subscribe((response) => {
                 console.log('Entity saved successfully, server response: ', response);
                 this.toastr.success('Entity saved successfully');
@@ -44,12 +40,9 @@ export class DsServiceCreateComponent {
                 console.error('There was an error saving entity', error);
                 this.toastr.error('Failed to save the entity');
             });
-
-        // this.router.navigate(['../list'], { relativeTo: this.route });
-        // this.router.navigate(['../show'], { relativeTo: this.route });
     }
 
-    cancelForm() {
-        this.router.navigate(['../show'], { relativeTo: this.route });
-    }
+    // cancelForm() {
+    //     this.router.navigate(['../list'], { relativeTo: this.route });
+    // }
 }

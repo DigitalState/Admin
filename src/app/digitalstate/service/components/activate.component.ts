@@ -1,6 +1,7 @@
 import 'rxjs/Rx';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Http } from '@angular/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,6 +28,7 @@ export class DsServiceActivateComponent {
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private http: Http,
+                private location: Location,
                 private restangular: Restangular,
                 private modal: NgbModal,
                 private toastr: ToastsManager) {
@@ -48,7 +50,10 @@ export class DsServiceActivateComponent {
                 .then(response => {
                     this.formioFormSchema = response.json();
                 })
-                .catch(this.handleActivationRequestError);
+                .catch((error) => {
+                    this.handleActivationRequestError(error);
+                }
+            );
         });
 
     }
@@ -73,7 +78,9 @@ export class DsServiceActivateComponent {
 
                 this.router.navigate(['../show'], { relativeTo: this.route });
             })
-            .catch(this.handleSubmissionRequestError);
+            .catch((error) => {
+                this.handleSubmissionRequestError(error);
+            });
     }
 
     /**
@@ -82,7 +89,14 @@ export class DsServiceActivateComponent {
      * @returns {Promise<never>}
      */
     private handleActivationRequestError(error: any): Promise<any> {
-        console.error('Activation error occurred', error); // for demo purposes only
+        const json = error.json();
+
+        if (json && json.message) {
+            this.toastr.error(json.message);
+            this.location.back();
+        }
+
+        console.error('Activation error occurred', error);
         return Promise.reject(error.message || error);
     }
 
@@ -92,7 +106,13 @@ export class DsServiceActivateComponent {
      * @returns {Promise<never>}
      */
     private handleSubmissionRequestError(error: any): Promise<any> {
-        console.error('Submission error occurred', error); // for demo purposes only
+        const json = error.json();
+
+        if (json && json.message) {
+            this.toastr.error(json.message);
+        }
+
+        console.error('Submission error occurred', error);
         return Promise.reject(error.message || error);
     }
 }

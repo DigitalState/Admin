@@ -2,17 +2,17 @@
 	<div class="card-header">
 		<div class="row justify-content-between">
 			<div class="col-6">
-				<h3 class="card-title" translate="" ng-reflect-translate="">Service `Show` template</h3>
+				<h3 class="card-title" translate="" ng-reflect-translate="">{{entity.uuid}}</h3>
 			</div>
 
 			<div class="col-6">
 				<div class="container">
 					<ul class="row btn-list clearfix">
-						<li class="col-6">
+						<li class="col-8">
 							<button [routerLink]="['../edit']" type="button" class="btn btn-primary btn-with-icon"><i class="ion-stats-bars">Edit</i></button>
 							<button [routerLink]="['../activate']" type="button" class="btn btn-secondary btn-with-icon"><i class="ion-stats-bars">Activate</i></button>
 						</li>
-						<li class="col-6 align-right">
+						<li class="col-4 align-right">
 							<button (click)="deleteEntity()" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">Delete</i></button>
 						</li>
 					</ul>
