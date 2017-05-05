@@ -13,12 +13,11 @@
     }
 
     .datatable-body-cell {
+      display: flex;
       padding: 0.5em;
 
       .datatable-body-cell-label {
-        vertical-align: middle;
-        //background-color: purple;
-
+        align-self: center;
       }
     }
   }
