@@ -9,8 +9,7 @@
 					<div class="container">
 						<ul class="row btn-list clearfix float-right">
 							<li class="col-12">
-								<!--<button (click)="submitForm(form)" class="btn btn-primary">Save</button>-->
-								<button type="submit" [disabled]="!entityForm.form.valid" class="btn btn-primary">Save</button>
+								<button type="submit" [disabled]="!entityForm.form.valid" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-circled">Save</i></button>
 								<button type="button" (click)="cancelForm()" class="btn btn-secondary">Cancel</button>
 							</li>
 							<!--li class="col-6 align-right">

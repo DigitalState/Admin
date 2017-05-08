@@ -1,9 +1,9 @@
-import { Page } from './page';
+import { Pager } from './pager';
 
 /**
- * An array of data with an associated page object used for paging
+ * An array of data with an associated pager object used for paging
  */
 export class PagedData<T> {
     data = new Array<T>();
-    page = new Page();
+    pager = new Pager();
 }

@@ -1,5 +1,5 @@
 /**
- * An object used to get page information from the server
+ * An object used to get pager information from the server
  */
 export class Service {
     uuid: string;

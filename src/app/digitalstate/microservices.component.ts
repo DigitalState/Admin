@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   selector: 'ds-microservices',
   template: `<router-outlet></router-outlet>`,
   styleUrls: [
-    'service/styles/ngx-datatable.scss',
+    'styles/index.scss',
   ]
 })
 export class DsMicroservicesComponent {

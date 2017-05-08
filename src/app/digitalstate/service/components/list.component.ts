@@ -2,21 +2,17 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import 'rxjs/Rx';
 
-import 'style-loader!../styles/style.scss';
-import {DatatableComponent} from '@swimlane/ngx-datatable';
-import {Page} from '../../models/page';
-import {Service} from '../models/service';
-import {EntityApiService} from '../entity-api.service';
+// import 'style-loader!../styles/style.scss';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { Pager } from '../../models/pager';
+import { Service } from '../models/service';
+import { EntityApiService } from '../entity-api.service';
+import {ListQuery} from '../../models/api-query';
+import {List} from 'lodash';
 
 @Component({
     selector: 'ds-service-list',
-    templateUrl: '../templates/list.template.html',
-    styleUrls: [
-        '../styles/ngx-datatable.scss',
-        // '../../styles/ngx-datatable/index.css',
-        // '../../styles/ngx-datatable/material.css',
-        // '../../styles/ngx-datatable/icons.css'
-    ]
+    templateUrl: '../templates/list.template.html'
 })
 export class DsServiceListComponent {
 
@@ -27,12 +23,13 @@ export class DsServiceListComponent {
 
     entityApiRoute = 'services';
     entities;
-    // rows = [];
-    page = new Page();
-    rows = new Array<Service>();
+    rows = [];
+    query: ListQuery;
+    pager = new Pager();
+    // rows = new Array<Service>();
     columns = [];
     allServices;
-
+    size = 10;
 
     private temp = [];
 
@@ -49,16 +46,17 @@ export class DsServiceListComponent {
             { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
         ];
 
-        this.refreshList();
+        // let pager = new Pager();
+        this.pager.size = 3;
+
+        this.query = new ListQuery('services').withPager(this.pager);
+        this.setPage({ offset: 0 });
+
+        // this.refreshList();
     }
 
     refreshList() {
-        this.restangular.all('services').getList().subscribe(services => {
-            this.allServices = services;
-            this.temp = [...services];
-            this.rows = services;
-            console.log('Fetched services: ', services);
-        });
+        console.log(this.datatable);
     }
 
     updateFilter(event) {
@@ -77,12 +75,17 @@ export class DsServiceListComponent {
 
     /**
      * Populate the table with new data based on the page number
-     * @param page The page to select
+     * @param pager The pager to select
      */
-    setPage(pageInfo){
-        this.page.pageNumber = pageInfo.offset;
-        this.serverResultsService.getResults(this.page).subscribe(pagedData => {
-            this.page = pagedData.page;
+    setPage(pageInfo) {
+        // this.query.pager.pageNumber = pageInfo.offset;
+        this.pager.pageNumber = pageInfo.offset;
+        let m = this.entityApiService.getList(this.query);
+
+        m.subscribe((pagedData) => {
+            console.log('pagedData', pagedData);
+            // this.query.pager = pagedData.pager;
+            this.pager = pagedData.pager;
             this.rows = pagedData.data;
         });
     }

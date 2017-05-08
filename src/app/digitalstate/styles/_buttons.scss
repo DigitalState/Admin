@@ -1,3 +1,9 @@
+.btn-with-icon i {
+  &:before {
+    padding-right: 4px;
+  }
+}
+
 .basic-btns {
   padding-top: 8px;
   margin-bottom: -8px;
