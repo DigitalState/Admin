@@ -15,6 +15,19 @@ export const PAGES_MENU = [
           }
         }
       },
+      {
+        path: 'cases',
+        data: {
+          menu: {
+            title: 'Cases',
+            icon: 'ion-cube',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
       // {
       //   path: 'dashboard',
       //   data: {

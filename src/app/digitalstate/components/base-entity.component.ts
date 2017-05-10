@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ds-service',
+  selector: 'ds-entity',
   template: `<router-outlet></router-outlet>`
 })
-export class DsServiceComponent {
+export class DsBaseEntityComponent {
 
   constructor() {
   }

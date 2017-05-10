@@ -1,18 +1,19 @@
 import { Observable } from 'rxjs';
 
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { Restangular } from 'ngx-restangular';
-import { Pager } from '../models/pager';
-import { PagedData } from '../models/paged-data';
-import { Service } from './models/service';
-import { ListQuery } from '../models/api-query';
+import { Pager } from './models/pager';
+import { PagedData } from './models/paged-data';
+import { Service } from './modules/service/models/service';
+import { ListQuery } from './models/api-query';
+import { MICROSERVICE_RESTANGULAR } from './modules/microservice.provider';
 
 import 'rxjs/Rx';
 
-@Injectable()
-export class EntityApiService {
+export class DsBaseEntityApiService {
 
-    constructor(private restangular: Restangular) {
+    // constructor(private restangular: Restangular) {
+    constructor(protected restangular: Restangular) {
 
     }
 
@@ -28,7 +29,11 @@ export class EntityApiService {
         // };
 
         /** Todo: Create a API Query object to hold the Paging and Filtering parameters */
-        let x = this.restangular.all(query.path).getList(query.buildParameters());
+        // let x = this.restangular.all(query.path).getList(query.buildParameters());
+        let x = this.restangular.withConfig((restangularConfigurer) => {
+                restangularConfigurer.setBaseUrl(query.urlPrefix);
+            }).all(query.path).getList(query.buildParameters());
+
         return x.reduce((pagedData, fetchedCollection) => {
             query.pager.totalItems = fetchedCollection.metadata['hydra:totalItems'];
             query.pager.totalPages = Math.ceil(query.pager.totalItems / query.pager.size);

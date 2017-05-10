@@ -46,7 +46,7 @@ export type StoreType = {
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory (restangularProvider) {
-  restangularProvider.setBaseUrl('http://localhost:8014/');
+  // restangularProvider.setBaseUrl('http://localhost:8014/');
   // restangularProvider.setDefaultHeaders({'Authorization': 'Bearer UDXPx-Xko0w4BRKajozCVy20X11MRZs1'});
   // JSON-LD @id support
   restangularProvider.setRestangularFields({

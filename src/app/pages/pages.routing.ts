@@ -19,7 +19,8 @@ export const routes: Routes = [
     component: Pages,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'services', loadChildren: 'app/digitalstate/service/service.module#DsServiceModule' },
+      { path: 'services', loadChildren: 'app/digitalstate/modules/service/service.module#DsServiceModule' },
+      { path: 'cases', loadChildren: 'app/digitalstate/modules/cases/cases.module#DsCasesModule' },
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
       { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

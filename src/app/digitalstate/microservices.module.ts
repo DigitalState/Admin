@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 
+import { AppState } from '../app.service';
 import { NgaModule } from '../../theme/nga.module';
 
-import { DsServiceModule } from './service/service.module';
+import { DsBaseEntityApiService } from './base-entity-api.service';
+import { DsServiceModule } from './modules/service/service.module';
 // import { DsMicroservicesComponent } from './microservices.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
+
+import { MICROSERVICES } from './microservices';
 
 @NgModule({
     imports: [
@@ -20,8 +24,15 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
     ],
     entryComponents: [
         DefaultModal
+    ],
+    providers: [
+        // EntityApiService
     ]
 })
 export class DsMicroservicesModule {
+
+    constructor(private appState: AppState) {
+        appState.set('microservices', MICROSERVICES);
+    }
 
 }

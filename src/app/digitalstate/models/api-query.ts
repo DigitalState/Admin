@@ -3,13 +3,26 @@ import { Pager } from './pager';
  * An object used to hold API query parameters
  */
 export class ListQuery {
+    urlPrefix: string;
     path: string;
-    public pager: Pager = new Pager();
+    pager: Pager = new Pager();
     filters: object = {};
 
-    constructor(path: string) {
+    static forUrl(urlPrefix: string, path?: string): ListQuery {
+        let listQuery = new ListQuery(path);
+        listQuery.urlPrefix = urlPrefix;
+        return listQuery;
+    }
+
+    constructor(path?: string) {
         this.path = path;
     }
+
+    withPath(path: string): ListQuery {
+        this.path = path;
+        return this;
+    }
+
 
     withFilter(filter): ListQuery {
         this.filters = filter;
@@ -19,6 +32,10 @@ export class ListQuery {
     withPager(pager): ListQuery {
         this.pager = pager;
         return this;
+    }
+
+    getFullPath(): string {
+        return this.urlPrefix + this.path;
     }
 
     buildParameters() {
