@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormioModule } from 'ng2-formio';
 
 import { MicroserviceConfig, MicroserviceRestangularProvider } from './microservice.provider';
+import {DsDatatableHeader} from '../components/datatable/datatable-header.component';
 // import { DsServiceComponent } from './service.component';
 // import { DsServiceListComponent } from './components/list.component';
 // import { DsServiceShowComponent } from './components/show.component';

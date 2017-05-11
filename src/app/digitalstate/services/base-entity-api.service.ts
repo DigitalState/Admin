@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 
-import {Inject, Injectable} from '@angular/core';
+import { Inject, Injectable} from '@angular/core';
 import { Restangular } from 'ngx-restangular';
-import { Pager } from './models/pager';
-import { PagedData } from './models/paged-data';
-import { Service } from './modules/service/models/service';
-import { ListQuery } from './models/api-query';
-import { MICROSERVICE_RESTANGULAR } from './modules/microservice.provider';
+import { Pager } from '../models/pager';
+import { PagedData } from '../models/paged-data';
+import { Service } from '../modules/service/models/service';
+import { ListQuery } from '../models/api-query';
+import { MICROSERVICE_RESTANGULAR } from '../modules/microservice.provider';
 
 import 'rxjs/Rx';
 

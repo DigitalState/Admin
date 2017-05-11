@@ -1,20 +1,19 @@
 import { Component, Inject, TemplateRef, ViewChild } from '@angular/core';
-import { Restangular } from 'ngx-restangular';
 import 'rxjs/Rx';
 
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Pager } from '../models/pager';
 import { Service } from '../models/service';
-import { DsBaseEntityApiService } from '../base-entity-api.service';
+import { DsBaseEntityApiService } from '../services/base-entity-api.service';
 import { ListQuery } from '../models/api-query';
-import { MicroserviceConfig, MICROSERVICE_RESTANGULAR } from '../modules/microservice.provider';
+import { MicroserviceConfig } from '../modules/microservice.provider';
 
-@Component({
-    selector: 'ds-list',
-    templateUrl: '../templates/list.template.html'
-})
-export abstract class DsBaseEntityListComponent {
+// @Component({
+//     selector: 'ds-base-entity-list',
+//     templateUrl: '../templates/list.template.html'
+// })
+export class DsBaseEntityListComponent {
 
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
     @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
@@ -66,7 +65,13 @@ export abstract class DsBaseEntityListComponent {
         // this.refreshList();
     }
 
-    protected abstract setupList();
+    /**
+     * Called on subclasses to further configure the list when the component is initialized
+     * within `ngOnInit`.
+     */
+    protected setupList() {
+        throw 'Method `setupList` must be implemented by a subclass.';
+    }
 
     protected refreshList() {
         console.log(this.datatable);
@@ -77,6 +82,7 @@ export abstract class DsBaseEntityListComponent {
      * @param event
      */
     updateFilter(event) {
+        console.log('Updating filter with event:', event);
         const val = event.target.value.toLowerCase();
 
         // filter our data

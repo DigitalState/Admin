@@ -1,0 +1,25 @@
+
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TableColumn } from '@swimlane/ngx-datatable';
+
+@Component({
+    selector: 'ds-datatable-header',
+    template: `
+		<strong (click)="sort()">{{column.name}}</strong>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Type to filter by title ..." (keyup)="updateFilter($event)" />
+		</div>
+    `
+})
+export class DsDatatableHeader {
+    @Input() column: TableColumn;
+    @Output() onFilterUpdate = new EventEmitter<any>();
+
+    updateFilter(event) {
+        this.onFilterUpdate.emit(event);
+    }
+
+    sort() {
+
+    }
+}

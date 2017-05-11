@@ -2,13 +2,17 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'ds-microservices',
-  template: `<router-outlet></router-outlet>`,
+  template: `
+      <template-storage></template-storage>
+      <router-outlet></router-outlet>
+  `,
   styleUrls: [
-    'styles/index.scss',
+    '../styles/index.scss',
   ]
 })
 export class DsMicroservicesComponent {
 
   constructor() {
+
   }
 }
