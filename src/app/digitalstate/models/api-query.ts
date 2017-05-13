@@ -23,10 +23,17 @@ export class ListQuery {
         return this;
     }
 
+    withFilter(filterName: string, filterValue: any): ListQuery {
+        this.setFilter(filterName, filterValue);
+    }
 
-    withFilter(filter): ListQuery {
-        this.filters = filter;
+    setFilter(filterName: string, filterValue: any): ListQuery {
+        this.filters[filterName] = filterValue;
         return this;
+    }
+
+    unsetFilter(filterName: string) {
+        delete this.filters['filterName'];
     }
 
     withPager(pager): ListQuery {

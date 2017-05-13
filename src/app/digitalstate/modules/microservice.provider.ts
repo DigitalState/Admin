@@ -20,14 +20,6 @@ export class MicroserviceConfig {
  * @returns {any}
  */
 let microserviceRestangularFactory = (restangular: Restangular, microserviceConfig: MicroserviceConfig) => {
-    console.log('microserviceRestangularFactory: ', microserviceConfig );
-    console.log('microserviceRestangularFactory: ', microserviceConfig );
-    if (39) {
-        console.log('39');
-    }
-    else {
-        console.log('xx');
-    }
     return restangular.withConfig((restangularConfigurer) => {
         console.log(restangularConfigurer);
         restangularConfigurer.setBaseUrl(microserviceConfig.settings.entrypoint.url);

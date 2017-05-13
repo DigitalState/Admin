@@ -9,11 +9,11 @@ import { EntityApiService } from './entity-api.service';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../microservice.provider';
 import { DsBaseMicroserviceModule } from '../base-microservice.module';
 import { DsMicroservicesModule } from '../../microservices.module';
-import { DsCasesComponent } from './cases.component';
-import { DsCasesListComponent } from './components/list.component';
-// import { DsCasesShowComponent } from './components/show.component';
-// import { DsCasesCreateComponent } from './components/create.component';
-// import { DsCasesEditComponent } from './components/edit.component';
+import { DsCaseComponent } from './case.component';
+import { DsCaseListComponent } from './components/list.component';
+import { DsCaseShowComponent } from './components/show.component';
+import { DsCaseCreateComponent } from './components/create.component';
+import { DsCaseEditComponent } from './components/edit.component';
 
 export const MICROSERVICE_NAME = 'cases';
 
@@ -26,11 +26,11 @@ export const MICROSERVICE_NAME = 'cases';
         routing,
     ],
     declarations: [
-        DsCasesComponent,
-        DsCasesListComponent,
-        // DsCasesShowComponent,
-        // DsCasesCreateComponent,
-        // DsCasesEditComponent,
+        DsCaseComponent,
+        DsCaseListComponent,
+        DsCaseShowComponent,
+        DsCaseCreateComponent,
+        DsCaseEditComponent,
     ],
     providers: [
         EntityApiService,
@@ -38,7 +38,7 @@ export const MICROSERVICE_NAME = 'cases';
         MicroserviceRestangularProvider,
     ]
 })
-export class DsCasesModule extends DsBaseMicroserviceModule {
+export class DsCaseModule extends DsBaseMicroserviceModule {
 
     getMicroserviceName() {
         return MICROSERVICE_NAME;

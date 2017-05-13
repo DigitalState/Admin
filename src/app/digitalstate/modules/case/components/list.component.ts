@@ -6,10 +6,10 @@ import { DsBaseEntityListComponent } from '../../../components/base-list.compone
 import { MicroserviceConfig } from '../../microservice.provider';
 
 @Component({
-    selector: 'ds-cases-list',
+    selector: 'ds-case-list',
     templateUrl: '../templates/list.template.html'
 })
-export class DsCasesListComponent extends DsBaseEntityListComponent {
+export class DsCaseListComponent extends DsBaseEntityListComponent {
 
     constructor(microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {

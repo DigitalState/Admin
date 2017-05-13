@@ -7,7 +7,7 @@ import { TableColumn } from '@swimlane/ngx-datatable';
     template: `
 		<strong (click)="sort()">{{column.name}}</strong>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Type to filter by title ..." (keyup)="updateFilter($event)" />
+			<input name="{{column.name}}" type="text" class="form-control" (keyup)="updateFilter($event)" />
 		</div>
     `
 })
@@ -16,7 +16,7 @@ export class DsDatatableHeader {
     @Output() onFilterUpdate = new EventEmitter<any>();
 
     updateFilter(event) {
-        this.onFilterUpdate.emit(event);
+        this.onFilterUpdate.emit({column: this.column, event: event});
     }
 
     sort() {

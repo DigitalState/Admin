@@ -5,9 +5,9 @@ import { Location } from '@angular/common';
 import { Http } from '@angular/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Restangular } from 'ngx-restangular';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DefaultModal } from '../../../components/modals/default-modal/default-modal.component';
+import { EntityApiService } from '../entity-api.service';
 
 @Component({
     selector: 'ds-service-activate',
@@ -24,12 +24,11 @@ export class DsServiceActivateComponent {
 
     private id: number;
 
-
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private http: Http,
                 private location: Location,
-                private restangular: Restangular,
+                private entityApiService: EntityApiService,
                 private modal: NgbModal,
                 private toastr: ToastsManager) {
 
@@ -41,7 +40,7 @@ export class DsServiceActivateComponent {
             console.log(this.id);
         });
 
-        this.restangular.one('services', this.id).get().subscribe(res => {
+        this.entityApiService.getOne('services', this.id).subscribe(res => {
             this.entity = res;
 
             let activationRequestUrl = this.ACTIVATION_REQUEST_URL_PREFIX + this.id;

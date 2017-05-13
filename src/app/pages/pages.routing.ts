@@ -20,7 +20,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'services', loadChildren: 'app/digitalstate/modules/service/service.module#DsServiceModule' },
-      { path: 'cases', loadChildren: 'app/digitalstate/modules/cases/cases.module#DsCasesModule' },
+      { path: 'cases', loadChildren: 'app/digitalstate/modules/case/case.module#DsCaseModule' },
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
       { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

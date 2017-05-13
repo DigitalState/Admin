@@ -6,7 +6,7 @@ import { DsBaseEntityListComponent } from '../../../components/base-list.compone
 import { MicroserviceConfig } from '../../microservice.provider';
 
 @Component({
-    selector: 'ds-services-list',
+    selector: 'ds-service-list',
     templateUrl: '../templates/list.template.html'
 })
 export class DsServiceListComponent extends DsBaseEntityListComponent {

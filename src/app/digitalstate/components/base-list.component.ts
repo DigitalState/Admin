@@ -36,7 +36,7 @@ export class DsBaseEntityListComponent {
      * The Enity API service is not injected into this base component class because
      * the API service configurations are Microservice-specific.
      */
-    protected entityApiService: DsBaseEntityApiService;
+    protected entityApiService: DsBaseEntityApiService<any>;
 
     constructor(protected microserviceConfig: MicroserviceConfig) {
 
@@ -74,28 +74,33 @@ export class DsBaseEntityListComponent {
     }
 
     protected refreshList() {
-        console.log(this.datatable);
+        let m = this.entityApiService.getList(this.query);
+
+        m.subscribe((pagedData) => {
+            // console.log('pagedData', pagedData);
+            this.pager = pagedData.pager;
+            this.rows = pagedData.data;
+        });
     }
 
     /**
-     * Client-side filtering
-     * @param event
+     * Update the list based on the provided filtering data.
+     * This method is a callback for the observed filter-update event of the column header component.
+     * @param filterData {object} This object contains the following properties:
+     *        - column: The ngx-datatable column object that hosts the filter's input control.
+     *        - event: The DOM event resulting from the user interaction with the control.
      */
-    updateFilter(event) {
-        console.log('Updating filter with event:', event);
-        const val = event.target.value.toLowerCase();
+    updateFilter(filterData) {
+        const filterValue = filterData.event.target.value;
+        this.query.withFilter(filterData.column.prop, filterValue);
 
-        // filter our data
-        // Todo: this is part of the demo and has properties that are specific to the Service entity
-        // Todo: generalize this code below
-        const temp = this.temp.filter(function (d) {
-            return d.title.toLowerCase().indexOf(val) !== -1 || !val;
-        });
+        // Reset query to the first page before refreshing the list
+        this.query.pager.pageNumber = 0; // remember page numbers are zero-based
 
-        // update the rows
-        this.rows = temp;
         // Whenever the filter changes, always go back to the first page
-        this.datatable.offset = 0;
+        // this.datatable.offset = 0;
+
+        this.refreshList();
     }
 
     /**
@@ -105,13 +110,7 @@ export class DsBaseEntityListComponent {
     setPage(pageInfo) {
         // this.query.pager.pageNumber = pageInfo.offset;
         this.pager.pageNumber = pageInfo.offset;
-        let m = this.entityApiService.getList(this.query);
-
-        m.subscribe((pagedData) => {
-            console.log('pagedData', pagedData);
-            // this.query.pager = pagedData.pager;
-            this.pager = pagedData.pager;
-            this.rows = pagedData.data;
-        });
+        this.refreshList();
     }
+
 }

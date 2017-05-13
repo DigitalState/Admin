@@ -9,12 +9,12 @@ import { EntityApiService } from '../entity-api.service';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'ds-service-show',
+    selector: 'ds-case-show',
     templateUrl: '../templates/show.template.html'
 })
-export class DsServiceShowComponent extends DsBaseEntityShowComponent {
+export class DsCaseShowComponent extends DsBaseEntityShowComponent {
 
-    entityUrlPrefix = 'services';
+    entityUrlPrefix = 'cases';
 
     constructor(route: ActivatedRoute,
                 router: Router,

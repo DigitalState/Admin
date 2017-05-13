@@ -8,13 +8,13 @@ import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'ds-service-edit',
+    selector: 'ds-case-edit',
     templateUrl: '../templates/form.template.html'
 })
-export class DsServiceEditComponent extends DsBaseEntityFormComponent {
+export class DsCaseEditComponent extends DsBaseEntityFormComponent {
 
-    entityUrlPrefix = 'services';
-    headerTitle = 'Edit Service';
+    entityUrlPrefix = 'cases';
+    headerTitle = 'Edit Case';
     isNew = false;
 
     constructor(route: ActivatedRoute,

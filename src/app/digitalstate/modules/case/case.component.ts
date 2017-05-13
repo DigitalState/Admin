@@ -5,6 +5,6 @@ import { DsBaseEntityComponent } from '../../components/base-entity.component';
   // selector: See component metadata in DsBaseEntityComponent
   template: `<router-outlet></router-outlet>`
 })
-export class DsCasesComponent extends DsBaseEntityComponent {
+export class DsCaseComponent extends DsBaseEntityComponent {
 
 }
