@@ -16,7 +16,7 @@
 </ds-entity-list>
 
 <ng-template #headerTpl let-column="column" let-sort="sortFn">
-	<ds-datatable-header [column]="column" (onFilterUpdate)="updateFilter($event)"></ds-datatable-header>
+	<ds-datatable-header [column]="column" (onFilterValueChange)="onFilterValueChange($event)"></ds-datatable-header>
 </ng-template>
 
 <ng-template #textCellTpl let-row="row" let-value="value">
