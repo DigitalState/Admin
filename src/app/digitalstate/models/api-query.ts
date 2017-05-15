@@ -33,7 +33,7 @@ export class ListQuery {
     }
 
     unsetFilter(filterName: string) {
-        delete this.filters['filterName'];
+        delete this.filters[filterName];
     }
 
     withPager(pager): ListQuery {

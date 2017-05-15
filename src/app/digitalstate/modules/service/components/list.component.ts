@@ -20,8 +20,8 @@ export class DsServiceListComponent extends DsBaseEntityListComponent {
     setupList() {
         this.columns = [
             // { prop: 'uuid', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl },
-            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl },
-            { prop: 'form', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl },
+            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
+            { prop: 'form', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
         ];
     }
