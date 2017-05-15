@@ -27,8 +27,19 @@ export class DsBaseEntityListComponent {
     pager = new Pager();
     // rows = new Array<Service>();
     columns = [];
-    allServices;
     size = 10;
+
+    /**
+     * Static Datatable attributes
+     * @type {object}
+     */
+    datatableAttributes = {
+        columnMode: 'force',
+        rowHeight: 'auto',
+        headerHeight: 90,
+        footerHeight: 50,
+        externalPaging: true,
+    };
 
     protected temp = [];
 
@@ -43,6 +54,7 @@ export class DsBaseEntityListComponent {
     }
 
     ngOnInit() {
+        this.setupUi();
         this.setupList();
         // this.columns = [
         //     // { prop: 'uuid', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl },
@@ -63,6 +75,13 @@ export class DsBaseEntityListComponent {
         this.setPage({offset: 0});
 
         // this.refreshList();
+    }
+
+    protected setupUi() {
+        _.forEach(this.datatableAttributes, (value, key) => {
+            console.log(key, value);
+            this.datatable[key] = value;
+        });
     }
 
     /**

@@ -1,17 +1,12 @@
 <ds-entity-list>
 	<ngx-datatable #datatable
-				   class="material"
 				   [rows]="rows"
 				   [columns]="columns"
-				   [columnMode]="'force'"
-				   [headerHeight]="50"
-				   [footerHeight]="50"
-				   [rowHeight]="'auto'"
-				   [externalPaging]="true"
 				   [count]="pager.totalItems"
 				   [offset]="pager.pageNumber"
 				   [limit]="pager.size"
-				   (page)="setPage($event)">
+				   (page)="setPage($event)"
+				   class="material">
 	</ngx-datatable>
 </ds-entity-list>
 

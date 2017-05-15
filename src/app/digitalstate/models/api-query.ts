@@ -24,7 +24,7 @@ export class ListQuery {
     }
 
     withFilter(filterName: string, filterValue: any): ListQuery {
-        this.setFilter(filterName, filterValue);
+        return this.setFilter(filterName, filterValue);
     }
 
     setFilter(filterName: string, filterValue: any): ListQuery {

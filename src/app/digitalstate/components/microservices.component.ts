@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
       <router-outlet></router-outlet>
   `,
   styleUrls: [
-    '../styles/index.scss',
+    '../styles/_index.scss',
   ]
 })
 export class DsMicroservicesComponent {
