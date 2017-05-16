@@ -18,9 +18,9 @@ export class DsCaseListComponent extends DsBaseEntityListComponent {
     }
 
     setupList() {
+        super.setupList();
         this.columns = [
-            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl },
-            { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
+            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
         ];
     }
 }

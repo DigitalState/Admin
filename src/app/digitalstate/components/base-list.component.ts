@@ -7,7 +7,7 @@ import { Service } from '../models/service';
 import { DsBaseEntityApiService } from '../services/base-entity-api.service';
 import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -57,6 +57,7 @@ export class DsBaseEntityListComponent {
     ngOnInit() {
         this.setupUi();
         this.setupList();
+        this.postSetupList();
 
         // Todo: fetch the default page size from the AppState
         this.pager.size = 3;
@@ -65,33 +66,24 @@ export class DsBaseEntityListComponent {
             .forUrl(this.microserviceConfig.settings.entrypoint.url, this.microserviceConfig.name)
             .withPager(this.pager);
 
-        this.setPage({offset: 0});
-
-
-        // Build the filter model from filterable entity properties
-        // Object.keys(this.microserviceConfig.settings.properties).forEach((filterProperty) => {
-        //     this.filterModel.set(filterProperty, new Subject<string>());
-        //
-        //     this.filterModel.get(filterProperty)
-        //         .debounceTime(5000)
-        //         .map((val: string) => this.assignFilterValue(filterProperty, val))
-        //         .subscribe();
-        // });
-
+        // Configure the column-filtering stream
         this.filterStream
             .distinctUntilChanged(
+                // distinct comparer: check whether both filter property and value are identical
                 (obj1, obj2) => (obj1.filterProperty === obj2.filterProperty && obj1.filterValue === obj2.filterValue)
             )
             .map((obj) => this.assignFilterValue(obj))
             .debounceTime(500)
             .subscribe(() => this.doFilter());
 
-        // window.foo = new Subject<Array<any>>();
-        // window.foo.subscribe((x) => {
-        //     console.log(x);
-        // });
+        // Run the initial fetch query
+        this.setPage({offset: 0});
     }
 
+    /**
+     * Setup the UI.
+     * This can be overridden by subclasses to further configure the UI.
+     */
     protected setupUi() {
         _.forEach(this.datatableAttributes, (value, key) => {
             console.log(key, value);
@@ -100,13 +92,26 @@ export class DsBaseEntityListComponent {
     }
 
     /**
-     * Called on subclasses to further configure the list when the component is initialized
-     * within `ngOnInit`.
+     * Called on subclasses to configure the Data-table columns when the component is initialized
      */
     protected setupList() {
 
     }
 
+    /**
+     * Perform additional configurations on the Data-table settings after subcalsses complete their
+     * own configurations in `setupList`;
+     */
+    protected postSetupList() {
+        // Append the Actions column
+        this.columns.push(
+            { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
+        );
+    }
+
+    /**
+     * Fetch the list using the Entity API Service.
+     */
     protected refreshList() {
         let m = this.entityApiService.getList(this.query);
 
@@ -126,8 +131,7 @@ export class DsBaseEntityListComponent {
     onFilterValueChange(filterData) {
         const filterProperty = filterData.column.prop;
         const filterValue = filterData.event.target.value;
-        // this.filterModel.get(filterProperty).next(filterValue);
-        this.filterStream.next({filterProperty, filterValue});
+        this.filterStream.next({ filterProperty, filterValue });
     }
 
     // assignFilterValue(prop, val): ObservableInput<any> {
@@ -163,26 +167,6 @@ export class DsBaseEntityListComponent {
 
         this.refreshList();
     }
-
-    /**
-     * Update the list based on the provided filtering data.
-     * This method is a callback for the observed filter-update event of the column header component.
-     * @param filterData {object} This object contains the following properties:
-     *        - column: The ngx-datatable column object that hosts the filter's input control.
-     *        - event: The DOM event resulting from the user interaction with the control.
-     */
-    // xupdateFilter(filterData) {
-    //     const filterValue = filterData.event.target.value;
-    //     this.query.withFilter(filterData.column.prop, filterValue);
-    //
-    //     // Reset query to the first page before refreshing the list
-    //     this.query.pager.pageNumber = 0; // remember page numbers are zero-based
-    //
-    //     // Whenever the filter changes, always go back to the first page
-    //     // this.datatable.offset = 0;
-    //
-    //     this.refreshList();
-    // }
 
     /**
      * Populate the table with new data based on the page number
