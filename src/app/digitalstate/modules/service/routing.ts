@@ -1,11 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { DsServiceComponent } from './service.component';
-import { DsServiceListComponent } from './components/list.component';
-import { DsServiceShowComponent } from './components/show.component';
-import { DsServiceCreateComponent } from './components/create.component';
-import { DsServiceEditComponent } from './components/edit.component';
-import { DsServiceActivateComponent } from './components/activate.component';
+import { DsServiceListComponent } from './components/service-list.component';
+import { DsServiceShowComponent } from './components/service-show.component';
+import { DsServiceCreateComponent } from './components/service-create.component';
+import { DsServiceEditComponent } from './components/service-edit.component';
+import { DsServiceActivateComponent } from './components/service-activate.component';
 
 
 const routes: Routes = [

@@ -1,10 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { DsCaseComponent } from './case.component';
-import { DsCaseListComponent } from './components/list.component';
-import { DsCaseShowComponent } from './components/show.component';
-import { DsCaseCreateComponent } from './components/create.component';
-import { DsCaseEditComponent } from './components/edit.component';
+import { DsCaseListComponent } from './components/case-list.component';
+import { DsCaseShowComponent } from './components/case-show.component';
+import { DsCaseCreateComponent } from './components/case-create.component';
+import { DsCaseEditComponent } from './components/case-edit.component';
 
 const routes: Routes = [
 

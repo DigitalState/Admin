@@ -8,13 +8,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormioModule } from 'ng2-formio';
 
 import { MicroserviceConfig, MicroserviceRestangularProvider } from './microservice.provider';
-import {DsDatatableHeader} from '../components/datatable/datatable-header.component';
-// import { DsServiceComponent } from './service.component';
-// import { DsServiceListComponent } from './components/list.component';
-// import { DsServiceShowComponent } from './components/show.component';
-// import { DsServiceCreateComponent } from './components/create.component';
-// import { DsServiceEditComponent } from './components/edit.component';
-// import { DsServiceActivateComponent } from './components/activate.component';
 
 @NgModule({
     imports: [
@@ -25,12 +18,7 @@ import {DsDatatableHeader} from '../components/datatable/datatable-header.compon
         NgxDatatableModule,
     ],
     declarations: [
-        // DsServiceComponent,
-        // DsServiceListComponent,
-        // DsServiceShowComponent,
-        // DsServiceCreateComponent,
-        // DsServiceEditComponent,
-        // DsServiceActivateComponent,
+
     ],
     providers: [
         MicroserviceConfig,
@@ -40,7 +28,6 @@ import {DsDatatableHeader} from '../components/datatable/datatable-header.compon
 
 export abstract class DsBaseMicroserviceModule {
 
-
     public microserviceName: string = null;
 
     // set the Microservice config in the constructor
@@ -49,7 +36,6 @@ export abstract class DsBaseMicroserviceModule {
 
         msConfig.name = this.getMicroserviceName();
         msConfig.settings = this.appState.get('microservices')[msConfig.name];
-
     }
 
     /**

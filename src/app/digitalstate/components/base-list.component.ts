@@ -9,7 +9,9 @@ import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
 import { Subject } from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
+
 import 'rxjs/Rx';
+import 'lodash/_';
 
 export class DsBaseEntityListComponent {
 
@@ -138,6 +140,7 @@ export class DsBaseEntityListComponent {
     protected assignFilterValue(obj): ObservableInput<any> {
         console.log('assignFilterValue: ', obj);
         this.filters[obj.filterProperty] = obj.filterValue;
+        return obj;
     }
 
     /**

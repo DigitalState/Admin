@@ -10,10 +10,10 @@ import { MicroserviceConfig, MicroserviceRestangularProvider } from '../microser
 import { DsBaseMicroserviceModule } from '../base-microservice.module';
 import { DsMicroservicesModule } from '../../microservices.module';
 import { DsCaseComponent } from './case.component';
-import { DsCaseListComponent } from './components/list.component';
-import { DsCaseShowComponent } from './components/show.component';
-import { DsCaseCreateComponent } from './components/create.component';
-import { DsCaseEditComponent } from './components/edit.component';
+import { DsCaseListComponent } from './components/case-list.component';
+import { DsCaseShowComponent } from './components/case-show.component';
+import { DsCaseCreateComponent } from './components/case-create.component';
+import { DsCaseEditComponent } from './components/case-edit.component';
 
 export const MICROSERVICE_NAME = 'cases';
 
