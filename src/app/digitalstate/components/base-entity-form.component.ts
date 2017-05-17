@@ -23,7 +23,6 @@ export abstract class DsBaseEntityFormComponent {
 
     protected submitted: boolean = false;
     protected formErrors = {};
-    protected validationMessages = {};
 
     /**
      * The URL portion of the REST resource URL that refers to the entity's collection.
@@ -35,6 +34,11 @@ export abstract class DsBaseEntityFormComponent {
      * The entity's identifier.
      */
     protected id: any;
+
+    /**
+     * A shortcut to the entity's metadata from the MicroserviceConfig.
+     */
+    protected entityMetadata = {};
 
     /**
      * The Enity API service is not injected into this base component class because
@@ -55,14 +59,16 @@ export abstract class DsBaseEntityFormComponent {
                 protected location: Location,
                 protected microserviceConfig: MicroserviceConfig,
                 protected toastr: ToastsManager) {
-
-        // Setup form errors object with empty messages
-        Object.keys(microserviceConfig.settings.properties).forEach((propertyName) => {
-            this.formErrors[propertyName] = '';
-        });
     }
 
     ngOnInit() {
+        this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
+
+        // Setup form errors object with empty messages
+        Object.keys(this.entityMetadata).forEach((propertyName) => {
+            this.formErrors[propertyName] = '';
+        });
+
         this.prepareEntity();
     }
 
@@ -127,7 +133,7 @@ export abstract class DsBaseEntityFormComponent {
             const control = form.get(field);
 
             if (control && control.dirty && !control.valid) {
-                const messages = this.microserviceConfig.settings.properties[field].validation
+                const messages = this.entityMetadata[field].validation
                 for (const key in control.errors) {
                     this.formErrors[field] += messages[key].message + ' ';
                 }

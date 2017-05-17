@@ -7,7 +7,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Services',
-            icon: 'ion-cube',
+            icon: 'ion-ios-keypad',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,
@@ -20,7 +20,116 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Cases',
-            icon: 'ion-cube',
+            icon: 'ion-folder',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'assets',
+        data: {
+          menu: {
+            title: 'Assets',
+            icon: 'ion-images',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'topics',
+        data: {
+          menu: {
+            title: 'Topics',
+            icon: 'ion-pound',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'tasks',
+        data: {
+          menu: {
+            title: 'Tasks',
+            icon: 'ion-clipboard',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'records',
+        data: {
+          menu: {
+            title: 'Records',
+            icon: 'ion-filing',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'interactions',
+        data: {
+          menu: {
+            title: 'Interactions',
+            icon: 'ion-chatbox',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        },
+        children: [
+          {
+            path: ['interactions', 'communications', 'list'],
+            data: {
+              menu: {
+                title: 'Communications',
+              }
+            }
+          },
+          {
+            path: ['interactions', 'interactions', 'list'],
+            data: {
+              menu: {
+                title: 'Interactions',
+              }
+            }
+          },
+        ]
+      },
+      {
+        path: 'individuals',
+        data: {
+          menu: {
+            title: 'Individuals',
+            icon: 'ion-person',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'identities',
+        data: {
+          menu: {
+            title: 'Identities',
+            icon: 'ion-card',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,

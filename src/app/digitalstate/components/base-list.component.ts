@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
-import 'lodash/_';
+import _ from 'lodash';
 
 export class DsBaseEntityListComponent {
 
@@ -20,13 +20,12 @@ export class DsBaseEntityListComponent {
     @ViewChild('textCellTpl') textCellTpl: TemplateRef<any>;
     @ViewChild('actionsTpl') actionsCellTpl: TemplateRef<any>;
 
-    entityApiRoute = null;
-    entities;
     rows = [];
+    columns = [];
     query: ListQuery;
     pager = new Pager();
-    // rows = new Array<Service>();
-    columns = [];
+
+    // Todo: fetch the default page size from the AppState
     size = 10;
 
     /**
@@ -41,10 +40,22 @@ export class DsBaseEntityListComponent {
         externalPaging: true,
     };
 
-    protected filterModel: Map<string, Subject<string>> = new Map();
+    /**
+     * The URL portion of the REST resource URL that refers to the entity's collection.
+     * @type {string}
+     */
+    protected entityUrlPrefix: string;
 
+    /**
+     * Filtering model and stream
+     */
     protected filters = {};
     protected filterStream = new Subject<any>();
+
+    /**
+     * A shortcut to the entity's metadata from the MicroserviceConfig.
+     */
+    protected entityMetadata = {};
 
     /**
      * The Enity API service is not injected into this base component class because
@@ -57,15 +68,16 @@ export class DsBaseEntityListComponent {
     }
 
     ngOnInit() {
+        this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
+        this.pager.size = this.size;
+
+        // UI lifecycle
         this.setupUi();
         this.setupList();
         this.postSetupList();
 
-        // Todo: fetch the default page size from the AppState
-        this.pager.size = 3;
-
         this.query = ListQuery
-            .forUrl(this.microserviceConfig.settings.entrypoint.url, this.microserviceConfig.name)
+            .forUrl(this.microserviceConfig.settings.entrypoint.url, this.entityUrlPrefix)
             .withPager(this.pager);
 
         // Configure the column-filtering stream
@@ -105,6 +117,10 @@ export class DsBaseEntityListComponent {
      * own configurations in `setupList`;
      */
     protected postSetupList() {
+        this.columns.forEach((column) => {
+            column.propertyMetadata = this.entityMetadata[column.prop];
+        });
+
         // Append the Actions column
         this.columns.push(
             { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
@@ -115,9 +131,9 @@ export class DsBaseEntityListComponent {
      * Fetch the list using the Entity API Service.
      */
     protected refreshList() {
-        let m = this.entityApiService.getList(this.query);
+        let list = this.entityApiService.getList(this.query);
 
-        m.subscribe((pagedData) => {
+        list.subscribe((pagedData) => {
             this.pager = pagedData.pager;
             this.rows = pagedData.data;
         });
@@ -130,13 +146,17 @@ export class DsBaseEntityListComponent {
      *        - column: The ngx-datatable column object that hosts the filter's input control.
      *        - event: The DOM event resulting from the user interaction with the control.
      */
-    onFilterValueChange(filterData) {
+    protected onFilterValueChange(filterData) {
         const filterProperty = filterData.column.prop;
         const filterValue = filterData.event.target.value;
         this.filterStream.next({ filterProperty, filterValue });
     }
 
-    // assignFilterValue(prop, val): ObservableInput<any> {
+    /**
+     * Update the filtering model using the provided filter value.
+     * @param obj Property and value of the filter
+     * @returns {any} obj as received from the stream
+     */
     protected assignFilterValue(obj): ObservableInput<any> {
         console.log('assignFilterValue: ', obj);
         this.filters[obj.filterProperty] = obj.filterValue;

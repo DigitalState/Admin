@@ -14,20 +14,10 @@
 	<ds-datatable-header [column]="column" (onFilterValueChange)="onFilterValueChange($event)"></ds-datatable-header>
 </ng-template>
 
-<ng-template #textCellTpl let-row="row" let-value="value">
-	<ds-datatable-cell [row]="row" [value]="value"></ds-datatable-cell>
+<ng-template #textCellTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell [column]="column" [row]="row" [value]="value"></ds-datatable-cell>
 </ng-template>
 
 <ng-template #actionsTpl let-column="column" let-row="row">
 	<ds-datatable-cell-actions [row]="row"></ds-datatable-cell-actions>
 </ng-template>
-
-
-<!--
-class="{{datatableAttributes.class}}"
-				   [columnMode]="datatableAttributes.columnMode"
-				   [headerHeight]="datatableAttributes.headerHeight"
-				   [footerHeight]="datatableAttributes.footerHeight"
-				   [rowHeight]="datatableAttributes.rowHeight"
-				   [externalPaging]="datatableAttributes.externalPaging"
--->

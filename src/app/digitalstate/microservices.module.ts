@@ -20,6 +20,7 @@ import { DsDatatableHeader } from './components/datatable/datatable-header.compo
 import { DsDatatableCell } from './components/datatable/datatable-cell.component';
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
+import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
 
 @NgModule({
     imports: [
@@ -37,6 +38,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
+        KeyValuePipe,
     ],
     entryComponents: [
         DefaultModal,
@@ -52,6 +54,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
+        KeyValuePipe,
     ]
 })
 export class DsMicroservicesModule {

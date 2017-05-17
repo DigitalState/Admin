@@ -11,6 +11,8 @@ import { MicroserviceConfig } from '../../microservice.provider';
 })
 export class DsServiceListComponent extends DsBaseEntityListComponent {
 
+    entityUrlPrefix = 'services';
+
     constructor(microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
         super(microserviceConfig);

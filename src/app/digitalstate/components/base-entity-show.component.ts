@@ -14,6 +14,11 @@ export abstract class DsBaseEntityShowComponent {
     protected entity;
 
     /**
+     * A shortcut to the entity's metadata from the MicroserviceConfig.
+     */
+    protected entityMetadata = {};
+
+    /**
      * The Enity API service is not injected into this base component class because
      * the API service configurations are Microservice-specific.
      */
@@ -30,6 +35,7 @@ export abstract class DsBaseEntityShowComponent {
     }
 
     ngOnInit() {
+        this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.prepareEntity();
     }
 

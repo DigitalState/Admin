@@ -5,10 +5,24 @@ import { TableColumn } from '@swimlane/ngx-datatable';
 @Component({
     selector: 'ds-datatable-cell',
     template: `
-        <em>{{value}}</em>
+        <span>{{outputValue}}</span>
     `
 })
 export class DsDatatableCell {
     @Input() value: any;
     @Input() row: any;
+    @Input() column: any;
+
+    outputValue: null;
+
+    ngOnInit() {
+        if (this.column.propertyMetadata.field) {
+            if (this.column.propertyMetadata.field.type === 'select') {
+                this.outputValue = this.column.propertyMetadata.field.options[this.value];
+            }
+        }
+        else {
+            this.outputValue = this.value;
+        }
+    }
 }
