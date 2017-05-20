@@ -56,8 +56,6 @@ export abstract class DsBaseEntityApiService<T> {
             .reduce((pagedData, fetchedCollection) => {
                 query.pager.totalItems = fetchedCollection.metadata['hydra:totalItems'];
                 query.pager.totalPages = Math.ceil(query.pager.totalItems / query.pager.size);
-                console.log('accumulator: ', pagedData);
-                console.log('Received items: ', fetchedCollection);
 
                 pagedData.pager = query.pager;
                 pagedData.data = fetchedCollection.map(this.mapToEntity);

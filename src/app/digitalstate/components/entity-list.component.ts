@@ -1,4 +1,4 @@
-import { Component, Inject, TemplateRef, ViewChild, ContentChild } from '@angular/core';
+import {Component, Inject, TemplateRef, ViewChild, ContentChild, Output, EventEmitter} from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import 'rxjs/Rx';
 
@@ -16,6 +16,7 @@ import { TemplateStorage } from '../services/template-storage.service';
     templateUrl: '../templates/entity-list.template.html'
 })
 export class DsEntityListComponent {
+    @Output() onRefreshList = new EventEmitter();
 
     @ContentChild(DatatableComponent) datatable: DatatableComponent;
 
@@ -28,6 +29,6 @@ export class DsEntityListComponent {
     }
 
     protected refreshList() {
-
+        this.onRefreshList.emit();
     }
 }

@@ -4,6 +4,7 @@ import 'rxjs/Rx';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
 import { MicroserviceConfig } from '../../microservice.provider';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'ds-individual-list',
@@ -13,9 +14,10 @@ export class DsIndividualListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'individuals';
 
-    constructor(microserviceConfig: MicroserviceConfig,
+    constructor(translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
-        super(microserviceConfig);
+        super(translate, microserviceConfig);
         this.entityApiService = entityApiService;
     }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { AppTranslationModule } from '../app.translation.module';
 import { AppState } from '../app.service';
 import { NgaModule } from '../../theme/nga.module';
 
@@ -19,14 +20,18 @@ import { DsEntityFormComponent } from './components/entity-form.component';
 import { DsDatatableHeader } from './components/datatable/datatable-header.component';
 import { DsDatatableCell } from './components/datatable/datatable-cell.component';
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
+import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         FormsModule,
+        // AppTranslationModule,
+        TranslateModule,
     ],
     declarations: [
         DefaultModal,
@@ -38,6 +43,7 @@ import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
+        DSLanguageSwitcherComponent,
         KeyValuePipe,
     ],
     entryComponents: [
@@ -54,7 +60,10 @@ import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
+        DSLanguageSwitcherComponent,
         KeyValuePipe,
+        // AppTranslationModule,
+        TranslateModule,
     ]
 })
 export class DsMicroservicesModule {

@@ -1,4 +1,5 @@
-import { Component, Inject, TemplateRef, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, Inject, ReflectiveInjector, TemplateRef, ViewChild} from '@angular/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
@@ -7,13 +8,13 @@ import { Service } from '../models/service';
 import { DsBaseEntityApiService } from '../services/base-entity-api.service';
 import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
-import { Subject } from 'rxjs';
+import {Subject, Subscriber} from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
 import _ from 'lodash';
 
-export class DsBaseEntityListComponent {
+export class DsBaseEntityListComponent implements AfterViewInit {
 
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
     @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
@@ -63,11 +64,38 @@ export class DsBaseEntityListComponent {
      */
     protected entityApiService: DsBaseEntityApiService<any>;
 
-    constructor(protected microserviceConfig: MicroserviceConfig) {
+    protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
 
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    constructor(protected translate: TranslateService,
+                protected microserviceConfig: MicroserviceConfig) {
+
+        // // subscribe to language-change events
+        this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            console.log('dddddddddddddddddddddddddddddddddddddddddddd', this.entityUrlPrefix, event);
+            this.updateTranslations();
+            // this.translate.reloadLang(event.lang).subscribe(() => {
+            //     this.updateTranslations();
+            // });
+            // return;
+        });
+        // this.languageChangeSubscriber = this.translate.onDefaultLangChange.subscribe((event: any) => {
+        //     console.log('yryryryryryryryryryryryryryryryryryryry');
+        //     this.updateTranslations();
+        //     return;
+        // });
     }
 
     ngOnInit() {
+
+        // this.languageChangeSubscriber = window.translationChange.subscribe((event: LangChangeEvent) => {
+        //     console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmm', this.entityUrlPrefix);
+        //     console.log('window.currentLang: ', window.currentLang);
+        //     // this.translate.reloadLang(event.lang);
+        //     this.updateTranslations();
+        // });
+
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.pager.size = this.size;
 
@@ -92,6 +120,15 @@ export class DsBaseEntityListComponent {
 
         // Run the initial fetch query
         this.setPage({offset: 0});
+    }
+
+    ngOnDestroy() {
+        console.log('DsBaseEntityListComponent UNSUBSCRIBING from language change');
+        this.languageChangeSubscriber.unsubscribe();
+    }
+
+    ngAfterViewInit() {
+
     }
 
     /**
@@ -125,6 +162,8 @@ export class DsBaseEntityListComponent {
         this.columns.push(
             { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
         );
+
+        this.updateTranslations();
     }
 
     /**
@@ -201,4 +240,13 @@ export class DsBaseEntityListComponent {
         this.refreshList();
     }
 
+    protected updateTranslations() {
+        console.log('updateTranslations :: current lang: ', this.translate.currentLang);
+        this.columns.forEach((column) => {
+            this.translate.get('ds.microservices.entity.property.' + column.prop).subscribe((translatedString) => {
+                column.name = translatedString;
+            });
+        });
+
+    }
 }

@@ -31,6 +31,6 @@ export class DsDatatableHeader {
     muteEvent(event) {
         event.stopPropagation();
         event.preventDefault();
-        console.info('DsDatatableHeader :: Event muted :: ', event.type);
+        console.log('DsDatatableHeader :: Event muted :: ', event.type);
     }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import 'rxjs/Rx';
+import { TranslateService } from '@ngx-translate/core';
 
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
@@ -13,10 +14,12 @@ export class DsServiceListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'services';
 
-    constructor(microserviceConfig: MicroserviceConfig,
+    constructor(translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
-        super(microserviceConfig);
+        super(translate, microserviceConfig);
         this.entityApiService = entityApiService;
+
     }
 
     setupList() {

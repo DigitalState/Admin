@@ -6,6 +6,8 @@ import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { DsBaseEntityApiService } from '../services/base-entity-api.service';
 import { MicroserviceConfig } from '../modules/microservice.provider';
 import 'rxjs/Rx';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {Subscriber} from 'rxjs';
 
 export abstract class DsBaseEntityFormComponent {
 
@@ -45,6 +47,9 @@ export abstract class DsBaseEntityFormComponent {
      * the API service configurations are Microservice-specific.
      */
     protected entityApiService: DsBaseEntityApiService<any>;
+
+    protected translate: TranslateService;
+    protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
 
     /*
      Reset the form with a new hero AND restore 'pristine' class state

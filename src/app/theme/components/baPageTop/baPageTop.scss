@@ -2,6 +2,9 @@
 @import '../../components/baMsgCenter/baMsgCenter';
 
 .page-top {
+  @include display(flex);
+  @include align-items(center);
+
   background-color: $sidebar;
   position: fixed;
   z-index: 904;
@@ -30,7 +33,7 @@ a.al-logo {
   white-space: nowrap;
   float: left;
   outline: none !important;
-  line-height: 60px;
+  //line-height: 60px;
 
   span {
     color: $primary;
@@ -46,23 +49,31 @@ a.al-logo:hover {
   color: $primary;
 }
 
-.user-profile {
-  float: right;
-  min-width: 230px;
-  margin-top: 10px;
+.side-menu {
+  @include display(flex);
+  @include align-items(center);
+
+  margin-left: auto;
+
+  > * {
+
+  }
 }
 
-.al-user-profile {
-  float: right;
+.al-dropdown {
   margin-right: 12px;
   transition: all .15s ease-in-out;
   padding: 0;
-  width: 36px;
-  height: 36px;
+  min-width: 45px;
   border: 0;
   opacity: 1;
   position: relative;
-  ul.profile-dropdown:after {
+
+  &:last-child {
+    margin-right: 0px;
+  }
+
+  ul.dropdown-menu:after {
     bottom: 100%;
     right: 0;
     border: solid transparent;
@@ -74,7 +85,7 @@ a.al-logo:hover {
     border-color: rgba(255, 255, 255, 0);
     border-bottom-color: #fff;
     border-width: 10px;
-    margin-right: 28px;
+    margin-right: 51px;
   }
   a {
     display: block;
@@ -83,6 +94,19 @@ a.al-logo:hover {
     width: 45px;
     height: 45px;
     border-radius: 50%;
+  }
+}
+
+ul.language-dropdown {
+  right: -75%;
+  top: 41px;
+
+  li {
+    a {
+      i.fa {
+        margin-right: 8px;
+      }
+    }
   }
 }
 
@@ -109,7 +133,8 @@ a.collapse-menu-link {
   color: $sidebar-text;
   padding: 0;
   float: left;
-  margin: 13px 0 0 6px;
+  //margin: 13px 0 0 6px;
+  margin: 0 0 0 6px;
 
   &:hover {
     text-decoration: none;
@@ -184,8 +209,8 @@ a.collapse-menu-link {
 }
 
 @media (max-width: $resXXS) {
-  .user-profile{
-    min-width: 136px;
+  .side-menu{
+    //min-width: 136px;
   }
   a.refresh-data {
     margin-right: 10px;
@@ -199,7 +224,7 @@ a.collapse-menu-link {
   }
 }
 
-.profile-toggle-link{
+.toggle-link{
   cursor: pointer;
 }
 

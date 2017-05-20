@@ -1,12 +1,12 @@
 import { NgModule, ApplicationRef, ViewContainerRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {Http, HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -30,6 +30,10 @@ import { ToastModule, ToastOptions, ToastsManager } from 'ng2-toastr/ng2-toastr'
 // import { UiModule } from './pages/ui/ui.module';
 // import { DefaultModal } from './pages/ui/components/modals/default-modal/default-modal.component';
 import { DsMicroservicesModule } from './digitalstate/microservices.module';
+import {DsServiceModule} from './digitalstate/modules/service/service.module';
+import {AppTranslationModule} from './app.translation.module';
+import {DsCaseModule} from './digitalstate/modules/case/case.module';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 // Application wide providers
@@ -90,6 +94,18 @@ export function RestangularConfigFactory (restangularProvider) {
   });
 }
 
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+const translationOptions = {
+  loader: {
+    provide: TranslateLoader,
+    useFactory: createTranslateLoader,
+    deps: [Http]
+  }
+};
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -109,6 +125,7 @@ export function RestangularConfigFactory (restangularProvider) {
     ToastModule.forRoot(),
     NgaModule.forRoot(),
     NgbModule.forRoot(),
+    TranslateModule.forRoot(translationOptions),
     PagesModule,
     DsMicroservicesModule,
     routing
@@ -142,7 +159,8 @@ export function RestangularConfigFactory (restangularProvider) {
         showCloseButton: true,
       }
     }
-  ]
+  ],
+  exports: [TranslateModule],
 })
 
 export class AppModule {

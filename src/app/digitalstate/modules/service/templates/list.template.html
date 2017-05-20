@@ -1,4 +1,4 @@
-<ds-entity-list>
+<ds-entity-list (onRefreshList)="refreshList($event)">
 	<ngx-datatable #datatable
 				   [rows]="rows"
 				   [columns]="columns"

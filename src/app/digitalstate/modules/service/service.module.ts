@@ -16,6 +16,7 @@ import { DsServiceShowComponent } from './components/service-show.component';
 import { DsServiceCreateComponent } from './components/service-create.component';
 import { DsServiceEditComponent } from './components/service-edit.component';
 import { DsServiceActivateComponent } from './components/service-activate.component';
+import {AppTranslationModule} from '../../../app.translation.module';
 
 export const MICROSERVICE_NAME = 'services';
 
@@ -23,6 +24,7 @@ export const MICROSERVICE_NAME = 'services';
     imports: [
         CommonModule,
         FormsModule,
+        // AppTranslationModule,
         FormioModule,
         NgxDatatableModule,
         DsMicroservicesModule,
@@ -39,7 +41,7 @@ export const MICROSERVICE_NAME = 'services';
     providers: [
         EntityApiService,
         MicroserviceConfig,
-        MicroserviceRestangularProvider
+        MicroserviceRestangularProvider,
     ]
 })
 export class DsServiceModule extends DsBaseMicroserviceModule {

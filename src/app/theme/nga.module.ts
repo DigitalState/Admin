@@ -56,6 +56,7 @@ import {
   EmailValidator,
   EqualPasswordsValidator
 } from './validators';
+import {DsMicroservicesModule} from '../digitalstate/microservices.module';
 
 const NGA_COMPONENTS = [
   BaAmChart,
@@ -112,7 +113,8 @@ const NGA_VALIDATORS = [
     FormsModule,
     ReactiveFormsModule,
     AppTranslationModule,
-    NgUploaderModule
+    NgUploaderModule,
+    DsMicroservicesModule,
   ],
   exports: [
     ...NGA_PIPES,

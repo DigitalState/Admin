@@ -109,10 +109,11 @@
 }
 
 .top-dropdown-menu {
-  width: 316px;
+  //width: 316px;
+  width: auto;
   left: auto;
   right: -47px;
-  top: 26px;
+  top: 48px;
   @include scrollbars(.4em, rgba(0,0,0,0.5), #fff);
   .header {
     padding: 10px 12px;
