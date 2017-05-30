@@ -9,11 +9,11 @@
 				<div class="container">
 					<ul class="row btn-list clearfix">
 						<li class="col-8">
-							<button [routerLink]="['../edit']" type="button" class="btn btn-primary btn-with-icon"><i class="ion-edit">Edit</i></button>
+							<button [routerLink]="['../edit']" type="button" class="btn btn-primary btn-with-icon"><i class="ion-edit">{{'ds.microservices.entity.action.edit' | translate}}</i></button>
 							<ng-content select="button.entity-action"></ng-content>
 						</li>
 						<li class="col-4 align-right">
-							<button (click)="onDeleteClick($event)" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">Delete</i></button>
+							<button (click)="onDeleteClick($event)" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">{{'ds.microservices.entity.action.delete' | translate}}</i></button>
 						</li>
 					</ul>
 				</div>

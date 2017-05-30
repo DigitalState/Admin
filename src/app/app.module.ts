@@ -1,40 +1,31 @@
-import { NgModule, ApplicationRef, ViewContainerRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ApplicationRef, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Http, HttpModule} from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-
+import {RouterModule} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {createInputTransfer, createNewHosts, removeNgStyles} from '@angularclass/hmr';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 /*
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
 import { routing } from './app.routing';
-
 // App is our top level component
 import { App } from './app.component';
 import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
-
 //
-import * as _ from 'lodash';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { FormioModule, FormioAppConfig } from 'ng2-formio';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ToastModule, ToastOptions, ToastsManager } from 'ng2-toastr/ng2-toastr';
-// import { UiModule } from './pages/ui/ui.module';
-// import { DefaultModal } from './pages/ui/components/modals/default-modal/default-modal.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RestangularModule } from 'ngx-restangular';
+import { FormioAppConfig } from 'ng2-formio';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { DsMicroservicesModule } from './digitalstate/microservices.module';
-import {DsServiceModule} from './digitalstate/modules/service/service.module';
-import {AppTranslationModule} from './app.translation.module';
-import {DsCaseModule} from './digitalstate/modules/case/case.module';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import * as _ from 'lodash';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -125,7 +116,7 @@ const translationOptions = {
     ToastModule.forRoot(),
     NgaModule.forRoot(),
     NgbModule.forRoot(),
-    TranslateModule.forRoot(translationOptions),
+    TranslateModule.forRoot(translationOptions), // @See AppTranslationModule for default language setting
     PagesModule,
     DsMicroservicesModule,
     routing
@@ -150,7 +141,6 @@ const translationOptions = {
         maxShown: 5,
         newestOnTop: false,
         animate: 'flyRight',
-        // override-able propertie,
         toastLife: 5000,
         enableHTML: true,
         dismiss: 'auto', // 'auto' | 'click' | 'controlled

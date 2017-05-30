@@ -1,7 +1,7 @@
 <ds-entity-show *ngIf="entity" [entity]="entity" (onDelete)="onDelete($event)">
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
-	<button [routerLink]="['../activate']" type="button" class="entity-action btn btn-secondary btn-with-icon"><i class="ion-power">Activate</i></button>
+	<button [routerLink]="['../activate']" type="button" class="entity-action btn btn-secondary btn-with-icon"><i class="ion-power">{{ 'ds.microservices.entity.action.activate' | translate }}</i></button>
 	<!-- end: ng-content[select="button.entity-action"] -->
 
 	<!-- begin: ng-content[select=".entity-body"] -->
@@ -9,21 +9,21 @@
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-3">
 				<dl>
-					<dt>Title</dt>
+					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
 					<dd>{{entity.title}}</dd>
 				</dl>
 				<dl>
-					<dt>Presentation</dt>
+					<dt>{{ 'ds.microservices.entity.property.presentation' | translate }}</dt>
 					<dd>{{entity.presentation}}</dd>
 				</dl>
 				<dl>
-					<dt>Form</dt>
+					<dt>{{ 'ds.microservices.entity.property.form' | translate }}</dt>
 					<dd>{{entity.form}}</dd>
 				</dl>
 			</div>
 			<div class="col-sm-8 col-sm-offset-3">
 				<dl>
-					<dt>Description</dt>
+					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
 					<dd>{{entity.description}}</dd>
 				</dl>
 			</div>

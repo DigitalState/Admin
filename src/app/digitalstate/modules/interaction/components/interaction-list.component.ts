@@ -8,7 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'ds-interaction-list',
-    templateUrl: '../templates/interaction-list.template.html'
+    templateUrl: '../../../templates/generic-list.template.html'
 })
 export class DsInteractionListComponent extends DsBaseEntityListComponent {
 

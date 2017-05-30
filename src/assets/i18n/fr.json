@@ -13,7 +13,7 @@
   },
   "general": {
     "akveo": "Akveo",
-    "home": "Home",
+    "home": "Accueil",
     "languages": {
       "en": "English",
       "fr": "Français"
@@ -119,6 +119,11 @@
     "pie_with_labels": "Pie with labels",
     "donut": "Donut"
   },
+  "datatable": {
+    "emptyMessage": "Aucune donnée à afficher",
+    "totalMessage": "total",
+    "selectedMessage": "sélectionné"
+  },
   "ds": {
     "language-switcher": {
       "languages": {
@@ -130,17 +135,23 @@
       "entity": {
         "property": {
           "title": "Titre",
-          "form": "Form"
+          "form": "Form",
+          "presentation": "Présentation",
+          "description": "Description",
+          "username": "Nom d'utilisateur",
+          "channel": "Canal"
         },
         "action": {
           "create": "Créer",
           "show": "Afficher",
           "edit": "Modifier",
           "delete": "Supprimez",
-          "activate": "Activer"
+          "refresh": "Recharger",
+          "activate": "Activer",
+          "save": "Enregistrer",
+          "cancel": "Annuler"
         }
       }
     }
-  },
-  "xxx": "French WHAAATT"
+  }
 }

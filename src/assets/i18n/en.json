@@ -115,6 +115,11 @@
     "pie_with_labels": "Pie with labels",
     "donut": "Donut"
   },
+  "datatable": {
+    "emptyMessage": "No data to display",
+    "totalMessage": "total",
+    "selectedMessage": "selected"
+  },
   "ds": {
     "language-switcher": {
       "languages": {
@@ -126,17 +131,23 @@
       "entity": {
         "property": {
           "title": "Title",
-          "form": "Form"
+          "form": "Form",
+          "presentation": "Presentation",
+          "description": "Description",
+          "username": "Username",
+          "channel": "Channel"
         },
         "action": {
           "create": "Create",
           "show": "Show",
           "edit": "Edit",
           "delete": "Delete",
-          "activate": "Activate"
+          "refresh": "Refresh",
+          "activate": "Activate",
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     }
-  },
-  "xxx": "WHAAATT"
+  }
 }

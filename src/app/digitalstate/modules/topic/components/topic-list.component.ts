@@ -8,7 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'ds-topic-list',
-    templateUrl: '../templates/list.template.html'
+    templateUrl: '../../../templates/generic-list.template.html'
 })
 export class DsTopicListComponent extends DsBaseEntityListComponent {
 

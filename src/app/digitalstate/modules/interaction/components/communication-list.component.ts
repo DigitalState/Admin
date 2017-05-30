@@ -8,7 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'ds-communication-list',
-    templateUrl: '../templates/communication-list.template.html'
+    templateUrl: '../../../templates/generic-list.template.html'
 })
 export class DsCommunicationListComponent extends DsBaseEntityListComponent {
 

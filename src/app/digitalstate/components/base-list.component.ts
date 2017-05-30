@@ -70,31 +70,13 @@ export class DsBaseEntityListComponent implements AfterViewInit {
 
     constructor(protected translate: TranslateService,
                 protected microserviceConfig: MicroserviceConfig) {
-
-        // // subscribe to language-change events
-        this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            console.log('dddddddddddddddddddddddddddddddddddddddddddd', this.entityUrlPrefix, event);
-            this.updateTranslations();
-            // this.translate.reloadLang(event.lang).subscribe(() => {
-            //     this.updateTranslations();
-            // });
-            // return;
-        });
-        // this.languageChangeSubscriber = this.translate.onDefaultLangChange.subscribe((event: any) => {
-        //     console.log('yryryryryryryryryryryryryryryryryryryry');
-        //     this.updateTranslations();
-        //     return;
-        // });
     }
 
     ngOnInit() {
-
-        // this.languageChangeSubscriber = window.translationChange.subscribe((event: LangChangeEvent) => {
-        //     console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmm', this.entityUrlPrefix);
-        //     console.log('window.currentLang: ', window.currentLang);
-        //     // this.translate.reloadLang(event.lang);
-        //     this.updateTranslations();
-        // });
+        // Subscribe to language-change events
+        this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.updateTranslations();
+        });
 
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.pager.size = this.size;
@@ -123,7 +105,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
     }
 
     ngOnDestroy() {
-        console.log('DsBaseEntityListComponent UNSUBSCRIBING from language change');
+        // Unsubscribe from language-change events
         this.languageChangeSubscriber.unsubscribe();
     }
 
@@ -240,8 +222,15 @@ export class DsBaseEntityListComponent implements AfterViewInit {
         this.refreshList();
     }
 
+    /**
+     * Dynamically update localized strings that are not rendered through the `translate` pipe.
+     * This mainly applies to the ngx-datatable component.
+     */
     protected updateTranslations() {
-        console.log('updateTranslations :: current lang: ', this.translate.currentLang);
+        // Update the localization strings of ngx-datatable
+        this.datatable.messages = this.translate.instant('datatable');
+
+        // Update the columns' headers
         this.columns.forEach((column) => {
             this.translate.get('ds.microservices.entity.property.' + column.prop).subscribe((translatedString) => {
                 column.name = translatedString;

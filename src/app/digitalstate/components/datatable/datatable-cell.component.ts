@@ -16,7 +16,9 @@ export class DsDatatableCell {
     outputValue: null;
 
     ngOnInit() {
+        // Render the cell value according to the property type
         if (this.column.propertyMetadata.field) {
+            // For a property of type `select`, render the property's label instead of its value
             if (this.column.propertyMetadata.field.type === 'select') {
                 this.outputValue = this.column.propertyMetadata.field.options[this.value];
             }
