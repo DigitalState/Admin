@@ -21,11 +21,17 @@ export class AppState {
     throw new Error('do not mutate the `.state` directly');
   }
 
+  //
+  // get(prop?: any) {
+  //   // use our state getter for the clone
+  //   const state = this.state;
+  //   return state.hasOwnProperty(prop) ? state[prop] : state;
+  // }
 
-  get(prop?: any) {
+  get(prop: any, defaultVal = null) {
     // use our state getter for the clone
     const state = this.state;
-    return state.hasOwnProperty(prop) ? state[prop] : state;
+    return state.hasOwnProperty(prop) ? state[prop] : defaultVal;
   }
 
   set(prop: string, value: any) {

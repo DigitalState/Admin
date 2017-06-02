@@ -4,7 +4,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Pager } from '../models/pager';
-import { Service } from '../models/service';
+// import { Service } from '../models/service';
 import { DsBaseEntityApiService } from '../services/base-entity-api.service';
 import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
@@ -12,7 +12,7 @@ import {Subject, Subscriber} from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
-import _ from 'lodash';
+import { forEach, isString } from 'lodash';
 
 export class DsBaseEntityListComponent implements AfterViewInit {
 
@@ -118,7 +118,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
      * This can be overridden by subclasses to further configure the UI.
      */
     protected setupUi() {
-        _.forEach(this.datatableAttributes, (value, key) => {
+        forEach(this.datatableAttributes, (value, key) => {
             console.log(key, value);
             this.datatable[key] = value;
         });
@@ -142,7 +142,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
 
         // Append the Actions column
         this.columns.push(
-            { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl },
+            { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl }
         );
 
         this.updateTranslations();
@@ -190,7 +190,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
     protected doFilter() {
         Object.keys(this.filters).forEach((filterProperty) => {
             const filterValue = this.filters[filterProperty];
-            if (filterValue == null || (_.isString(filterValue) && filterValue.length === 0)) {
+            if (filterValue == null || (isString(filterValue) && filterValue.length === 0)) {
                 delete this.filters[filterProperty];
                 this.query.unsetFilter(filterProperty);
             }

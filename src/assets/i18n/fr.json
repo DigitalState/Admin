@@ -1,15 +1,22 @@
 {
   "login": {
-    "title": "Sign in to ng2-admin",
-    "signup_link": "New to ng2-admin? Sign up!",
+    "title": "Se connecter",
+    "signUpPrompt": "Vous n'avez pas de compte?",
+    "signUpLink": "S'inscrire!",
     "email": "Email",
-    "password": "Password",
-    "sign_in": "Sign in",
-    "forgot_password": "Forgot password?",
-    "sign_from_app_text": "or Sign in with one click",
-    "share_on_facebook": "Share on Facebook",
-    "share_on_twitter": "Share on Twitter",
-    "share_on_google_plus": "Share on Google Plus"
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "forgotPassword": "mot de passe oublié?",
+    "signFromAppText": "or Sign in with one click",
+    "shareOnFacebook": "Share on Facebook",
+    "shareOnTwitter": "Share on Twitter",
+    "shareOnGooglePlus": "Share on Google Plus"
+  },
+  "register": {
+    "title": "Enregistrement",
+    "loginPrompt": "Avez-vous déjà un compte ?",
+    "loginLink": "Se connecter",
+    "signUpButton": "S'inscrire"
   },
   "general": {
     "akveo": "Akveo",
@@ -19,7 +26,8 @@
       "fr": "Français"
     },
     "forms": {
-      "option1": "Option 1"
+      "option1": "Option 1",
+      "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"
     },
     "menu": {
       "dashboard": "Dashboard",

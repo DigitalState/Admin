@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AppTranslationModule } from '../app.translation.module';
 import { AppState } from '../app.service';
@@ -9,6 +10,7 @@ import { NgaModule } from '../../theme/nga.module';
 
 import { DsBaseEntityApiService } from './services/base-entity-api.service';
 import { DsServiceModule } from './modules/service/service.module';
+import { DSAuthModule } from './modules/auth/auth.module';
 
 import { MICROSERVICES } from './microservices';
 import { TemplateStorage } from './services/template-storage.service';
@@ -23,7 +25,6 @@ import { DsDatatableCellActions } from './components/datatable/datatable-cell-ac
 import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
-import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {TranslateModule} from '@ngx-translate/core';
         FormsModule,
         // AppTranslationModule,
         TranslateModule,
+        DSAuthModule,
     ],
     declarations: [
         DefaultModal,

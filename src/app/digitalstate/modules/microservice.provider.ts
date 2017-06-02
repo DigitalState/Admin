@@ -1,6 +1,7 @@
 
 import { Restangular } from 'ngx-restangular';
 import { InjectionToken } from '@angular/core';
+import {AuthService} from './auth/auth.service';
 
 /* * * Microservice configuration Provider * * * * * * * * * * * * */
 
@@ -19,10 +20,11 @@ export class MicroserviceConfig {
  * @param microserviceConfig
  * @returns {any}
  */
-let microserviceRestangularFactory = (restangular: Restangular, microserviceConfig: MicroserviceConfig) => {
+let microserviceRestangularFactory = (restangular: Restangular, auth: AuthService, microserviceConfig: MicroserviceConfig) => {
     return restangular.withConfig((restangularConfigurer) => {
         console.log(restangularConfigurer);
         restangularConfigurer.setBaseUrl(microserviceConfig.settings.entrypoint.url);
+        restangularConfigurer.setDefaultHeaders({'Authorization': 'Bearer ' + auth.getToken()});
     });
 };
 
@@ -31,5 +33,5 @@ export const MICROSERVICE_RESTANGULAR = new InjectionToken<any>('MicroserviceRes
 export let MicroserviceRestangularProvider = {
     provide: MICROSERVICE_RESTANGULAR,
     useFactory: microserviceRestangularFactory,
-    deps: [Restangular, MicroserviceConfig]
+    deps: [Restangular, AuthService, MicroserviceConfig]
 };

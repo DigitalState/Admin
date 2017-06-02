@@ -18,6 +18,7 @@ import { DsServiceEditComponent } from './components/service-edit.component';
 import { DsServiceActivateComponent } from './components/service-activate.component';
 import {AppTranslationModule} from '../../../app.translation.module';
 
+
 export const MICROSERVICE_NAME = 'services';
 
 @NgModule({

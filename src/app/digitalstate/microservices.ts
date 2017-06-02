@@ -1,9 +1,15 @@
 
 export const MICROSERVICES = {
+    'authentication': {
+        label: 'Authentication',
+        entrypoint: {
+            url: 'http://localhost:8010/app_dev.php/',
+        },
+    },
     'services': {
         label: 'Services',
         entrypoint: {
-            url: 'http://localhost:8014/',
+            url: 'http://localhost:8051/',
         },
         entities: {
             'services': {
@@ -46,7 +52,7 @@ export const MICROSERVICES = {
     'cases': {
         label: 'Cases',
         entrypoint: {
-            url: 'http://localhost:8015/',
+            url: 'http://localhost:8050/app_dev.php/',
         },
         entities: {
             'cases': {
@@ -65,7 +71,7 @@ export const MICROSERVICES = {
     'assets': {
         label: 'Assets',
         entrypoint: {
-            url: 'http://localhost:8011/',
+            url: 'http://localhost:8053/',
         },
         entities: {
             'assets': {
@@ -122,7 +128,7 @@ export const MICROSERVICES = {
     'records': {
         label: 'Records',
         entrypoint: {
-            url: 'http://localhost:8012/',
+            url: 'http://localhost:8052/',
         },
         entities: {
             'records': {
@@ -206,7 +212,7 @@ export const MICROSERVICES = {
     'identities': {
         label: 'Identities',
         entrypoint: {
-            url: 'http://localhost:8013/',
+            url: 'http://localhost:8054/',
         },
         entities: {
             'identities': {
