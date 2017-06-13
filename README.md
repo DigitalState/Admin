@@ -1,13 +1,24 @@
 # admin
 Frontend Administration
 
----
+Run the following command from the project directory:
 
-## Installation
-Follow the installation guidelines of ng2-admin at https://akveo.github.io/ng2-admin/articles/002-installation-guidelines
+```
+cd ng2-admin
+npm start
+```
 
-Note:
-This prototype demostrates CRUD and activation operations of *Service* entites. It requires the following micro-services to be running:
-- Services (localhost:8014)
-- Formio (localhost:3001)
-- Camunda (localhost:8080)
+Then point your browser to:
+```
+http://localhost:3000/
+```
+
+##### Docker
+```
+docker-compose up
+```
+
+Notes: 
+- The docker container takes a long time to download, build and compile dependencies.
+- All instructions above run the "dev" mode which syncs `src` directory changes with the browser sessoin.
+
