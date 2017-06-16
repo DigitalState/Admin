@@ -4,9 +4,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import {NgForm, NgModel} from '@angular/forms';
-import { Restangular } from 'ngx-restangular';
+import { NgForm, NgModel } from '@angular/forms';
+
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+
+import { Link } from '../models/Link';
+
 import 'rxjs/Rx';
 
 @Component({
@@ -15,8 +18,10 @@ import 'rxjs/Rx';
 })
 export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked {
 
-    @Input() entity: any;
     @Input() headerTitle: string;
+    @Input() headerSubtitle: string;
+    @Input() entity: any;
+    @Input() backLink: Link;
     @Input() isNew: boolean;
 
     @Output() onFormSubmit = new EventEmitter<any>();
@@ -28,35 +33,8 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     @ViewChild('entityForm') currentForm: NgForm;
     @ContentChildren(NgModel) public models: QueryList<NgModel>;
 
-    // formErrors = {
-    //     'title': '',
-    //     'presentation': '',
-    //     'form': '',
-    //     'description': '',
-    // };
-    //
-    // validationMessages = {
-    //     'title': {
-    //         'required':      'Title is required.',
-    //         'minlength':     'Title must be at least 4 characters long.',
-    //         'maxlength':     'Title cannot be more than 24 characters long.',
-    //         'someCustomValidationDirective': 'Someone named "Bob" cannot be a hero.'
-    //     },
-    //     'presentation': {
-    //         'required': 'Presentation is required.'
-    //     },
-    //     'form': {
-    //         'required': 'Form is required.'
-    //     },
-    //     'description': {
-    //         'required': 'Description is required.'
-    //     },
-    // };
-
     submitted: boolean = false;
-
     protected id: number;
-
 
     /*
      Reset the form with a new hero AND restore 'pristine' class state

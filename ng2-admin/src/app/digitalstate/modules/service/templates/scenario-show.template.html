@@ -1,4 +1,9 @@
-<ds-entity-show *ngIf="entity" [entity]="entity" (onDelete)="onDelete($event)">
+<ds-entity-show *ngIf="entity"
+				[entity]="entity"
+				[backLink]="backLink"
+				[headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				(onDelete)="onDelete($event)">
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<button [routerLink]="['../activate']" type="button" class="entity-action btn btn-secondary btn-with-icon"><i class="ion-power">{{ 'ds.microservices.entity.action.activate' | translate }}</i></button>
@@ -22,6 +27,10 @@
 				<!--</dl>-->
 			</div>
 			<div class="col-sm-8 col-sm-offset-3">
+				<dl>
+					<dt>UUID</dt>
+					<dd>{{entity.uuid}}</dd>
+				</dl>
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
 					<dd>{{entity.description | entityTranslate}}</dd>

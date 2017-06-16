@@ -31,115 +31,117 @@ export const PAGES_MENU = [
           }
         }
       },
-      {
-        path: 'assets',
-        data: {
-          menu: {
-            title: 'general.menu.assets',
-            icon: 'ion-images',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
-      {
-        path: 'topics',
-        data: {
-          menu: {
-            title: 'general.menu.topics',
-            icon: 'ion-pound',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
-      {
-        path: 'tasks',
-        data: {
-          menu: {
-            title: 'general.menu.tasks',
-            icon: 'ion-clipboard',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
-      {
-        path: 'records',
-        data: {
-          menu: {
-            title: 'general.menu.records',
-            icon: 'ion-filing',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
-      {
-        path: 'interactions',
-        data: {
-          menu: {
-            title: 'general.menu.interactions',
-            icon: 'ion-chatbox',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        },
-        children: [
-          {
-            path: ['interactions', 'communications', 'list'],
-            data: {
-              menu: {
-                title: 'general.menu.communications',
-              }
-            }
-          },
-          {
-            path: ['interactions', 'interactions', 'list'],
-            data: {
-              menu: {
-                title: 'general.menu.interactions',
-              }
-            }
-          },
-        ]
-      },
-      {
-        path: 'individuals',
-        data: {
-          menu: {
-            title: 'general.menu.individuals',
-            icon: 'ion-person',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
-      {
-        path: 'identities',
-        data: {
-          menu: {
-            title: 'general.menu.identities',
-            icon: 'ion-card',
-            pathMatch: 'prefix', // use it if item children not displayed in menu
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      },
+      // {
+      //   path: 'assets',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.assets',
+      //       icon: 'ion-images',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'topics',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.topics',
+      //       icon: 'ion-pound',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'tasks',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.tasks',
+      //       icon: 'ion-clipboard',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'records',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.records',
+      //       icon: 'ion-filing',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'interactions',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.interactions',
+      //       icon: 'ion-chatbox',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   },
+      //   children: [
+      //     {
+      //       path: ['interactions', 'communications', 'list'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.communications',
+      //         }
+      //       }
+      //     },
+      //     {
+      //       path: ['interactions', 'interactions', 'list'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.interactions',
+      //         }
+      //       }
+      //     },
+      //   ]
+      // },
+      // {
+      //   path: 'individuals',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.individuals',
+      //       icon: 'ion-person',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'identities',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.identities',
+      //       icon: 'ion-card',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
+
+
       // {
       //   path: 'dashboard',
       //   data: {

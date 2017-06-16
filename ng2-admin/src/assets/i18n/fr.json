@@ -65,6 +65,7 @@
 
       "profile": "Profil",
       "services": "Services",
+      "scenarios": "Scenarios",
       "cases": "Affaires",
       "assets": "Atouts",
       "topics": "Sujets",
@@ -75,7 +76,7 @@
       "individuals": "Personnes",
       "identities": "Identités",
 
-      "service_activation": "Activation du service"
+      "scenario_activation": "Activation du scénario"
     },
     "created_with": "Created with"
   },
@@ -152,7 +153,8 @@
           "username": "Nom d'utilisateur",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
-          "channel": "Canal"
+          "channel": "Canal",
+          "data": "Data"
         },
         "action": {
           "create": "Créer",

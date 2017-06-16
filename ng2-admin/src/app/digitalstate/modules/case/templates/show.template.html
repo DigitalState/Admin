@@ -1,4 +1,9 @@
-<ds-entity-show *ngIf="entity" [entity]="entity" (onDelete)="onDelete($event)">
+<ds-entity-show *ngIf="entity"
+				[entity]="entity"
+				[backLink]="backLink"
+				[headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				(onDelete)="onDelete($event)">
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!-- end: ng-content[select="button.entity-action"] -->

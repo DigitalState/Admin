@@ -23,6 +23,7 @@ import { DsDatatableHeader } from './components/datatable/datatable-header.compo
 import { DsDatatableCell } from './components/datatable/datatable-cell.component';
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
 import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
+import { DsBackLink } from './components/back-link.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 import { KeyValuePipe } from './components/pipes/KeyValue.pipe';
 import { DsEntityTranslatePipe } from './components/pipes/EntityTranslate.pipe';
@@ -48,6 +49,7 @@ import { DsEntityTranslationService } from './services/entity-translation.servic
         DsDatatableCell,
         DsDatatableCellActions,
         DSLanguageSwitcherComponent,
+        DsBackLink,
         KeyValuePipe,
         DsEntityTranslatePipe,
     ],

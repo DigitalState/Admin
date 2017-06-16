@@ -1,20 +1,20 @@
-import {AfterViewInit, Component, Inject, ReflectiveInjector, TemplateRef, ViewChild} from '@angular/core';
+import { AfterViewInit, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Pager } from '../models/pager';
-// import { Service } from '../models/service';
-import { DsBaseEntityApiService } from '../services/base-entity-api.service';
+
 import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
-import {Subject, Subscriber} from 'rxjs';
-import { ObservableInput } from 'rxjs/Observable';
+import { DsEntityCrudComponent } from './base-entity-crud-component';
 
 import 'rxjs/Rx';
+import { Subject, Subscriber } from 'rxjs';
+import { ObservableInput } from 'rxjs/Observable';
 import { forEach, isString } from 'lodash';
 
-export class DsBaseEntityListComponent implements AfterViewInit {
+export class DsBaseEntityListComponent extends DsEntityCrudComponent implements AfterViewInit {
 
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
     @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
@@ -42,6 +42,12 @@ export class DsBaseEntityListComponent implements AfterViewInit {
     };
 
     /**
+     * The parent entity object (if any). This applies when the subclassing component targets
+     * an entity that is at the `many` end of a one-to-many relationship with the parent entity.
+     */
+    protected entityParent: any;
+
+    /**
      * The URL portion of the REST resource URL that refers to the entity's collection.
      * @type {string}
      */
@@ -58,24 +64,18 @@ export class DsBaseEntityListComponent implements AfterViewInit {
      */
     protected entityMetadata = {};
 
-    /**
-     * The Enity API service is not injected into this base component class because
-     * the API service configurations are Microservice-specific.
-     */
-    protected entityApiService: DsBaseEntityApiService<any>;
-
     protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    constructor(protected translate: TranslateService,
-                protected microserviceConfig: MicroserviceConfig) {
+    constructor(injector: Injector, protected microserviceConfig: MicroserviceConfig) {
+        super(injector);
     }
 
     ngOnInit() {
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            this.updateTranslations();
+            this.updateTranslations(event.lang);
             this.refreshList();
         });
 
@@ -87,9 +87,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
         this.setupList();
         this.postSetupList();
 
-        this.query = ListQuery
-            .forUrl(this.microserviceConfig.settings.entrypoint.url, this.entityUrlPrefix)
-            .withPager(this.pager);
+        this.setupQuery();
 
         // Configure the column-filtering stream
         this.filterStream
@@ -112,6 +110,15 @@ export class DsBaseEntityListComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
+    }
+
+    /**
+     * Initialize and build the remote service query. Subclasses can use this to further configure the query object.
+     */
+    protected setupQuery(): void {
+        this.query = ListQuery
+            .forUrl(this.microserviceConfig.settings.entrypoint.url, this.entityUrlPrefix)
+            .withPager(this.pager);
     }
 
     /**
@@ -144,7 +151,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
             { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl }
         );
 
-        this.updateTranslations();
+        this.updateTranslations(this.translate.currentLang);
     }
 
     /**
@@ -215,7 +222,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
      * Populate the table with new data based on the page number
      * @param pager The pager to select
      */
-    setPage(pageInfo) {
+    protected setPage(pageInfo) {
         // this.query.pager.pageNumber = pageInfo.offset;
         this.pager.pageNumber = pageInfo.offset;
         this.refreshList();
@@ -225,7 +232,7 @@ export class DsBaseEntityListComponent implements AfterViewInit {
      * Dynamically update localized strings that are not rendered through the `translate` pipe.
      * This mainly applies to the ngx-datatable component.
      */
-    protected updateTranslations() {
+    protected updateTranslations(newLang: string): void {
         // Update the localization strings of ngx-datatable
         this.datatable.messages = this.translate.instant('datatable');
 

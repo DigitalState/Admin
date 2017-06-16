@@ -61,6 +61,7 @@
 
       "profile": "Profile",
       "services": "Services",
+      "scenarios": "Scenarios",
       "cases": "Cases",
       "assets": "Assets",
       "topics": "Topics",
@@ -71,7 +72,7 @@
       "individuals": "Individuals",
       "identities": "Identities",
 
-      "service_activation": "Service Activation"
+      "scenario_activation": "Scenario Activation"
     },
     "created_with": "Created with"
   },
@@ -148,7 +149,8 @@
           "username": "Username",
           "identity": "Identity",
           "identityUuid": "Identity UUID",
-          "channel": "Channel"
+          "channel": "Channel",
+          "data": "Data"
         },
         "action": {
           "create": "Create",
