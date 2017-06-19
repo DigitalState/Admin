@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 			<ul class="dropdown-menu top-dropdown-menu language-dropdown" aria-labelledby="language-dd">
 				<li *ngFor="let lang of getListedLanguages()" class="dropdown-item">
                     <a (click)="switchLang(lang.key)">
-                        <i class="fa fa-flag"></i>
+                        <i href="javascript:;" class="fa fa-flag"></i>
                         {{lang.name}}
                     </a>
                 </li>

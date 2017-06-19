@@ -7,6 +7,7 @@
     "username": "Username",
     "password": "Password",
     "signIn": "Sign in",
+    "signOut": "Sign out",
     "forgotPassword": "Forgot password?",
     "signFromAppText": "or Sign in with one click",
     "shareOnFacebook": "Share on Facebook",
