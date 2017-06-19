@@ -4,6 +4,7 @@
     "signUpPrompt": "Vous n'avez pas de compte?",
     "signUpLink": "S'inscrire!",
     "email": "Email",
+    "username": "Nom d'utilisateur",
     "password": "Mot de passe",
     "signIn": "Se connecter",
     "forgotPassword": "mot de passe oublié?",
