@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import {Injector, Input} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -25,6 +25,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     entity: any;
     entityParent: any;
     headerTitle: string = '';
+    headerSubtitle: string = '';
 
     /**
      * Whether or not the entity is considered new. This is normally used to determine if the form is used to create or
@@ -75,9 +76,14 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
 
     /**
-     * Alias for the current interface language
+     * Alias for the current interface language. Ex: `en`, `fr`, ec...
      */
     protected lang: string;
+
+    /**
+     * Alias for the current form language. Ex: `en`, `fr`, ec...
+     */
+    protected formLang: string;
 
     /**
      * Reset the form with a new hero AND restore 'pristine' class state by toggling 'active'
@@ -100,6 +106,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     ngOnInit() {
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.lang = this.translate.currentLang;
+        this.formLang = this.translate.currentLang;
 
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -262,8 +269,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.location.back();
     }
 
+    onFormLanguageChange(newLanguage: { key: string, name: string }) {
+        this.formLang = newLanguage.key;
+    }
+
     onFormSubmit(form: NgForm) {
-        // console.log(this.entityForm.value);
         this.submitted = true;
         if (this.isNew) {
             this.saveNewEntity(form);

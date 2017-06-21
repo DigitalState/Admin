@@ -23,6 +23,28 @@
 			</div>
 		</div>
 
+		<div class="card-block">
+			<div class="row">
+				<div class="col">
+					<!-- Form Language Switch -->
+					<div class="dropdown">
+						<a class="btn btn-outline-secondary dropdown-toggle" id="form-language-dd" data-toggle="dropdown" aria-expanded="false" tabindex="0">
+							<i class="fa fa-globe"></i>
+							<span class="form-language-name">{{formLanguage.name}}</span>
+						</a>
+						<ul class="dropdown-menu form-language-dropdown" aria-labelledby="form-language-dd">
+							<li *ngFor="let lang of getListedLanguages()" class="dropdown-item">
+								<a href="javascript:" (click)="switchLang(lang.key)">
+									<i class="fa fa-flag"></i>
+									{{lang.name}}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<ng-content></ng-content>
 
 	</div>

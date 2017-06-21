@@ -62,7 +62,7 @@ export class DsScenarioCreateComponent extends DsBaseEntityFormComponent {
     }
 
     saveNewEntity(): any {
-        this.entity['data'] = JSON.parse(this.entity['data']);
+        // this.entity['data'] = JSON.parse(this.entity['data']);
         return super.saveNewEntity();
     }
 }

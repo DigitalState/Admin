@@ -6,6 +6,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm, NgModel } from '@angular/forms';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
 import { Link } from '../models/Link';
@@ -28,11 +29,14 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     @Output() onFormCancel = new EventEmitter<any>();
     @Output() onFormInit = new EventEmitter<any>();
     @Output() onFormChange = new EventEmitter<any>();
+    @Output() onFormLanguageChange = new EventEmitter<any>();
 
-    entityForm: NgForm;
     @ViewChild('entityForm') currentForm: NgForm;
     @ContentChildren(NgModel) public models: QueryList<NgModel>;
 
+    entityForm: NgForm;
+    languages: object[];
+    formLanguage: any;
     submitted: boolean = false;
     protected id: number;
 
@@ -47,11 +51,20 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     constructor(protected route: ActivatedRoute,
                 protected router: Router,
                 protected location: Location,
+                protected translate: TranslateService,
                 protected toastr: ToastsManager) {
 
     }
 
     ngOnInit() {
+        this.languages = this.translate.getLangs().map((langKey) =>
+            ({
+                key: langKey,
+                name: this.translate.instant('ds.language-switcher.languages.' + langKey)
+            })
+        );
+
+        this.loadCurrentLanguageTranslation();
     }
 
     ngAfterViewInit() {
@@ -110,6 +123,22 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
 
     cancelForm() {
         this.onFormCancel.emit(this.currentForm);
+    }
+
+    switchLang(newLangKey: string) {
+        this.formLanguage = this.languages.find((language:any) => (language.key == newLangKey));
+        this.onFormLanguageChange.emit(this.formLanguage);
+    }
+
+    getListedLanguages() {
+        return this.languages.filter((language:any) => (language.key !== this.formLanguage.key));
+    }
+
+    protected loadCurrentLanguageTranslation() {
+        this.formLanguage = {
+            key: this.translate.currentLang,
+            name: this.translate.instant('ds.language-switcher.languages.' + this.translate.currentLang)
+        };
     }
 
 }

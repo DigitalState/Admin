@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MdProgressBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AppTranslationModule } from '../app.translation.module';
@@ -34,6 +35,7 @@ import { DsEntityTranslationService } from './services/entity-translation.servic
         CommonModule,
         RouterModule,
         FormsModule,
+        MdProgressBarModule,
         // AppTranslationModule,
         TranslateModule,
         DSAuthModule,
@@ -61,6 +63,7 @@ import { DsEntityTranslationService } from './services/entity-translation.servic
         TemplateStorage,
     ],
     exports: [
+        MdProgressBarModule,
         DsMicroservicesComponent,
         DsEntityListComponent,
         DsEntityShowComponent,

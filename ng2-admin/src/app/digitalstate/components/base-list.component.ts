@@ -26,6 +26,9 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     query: ListQuery;
     pager = new Pager();
 
+    // progress bar bindings
+    progressCompleted = false;
+
     // Todo: fetch the default page size from the AppState
     size = 10;
 
@@ -158,11 +161,13 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * Fetch the list using the Entity API Service.
      */
     protected refreshList() {
+        this.progressCompleted = false;
         let list = this.entityApiService.getList(this.query);
 
         list.subscribe((pagedData) => {
             this.pager = pagedData.pager;
             this.rows = pagedData.data;
+            this.progressCompleted = true;
         });
     }
 

@@ -156,7 +156,8 @@
           "identity": "Identité",
           "identityUuid": "Identité UUID",
           "channel": "Canal",
-          "data": "Data"
+          "data": "Data",
+          "processDefinitionKey": "Clé de définition de processus"
         },
         "action": {
           "create": "Créer",

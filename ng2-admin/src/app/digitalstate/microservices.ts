@@ -107,8 +107,11 @@ export const MICROSERVICES = {
                     },
                     'data': {
                         label: 'Data',
-                        type: 'string',
-                        default: '{"bpm":"camunda", "process_definition_key":"PayTaxes"}',
+                        type: 'json',
+                        default: {
+                            'bpm': 'camunda',
+                            'process_definition_key': ''
+                        },
                     },
                     'enabled': {
                         label: 'Enabled',

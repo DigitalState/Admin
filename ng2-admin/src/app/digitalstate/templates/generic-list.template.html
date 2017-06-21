@@ -1,6 +1,7 @@
 <ds-entity-list [headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				(onRefreshList)="refreshList($event)">
+	<md-progress-bar mode="indeterminate" [hidden]="progressCompleted"></md-progress-bar>
 	<ngx-datatable #datatable
 				   [rows]="rows"
 				   [columns]="columns"
