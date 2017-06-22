@@ -23,5 +23,8 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
+
+        // Create a place-holder for the back-link until it gets generated
+        this.backLink = this.getEmptyBackLink();
     }
 }

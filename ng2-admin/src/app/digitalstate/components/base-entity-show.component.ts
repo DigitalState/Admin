@@ -68,25 +68,29 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
         return this.route.params.flatMap((params: Params) => {
             let uuid = params['id'];
+            let parentUuid = params[this.entityParentUrlParam];
 
-            return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entityResult => {
-                this.entity = entityResult;
+            return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
+                this.entity = entity;
 
-                // if (this.headerTitle == null) {
-                //     this.headerTitle = this.entity.uuid;
-                // }
-
-                if (this.entityParentUrlPrefix && this.entityParentUrlParam) {
-                    return this.entityApiService.getOne(this.entityParentUrlPrefix, params[this.entityParentUrlParam]).flatMap(entityParentResult => {
-                        this.entityParent = entityParentResult;
-                        this.generateBackLink();
-                        return Observable.of({'entity': this.entity, 'entityParent': this.entityParent});
-                    });
-                }
-
-                return Observable.of({'entity': this.entity});
+                return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
+                    return Observable.of({'entity': entity, 'entityParent': entityParent});
+                });
             });
         });
+    }
+
+    protected prepareEntityParent(urlPrefix: string, urlParam: string): Observable<any> {
+        if (urlPrefix && urlParam) {
+            return this.entityApiService.getOne(urlPrefix, urlParam).flatMap(entityParent => {
+                this.entityParent = entityParent;
+                this.generateBackLink();
+                return Observable.of(entityParent);
+            });
+        }
+        else {
+            return Observable.empty();
+        }
     }
 
     onDelete(event) {

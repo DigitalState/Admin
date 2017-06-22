@@ -36,5 +36,10 @@ export class DsScenarioEditComponent extends DsBaseEntityFormComponent {
 
         this.translate = translate;
         this.entityApiService = entityApiService;
+
+        // Create a place-holder for the back-link until it gets generated
+        this.backLink = this.getEmptyBackLink();
     }
+
+
 }

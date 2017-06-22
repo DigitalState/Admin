@@ -61,4 +61,8 @@ export abstract class DsEntityCrudComponent {
             this.backLink.text = this.entityParent.title[this.translate.currentLang];
         }
     }
+
+    protected getEmptyBackLink(): Link {
+        return new Link;
+    }
 }
