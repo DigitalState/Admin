@@ -15,6 +15,7 @@ export class DsEntityListComponent {
     @Input() headerTitle: string;
     @Input() headerSubtitle: string;
     @Input() backLink: Link;
+    @Input() actions: { [s: string]: boolean };
     @Output() onRefreshList = new EventEmitter();
 
     @ContentChild(DatatableComponent) datatable: DatatableComponent;

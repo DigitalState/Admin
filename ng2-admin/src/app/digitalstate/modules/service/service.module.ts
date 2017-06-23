@@ -20,6 +20,8 @@ import { DsScenarioListComponent } from './components/scenario-list.component';
 import { DsScenarioShowComponent } from './components/scenario-show.component';
 import { DsScenarioCreateComponent } from './components/scenario-create.component';
 import { DsScenarioEditComponent } from './components/scenario-edit.component';
+import { DsSubmissionListComponent } from './components/submission-list.component';
+import { DsSubmissionShowComponent } from './components/submission-show.component';
 
 
 export const MICROSERVICE_NAME = 'services';
@@ -46,6 +48,9 @@ export const MICROSERVICE_NAME = 'services';
         DsScenarioShowComponent,
         DsScenarioCreateComponent,
         DsScenarioEditComponent,
+
+        DsSubmissionListComponent,
+        DsSubmissionShowComponent,
     ],
     providers: [
         EntityApiService,

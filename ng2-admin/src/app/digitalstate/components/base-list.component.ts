@@ -23,11 +23,12 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
     rows = [];
     columns = [];
+    sorts = [];
     query: ListQuery;
     pager = new Pager();
 
     // progress bar bindings
-    progressCompleted = false;
+    loading: boolean;
 
     // Todo: fetch the default page size from the AppState
     size = 10;
@@ -39,9 +40,21 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     datatableAttributes = {
         columnMode: 'force',
         rowHeight: 'auto',
-        headerHeight: 90,
+        headerHeight: 90, // overriden in list components that don't have column filters
         footerHeight: 50,
         externalPaging: true,
+        externalSorting: true,
+    };
+
+    /**
+     * Determines the default visibilty of action buttons
+     * @type { [s: string]: boolean }
+     */
+    actions: { [s: string]: boolean } = {
+        show: true,
+        refresh: true,
+        create: true,
+        edit: true,
     };
 
     /**
@@ -130,7 +143,6 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      */
     protected setupUi() {
         forEach(this.datatableAttributes, (value, key) => {
-            console.log(key, value);
             this.datatable[key] = value;
         });
     }
@@ -151,7 +163,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
         // Append the Actions column
         this.columns.push(
-            { name: 'Actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl }
+            { name: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
         );
 
         this.updateTranslations(this.translate.currentLang);
@@ -161,14 +173,29 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * Fetch the list using the Entity API Service.
      */
     protected refreshList() {
-        this.progressCompleted = false;
+        this.loading = true;
         let list = this.entityApiService.getList(this.query);
 
         list.subscribe((pagedData) => {
             this.pager = pagedData.pager;
-            this.rows = pagedData.data;
-            this.progressCompleted = true;
+            this.rows = this.preprocessRowsData(pagedData.data);
+            this.loading = false;
         });
+    }
+
+    protected preprocessRowsData(fetchedData): Array<any> {
+        // Add metadata container including list actions
+        let rows;
+        if (fetchedData) {
+            rows = fetchedData.map((row) => {
+                row['_'] = {
+                    'actions': this.actions
+                };
+                return row;
+            });
+        }
+
+        return rows;
     }
 
     /**
@@ -234,6 +261,24 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     }
 
     /**
+     *
+     * @param {object} sortEvent The sort event object provided by ngx-datatable. It looks as follows:
+     *  {
+     *      column: Object, // The sort-target column
+     *      prevValue: "asc" | "desc" | undefined,
+     *      newValue: "asc" | "desc"
+     *  }
+     */
+    protected onSort(sortEvent: {column: any, prevValue: string, newValue: string}) {
+        console.log('base-list.component::onSort', sortEvent);
+        if (sortEvent.column.prop) {
+            this.query.unsetOrder();
+            this.query.setOrder(sortEvent.column.prop, sortEvent.newValue);
+            this.refreshList();
+        }
+    }
+
+    /**
      * Dynamically update localized strings that are not rendered through the `translate` pipe.
      * This mainly applies to the ngx-datatable component.
      */
@@ -243,7 +288,10 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
         // Update the columns' headers
         this.columns.forEach((column) => {
-            this.translate.get('ds.microservices.entity.property.' + column.prop).subscribe((translatedString) => {
+            // For translation, use the column name if available; otherwise, construct the translation string
+            // from the column `prop` value
+            let columnLabel = column.name ? column.name : 'ds.microservices.entity.property.' + column.prop;
+            this.translate.get(columnLabel).subscribe((translatedString) => {
                 column.name = translatedString;
             });
         });

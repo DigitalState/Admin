@@ -17,6 +17,15 @@ import { Observable } from 'rxjs/Observable';
 export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
     /**
+     * Determines the default visibilty of action buttons
+     * @type { [s: string]: boolean }
+     */
+    actions: { [s: string]: boolean } = {
+        edit: true,
+        delete: true,
+    };
+
+    /**
      * A shortcut to the entity's metadata from the MicroserviceConfig.
      */
     protected entityMetadata = {};

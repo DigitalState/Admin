@@ -13,6 +13,9 @@ import { DsScenarioCreateComponent } from './components/scenario-create.componen
 import { DsScenarioEditComponent } from './components/scenario-edit.component';
 import { DsScenarioActivateComponent } from './components/scenario-activate.component';
 
+import { DsSubmissionListComponent } from './components/submission-list.component';
+import { DsSubmissionShowComponent } from './components/submission-show.component';
+
 const routes: Routes = [
 
     // Default routerLink is `DsServiceListComponent`. See pages.routing.ts
@@ -34,7 +37,10 @@ const routes: Routes = [
             { path: ':serviceUuid/scenarios/:id/show', component: DsScenarioShowComponent },
             { path: ':serviceUuid/scenarios/:id/edit', component: DsScenarioEditComponent },
             { path: ':serviceUuid/scenarios/:id/activate', component: DsScenarioActivateComponent },
-            // { path: ':serviceUuid/scenarios/:id/activate', component: DsScenarioListComponent },
+
+            { path: 'submissions/list', component: DsSubmissionListComponent},
+            { path: 'submissions/:id/show', component: DsSubmissionShowComponent},
+            // { path: ':scenarioUuid/submissions/:id/show', component: DsSubmissionShowComponent},
         ]
     }
 ];

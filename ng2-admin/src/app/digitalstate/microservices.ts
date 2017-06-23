@@ -131,6 +131,18 @@ export const MICROSERVICES = {
                     // },
                 },
             },
+            'submissions': {
+                properties: {
+                    'uuid': {
+                        label: 'Updated At',
+                        type: 'date',
+                    },
+                    'updatedAt': {
+                        label: 'Updated At',
+                        type: 'date',
+                    },
+                },
+            },
         },
     },
     'cases': {

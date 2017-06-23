@@ -14,6 +14,7 @@ export class DsEntityShowComponent {
     @Input() headerSubtitle: string;
     @Input() entity: any;
     @Input() backLink: Link;
+    @Input() actions: { [s: string]: boolean };
     @Output() onDelete = new EventEmitter<any>();
 
     constructor() {

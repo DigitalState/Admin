@@ -66,8 +66,10 @@
       "external_link": "External Link",
 
       "profile": "Profil",
+      "serviceDirectory": "Répertoire des services",
       "services": "Services",
       "scenarios": "Scenarios",
+      "submissions": "Submissions",
       "cases": "Affaires",
       "assets": "Atouts",
       "topics": "Sujets",
@@ -148,6 +150,8 @@
     "microservices": {
       "entity": {
         "property": {
+          "updatedAt": "Mis à jour",
+          "uuid": "UUID",
           "title": "Titre",
           "form": "Form",
           "presentation": "Présentation",
@@ -167,7 +171,8 @@
           "refresh": "Recharger",
           "activate": "Activer",
           "save": "Enregistrer",
-          "cancel": "Annuler"
+          "cancel": "Annuler",
+          "actions": "Actes"
         },
         "validation": {
           "required": "Champs requis."

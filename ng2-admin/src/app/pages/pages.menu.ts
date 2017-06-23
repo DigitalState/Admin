@@ -9,14 +9,32 @@ export const PAGES_MENU = [
         path: 'services',
         data: {
           menu: {
-            title: 'general.menu.services',
+            title: 'general.menu.serviceDirectory',
             icon: 'ion-ios-keypad',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,
             order: 0
           }
-        }
+        },
+        children: [
+          {
+            path: ['services/list'],
+            data: {
+              menu: {
+                title: 'general.menu.services'
+              }
+            }
+          },
+          {
+            path: ['services/submissions/list'],
+            data: {
+              menu: {
+                title: 'general.menu.submissions'
+              }
+            }
+          },
+        ]
       },
       {
         path: 'cases',
