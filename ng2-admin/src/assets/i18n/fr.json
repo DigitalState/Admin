@@ -18,6 +18,7 @@
     "title": "Enregistrement",
     "loginPrompt": "Avez-vous déjà un compte ?",
     "loginLink": "Se connecter",
+    "repeat": "Répéter",
     "signUpButton": "S'inscrire"
   },
   "general": {
@@ -162,7 +163,8 @@
           "channel": "Canal",
           "data": "Data",
           "processDefinitionKey": "Clé de définition de processus",
-          "firstName": "Prénom"
+          "firstName": "Prénom",
+          "lastName": "Nom de famille"
         },
         "action": {
           "create": "Créer",
@@ -173,10 +175,17 @@
           "activate": "Activer",
           "save": "Enregistrer",
           "cancel": "Annuler",
+          "back": "Retour",
           "actions": "Actes"
         },
         "validation": {
-          "required": "Champs requis."
+          "required": "Champs requis.",
+          "minlength": "Minimum of {{chars}} characters."
+        },
+        "scenario": {
+          "activationFailure": "<h4>Activation echouée</h4> <div>Please try again later.</div>",
+          "submissionFailure": "<h4>Submission failed!</h4> <div>Please try again later or use a different method.</div>",
+          "submissionSuccess": "<h4>Soumission réussie!</h4> <div>Vous recevrez bientôt un e-mail de suivi.</div>"
         }
       }
     }

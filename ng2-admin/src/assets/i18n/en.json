@@ -18,6 +18,7 @@
     "title": "Sign Up",
     "loginPrompt": "Already have an account?",
     "loginLink": "Sign in!",
+    "repeat": "Repeat",
     "signUpButton": "Sign up"
   },
   "general": {
@@ -158,7 +159,8 @@
           "channel": "Channel",
           "data": "Data",
           "processDefinitionKey": "Process definition key",
-          "firstName": "First Name"
+          "firstName": "First Name",
+          "lastName": "Last Name"
         },
         "action": {
           "create": "Create",
@@ -169,11 +171,17 @@
           "activate": "Activate",
           "save": "Save",
           "cancel": "Cancel",
+          "back": "Back",
           "actions": "Actions"
         },
         "validation": {
           "required": "Required field.",
           "minlength": "Minimum of {{chars}} characters."
+        },
+        "scenario": {
+          "activationFailure": "<h4>Activation failed!</h4> <div>Please try again later.</div>",
+          "submissionFailure": "<h4>Submission failed!</h4> <div>Please try again later or use a different method.</div>",
+          "submissionSuccess": "<h4>Submission succeeded!</h4> <div>You will receive a follow-up e-mail soon.</div>"
         }
       }
     }
