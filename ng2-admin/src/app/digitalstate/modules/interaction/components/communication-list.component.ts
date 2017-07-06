@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import 'rxjs/Rx';
 
 import { EntityApiService } from '../entity-api.service';
@@ -14,10 +14,10 @@ export class DsCommunicationListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'communications';
 
-    constructor(translate: TranslateService,
+    constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
-        super(translate, microserviceConfig);
+        super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
     }
 
