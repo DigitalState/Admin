@@ -11,7 +11,7 @@ import { NgaModule } from '../../theme/nga.module';
 
 import { DSAuthModule } from '../shared/modules/auth/auth.module';
 
-import { MICROSERVICES } from './microservices';
+import { MicroservicesDefinition } from './microservices';
 import { TemplateStorage } from './services/template-storage.service';
 import { TemplateStorageComponent } from './components/template-storage.component';
 import { DsMicroservicesComponent } from './components/microservices.component';
@@ -24,6 +24,7 @@ import { DsDatatableCellActions } from './components/datatable/datatable-cell-ac
 import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsBackLink } from './components/back-link.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
+import { DsEnvironmentConfig } from '../shared/providers/environment.provider';
 
 @NgModule({
     imports: [
@@ -70,8 +71,9 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
 })
 export class DsMicroservicesModule {
 
-    constructor(private appState: AppState) {
-        appState.set('microservices', MICROSERVICES);
+    constructor(private appState: AppState, dsEnv: DsEnvironmentConfig) {
+        let msDefinition = new MicroservicesDefinition(dsEnv);
+        appState.set('microservices', msDefinition.getAll());
     }
 
 }
