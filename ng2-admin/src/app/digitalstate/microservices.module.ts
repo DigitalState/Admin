@@ -9,6 +9,7 @@ import { AppTranslationModule } from '../app.translation.module';
 import { AppState } from '../app.service';
 import { NgaModule } from '../../theme/nga.module';
 
+import { DsEnvironmentConfig } from '../shared/providers/environment.provider';
 import { DSAuthModule } from '../shared/modules/auth/auth.module';
 
 import { MicroservicesDefinition } from './microservices';
@@ -24,7 +25,6 @@ import { DsDatatableCellActions } from './components/datatable/datatable-cell-ac
 import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsBackLink } from './components/back-link.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
-import { DsEnvironmentConfig } from '../shared/providers/environment.provider';
 
 @NgModule({
     imports: [
