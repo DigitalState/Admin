@@ -94,6 +94,9 @@ $blocks-column-width: 570px;
   }
 
   .control-label {
+    display: flex;
+    line-height: 1.3em;
+    align-self: center;
     padding-top: 11px;
     color: $text-color;
   }
