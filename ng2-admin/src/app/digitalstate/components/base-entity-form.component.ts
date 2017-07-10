@@ -179,8 +179,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         // Create an entity with default properties that are not part of the entity's meta-model.
         let user = this.auth.getAuthUser();
         let entity = {
-            'owner': user.identity,
-            'ownerUuid': user.identityUuid,
+            // 'owner': user.identity,
+            // 'ownerUuid': user.identityUuid,
+            'owner': 'BusinessUnit',
+            'ownerUuid': '8454c987-cbc5-4a24-ba1a-d420283caabd',
+            'weight': 0,
             'version': 0,
         };
 
