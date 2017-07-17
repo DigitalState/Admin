@@ -53,6 +53,14 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
                             'description': {
                                 label: 'Description',
                                 type: 'string',
@@ -102,6 +110,14 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 translated: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
                                 validation: {
                                     'required': { message: 'required'},
                                 },

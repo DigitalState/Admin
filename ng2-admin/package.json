@@ -55,6 +55,7 @@
     "ng2-tree": "2.0.0-alpha.5",
     "ngx-pipes": "^1.6.1",
     "ngx-restangular": "^1.0.9",
+    "ng2-slugify": "0.1.0",
     "ngx-uploader": "2.2.5",
     "normalize.css": "6.0.0",
     "reflect-metadata": "0.1.10",

@@ -89,7 +89,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected formLang: string;
 
     /**
-     * Reset the form with a new hero AND restore 'pristine' class state by toggling 'active'
+     * Reset the form with a new entity AND restore 'pristine' class state by toggling 'active'
      * flag which causes the form to be removed/re-added in a tick via NgIf
      * TODO: Workaround until NgForm has a reset method (#6822)
      */

@@ -156,6 +156,7 @@
           "title": "Titre",
           "form": "Form",
           "presentation": "Présentation",
+          "slug": "Slug",
           "description": "Description",
           "username": "Nom d'utilisateur",
           "identity": "Identité",
