@@ -7,7 +7,7 @@ import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
 import { MicroserviceConfig } from '../modules/microservice.provider';
 import { LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import { DsEntityCrudComponent } from './base-entity-crud-component';
+import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
 import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -103,6 +103,8 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     }
 
     ngOnInit() {
+        super.ngOnInit();
+
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.lang = this.translate.currentLang;
         this.formLang = this.translate.currentLang;

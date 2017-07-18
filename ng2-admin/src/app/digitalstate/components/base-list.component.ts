@@ -7,7 +7,7 @@ import { Pager } from '../models/pager';
 
 import { ListQuery } from '../models/api-query';
 import { MicroserviceConfig } from '../modules/microservice.provider';
-import { DsEntityCrudComponent } from './base-entity-crud-component';
+import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
 import 'rxjs/Rx';
 import { Subject, Subscriber } from 'rxjs';
@@ -40,7 +40,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     datatableAttributes = {
         columnMode: 'force',
         rowHeight: 'auto',
-        headerHeight: 90, // overriden in list components that don't have column filters
+        headerHeight: 100, // overriden in list components that don't have column filters
         footerHeight: 50,
         externalPaging: true,
         externalSorting: true,
@@ -89,6 +89,8 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     }
 
     ngOnInit() {
+        super.ngOnInit();
+
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             this.updateTranslations(event.lang);

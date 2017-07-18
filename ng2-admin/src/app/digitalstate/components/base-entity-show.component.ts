@@ -8,7 +8,7 @@ import { Link } from '../models/link';
 import { DefaultModal } from './modals/default-modal/default-modal.component';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
 import { MicroserviceConfig } from '../modules/microservice.provider';
-import { DsEntityCrudComponent } from './base-entity-crud-component';
+import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
 import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -59,6 +59,8 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     }
 
     ngOnInit() {
+        super.ngOnInit();
+
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
 
         // Subscribe to language-change events
