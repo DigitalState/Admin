@@ -1,8 +1,8 @@
 @import '../../sass/conf/conf';
 
 .content-top {
-  padding-top: 13px;
-  padding-bottom: 27px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 h1.al-title {
@@ -15,6 +15,10 @@ h1.al-title {
   font-size: 24px;
   text-transform: uppercase;
   opacity: 0.9;
+}
+
+.al-subtitle {
+  margin-top: -10px;
 }
 
 .al-breadcrumb {

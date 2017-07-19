@@ -7,8 +7,8 @@
 
   background-color: $sidebar;
   position: fixed;
-  z-index: 904;
-  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
   height: 66px;
   width: 100%;
   min-width: $resMin;
@@ -54,14 +54,57 @@ a.al-logo:hover {
   @include align-items(center);
 
   margin-left: auto;
+  height: 100%;
 
   > * {
 
   }
+
+  .al-dropdown {
+    display: table;
+    height: 100%;
+    margin-right: 80px;
+
+    &:last-child {
+      //margin-right: 0px;
+    }
+
+    &.show {
+      .dropdown-toggle {
+        background-color: $primary-bg-light;
+      }
+
+      > a {
+        color: $content-text;
+      }
+    }
+
+    .dropdown-toggle {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 15px;
+    }
+
+    ul.dropdown-menu {
+      background-color: $primary-bg-light;
+      border: 0;
+    }
+
+    > a {
+      color: $default;
+
+      &:hover {
+        color: $hoverlink;
+      }
+    }
+  }
+
+  .ds-language-switcher {
+    height: 100%;
+  }
 }
 
 .al-dropdown {
-  margin-right: 12px;
   transition: all .15s ease-in-out;
   padding: 0;
   min-width: 45px;
@@ -69,11 +112,8 @@ a.al-logo:hover {
   opacity: 1;
   position: relative;
 
-  &:last-child {
-    margin-right: 0px;
-  }
-
   ul.dropdown-menu:after {
+    display: none;
     bottom: 100%;
     right: 0;
     border: solid transparent;
@@ -92,12 +132,12 @@ a.al-logo:hover {
 
     &#language-dd {
       .language-name {
-        font: 16px/18px $font-family;
+        font: inherit $font-family;
       }
     }
   }
   > a {
-    color: $primary;
+    color: $content-text;
   }
   img {
     width: 45px;
@@ -106,22 +146,30 @@ a.al-logo:hover {
   }
 }
 
-ul.language-dropdown {
-  right: -30px;
-  top: 41px;
-  left: auto;
+.ds-language-switcher {
 
-  li {
-    a {
-      padding: 4px 0px 4px 0px;
-      color: $dropdown-text;
+  ul.language-dropdown {
+    right: -27px;
+    top: 64px;
+    left: auto;
 
-      &:hover {
-        color: $dropdown-text-hover;
-      }
+    &:after {
+      display: none;
+    }
 
-      i.fa {
-        margin-right: 8px;
+    li {
+      a {
+        padding: 4px 0px 4px 0px;
+        color: $dropdown-text;
+        font: inherit $font-family;
+
+        &:hover {
+          color: $dropdown-text-hover;
+        }
+
+        i.fa {
+          margin-right: 8px;
+        }
       }
     }
   }
