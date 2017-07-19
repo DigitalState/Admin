@@ -37,11 +37,11 @@ export const PAGES_MENU = [
         ]
       },
       {
-        path: 'cases',
+        path: 'systems',
         data: {
           menu: {
-            title: 'general.menu.cases',
-            icon: 'ion-folder',
+            title: 'general.menu.systems',
+            icon: 'ion-ios-gear',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,
@@ -49,6 +49,19 @@ export const PAGES_MENU = [
           }
         }
       },
+      // {
+      //   path: 'cases',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.cases',
+      //       icon: 'ion-folder',
+      //       pathMatch: 'prefix', // use it if item children not displayed in menu
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // },
       // {
       //   path: 'assets',
       //   data: {
@@ -398,36 +411,36 @@ export const PAGES_MENU = [
       //     }
       //   ]
       // },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'general.menu.pages',
-            icon: 'ion-document',
-            selected: false,
-            expanded: false,
-            order: 650,
-          }
-        },
-        children: [
-          {
-            path: ['/login'],
-            data: {
-              menu: {
-                title: 'general.menu.login'
-              }
-            }
-          },
-          {
-            path: ['/register'],
-            data: {
-              menu: {
-                title: 'general.menu.register'
-              }
-            }
-          }
-        ]
-      },
+      // {
+      //   path: '',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.pages',
+      //       icon: 'ion-document',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 650,
+      //     }
+      //   },
+      //   children: [
+      //     {
+      //       path: ['/login'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.login'
+      //         }
+      //       }
+      //     },
+      //     {
+      //       path: ['/register'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.register'
+      //         }
+      //       }
+      //     }
+      //   ]
+      // },
       // {
       //   path: '',
       //   data: {

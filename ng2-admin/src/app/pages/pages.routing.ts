@@ -22,6 +22,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'services', pathMatch: 'full' },
       { path: 'profile', loadChildren: 'app/digitalstate/modules/profile/profile.module#DsProfileModule' },
+      { path: 'systems', loadChildren: 'app/digitalstate/modules/system/system.module#DsSystemModule' },
       { path: 'services', loadChildren: 'app/digitalstate/modules/service/service.module#DsServiceModule' },
       { path: 'cases', loadChildren: 'app/digitalstate/modules/case/case.module#DsCaseModule' },
       { path: 'assets', loadChildren: 'app/digitalstate/modules/asset/asset.module#DsAssetModule' },
