@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Sign In",
+    "title": "Administrator Login",
     "signUpPrompt": "Don't have an account?",
     "signUpLink": "Sign up!",
     "email": "Email",
@@ -63,6 +63,7 @@
       "external_link": "External Link",
 
       "profile": "Profile",
+      "systems": "Systems",
       "serviceDirectory": "Service Directory",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -152,6 +153,7 @@
           "title": "Title",
           "form": "Form",
           "presentation": "Presentation",
+          "slug": "Slug",
           "description": "Description",
           "username": "Username",
           "identity": "Identity",
