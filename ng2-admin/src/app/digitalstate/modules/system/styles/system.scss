@@ -1,0 +1,9 @@
+@import '../../../../theme/sass/conf/conf';
+
+.card-columns {
+  column-count: 2;
+
+  @include media-breakpoint-down(sm) {
+    column-count: 1;
+  }
+}

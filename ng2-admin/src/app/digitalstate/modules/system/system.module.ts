@@ -8,10 +8,9 @@ import { LaddaModule } from 'angular2-ladda';
 import { DsSharedModule } from '../../../shared/shared.module';
 
 import { routing } from './routing';
-import { EntityApiService, IdentityApiService } from './entity-api.service';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../microservice.provider';
 import { DsMicroservicesModule } from '../../microservices.module';
-import { DsProfileComponent } from './components/profile.component';
+import { DsSystemComponent } from './components/system.component';
 
 
 @NgModule({
@@ -25,15 +24,13 @@ import { DsProfileComponent } from './components/profile.component';
         routing,
     ],
     declarations: [
-        DsProfileComponent,
+        DsSystemComponent,
     ],
     providers: [
-        EntityApiService,
-        IdentityApiService,
         MicroserviceConfig,
         MicroserviceRestangularProvider,
     ]
 })
-export class DsProfileModule {
+export class DsSystemModule {
 
 }

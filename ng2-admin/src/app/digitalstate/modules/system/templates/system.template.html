@@ -1,97 +1,77 @@
-
-<div class="">
-	<div class="row">
-		<div [ngClass]="{'col-sm-12': !persona, 'col-sm-6': persona}">
-			<form class="card entity-card animated fadeIn">
-				<div class="card-header">
-					<div class="row justify-content-between">
-						<div class="col-6">
-							<h3 class="card-title" translate>{{'ds.microservices.entity.property.identity'}}</h3>
-							<h4 class="card-subtitle">{{user.username}}</h4>
-						</div>
-						<div class="col-6">
-							<ul class="btn-list clearfix">
-								<li class="float-right">
-									<button disabled (click)="saveUser($event)" type="button" class="btn btn-primary btn-with-icon"><i class="ion-edit">{{'ds.microservices.entity.action.save' | translate}}</i></button>
-									<ng-content select="button.entity-action"></ng-content>
-									<!--<button (click)="" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">{{'ds.microservices.entity.action.delete' | translate}}</i></button>-->
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="card-block entity-body entity-data">
-					<div class="form-group">
-						<label for="username">{{ 'ds.microservices.entity.property.username' | translate }}</label>
-						<input disabled id="username" name="username" type="text" [(ngModel)]="user.username" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="identity">{{ 'ds.microservices.entity.property.identity' | translate }}</label>
-						<input disabled id="identity" name="identity" type="text" [(ngModel)]="user.identity" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="identityUuid">{{ 'ds.microservices.entity.property.identityUuid' | translate }}</label>
-						<input disabled id="identityUuid" name="identityUuid" type="text" [(ngModel)]="user.identityUuid" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="email">{{ 'login.email' | translate }}</label>
-						<input id="email" name="email" type="email" [(ngModel)]="identityFormData.email" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="plainPassword">{{ 'login.password' | translate }}</label>
-						<input id="plainPassword" name="plainPassword" type="password" [(ngModel)]="identityFormData.plainPassword" class="form-control">
-					</div>
-				</div>
-			</form>
+<div class="card-columns">
+	<div class="card no-shadow">
+		<div class="card-header">
+			<h3 class="card-title">Camunda</h3>
 		</div>
-
-		<div *ngIf="persona" class="col-sm-6">
-			<form class="card entity-card animated fadeIn">
-				<div class="card-header">
-					<div class="row justify-content-between">
-						<div class="col-6">
-							<h3 class="card-title" translate>Persona</h3>
-							<h4 class="card-subtitle">{{persona.title | entityTranslate}}</h4>
-						</div>
-						<div class="col-6">
-							<ul class="btn-list clearfix">
-								<li class="float-right">
-									<button (click)="savePersona($event)" type="button" [disabled]="personaSaveInProgress" [ladda]="personaSaveInProgress" class="btn btn-primary btn-with-icon"><i class="ion-edit">{{'ds.microservices.entity.action.save' | translate}}</i></button>
-									<ng-content select="button.entity-action"></ng-content>
-									<!--<button (click)="" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">{{'ds.microservices.entity.action.delete' | translate}}</i></button>-->
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="card-block entity-body entity-data">
-					<div class="row">
-						<div class="col">
-							<div class="form-group" *ngFor="let item of persona.data | keyValue">
-								<label [for]="item.key">{{ ('ds.microservices.entity.property.' + item.key) | translate }}</label>
-								<input [id]="item.key" [name]="item.key" type="text" [(ngModel)]="persona.data[item.key]" class="form-control" placeholder="" required>
-								<!--<label for="title">{{ 'ds.microservices.entity.property.title' | translate }}  [{{formLang}}]</label>-->
-								<!--<input id="title" name="title" type="text" [(ngModel)]="persona.title[formLang]" class="form-control" placeholder="" required>-->
-								<!--<div *ngIf="formErrors.title" class="alert alert-danger">-->
-								<!--{{ formErrors.title }}-->
-								<!--</div>-->
-							</div>
-						</div>
-						<!--<div class="col-sm-6">-->
-						<!--<div class="form-group">-->
-						<!--<label for="identity">{{ 'ds.microservices.entity.property.identity' | translate }}</label>-->
-						<!--<input disabled id="identity" name="identity" type="text" [(ngModel)]="user.identity" class="form-control">-->
-						<!--</div>-->
-						<!--<div class="form-group">-->
-						<!--<label for="identityUuid">{{ 'ds.microservices.entity.property.identityUuid' | translate }}</label>-->
-						<!--<input disabled id="identityUuid" name="identityUuid" type="text" [(ngModel)]="user.identityUuid" class="form-control">-->
-						<!--</div>-->
-						<!--</div>-->
-					</div>
-				</div>
-			</form>
+		<div class="card-block">
+			<table class="name-value-table">
+				<tbody class="group1">
+				<tr>
+					<th scope="row">URL</th>
+					<td><a href="{{hostPrefix}}:8055/camunda/app/welcome" target="_blank">{{hostPrefix}}:8055/camunda/app/welcome</a>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">User</th>
+					<td>demo</td>
+				</tr>
+				<tr>
+					<th scope="row">Password</th>
+					<td>demo</td>
+				</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
+
+	<div class="card no-shadow">
+		<div class="card-header">
+			<h3 class="card-title">Portal</h3>
+		</div>
+		<div class="card-block">
+			<table class="name-value-table">
+				<tbody class="group1">
+				<tr>
+					<th scope="row">Fixture (Authentication)</th>
+					<td><a href="https://github.com/DigitalState/Authentication/blob/036a94a08ee65615e95c5ce4d9e26adebdb51c9c/src/AppBundle/Resources/data/dev/individual/users.yml" target="_blank">users.yml</a></td>
+				</tr>
+				<tr>
+					<th scope="row">URL</th>
+					<td><a href="{{hostPrefix}}:8000" target="_blank">{{hostPrefix}}:8000</a></td>
+				</tr>
+				<tr>
+					<th scope="row">User</th>
+					<td>morgan@site.com</td>
+				</tr>
+				<tr>
+					<th scope="row">Password</th>
+					<td>1</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="card no-shadow">
+		<div class="card-header">
+			<h3 class="card-title">Formio</h3>
+		</div>
+		<div class="card-block">
+			<table class="name-value-table">
+				<tr>
+					<th scope="row">URL</th>
+					<td><a href="http://45.79.141.45:8056" target="_blank">http://45.79.141.45:8056</a></td>
+				</tr>
+				<tr>
+					<th scope="row">User</th>
+					<td>webmaster@digitalstate.ca</td>
+				</tr>
+				<tr>
+					<th scope="row">Password</th>
+					<td>changeme</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
 </div>
