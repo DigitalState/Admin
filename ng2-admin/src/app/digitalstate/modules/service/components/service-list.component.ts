@@ -12,6 +12,7 @@ import 'rxjs/Rx';
 export class DsServiceListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'services';
+    pageTitle = 'general.menu.serviceDirectory';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
