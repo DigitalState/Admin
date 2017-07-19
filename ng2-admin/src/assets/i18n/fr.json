@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Se connecter",
+    "title": "Connexion Administrateur",
     "signUpPrompt": "Vous n'avez pas de compte?",
     "signUpLink": "S'inscrire!",
     "email": "Email",
@@ -67,6 +67,7 @@
       "external_link": "External Link",
 
       "profile": "Profil",
+      "systems": "Systèmes",
       "serviceDirectory": "Répertoire des services",
       "services": "Services",
       "scenarios": "Scenarios",
