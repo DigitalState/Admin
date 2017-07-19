@@ -35,7 +35,7 @@
     margin-bottom: 5px;
     color: $content-text;
     font-weight: $font-normal;
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
@@ -46,7 +46,8 @@
   border-radius: 5px;
   background-color: $input-background;
   box-shadow: none;
-  font-size: 14px;
+  font-size: 1.0rem;
+  padding: 0.75rem 0.75rem;
   &:focus {
     color: $content-text;
     box-shadow: none;

@@ -1,5 +1,5 @@
 $card-title-height: 44px;
-$card-header-font-size: 16px;
+$card-header-font-size: 18px;
 
 .card.card-blur {
   $blurredBgUrl: $images-root + 'blur-bg-blurred.jpg';
@@ -10,6 +10,10 @@ $card-header-font-size: 16px;
   .card-header, .card-footer {
     background: transparent;
   }
+}
+
+.card.no-shadow {
+  box-shadow: none;
 }
 
 .card {

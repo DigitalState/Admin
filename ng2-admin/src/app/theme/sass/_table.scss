@@ -349,3 +349,19 @@ th {
   margin-top: 16px;
 }
 
+.name-value-table {
+  display: block;
+  overflow: auto;
+  font-size: 0.9em;
+
+  tbody {
+    th {
+      white-space: nowrap;
+      padding-right: 1rem;
+      font-weight: $font-bolder;
+    }
+    td {
+
+    }
+  }
+}
