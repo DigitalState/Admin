@@ -13,6 +13,7 @@ import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import { isFunction } from 'rxjs/util/isFunction';
 
 @Component({
     selector: 'ds-service-activate',
@@ -27,9 +28,12 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
     entityParentUrlParam = 'serviceUuid';
     headerTitle = 'general.menu.scenarios';
     headerSubtitle = null;
+    pageTitle = '';
 
     protected formioFormSchema;
     protected submissionResult: string;
+    protected status: null | 'success' | 'failure';
+    protected statusMessage: string;
     protected id: number;
 
     constructor(protected injector: Injector,
@@ -41,21 +45,24 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
                 protected modal: NgbModal,
                 protected toastr: ToastsManager) {
         super(injector, microserviceConfig);
+        this.applyPageTitle();
+    }
+
+    protected activate() {
+        let uuid = this.entity.uuid;
+        this.entityApiService.one('scenarios', uuid).customGET('form').subscribe(result => {
+            console.log('Scenarios/Form:', result);
+            this.formioFormSchema = {
+                'components': result.schema
+            };
+        }, (error) => { // error handling
+            this.handleActivationRequestError(error);
+        });
     }
 
     protected prepareEntity(): Observable<any> {
         return super.prepareEntity().flatMap((prepared) => {
-            let uuid = prepared.entity.uuid;
-
-            this.entityApiService.one('scenarios', uuid).customGET('form').subscribe(result => {
-                console.log('Scenarios/Form:', result);
-                this.formioFormSchema = {
-                    'components': result.schema
-                };
-            }, (error) => { // error handling
-                this.handleActivationRequestError(error);
-            });
-
+            this.activate();
             return Observable.empty();
         });
 
@@ -83,21 +90,22 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
         console.log(submitEvent);
         console.log(this.entity);
         let submission = {
-            'scenario': this.entity['@id'],
-            'data': submitEvent.data
+            'data': submitEvent.data,
         };
 
-        this.entityApiService.resource('submissions').post(submission).subscribe((result) => {
-                    console.log('Form submitted successfully', result);
-                    this.toastr.success('Form submitted successfully');
-                    const modal = this.modal.open(DefaultModal, {size: 'lg'});
-                    modal.componentInstance.modalHeader = 'Response';
-                    modal.componentInstance.modalContent = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        this.entityApiService.one('scenarios', this.entity.uuid).all('submissions').post(submission).subscribe((result) => {
+            this.status = 'success';
+            this.statusMessage = 'ds.microservices.entity.scenario.submissionSuccess';
 
-                    // const modal = this.modal.open(this.modalSubmissionResultTpl, {size: 'lg'})
-                    // this.submissionResult = JSON.stringify(response.json(), null, 2);
+            const modal = this.modal.open(DefaultModal, {size: 'lg'});
+            modal.componentInstance.modalHeader = 'Response';
+            modal.componentInstance.modalContent = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
 
-                    this.router.navigate(['../show'], { relativeTo: this.route });
+            // this.toastr.success('Form submitted successfully');
+            // const modal = this.modal.open(this.modalSubmissionResultTpl, {size: 'lg'})
+            // this.submissionResult = JSON.stringify(response.json(), null, 2);
+
+            // this.router.navigate(['../show'], { relativeTo: this.route });
         }, (error) => { // error handling
             this.handleSubmissionRequestError(error);
         });
@@ -135,31 +143,39 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
      * @param error
      * @returns {Promise<never>}
      */
-    protected handleActivationRequestError(error: any): Promise<any> {
-        const json = error.json();
+    protected handleActivationRequestError(error: any) {
+        this.status = 'failure';
 
-        if (json && json.message) {
-            this.toastr.error(json.message);
-            this.location.back();
+        try {
+            const json = isFunction(error.json) ? error.json() : null;
+
+            if (json && json.message) {
+                this.toastr.error(json.message);
+                this.statusMessage = json.message;
+            }
         }
-
-        console.error('Activation error occurred', error);
-        return Promise.reject(error.message || error);
+        catch (exception) {
+            this.statusMessage = 'ds.microservices.entity.scenario.activationFailure';
+        }
     }
 
     /**
      *
      * @param error
-     * @returns {Promise<never>}
      */
-    protected handleSubmissionRequestError(error: any): Promise<any> {
-        const json = error.json();
+    protected handleSubmissionRequestError(error: any) {
+        this.status = 'failure';
 
-        if (json && json.message) {
-            this.toastr.error(json.message);
+        try {
+            const json = isFunction(error.json) ? error.json() : null;
+
+            if (json && json.message) {
+                this.toastr.error(json.message);
+                this.statusMessage = json.message;
+            }
         }
-
-        console.error('Submission error occurred', error);
-        return Promise.reject(error.message || error);
+        catch (exception) {
+            this.statusMessage = 'ds.microservices.entity.scenario.submissionFailure';
+        }
     }
 }
