@@ -152,6 +152,7 @@
           "uuid": "UUID",
           "title": "Title",
           "form": "Form",
+          "weight": "Weight",
           "presentation": "Presentation",
           "slug": "Slug",
           "description": "Description",

@@ -8,8 +8,9 @@ export class MicroservicesDefinition {
 
     getAll() {
         let scheme = this.dsEnv.msUrlScheme;
-        let host = this.dsEnv.msHost;
-        
+        // let host = this.dsEnv.msHost;
+        let host = '192.168.0.24';
+
         return {
             'authentication': {
                 label: 'Authentication',
@@ -70,6 +71,14 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'weight': {
+                                label: 'Weight',
+                                type: 'number',
+                                default: 0,
+                                validation: {
+                                    'required': { message: 'required' },
+                                }
+                            },
                             'enabled': {
                                 label: 'Enabled',
                                 type: 'boolean',
@@ -78,14 +87,6 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
-                            // 'form': {
-                            //     label: 'Form',
-                            //     type: 'string',
-                            // default: '',
-                            //     validation: {
-                            //         'required': {message: 'required'},
-                            //     }
-                            // },
                         },
                     },
                     'scenarios': {
@@ -144,6 +145,14 @@ export class MicroservicesDefinition {
                                     'process_definition_key': ''
                                 },
                             },
+                            'weight': {
+                                label: 'Weight',
+                                type: 'number',
+                                default: 0,
+                                validation: {
+                                    'required': { message: 'required' },
+                                }
+                            },
                             'enabled': {
                                 label: 'Enabled',
                                 type: 'boolean',
@@ -152,14 +161,6 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
-                            // 'form': {
-                            //     label: 'Form',
-                            //     type: 'string',
-                            // default: '',
-                            //     validation: {
-                            //         'required': {message: 'required'},
-                            //     }
-                            // },
                         },
                     },
                     'submissions': {

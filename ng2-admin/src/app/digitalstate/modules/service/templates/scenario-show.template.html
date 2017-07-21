@@ -13,7 +13,15 @@
 	<!-- begin: ng-content[select=".entity-body"] -->
 	<div class="card-block entity-body entity-data">
 		<div class="row">
-			<div class="col-sm-4 col-sm-offset-3">
+			<div class="col-sm-12">
+				<dl>
+					<dt>UUID</dt>
+					<dd>{{entity.uuid}}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
 					<dd>{{entity.title | entityTranslate}}</dd>
@@ -23,19 +31,23 @@
 					<dd>{{entity.slug}}</dd>
 				</dl>
 				<dl>
-					<dt>{{ 'ds.microservices.entity.property.presentation' | translate }}</dt>
-					<dd>{{entity.presentation | entityTranslate}}</dd>
-				</dl>
-				<dl>
 					<dt>{{ 'ds.microservices.entity.property.processDefinitionKey' | translate }}</dt>
 					<dd>{{entity.data.process_definition_key}}</dd>
 				</dl>
 			</div>
-			<div class="col-sm-8 col-sm-offset-3">
+			<div class="col-sm-6">
 				<dl>
-					<dt>UUID</dt>
-					<dd>{{entity.uuid}}</dd>
+					<dt>{{ 'ds.microservices.entity.property.presentation' | translate }}</dt>
+					<dd>{{entity.presentation | entityTranslate}}</dd>
 				</dl>
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.weight' | translate }}</dt>
+					<dd>{{entity.weight}}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
 					<dd>{{entity.description | entityTranslate}}</dd>
