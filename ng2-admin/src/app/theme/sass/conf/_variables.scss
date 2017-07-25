@@ -1,3 +1,4 @@
+$fa-font-path : '/assets/fonts';
 $font-family: 'Roboto', sans-serif;
 
 $resXXL: 1280px;
@@ -17,6 +18,13 @@ $xsmall-card-height: 187px;
 $medium-card-height: 400px;
 $extra-medium-card-height: 550px;
 $large-card-height: 974px;
+
+$border-radius-base: 4px !default;
+$border-radius-large: 6px !default;
+$border-radius-small: 3px !default;
+
+$well-bg: #f5f5f5 !default;
+$well-border: darken($well-bg, 7%) !default;
 
 $default-animation-duration: 0.2s;
 $default-animation-style: ease-out;
