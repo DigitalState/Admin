@@ -1,4 +1,5 @@
 @import "sass/conf/conf";
+@import "~font-awesome/scss/font-awesome";
 @import "sass/bootstrap-overrides/overrides";
 @import "~animate.css/animate";
 @import "sass/typography";
@@ -15,4 +16,4 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink";
 @import "sass/ng2-toastr";
 @import "~ladda/css/ladda";
-
+@import "sass/formio/formio";
