@@ -1,0 +1,46 @@
+.list-group.simple-list {
+
+  $list-item-spacing: 1.75rem;
+
+  border-width: 0;
+
+  .list-group-item {
+    position: relative;
+    border-width: 0 0 1px 0;
+    padding: $list-item-spacing 0;
+    margin: 0 $list-item-spacing;
+    color: $default-text;
+
+    &:hover {
+      color: $hoverlink;
+    }
+
+    &:first-child {
+      //margin-top: 0.75rem 1.25rem;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    > .right-icon {
+      @include fa-icon();
+      @extend .fa-chevron-right;
+      position: absolute;
+      right: 0px;
+    }
+
+    &.has-left-icon {
+      padding-left: 2.75rem;
+
+      > .left-icon {
+        @include fa-icon();
+        @extend .fa-dot-circle-o;
+        font-size: 175%;
+        position: absolute;
+        top: $list-item-spacing;
+        left: 0px;
+      }
+    }
+  }
+}
