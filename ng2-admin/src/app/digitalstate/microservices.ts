@@ -8,8 +8,7 @@ export class MicroservicesDefinition {
 
     getAll() {
         let scheme = this.dsEnv.msUrlScheme;
-        // let host = this.dsEnv.msHost;
-        let host = '192.168.0.24';
+        let host = this.dsEnv.msHost;
 
         return {
             'authentication': {
