@@ -2,7 +2,7 @@
 
   <div class="header-block">
     <a routerLink="/pages/services/list" class="al-logo clearfix">
-      <img src="{{ ( 'app/digitalstate-logo.png' | baAppPicture ) }}" />
+      <img src="{{ ( 'app/digitalstate-logo-dark.png' | baAppPicture ) }}" />
     </a>
   </div>
 
@@ -67,7 +67,9 @@
   <div class="footer-block">
     <div class="row">
       <div class="col-8">
-        <span class="auth-link">{{'register.loginPrompt' | translate}} <a routerLink="/login">{{'register.loginLink' | translate}}</a></span>
+        <span class="auth-link">{{'register.loginPrompt' | translate}} <br>
+          <a routerLink="/login">{{'register.loginLink' | translate}}</a>
+        </span>
       </div>
       <div class="col-4">
         <ds-language-switcher></ds-language-switcher>
