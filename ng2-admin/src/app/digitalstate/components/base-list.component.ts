@@ -1,5 +1,6 @@
 import { AfterViewInit, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import enquire from 'enquire.js';
 
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
@@ -40,7 +41,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     datatableAttributes = {
         columnMode: 'force',
         rowHeight: 'auto',
-        headerHeight: 100, // overriden in list components that don't have column filters
+        headerHeight: 100, // overridden in list components that don't have column filters
         footerHeight: 50,
         externalPaging: true,
         externalSorting: true,
@@ -81,6 +82,11 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     protected entityMetadata = {};
 
     protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
+
+    /**
+     * EnquireJS media queries and their handlers in key/value format.
+     */
+    protected mediaQueryHandlers = {};
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -124,6 +130,8 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     ngOnDestroy() {
         // Unsubscribe from language-change events
         this.languageChangeSubscriber.unsubscribe();
+
+        this.destroyUi();
     }
 
     ngAfterViewInit() {
@@ -144,8 +152,47 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * This can be overridden by subclasses to further configure the UI.
      */
     protected setupUi() {
+        this.setupMediaQueries();
+
         forEach(this.datatableAttributes, (value, key) => {
             this.datatable[key] = value;
+        });
+    }
+
+    /**
+     * This is a lifecycle method that is called from ngOnDestroy so custom/third-party UI
+     * event listeners can be terminated.
+     */
+    protected destroyUi() {
+        // Unregister media query handlers by unregistering the query condition
+        forEach(this.mediaQueryHandlers, (value, key) => {
+            enquire.unregister(key);
+        });
+    }
+
+    protected setupMediaQueries() {
+        let config: any = this.appState.get('config');
+        let datatable = this.datatable;
+
+        this.mediaQueryHandlers[config.mediaQueryAliases.small] = {
+            /** Triggered when a media query matches */
+            match : function() {
+                datatable.scrollbarH = true;
+            },
+
+            /** Triggered when the media query transitions from a matched state to an unmatched state */
+            unmatch : function() {
+                datatable.scrollbarH = false;
+            },
+
+            setup : function() {},
+
+            /** Triggered when handler is unregistered. Place cleanup code here */
+            destroy : function() {}
+        };
+
+        forEach(this.mediaQueryHandlers, (value, key) => {
+            enquire.register(key, value);
         });
     }
 
