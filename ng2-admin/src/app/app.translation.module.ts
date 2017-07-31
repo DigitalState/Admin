@@ -31,8 +31,6 @@ export class AppTranslationModule {
   constructor(translate: TranslateService) {
     const defaultLang = localStorage.getItem('lang') || this.supportedLanguages[0];
     translate.addLangs(this.supportedLanguages);
-    translate.setDefaultLang(defaultLang);
-    translate.use(defaultLang);
 
     // Preload other translations so the app can support multiple translations in a single page
     this.supportedLanguages.forEach(lang => {
@@ -40,5 +38,12 @@ export class AppTranslationModule {
         translate.getTranslation(lang);
       }
     });
+
+    // Now, preload the default language's translations to overcome the Translation Service issue which
+    // causes UI translation synchronization problems
+    translate.getTranslation(defaultLang);
+
+    translate.setDefaultLang(defaultLang);
+    translate.use(defaultLang);
   }
 }
