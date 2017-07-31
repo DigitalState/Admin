@@ -25,10 +25,20 @@ import {Subject} from 'rxjs';
   providers: [TranslateService]
 })
 export class AppTranslationModule {
+
+  protected supportedLanguages = ['en', 'fr'];
+
   constructor(translate: TranslateService) {
-    const defaultLang = localStorage.getItem('lang') || 'en';
-    translate.addLangs(['en', 'fr']);
+    const defaultLang = localStorage.getItem('lang') || this.supportedLanguages[0];
+    translate.addLangs(this.supportedLanguages);
     translate.setDefaultLang(defaultLang);
     translate.use(defaultLang);
+
+    // Preload other translations so the app can support multiple translations in a single page
+    this.supportedLanguages.forEach(lang => {
+      if (lang !== defaultLang) {
+        translate.getTranslation(lang);
+      }
+    });
   }
 }
