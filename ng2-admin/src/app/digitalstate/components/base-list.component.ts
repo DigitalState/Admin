@@ -212,7 +212,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
         // Append the Actions column
         this.columns.push(
-            { name: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
+            { label: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
         );
 
         this.updateTranslations(this.translate.currentLang);
@@ -339,7 +339,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
         this.columns.forEach((column) => {
             // For translation, use the column name if available; otherwise, construct the translation string
             // from the column `prop` value
-            let columnLabel = column.name ? column.name : 'ds.microservices.entity.property.' + column.prop;
+            let columnLabel = column.label ? column.label : 'ds.microservices.entity.property.' + column.prop;
             this.translate.get(columnLabel).subscribe((translatedString) => {
                 column.name = translatedString;
             });
