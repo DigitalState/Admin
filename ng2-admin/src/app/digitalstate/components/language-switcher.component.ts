@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
         class: 'ds-language-switcher'
     }
 })
-export class DSLanguageSwitcherComponent {
+export class DsLanguageSwitcherComponent {
 
     currentLanguage: object;
     languages: object[];

@@ -22,7 +22,8 @@ import { DsEntityFormComponent } from './components/entity-form.component';
 import { DsDatatableHeader } from './components/datatable/datatable-header.component';
 import { DsDatatableCell } from './components/datatable/datatable-cell.component';
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
-import { DSLanguageSwitcherComponent } from './components/language-switcher.component';
+import { DsLanguageSwitcherComponent } from './components/language-switcher.component';
+import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
 import { DsBackLink } from './components/back-link.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 
@@ -46,7 +47,8 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
-        DSLanguageSwitcherComponent,
+        DsLanguageSwitcherComponent,
+        DsLanguageSwitcherTabsComponent,
         DsBackLink,
     ],
     entryComponents: [
@@ -64,7 +66,8 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         DsDatatableHeader,
         DsDatatableCell,
         DsDatatableCellActions,
-        DSLanguageSwitcherComponent,
+        DsLanguageSwitcherComponent,
+        DsLanguageSwitcherTabsComponent,
         // AppTranslationModule,
         TranslateModule,
     ]
