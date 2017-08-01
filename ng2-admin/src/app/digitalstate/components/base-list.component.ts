@@ -177,15 +177,20 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
         this.mediaQueryHandlers[config.mediaQueryAliases.small] = {
             /** Triggered when a media query matches */
             match : function() {
-                datatable.scrollbarH = true;
+                // datatable.scrollbarH = true;
             },
 
             /** Triggered when the media query transitions from a matched state to an unmatched state */
             unmatch : function() {
-                datatable.scrollbarH = false;
+                // datatable.scrollbarH = false;
             },
 
-            setup : function() {},
+            /** Triggered as soon as this handler is registered */
+            setup : function() {
+                // Due to a bug in ngx-datatable that occurs when the scrollbars are enabled after initializing
+                // the datatable instance, we are going to activate the scrollbar anyway
+                datatable.scrollbarH = true;
+            },
 
             /** Triggered when handler is unregistered. Place cleanup code here */
             destroy : function() {}
