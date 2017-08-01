@@ -7,7 +7,7 @@
 				<h4 class="card-subtitle" translate="" ng-reflect-translate="">{{headerSubtitle}}</h4>
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-6 mt-3 mt-sm-0">
 				<div class="container">
 					<ul class="row btn-list clearfix">
 						<li class="col-12 align-right">
@@ -23,12 +23,14 @@
 	<ng-content select=".entity-body"></ng-content>
 
 	<div class="card-footer">
-		<ul class="row btn-list clearfix">
-			<li class="col-8">
-			</li>
-			<li class="col-4 align-right">
-				<button [hidden]="!actions.delete" (click)="onDeleteClick($event)" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">{{'ds.microservices.entity.action.delete' | translate}}</i></button>
-			</li>
-		</ul>
+		<div class="container-fluid">
+			<ul class="row btn-list clearfix">
+				<li class="col-sm-6">
+				</li>
+				<li class="col-sm-6 align-right">
+					<button [hidden]="!actions.delete" (click)="onDeleteClick($event)" type="button" class="btn btn-danger btn-with-icon"><i class="ion-android-delete">{{'ds.microservices.entity.action.delete' | translate}}</i></button>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
