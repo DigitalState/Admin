@@ -20,11 +20,7 @@ export class DsServiceEditComponent extends DsBaseEntityFormComponent {
     isNew = false;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
                 translate: TranslateService,
-                toastr: ToastsManager,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 

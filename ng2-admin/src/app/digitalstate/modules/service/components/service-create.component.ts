@@ -28,11 +28,7 @@ export class DsServiceCreateComponent extends DsBaseEntityFormComponent {
     autoSluggify = true;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
                 translate: TranslateService,
-                toastr: ToastsManager,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
