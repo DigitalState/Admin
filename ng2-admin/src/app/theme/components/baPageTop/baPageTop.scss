@@ -135,6 +135,37 @@ a.al-logo:hover {
     height: 45px;
     border-radius: 50%;
   }
+
+  .user-identity {
+    @extend .h-center;
+    bottom: 5px;
+    display: block;
+    position: absolute;
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    line-height: 1em;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    z-index: 1;
+
+    &.admin {
+      background-color: purple;
+    }
+    &.staff {
+
+    }
+    &.anonymous {
+      display: none;
+    }
+  }
+
+  &.show {
+    .user-identity {
+      display: none;
+    }
+  }
+
 }
 
 .ds-language-switcher {

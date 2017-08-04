@@ -11,13 +11,18 @@ import {AuthService} from '../../../shared/modules/auth/auth.service';
 })
 export class BaPageTop {
 
-  public isScrolled:boolean = false;
-  public isMenuCollapsed:boolean = false;
+  public isScrolled: boolean = false;
+  public isMenuCollapsed: boolean = false;
 
-  constructor(private _state:GlobalState, private auth: AuthService) {
+  protected userIdentity: string;
+
+  constructor(private _state: GlobalState,
+              private auth: AuthService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+
+    this.userIdentity = auth.getAuthUser().identity;
   }
 
   public toggleMenu() {
