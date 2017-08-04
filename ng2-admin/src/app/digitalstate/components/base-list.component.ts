@@ -237,6 +237,13 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
         });
     }
 
+    /**
+     * Preprocess fetched data.
+     * By default this appends actions visibility settings to each row.
+     *
+     * @param fetchedData
+     * @returns {any}
+     */
     protected preprocessRowsData(fetchedData): Array<any> {
         // Add metadata container including list actions
         let rows;

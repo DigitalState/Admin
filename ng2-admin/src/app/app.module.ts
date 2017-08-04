@@ -24,6 +24,8 @@ import {RestangularModule} from 'ngx-restangular';
 import {FormioAppConfig} from 'ng2-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
+import { MomentModule } from 'angular2-moment';
+import { MomentTimezoneModule } from 'angular-moment-timezone';
 import { DsSharedModule } from './shared/shared.module';
 import {DsMicroservicesModule} from './digitalstate/microservices.module';
 
@@ -123,6 +125,8 @@ const translationOptions = {
         NgbModule.forRoot(),
         TranslateModule.forRoot(translationOptions), // @See AppTranslationModule for default language setting
         LaddaModule,
+        MomentModule,
+        MomentTimezoneModule,
         PagesModule,
         DsSharedModule,
         DsMicroservicesModule,

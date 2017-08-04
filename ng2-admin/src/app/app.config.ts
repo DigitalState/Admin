@@ -13,9 +13,17 @@ const MEDIA_BREAKPOINTS = {
 
 function config() {
     let conf = {
+        // CSS
         'breakpoints': MEDIA_BREAKPOINTS,
         'mediaQueryAliases': {
-            'small': `screen and (max-width:${MEDIA_BREAKPOINTS.sm}px)`
+            'small': `screen and (max-width:${MEDIA_BREAKPOINTS.sm}px)`,
+        },
+        // Date and Time
+        'date': {
+            'format': {
+                'short': 'MMMM Do YY',
+                'long': 'MMMM Do YYYY, h:mm:ss a',
+            }
         }
     };
 
