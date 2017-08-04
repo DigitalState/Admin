@@ -165,8 +165,8 @@ export class MicroservicesDefinition {
                     'submissions': {
                         properties: {
                             'uuid': {
-                                label: 'Updated At',
-                                type: 'date',
+                                label: 'UUID',
+                                type: 'string',
                             },
                             'updatedAt': {
                                 label: 'Updated At',
@@ -184,6 +184,10 @@ export class MicroservicesDefinition {
                 entities: {
                     'cases': {
                         properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
                             'title': {
                                 label: 'Title',
                                 type: 'string',
@@ -205,7 +209,28 @@ export class MicroservicesDefinition {
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
-                                default: '9be0af28-ef41-49b7-86d9-72a2d9beb051',
+                                default: 'd0daa7e4-07d1-47e6-93f2-0629adaa3b49',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'statuses': {
+                                label: 'Status',
+                                type: 'string',
+                                default: []
                             },
                         },
                     },

@@ -81,6 +81,19 @@ export const PAGES_MENU = [
         ]
       },
       {
+        path: 'cases',
+        data: {
+          menu: {
+            title: 'general.menu.cases',
+            icon: 'ion-ios-list-outline',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
         path: 'systems',
         data: {
           menu: {
@@ -93,19 +106,6 @@ export const PAGES_MENU = [
           }
         }
       },
-      // {
-      //   path: 'cases',
-      //   data: {
-      //     menu: {
-      //       title: 'general.menu.cases',
-      //       icon: 'ion-folder',
-      //       pathMatch: 'prefix', // use it if item children not displayed in menu
-      //       selected: false,
-      //       expanded: false,
-      //       order: 0
-      //     }
-      //   }
-      // },
       // {
       //   path: 'assets',
       //   data: {

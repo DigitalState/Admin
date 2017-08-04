@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ToastsManager } from 'ng2-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
-import { MicroserviceConfig } from '../../microservice.provider';
+import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
 import 'rxjs/Rx';
@@ -20,11 +20,7 @@ export class DsCaseCreateComponent extends DsBaseEntityFormComponent {
     isNew = true;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
                 translate: TranslateService,
-                toastr: ToastsManager,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 

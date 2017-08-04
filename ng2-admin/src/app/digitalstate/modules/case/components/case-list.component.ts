@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 
-import { MicroserviceConfig } from '../../microservice.provider';
+import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
 import 'rxjs/Rx';
@@ -12,6 +12,7 @@ import 'rxjs/Rx';
 export class DsCaseListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'cases';
+    pageTitle = 'general.menu.cases';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
@@ -23,7 +24,9 @@ export class DsCaseListComponent extends DsBaseEntityListComponent {
     setupList() {
         super.setupList();
         this.columns = [
+            { prop: 'uuid', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
+            { prop: 'identity', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
         ];
     }
 }
