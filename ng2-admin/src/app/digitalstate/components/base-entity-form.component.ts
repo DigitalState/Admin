@@ -5,7 +5,7 @@ import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
 import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
-import { MicroserviceConfig } from '../modules/microservice.provider';
+import { MicroserviceConfig } from '../../shared/providers/microservice.provider';
 import { LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
@@ -169,7 +169,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             });
         }
         else {
-            return Observable.empty();
+            return Observable.of(null);
         }
     }
 

@@ -7,7 +7,7 @@ import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Link } from '../models/link';
 import { DefaultModal } from './modals/default-modal/default-modal.component';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
-import { MicroserviceConfig } from '../modules/microservice.provider';
+import { MicroserviceConfig } from '../../shared/providers/microservice.provider';
 import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
 import 'rxjs/Rx';
@@ -100,7 +100,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
             });
         }
         else {
-            return Observable.empty();
+            return Observable.of(null);
         }
     }
 
