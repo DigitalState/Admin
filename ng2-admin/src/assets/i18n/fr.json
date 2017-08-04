@@ -163,8 +163,11 @@
           "username": "Nom d'utilisateur",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
+          "owner": "Propriétaire",
+          "ownerUuid": "Propriétaire UUID",
           "channel": "Canal",
           "data": "Data",
+          "status": "Statut",
           "processDefinitionKey": "Clé de définition de processus",
           "firstName": "Prénom",
           "lastName": "Nom de famille"
