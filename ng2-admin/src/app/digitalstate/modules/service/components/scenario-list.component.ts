@@ -55,6 +55,7 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
     protected setupQuery(): void {
         super.setupQuery();
         this.query.setFilter('service.uuid', this.entityParent.uuid);
+        this.query.setFilter('order[weight]', 'asc');
     }
 
     protected updateTranslations(newLang: string) {
