@@ -182,7 +182,8 @@
         },
         "validation": {
           "required": "Required field.",
-          "minlength": "Minimum of {{chars}} characters."
+          "minlength": "Minimum of {{chars}} characters.",
+          "json": "Invalid JSON value."
         },
         "scenario": {
           "activationFailure": "<h4>Activation failed!</h4> <div>Please try again later.</div>",

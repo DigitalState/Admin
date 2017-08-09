@@ -186,7 +186,8 @@
         },
         "validation": {
           "required": "Champs requis.",
-          "minlength": "Minimum of {{chars}} characters."
+          "minlength": "Minimum of {{chars}} characters.",
+          "json": "Valeur JSON invalide."
         },
         "scenario": {
           "activationFailure": "<h4>Activation echouée</h4> <div>Please try again later.</div>",
