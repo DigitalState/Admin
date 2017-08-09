@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { CustomValidators } from 'ng2-validation';
 
 import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
@@ -14,8 +15,10 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
 
 import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
 
 
 const VALIDATION_TRANS_PREFIX = 'ds.microservices.entity.validation.';
@@ -265,22 +268,35 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     }
 
     saveNewEntity(form?: NgForm) {
-        console.log('entity', this.entity);
-        let sanitizedEntity = this.preSave(clone(this.entity));
-        this.entityApiService.resource(this.entityUrlPrefix).post(sanitizedEntity).subscribe((response) => {
-            this.onEntitySave(response);
-        }, (error) => {
-            this.onEntitySaveError(error);
-        });
+        try {
+            let sanitizedEntity = this.preSave(cloneDeep(this.entity));
+            this.entityApiService.resource(this.entityUrlPrefix).post(sanitizedEntity).subscribe((response) => {
+                this.onEntitySave(response);
+            }, (error) => {
+                this.onEntitySaveError(error);
+            });
+        }
+        catch (e) {
+            console.warn('Error in saveNewEntity', e);
+        }
     }
 
     saveExistingEntity(form: NgForm) {
-        let sanitizedEntity = this.preSave(clone(this.entity));
-        sanitizedEntity.put().subscribe((response) => {
-            this.onEntitySave(response);
-        }, (error) => {
-            this.onEntitySaveError(error);
-        });
+        try {
+            let plainEntity = cloneDeep(this.entity.plain());
+            let sanitizedEntity = this.preSave(plainEntity);
+            let resource = this.entityApiService.resource(this.entityUrlPrefix);
+            let headers = { 'Content-Type': 'application/json' };
+
+            resource.customPUT(sanitizedEntity, this.entity.uuid, undefined, headers).subscribe((response) => {
+                this.onEntitySave(response);
+            }, (error) => {
+                this.onEntitySaveError(error);
+            });
+        }
+        catch (e) {
+            console.warn('Error in saveExistingEntity', e);
+        }
     }
 
     /**
@@ -300,11 +316,46 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
                     if (isString(entity[propertyName][lang]) && isEmpty(entity[propertyName][lang])) {
                         delete entity[propertyName][lang];
                     }
+
+                    // Convert JSON properties from strings to JSON objects
+                    if (property.hasOwnProperty('type') && property.type === 'json') {
+                        try {
+                            if (isString(entity[propertyName][lang])) {
+                                if (entity[propertyName][lang].trim().length === 0) {
+                                    entity[propertyName][lang] = '{}';
+                                }
+                                entity[propertyName][lang] = JSON.parse(entity[propertyName][lang]);
+                            }
+                        }
+                        catch (e) {
+                            this.setFormError(propertyName, 'json');
+                            throw {
+                                'type': 'validation',
+                                'property': propertyName,
+                                'field': property.type,
+                                'language': lang
+                            };
+                        }
+                    }
                 });
             }
+            else {
+                // Convert JSON properties from strings to JSON objects
+                if (property.hasOwnProperty('type') && property.type === 'json') {
+                    entity[propertyName] = JSON.parse(entity[propertyName]);
+                }
+            }
         });
+
         console.log('sanitized entity', entity);
         return entity;
+    }
+
+    setFormError(propertyName, validationKey) {
+        const validation = this.entityMetadata[propertyName].validation;
+        let params = validation[validationKey].hasOwnProperty('params') ? validation[validationKey].params : null;
+        let message = this.translate.instant(VALIDATION_TRANS_PREFIX + validation[validationKey].message, params);
+        this.formErrors[propertyName] += message + ' ';
     }
 
     onEntitySave(response) {
