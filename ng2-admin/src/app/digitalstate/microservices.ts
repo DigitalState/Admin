@@ -232,6 +232,16 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: []
                             },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                // default: null,
+                                translated: true,
+                                validation: {
+                                    // 'required': { message: 'required' },
+                                    'json': { message: 'json' },
+                                },
+                            },
                         },
                     },
                 },
