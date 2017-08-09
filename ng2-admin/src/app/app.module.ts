@@ -7,6 +7,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {createInputTransfer, createNewHosts, removeNgStyles} from '@angularclass/hmr';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { CustomFormsModule } from 'ng2-validation'
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -124,6 +126,7 @@ const translationOptions = {
         NgaModule.forRoot(),
         NgbModule.forRoot(),
         TranslateModule.forRoot(translationOptions), // @See AppTranslationModule for default language setting
+        CustomFormsModule,
         LaddaModule,
         MomentModule,
         MomentTimezoneModule,
