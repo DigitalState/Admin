@@ -8,6 +8,7 @@
       .datatable-header-cell {
         padding: 0.5em 1em;
         height: 100%;
+        vertical-align: top;
 
         .sort-btn {
           //position: absolute;
@@ -20,15 +21,18 @@
           height: 100%;
 
           .ds-datatable-header {
+            width: 100%;
+
             .datatable-header-cell-label {
               font-weight: bold;
             }
 
             .column-filter {
-              position: absolute;
-              bottom: 0;
-              left: 1em;
-              right: 1em;
+              position: relative;
+              //position: absolute;
+              //bottom: 0;
+              //left: 1em;
+              //right: 1em;
             }
           }
         }
