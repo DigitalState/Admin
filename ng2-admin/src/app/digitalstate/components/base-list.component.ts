@@ -129,7 +129,9 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
     ngOnDestroy() {
         // Unsubscribe from language-change events
-        this.languageChangeSubscriber.unsubscribe();
+        if (this.languageChangeSubscriber) {
+            this.languageChangeSubscriber.unsubscribe();
+        }
 
         this.destroyUi();
     }

@@ -40,7 +40,9 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
     }
 
     ngOnDestroy() {
-        this.routeParamsSubscription.unsubscribe();
+        if (this.routeParamsSubscription) {
+            this.routeParamsSubscription.unsubscribe();
+        }
         super.ngOnDestroy();
     }
 

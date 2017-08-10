@@ -73,7 +73,9 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
     ngOnDestroy() {
         // Unsubscribe from language-change events
-        this.languageChangeSubscriber.unsubscribe();
+        if (this.languageChangeSubscriber) {
+            this.languageChangeSubscriber.unsubscribe();
+        }
     }
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
