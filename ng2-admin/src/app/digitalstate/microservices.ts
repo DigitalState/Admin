@@ -201,6 +201,10 @@ export class MicroservicesDefinition {
                                     },
                                 },
                             },
+                            'customId': {
+                                label: 'Custom ID',
+                                type: 'string',
+                            },
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
@@ -235,7 +239,7 @@ export class MicroservicesDefinition {
                             'data': {
                                 label: 'Data',
                                 type: 'json',
-                                // default: null,
+                                default: {},
                                 translated: true,
                                 validation: {
                                     // 'required': { message: 'required' },

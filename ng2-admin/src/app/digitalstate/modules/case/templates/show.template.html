@@ -12,10 +12,16 @@
 	<!-- begin: ng-content[select=".entity-body"] -->
 	<div class="card-block entity-body entity-data">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<dl>
 					<dt>UUID</dt>
 					<dd>{{entity.uuid}}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.customId' | translate }}</dt>
+					<dd>{{entity.customId}}</dd>
 				</dl>
 			</div>
 		</div>

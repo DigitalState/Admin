@@ -18,12 +18,21 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<div class="form-group">
 					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
 					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.title" class="alert alert-danger">
 						{{ formErrors.title }}
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="customId">{{ 'ds.microservices.entity.property.customId' | staticTranslate:[formLang] }}</label>
+					<input id="customId" name="customId" type="text" [(ngModel)]="entity.customId" class="form-control" placeholder="">
+					<div *ngIf="formErrors.customId" class="alert alert-danger">
+						{{ formErrors.customId }}
 					</div>
 				</div>
 			</div>
