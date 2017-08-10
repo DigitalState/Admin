@@ -6,17 +6,13 @@ import { DsLanguageSwitcherComponent } from './language-switcher.component';
 @Component({
     selector: 'ds-language-switcher-tabs',
     template: `
-        <!--<a class="toggle-link tabs-toggle" data-toggle="tabs" aria-expanded="false" tabindex="0">-->
-            <!--<i class="fa fa-globe"></i>-->
-            <!--<span class="language-name">{{currentLanguage.name}}</span>-->
-        <!--</a>-->
         <ul #tabsList class="switcher-tabs language-tabs">
             <li *ngFor="let language of getListedLanguages()" 
                 [ngClass]="{'active': currentLanguage.key === language.key}" 
                 class="switcher-tab-item lang-{{language.key}}">
                 <a href="javascript:;" (click)="switchLang(language.key)">
                     <i class="fa fa-flag"></i>
-                    {{language.name}}
+                    {{ 'languages.' + language.key | translate }}
                 </a>
             </li>
         </ul>
@@ -43,7 +39,7 @@ export class DsLanguageSwitcherTabsComponent extends DsLanguageSwitcherComponent
         this.languages = this.translate.getLangs().map((langKey) =>
             ({
                 key: langKey,
-                name: this.translate.instant('ds.language-switcher.languages.' + langKey)
+                name: this.translate.instant('languages.' + langKey)
             })
         );
 
@@ -70,7 +66,7 @@ export class DsLanguageSwitcherTabsComponent extends DsLanguageSwitcherComponent
     protected loadCurrentLanguageTranslation() {
         this.currentLanguage = {
             key: this.translate.currentLang,
-            name: this.translate.instant('ds.language-switcher.languages.' + this.translate.currentLang)
+            name: this.translate.instant('languages.' + this.translate.currentLang)
         };
     }
 }

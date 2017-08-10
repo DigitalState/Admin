@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { CustomValidators } from 'ng2-validation';
 
+import { DsStaticTranslationService } from '../../shared/services/static-translation.service';
 import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
 import { MicroserviceConfig } from '../../shared/providers/microservice.provider';
@@ -67,9 +68,10 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected entityApiService: DsBaseEntityApiService<any>;
 
     /**
-     * Translation service
+     * Translation services
      */
     protected translate: TranslateService;
+    protected staticTranslate: DsStaticTranslationService
 
     /**
      * Auth service
@@ -103,6 +105,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
         super(injector);
         this.auth = injector.get(AuthService);
+        this.staticTranslate = injector.get(DsStaticTranslationService);
     }
 
     ngOnInit() {
@@ -213,6 +216,30 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         return Observable.of(entity);
     }
 
+    displayFormErrors(checkCleanControls: boolean = true) {
+        if (!this.entityForm) {
+            return;
+        }
+
+        const form = this.entityForm.form;
+
+        for (const field in this.formErrors) {
+            // clear previous error message (if any)
+            this.formErrors[field] = '';
+            const control = form.get(field);
+
+            if (control && (control.dirty || checkCleanControls) && !control.valid) {
+                // const validation = this.entityMetadata[field].validation
+                for (const key in control.errors) {
+                    this.setFormError(field, key);
+                    // let params = validation[key].hasOwnProperty('params') ? validation[key].params : null;
+                    // let message = this.translate.instant(VALIDATION_TRANS_PREFIX + validation[key].message, params);
+                    // this.formErrors[field] += message + ' ';
+                }
+            }
+        }
+    }
+
     onFormInit(form: NgForm) {
         this.currentForm = form;
     }
@@ -238,6 +265,12 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     }
 
     onFormSubmit(form: NgForm) {
+        if (!form.valid) {
+            this.displayFormErrors();
+            this.toastr.error(this.translate.instant('ds.messages.formInvalid'));
+            return false;
+        }
+
         this.submitted = true;
         if (this.isNew) {
             this.saveNewEntity(form);
@@ -248,25 +281,8 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     }
 
     onValueChanged(data?: any) {
-        if (!this.entityForm) {
-            return;
-        }
-        const form = this.entityForm.form;
-
-        for (const field in this.formErrors) {
-            // clear previous error message (if any)
-            this.formErrors[field] = '';
-            const control = form.get(field);
-
-            if (control && control.dirty && !control.valid) {
-                const validation = this.entityMetadata[field].validation
-                for (const key in control.errors) {
-                    let params = validation[key].hasOwnProperty('params') ? validation[key].params : null;
-                    let message = this.translate.instant(VALIDATION_TRANS_PREFIX + validation[key].message, params);
-                    this.formErrors[field] += message + ' ';
-                }
-            }
-        }
+        // Validate form controls while ignoring clean controls
+        this.displayFormErrors(false);
     }
 
     saveNewEntity(form?: NgForm) {
@@ -356,13 +372,14 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     setFormError(propertyName, validationKey) {
         const validation = this.entityMetadata[propertyName].validation;
         let params = validation[validationKey].hasOwnProperty('params') ? validation[validationKey].params : null;
-        let message = this.translate.instant(VALIDATION_TRANS_PREFIX + validation[validationKey].message, params);
+        let translationKey = VALIDATION_TRANS_PREFIX + validation[validationKey].message;
+        let message = this.staticTranslate.instant(this.formLang, translationKey, params);
         this.formErrors[propertyName] += message + ' ';
     }
 
     onEntitySave(response) {
         console.log('Entity saved successfully, server response: ', response);
-        this.toastr.success('Entity saved successfully');
+        this.toastr.success(this.translate.instant('ds.messages.entitySaveSucceeded'));
 
         const routerLink = this.isNew ? '../list' : '../show';
         this.router.navigate([routerLink], {relativeTo: this.route});
@@ -370,6 +387,6 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
     onEntitySaveError(error) {
         console.error('There was an error saving entity', error);
-        this.toastr.error('Failed to save the entity');
+        this.toastr.error(this.translate.instant('ds.messages.entitySaveFailed'));
     }
 }
