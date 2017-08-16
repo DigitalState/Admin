@@ -4,6 +4,8 @@ import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MdProgressBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgArrayPipesModule } from 'ngx-pipes';
+import { FilterByPipe } from 'ngx-pipes/src/app/pipes/array/filter-by';
 
 import { AppTranslationModule } from '../app.translation.module';
 import { AppState } from '../app.service';
@@ -32,6 +34,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         CommonModule,
         RouterModule,
         FormsModule,
+        NgArrayPipesModule,
         MdProgressBarModule,
         // AppTranslationModule,
         TranslateModule,
@@ -56,6 +59,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
     ],
     providers: [
         TemplateStorage,
+        FilterByPipe,
     ],
     exports: [
         MdProgressBarModule,
