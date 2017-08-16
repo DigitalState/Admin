@@ -6,7 +6,10 @@ import { Link } from '../models/link';
     'selector': 'back-link',
     'template':
         `<div class="back-link">
-		    <a *ngIf="link" href [routerLink]="link.routerLink"><span>← </span> {{link.text}}</a>
+		    <a *ngIf="link" href [routerLink]="link.routerLink">
+                <span>← </span>
+                <span translate>{{link.text}}</span>
+            </a>
 	    </div>`,
 })
 export class DsBackLink {
