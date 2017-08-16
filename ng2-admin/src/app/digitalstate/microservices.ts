@@ -132,7 +132,7 @@ export class MicroservicesDefinition {
                                 },
                             },
                             'type': {
-                                label: 'Description',
+                                label: 'Type',
                                 type: 'string',
                                 default: 'bpm',
                             },
@@ -242,7 +242,38 @@ export class MicroservicesDefinition {
                                 default: {},
                                 translated: true,
                                 validation: {
-                                    // 'required': { message: 'required' },
+                                    'json': { message: 'json' },
+                                },
+                            },
+                        },
+                    },
+                    'case-statuses': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'description': {
+                                label: 'Description',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                     'json': { message: 'json' },
                                 },
                             },
