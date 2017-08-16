@@ -48,15 +48,54 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     };
 
     /**
-     * Determines the default visibilty of action buttons
-     * @type { [s: string]: boolean }
+     * Descriptor of header action buttons
+     * @type  Array<object>
      */
-    actions: { [s: string]: boolean } = {
-        show: true,
-        refresh: true,
-        create: true,
-        edit: true,
-    };
+    headerActions: Array<any> = [
+        {
+            name: 'create',
+            title: 'ds.microservices.entity.action.create',
+            class: 'btn btn-primary btn-with-icon',
+            iconClass: 'ion-android-add-circle',
+            visible: true,
+            routerLink: ['../create'],
+        },
+        {
+            name: 'refresh',
+            title: 'ds.microservices.entity.action.refresh',
+            class: 'btn btn-secondary btn-with-icon',
+            iconClass: 'ion-android-refresh',
+            visible: true,
+        },
+    ];
+
+    /**
+     * Descriptor of row action buttons in the grid.
+     * @type  Array<object>
+     */
+    actions: Array<any> = [
+        {
+            name: 'show',
+            title: 'ds.microservices.entity.action.show',
+            class: 'btn btn-default btn-with-icon',
+            iconClass: 'ion-eye',
+            visible: true,
+        },
+        {
+            name: 'edit',
+            title: 'ds.microservices.entity.action.edit',
+            class: 'btn btn-default btn-with-icon',
+            iconClass: 'ion-edit',
+            visible: true,
+        },
+    ];
+
+    // actions: { [s: string]: boolean } = {
+    //     show: true,
+    //     refresh: true,
+    //     create: true,
+    //     edit: true,
+    // };
 
     /**
      * The parent entity object (if any). This applies when the subclassing component targets
@@ -237,6 +276,54 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
             this.rows = this.preprocessRowsData(pagedData.data);
             this.loading = false;
         });
+    }
+
+    /**
+     * Handle header actions.
+     * By default this method attempts to use the routerLink (if any) in the action and navigate to it.
+     * @param event { action: object }
+     */
+    protected handleHeaderEvent(event: any) {
+        let relativePath = this.entityParentUrlPrefix
+            ? '../' + this.entityUrlPrefix
+            : '../';
+
+        switch (event.action.name) {
+            case 'refresh':
+                this.refreshList();
+                break;
+            case 'create':
+                this.router.navigate([relativePath, 'create'], { relativeTo: this.route });
+                break;
+            default:
+                if (event.action.routerLink) {
+                    this.router.navigate(event.action.routerLink, { relativeTo: this.route });
+                }
+                break;
+        }
+    }
+
+    /**
+     * Handle row actions.
+     * By default this method assumes certain navigational routes for `show` and `edit` in relation to the current page
+     * in which the grid is being displayed.
+     * @param event { row: object, action: object } This contains data of the row and action that triggered the event.
+     */
+    protected handleRowEvent(event: any) {
+        let relativePath = this.entityParentUrlPrefix
+            ? '../' + this.entityUrlPrefix
+            : '../';
+
+        switch (event.action.name) {
+            case 'show':
+                this.router.navigate([relativePath, event.row.uuid, 'show'], { relativeTo: this.route });
+                break;
+            case 'edit':
+                this.router.navigate([relativePath, event.row.uuid, 'edit'], { relativeTo: this.route });
+                break;
+            default:
+                break;
+        }
     }
 
     /**

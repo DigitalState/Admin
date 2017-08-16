@@ -16,14 +16,40 @@ import { Observable } from 'rxjs/Observable';
 
 export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
+    protected headerTitle: string = 'general.details';
+
+    // /**
+    //  * Determines the default visibilty of action buttons
+    //  * @type { [s: string]: boolean }
+    //  */
+    // actions: { [s: string]: boolean } = {
+    //     edit: true,
+    //     delete: true,
+    // };
+
     /**
-     * Determines the default visibilty of action buttons
-     * @type { [s: string]: boolean }
+     * Descriptor of entity action buttons in the page.
+     * @type  Array<object>
      */
-    actions: { [s: string]: boolean } = {
-        edit: true,
-        delete: true,
-    };
+    actions: Array<object> = [
+        {
+            name: 'edit',
+            title: 'ds.microservices.entity.action.edit',
+            class: 'btn btn-primary btn-with-icon',
+            iconClass: 'ion-edit',
+            visible: true,
+            routerLink: ['../edit'],
+            region: 'header',
+        },
+        {
+            name: 'delete',
+            title: 'ds.microservices.entity.action.delete',
+            class: 'btn btn-danger btn-with-icon',
+            iconClass: 'ion-android-delete',
+            visible: true,
+            region: 'footer',
+        },
+    ];
 
     /**
      * A shortcut to the entity's metadata from the MicroserviceConfig.
@@ -34,6 +60,11 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
      * Language change observer
      */
     protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
+
+    /**
+     * Alias for the current interface language. Ex: `en`, `fr`, ec...
+     */
+    protected lang: string;
 
     /**
      * The Enity API service is not injected into this base component class because
@@ -62,7 +93,8 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
         super.ngOnInit();
 
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
-
+        this.lang = this.translate.currentLang;
+        
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             return this.prepareEntity().subscribe();
@@ -106,7 +138,25 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
         }
     }
 
-    onDelete(event) {
+    /**
+     * Handle header actions.
+     * By default this method attempts to use the routerLink (if any) in the action and navigate to it.
+     * @param event { action: object }
+     */
+    protected handleEntityEvent(event: any) {
+        switch (event.action.name) {
+            case 'delete':
+                this.onDelete();
+                break;
+            default:
+                if (event.action.routerLink) {
+                    this.router.navigate(event.action.routerLink, { relativeTo: this.route });
+                }
+                break;
+        }
+    }
+
+    onDelete() {
         const modal = this.modal.open(DefaultModal, {size: 'lg'});
         modal.componentInstance.modalHeader = 'Confirm';
         modal.componentInstance.modalContent = `Are you sure you want to delete this entity?`;

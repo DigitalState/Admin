@@ -16,7 +16,9 @@ export class DsEntityListComponent {
     @Input() headerSubtitle: string;
     @Input() backLink: Link;
     @Input() actions: { [s: string]: boolean };
-    @Output() onRefreshList = new EventEmitter();
+    @Input() headerActions: Array<object>;
+
+    @Output() headerActionEmitter = new EventEmitter();
 
     @ContentChild(DatatableComponent) datatable: DatatableComponent;
 
@@ -28,7 +30,7 @@ export class DsEntityListComponent {
 
     }
 
-    protected refreshList() {
-        this.onRefreshList.emit();
+    protected emitHeaderAction(action: any) {
+        this.headerActionEmitter.emit({ action: action });
     }
 }

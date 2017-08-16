@@ -14,7 +14,9 @@ export class DsEntityShowComponent {
     @Input() headerSubtitle: string;
     @Input() entity: any;
     @Input() backLink: Link;
-    @Input() actions: { [s: string]: boolean };
+    @Input() actions: Array<object>;
+
+    @Output() entityActionEmitter = new EventEmitter();
     @Output() onDelete = new EventEmitter<any>();
 
     constructor() {
@@ -25,6 +27,10 @@ export class DsEntityShowComponent {
         if (this.headerSubtitle == null) {
             // this.headerSubtitle = this.entity.uuid;
         }
+    }
+
+    protected emitEntityAction(action: any) {
+        this.entityActionEmitter.emit({ action: action });
     }
 
     onDeleteClick(event) {
