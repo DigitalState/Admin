@@ -1,13 +1,14 @@
-import {ApplicationRef, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Http, HttpModule} from '@angular/http';
-import {RouterModule} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {createInputTransfer, createNewHosts, removeNgStyles} from '@angularclass/hmr';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { ApplicationRef, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Http, HttpModule } from '@angular/http';
+import { RouterModule} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { createInputTransfer, createNewHosts, removeNgStyles } from '@angularclass/hmr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CustomFormsModule } from 'ng2-validation'
+import { LockerModule, DRIVERS } from 'angular-safeguard';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -26,8 +27,6 @@ import {RestangularModule} from 'ngx-restangular';
 import {FormioAppConfig} from 'ng2-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
-import { MomentModule } from 'angular2-moment';
-import { MomentTimezoneModule } from 'angular-moment-timezone';
 import { DsSharedModule } from './shared/shared.module';
 import {DsMicroservicesModule} from './digitalstate/microservices.module';
 
@@ -106,6 +105,14 @@ const translationOptions = {
     }
 };
 
+// Storage (Locker) configurations
+// @see https://github.com/MikaAK/angular-safeguard
+const storageLockerConfig = {
+    driverNamespace: 'ds',
+    defaultDriverType: DRIVERS.LOCAL,
+    namespaceSeperator: '-'
+};
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -126,10 +133,9 @@ const translationOptions = {
         NgaModule.forRoot(),
         NgbModule.forRoot(),
         TranslateModule.forRoot(translationOptions), // @See AppTranslationModule for default language setting
+        LockerModule.withConfig(storageLockerConfig),
         CustomFormsModule,
         LaddaModule,
-        MomentModule,
-        MomentTimezoneModule,
         PagesModule,
         DsSharedModule,
         DsMicroservicesModule,
@@ -164,7 +170,9 @@ const translationOptions = {
             }
         }
     ],
-    exports: [TranslateModule],
+    exports: [
+        TranslateModule
+    ],
 })
 
 export class AppModule {
