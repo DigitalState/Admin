@@ -26,12 +26,13 @@
     "signUpButton": "Sign up"
   },
   "general": {
-    "akveo": "Akveo",
+    "details": "Details",
     "home": "Home",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Passwords don't match."
     },
+    "list": "List",
     "menu": {
       "dashboard": "Dashboard",
       "editors": "Editors",
@@ -73,6 +74,7 @@
       "scenarios": "Scenarios",
       "submissions": "Submissions",
       "cases": "Cases",
+      "caseStatuses": "Case Statuses",
       "assets": "Assets",
       "topics": "Topics",
       "tasks": "Tasks",
@@ -151,7 +153,15 @@
     },
     "microservices": {
       "entity": {
+        "types": {
+          "service": "Service",
+          "scenario": "Scenario",
+          "submission": "Soumission",
+          "case": "Case",
+          "caseStatus": "Case Status"
+        },
         "property": {
+          "createdAt": "Created At",
           "updatedAt": "Updated At",
           "uuid": "UUID",
           "title": "Title",
@@ -169,6 +179,7 @@
           "channel": "Channel",
           "data": "Data",
           "status": "Status",
+          "statuses": "Statuses",
           "processDefinitionKey": "Process definition key",
           "firstName": "First Name",
           "lastName": "Last Name"
@@ -198,11 +209,13 @@
       }
     },
     "messages": {
+      "unexpectedError": "Unexpected error occured.",
       "registrationSucceeded": "You have been registered successfully.",
       "registrationFailed": "Registration failed.",
       "loginSucceeded": "You have been successfully signed in.",
       "loginFailed": "Sign in failed.",
       "formInvalid": "The form contains invalid fields.",
+      "ensureFormValid": "Please fill in required fields in all languages.",
       "entitySaveSucceeded": "Entity saved successfully.",
       "entitySaveFailed": "Unable to save the entity.",
       "entityDeletionSucceeded": "Entity deleted successfully.",

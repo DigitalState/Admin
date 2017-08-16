@@ -26,16 +26,13 @@
     "signUpButton": "S'inscrire"
   },
   "general": {
-    "akveo": "Akveo",
+    "details": "Détails",
     "home": "Accueil",
-    "languages": {
-      "en": "English",
-      "fr": "Français"
-    },
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"
     },
+    "list": "Liste",
     "menu": {
       "dashboard": "Tableau",
       "editors": "Editors",
@@ -77,6 +74,7 @@
       "scenarios": "Scenarios",
       "submissions": "Submissions",
       "cases": "Affaires",
+      "caseStatuses": "État des cas",
       "assets": "Atouts",
       "topics": "Sujets",
       "tasks": "Tâches",
@@ -155,7 +153,15 @@
     },
     "microservices": {
       "entity": {
+        "types": {
+          "service": "Service",
+          "scenario": "Scénario",
+          "submission": "Soumission",
+          "case": "Cas",
+          "caseStatus": "État de cas"
+        },
         "property": {
+          "createdAt": "Créé à",
           "updatedAt": "Mis à jour",
           "uuid": "UUID",
           "title": "Titre",
@@ -173,6 +179,7 @@
           "channel": "Canal",
           "data": "Data",
           "status": "Statut",
+          "statuses": "Statuts",
           "processDefinitionKey": "Clé de définition de processus",
           "firstName": "Prénom",
           "lastName": "Nom de famille"
@@ -202,11 +209,13 @@
       }
     },
     "messages": {
+      "unexpectedError": "Une erreur inattendue s'est produite.",
       "registrationSucceeded": "Vous avez été enregistré avec succès.",
       "registrationFailed": "Échec de l'enregistrement",
       "loginSucceeded": "Vous avez été connecté avec succès.",
       "loginFailed": "Échec de la connexion.",
       "formInvalid": "Le formulaire contient des champs non valides.",
+      "ensureFormValid": "Veuillez remplir les champs obligatoires dans toutes les langues.",
       "entitySaveSucceeded": "Entité enregistrée avec succès",
       "entitySaveFailed": "Impossible d'enregistrer l'entité",
       "entityDeletionSucceeded": "Entité supprimée avec succès",
