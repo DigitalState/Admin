@@ -359,7 +359,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             }
             else {
                 // Convert JSON properties from strings to JSON objects
-                if (property.hasOwnProperty('type') && property.type === 'json') {
+                if (isString(entity[propertyName]) && property.hasOwnProperty('type') && property.type === 'json') {
                     entity[propertyName] = JSON.parse(entity[propertyName]);
                 }
             }
@@ -381,12 +381,26 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         console.log('Entity saved successfully, server response: ', response);
         this.toastr.success(this.translate.instant('ds.messages.entitySaveSucceeded'));
 
-        const routerLink = this.isNew ? '../list' : '../show';
-        this.router.navigate([routerLink], {relativeTo: this.route});
+        // const routerLink = this.isNew ? '../list' : '../show';
+        if (response.uuid) {
+            let relativeUrl = this.isNew ? '../' + response.uuid : '../';
+            this.router.navigate([relativeUrl, 'show'], {relativeTo: this.route});
+        }
+        else {
+            this.toastr.error(this.translate.instant('ds.messages.unexpectedError'));
+        }
     }
 
-    onEntitySaveError(error) {
+    onEntitySaveError(error: any) {
         console.error('There was an error saving entity', error);
         this.toastr.error(this.translate.instant('ds.messages.entitySaveFailed'));
+
+        if (error.data) {
+            if (error.data['@type'] == 'ConstraintViolationList') {
+                setTimeout(() => {
+                    this.toastr.info(this.translate.instant('ds.messages.ensureFormValid'));
+                }, 500);
+            }
+        }
     }
 }
