@@ -1,7 +1,8 @@
 <ds-entity-list [headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(onRefreshList)="refreshList($event)">
+				[headerActions]="headerActions"
+				(headerActionEmitter)="handleHeaderEvent($event)">
 
 	<ngx-datatable #datatable
 				   [loadingIndicator]="loading"
@@ -35,5 +36,5 @@
 
 <!--<ng-container *ngTemplateOutlet="actionsTpl; context: {actions: actions}"></ng-container>-->
 <ng-template #actionsTpl let-column="column" let-row="row">
-	<ds-datatable-cell-actions [row]="row"></ds-datatable-cell-actions>
+	<ds-datatable-cell-actions [row]="row" (rowActionEmitter)="handleRowEvent($event)"></ds-datatable-cell-actions>
 </ng-template>
