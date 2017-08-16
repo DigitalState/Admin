@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
 
@@ -21,7 +22,8 @@ import isEmpty from 'lodash/isEmpty';
 export class DsServiceCreateComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'services';
-    headerTitle = 'Create Service';
+    headerTitle = 'ds.microservices.entity.types.service';
+    backLink = new Link(['../list'], 'general.list');
     isNew = true;
 
     slug: Slug = null;

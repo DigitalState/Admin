@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { Link } from '../../../models/link';
+
 import 'rxjs/Rx';
 
 @Component({
@@ -16,7 +18,8 @@ import 'rxjs/Rx';
 export class DsServiceEditComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'services';
-    headerTitle = 'Edit Service';
+    headerTitle = 'ds.microservices.entity.types.service';
+    backLink = new Link(['../../list'], 'general.list');
     isNew = false;
 
     constructor(injector: Injector,

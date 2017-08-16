@@ -32,7 +32,7 @@ const routes: Routes = [
             { path: ':id/show', component: DsServiceShowComponent },
             { path: ':id/edit', component: DsServiceEditComponent },
 
-            { path: ':serviceUuid/scenarios/list', component: DsScenarioListComponent },
+            // { path: ':serviceUuid/scenarios/list', component: DsScenarioListComponent },
             { path: ':serviceUuid/scenarios/create', component: DsScenarioCreateComponent },
             { path: ':serviceUuid/scenarios/:id/show', component: DsScenarioShowComponent },
             { path: ':serviceUuid/scenarios/:id/edit', component: DsScenarioEditComponent },

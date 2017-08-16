@@ -1,6 +1,4 @@
-import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-
+import { Component, Injector, Input } from '@angular/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
@@ -13,6 +11,8 @@ import 'rxjs/Rx';
     templateUrl: '../../../templates/generic-list.template.html'
 })
 export class DsScenarioListComponent extends DsBaseEntityListComponent {
+
+    @Input() entityParent: any;
 
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
@@ -31,12 +31,18 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
     }
 
     ngOnInit() {
-        this.routeParamsSubscription = this.route.params.subscribe(params => {
-            this.entityApiService.getOne(this.entityParentUrlPrefix, params[this.entityParentUrlParam]).subscribe(res => {
-                this.entityParent = res;
-                super.ngOnInit();
+        // Skip fetching the entity parent if already set, for example, when passed in as a component input.
+        if (this.entityParent) {
+            super.ngOnInit();
+        }
+        else {
+            this.routeParamsSubscription = this.route.params.subscribe(params => {
+                this.entityApiService.getOne(this.entityParentUrlPrefix, params[this.entityParentUrlParam]).subscribe(res => {
+                    this.entityParent = res;
+                    super.ngOnInit();
+                });
             });
-        });
+        }
     }
 
     ngOnDestroy() {

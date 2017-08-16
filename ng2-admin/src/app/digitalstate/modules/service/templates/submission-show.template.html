@@ -4,7 +4,7 @@
 				[headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(onDelete)="onDelete($event)">
+				(entityActionEmitter)="handleEntityEvent($event)">
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!-- end: ng-content[select="button.entity-action"] -->

@@ -1,11 +1,9 @@
 import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
 
-import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/Rx';
 
 @Component({
@@ -31,9 +29,29 @@ export class DsSubmissionListComponent extends DsBaseEntityListComponent {
     ngOnInit(): any {
         this.datatableAttributes.headerHeight = 45;
 
-        this.actions.refresh = false;
-        this.actions.create = false;
-        this.actions.edit = false;
+        // this.actions.refresh = false;
+        // this.actions.create = false;
+        // this.actions.edit = false;
+
+        this.headerActions = this.headerActions.map((action: any) => {
+            switch (action.name) {
+                case 'create':
+                    action.visible = false;
+                    break;
+            }
+
+            return action;
+        });
+
+        this.actions = this.actions.map((action: any) => {
+            switch (action.name) {
+                case 'edit':
+                    action.visible = false;
+                    break;
+            }
+
+            return action;
+        });
 
         return super.ngOnInit();
     }

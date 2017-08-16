@@ -4,6 +4,7 @@ import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import 'rxjs/Rx';
+import { Link } from '../../../models/link';
 
 @Component({
     selector: 'ds-service-show',
@@ -12,7 +13,8 @@ import 'rxjs/Rx';
 export class DsServiceShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'services';
-    headerTitle = 'Service Details';
+    headerTitle = 'ds.microservices.entity.types.service';
+    backLink = new Link(['../../list'], 'general.list');
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,

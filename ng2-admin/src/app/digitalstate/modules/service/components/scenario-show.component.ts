@@ -14,7 +14,7 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
     entityParentUrlParam = 'serviceUuid';
-    headerTitle = 'Scenario Details';
+    headerTitle = 'ds.microservices.entity.types.scenario';
     headerSubtitle = null;
 
     constructor(protected injector: Injector,
@@ -26,5 +26,20 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
 
         // Create a place-holder for the back-link until it gets generated
         this.backLink = this.getEmptyBackLink();
+    }
+
+    ngOnInit() {
+        // Add the `activate` action
+        this.actions.push({
+            name: 'activate',
+            title: 'ds.microservices.entity.action.activate',
+            class: 'btn btn-secondary btn-with-icon',
+            iconClass: 'ion-power',
+            visible: true,
+            routerLink: ['../activate'],
+            region: 'header',
+        });
+
+        super.ngOnInit();
     }
 }
