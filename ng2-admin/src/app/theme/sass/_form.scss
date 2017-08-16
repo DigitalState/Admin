@@ -31,6 +31,13 @@
 }
 
 .form-group {
+  &.required > label {
+    &:after {
+      content: ' *';
+      color: $danger;
+    }
+  }
+
   label {
     margin-bottom: 5px;
     color: $content-text;

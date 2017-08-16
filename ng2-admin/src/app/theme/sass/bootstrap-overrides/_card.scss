@@ -81,12 +81,41 @@ $card-header-font-size: 18px;
   background-color: $bootstrap-panel-header-bg;
 }
 
+.card-header ul.header-actions-list,
+.card-footer ul.footer-actions-list {
+  @include display(flex);
+  @include flex(1 auto);
+  @include flex-direction(row);
+  @include justify-content(flex-end);
+
+  > li {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.card-title-container {
+  @include display(flex);
+  @include flex(1 auto);
+  @include flex-direction(column);
+  @include justify-content(center);
+}
+
 .card-title {
   font-weight: $font-normal;
   font-size: $card-header-font-size;
   text-transform: uppercase;
   opacity: 0.9;
   color: $content-text;
+  margin-bottom: 0;
+}
+
+.card-subtitle {
+  margin-top: 0.75rem;
 }
 
 .card-primary {
