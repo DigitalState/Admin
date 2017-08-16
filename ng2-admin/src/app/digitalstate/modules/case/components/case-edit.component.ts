@@ -6,18 +6,20 @@ import { CustomValidators } from 'ng2-validation';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'ds-case-edit',
-    templateUrl: '../templates/form.template.html'
+    templateUrl: '../templates/case-form.template.html'
 })
 export class DsCaseEditComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'cases';
-    headerTitle = 'Edit Case';
+    headerTitle = 'ds.microservices.entity.types.case';
+    backLink = new Link(['../../list'], 'general.list');
     isNew = false;
 
     constructor(injector: Injector,

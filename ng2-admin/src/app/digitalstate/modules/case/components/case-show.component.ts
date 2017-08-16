@@ -7,15 +7,17 @@ import { EntityApiService } from '../entity-api.service';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import { Link } from '../../../models/link';
 
 @Component({
     selector: 'ds-case-show',
-    templateUrl: '../templates/show.template.html'
+    templateUrl: '../templates/case-show.template.html'
 })
 export class DsCaseShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'cases';
-    headerTitle = 'Case Details';
+    headerTitle = 'ds.microservices.entity.types.case';
+    backLink = new Link(['../../list'], 'general.list');
 
     identityPersonaEntity: any;
     ownerEntity: any;

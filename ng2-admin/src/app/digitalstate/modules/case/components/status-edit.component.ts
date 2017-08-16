@@ -6,21 +6,22 @@ import { CustomValidators } from 'ng2-validation';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
-import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'ds-case-create',
-    templateUrl: '../templates/case-form.template.html'
+    selector: 'ds-case-status-edit',
+    templateUrl: '../templates/status-form.template.html'
 })
-export class DsCaseCreateComponent extends DsBaseEntityFormComponent {
+export class DsCaseStatusEditComponent extends DsBaseEntityFormComponent {
 
-    entityUrlPrefix = 'cases';
-    headerTitle = 'ds.microservices.entity.types.case';
-    backLink = new Link(['../list'], 'general.list');
-    isNew = true;
+    entityUrlPrefix = 'case-statuses';
+    entityParentUrlPrefix = 'cases';
+    entityParentUrlParam = 'caseUuid';
+    headerTitle = 'ds.microservices.entity.types.submission';
+    headerSubtitle = null;
+    isNew = false;
 
     constructor(injector: Injector,
                 translate: TranslateService,
@@ -31,6 +32,9 @@ export class DsCaseCreateComponent extends DsBaseEntityFormComponent {
 
         this.translate = translate;
         this.entityApiService = entityApiService;
+
+        // Create a place-holder for the back-link until it gets generated
+        this.backLink = this.getEmptyBackLink();
     }
 
     /**
@@ -64,7 +68,8 @@ export class DsCaseCreateComponent extends DsBaseEntityFormComponent {
                 console.warn('Error parsing incoming JSON', e)
             }
 
-            return Observable.of({'entity': entity});
+            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
         });
     }
+
 }

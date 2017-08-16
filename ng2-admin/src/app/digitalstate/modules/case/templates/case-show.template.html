@@ -4,7 +4,7 @@
 				[headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(onDelete)="onDelete($event)">
+				(entityActionEmitter)="handleEntityEvent($event)">
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!-- end: ng-content[select="button.entity-action"] -->
@@ -68,22 +68,56 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<dl>
-					<dt>{{ 'ds.microservices.entity.property.data' | translate }}</dt>
-					<dd><pre>{{entity.data | json}}</pre></dd>
+					<dt>{{ 'ds.microservices.entity.property.createdAt' | translate }}</dt>
+					<dd>{{entity.createdAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.updatedAt' | translate }}</dt>
+					<dd>{{entity.updatedAt | amLocal | amDateFormat: config.date.format.long }}</dd>
 				</dl>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<dl>
-					<dt>{{ 'ds.microservices.entity.property.status' | translate }}</dt>
-					<dd><pre>{{entity.statuses | json}}</pre></dd>
-				</dl>
+		<!--<div class="row">-->
+			<!--<div class="col-sm-12">-->
+				<!--<dl>-->
+					<!--<dt>{{ 'ds.microservices.entity.property.status' | translate }}</dt>-->
+					<!--<dd><pre>{{entity.statuses | json}}</pre></dd>-->
+				<!--</dl>-->
+			<!--</div>-->
+		<!--</div>-->
+	</div>
+	<!-- end: ng-content[select=".entity-body"] -->
+
+
+	<!-- begin: ng-content[select=".additional-card"] -->
+	<div *ngIf="entity.data" class="card entity-card additional-card animated fadeIn">
+		<div class="card-header">
+			<div class="row justify-content-between">
+				<div class="col-sm-12">
+					<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.data' | translate }}</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-block entity-body entity-data">
+			<div class="row">
+				<div class="col-sm-12">
+					<dl *ngFor="let item of (entity.data | entityTranslate) | keyValue">
+						<dt>{{ item.key }}</dt>
+						<dd>{{ item.value }}</dd>
+					</dl>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end: ng-content[select=".entity-body"] -->
+
+	<div *ngIf="entity.statuses" class="additional-card">
+		<ds-case-status-list [entityParent]="entity"></ds-case-status-list>
+	</div>
+	<!-- end: ng-content[select=".additional-card"] -->
 
 </ds-entity-show>

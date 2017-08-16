@@ -14,6 +14,10 @@ import { DsCaseListComponent } from './components/case-list.component';
 import { DsCaseShowComponent } from './components/case-show.component';
 import { DsCaseCreateComponent } from './components/case-create.component';
 import { DsCaseEditComponent } from './components/case-edit.component';
+import { DsCaseStatusListComponent } from './components/status-list.component';
+import { DsCaseStatusShowComponent } from './components/status-show.component';
+import { DsCaseStatusCreateComponent } from './components/status-create.component';
+import { DsCaseStatusEditComponent } from './components/status-edit.component';
 import { DsSharedModule } from '../../../shared/shared.module';
 
 export const MICROSERVICE_NAME = 'cases';
@@ -33,6 +37,10 @@ export const MICROSERVICE_NAME = 'cases';
         DsCaseShowComponent,
         DsCaseCreateComponent,
         DsCaseEditComponent,
+        DsCaseStatusListComponent,
+        DsCaseStatusShowComponent,
+        DsCaseStatusCreateComponent,
+        DsCaseStatusEditComponent,
     ],
     providers: [
         EntityApiService,
