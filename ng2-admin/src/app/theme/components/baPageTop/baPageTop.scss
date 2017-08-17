@@ -75,6 +75,10 @@ a.al-logo:hover {
       .dropdown-toggle {
         background-color: $primary-bg-light;
       }
+
+      > a {
+        color: $content-text;
+      }
     }
 
     .dropdown-toggle {
