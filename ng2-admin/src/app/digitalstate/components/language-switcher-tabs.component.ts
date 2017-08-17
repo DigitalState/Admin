@@ -11,7 +11,7 @@ import { DsLanguageSwitcherComponent } from './language-switcher.component';
                 [ngClass]="{'active': currentLanguage.key === language.key}" 
                 class="switcher-tab-item lang-{{language.key}}">
                 <a href="javascript:;" (click)="switchLang(language.key)">
-                    <i class="fa fa-flag"></i>
+                    <!--<i class="fa fa-flag"></i>-->
                     {{ 'languages.' + language.key | translate }}
                 </a>
             </li>
