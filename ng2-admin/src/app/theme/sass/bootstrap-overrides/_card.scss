@@ -99,10 +99,7 @@ $card-header-font-size: 18px;
 }
 
 .card-title-container {
-  @include display(flex);
-  @include flex(1 auto);
-  @include flex-direction(column);
-  @include justify-content(center);
+
 }
 
 .card-title {
