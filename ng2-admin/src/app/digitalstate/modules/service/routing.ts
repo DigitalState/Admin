@@ -38,6 +38,11 @@ const routes: Routes = [
             { path: ':serviceUuid/scenarios/:id/edit', component: DsScenarioEditComponent },
             { path: ':serviceUuid/scenarios/:id/activate', component: DsScenarioActivateComponent },
 
+            // Shortcuts to scenarios components
+            { path: 'scenarios/:id/show', component: DsScenarioShowComponent },
+            { path: 'scenarios/:id/edit', component: DsScenarioEditComponent },
+            { path: 'scenarios/:id/activate', component: DsScenarioActivateComponent },
+
             { path: 'submissions/list', component: DsSubmissionListComponent},
             { path: 'submissions/:id/show', component: DsSubmissionShowComponent},
             // { path: ':scenarioUuid/submissions/:id/show', component: DsSubmissionShowComponent},

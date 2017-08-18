@@ -4,6 +4,8 @@ import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { ApiUtils } from '../../../../shared/utils/api.utils';
 
 @Component({
     selector: 'ds-scenario-show',
@@ -41,5 +43,15 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
         });
 
         super.ngOnInit();
+    }
+
+    /**
+     * Override to get the parent's entity UUID from the entity itself if not detected int the URL.
+     */
+    protected prepareEntityParent(urlPrefix: string, urlParam: string): Observable<any> {
+        if (!urlParam) {
+            urlParam = ApiUtils.getUuidFromUri(this.entity.service);
+        }
+        return super.prepareEntityParent(urlPrefix, urlParam);
     }
 }
