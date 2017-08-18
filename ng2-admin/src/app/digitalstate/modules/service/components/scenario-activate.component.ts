@@ -60,6 +60,10 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
         });
     }
 
+    protected navigateBack() {
+        this.location.back();
+    }
+
     protected prepareEntity(): Observable<any> {
         return super.prepareEntity().flatMap((prepared) => {
             this.activate();

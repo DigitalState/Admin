@@ -19,7 +19,7 @@
 </div>
 
 <div>
-	<button class="btn btn-secondary" [routerLink]="['../../../show']"><!-- back to the Service and Scenarios list -->
+	<button class="btn btn-secondary" (click)="navigateBack()"><!-- back to the previous page -->
 		{{'ds.microservices.entity.action.back' | translate}}
 	</button>
 </div>
