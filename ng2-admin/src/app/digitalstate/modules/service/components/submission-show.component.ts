@@ -6,6 +6,8 @@ import { EntityApiService } from '../entity-api.service';
 import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { LocalApiUtils } from '../../../utils/local-api.utils';
 
 @Component({
     selector: 'ds-submission-show',
@@ -18,6 +20,7 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
     headerTitle = 'ds.microservices.entity.types.submission';
     headerSubtitle = null;
     backLink = new Link(['../../list'], 'general.list');
+    scenarioLink: any;
 
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig,
@@ -31,8 +34,6 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
     }
 
     ngOnInit(): any {
-        // this.actions.edit = false;
-
         this.actions = this.actions.map((action: any) => {
             switch (action.name) {
                 case 'edit':
@@ -44,5 +45,13 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
         });
 
         return super.ngOnInit();
+    }
+
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            let entity = prepared.entity;
+            this.scenarioLink = LocalApiUtils.createEntityLinkFromUri(entity.scenario);
+            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
+        });
     }
 }

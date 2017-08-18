@@ -163,6 +163,7 @@
         "property": {
           "createdAt": "Créé à",
           "updatedAt": "Mis à jour",
+          "deletedAt": "Supprimé à",
           "uuid": "UUID",
           "title": "Titre",
           "form": "Form",
