@@ -29,4 +29,4 @@ Then browse to [http://localhost:3000]()
 Notes: 
 - The docker container takes a long time to download, build and compile dependencies.
 - All instructions above run the "dev" mode which syncs `src` directory changes with the browser sessoin.
-
+- Only Staff accounts such as (manager@digitalstate.ca) can login through this app.
