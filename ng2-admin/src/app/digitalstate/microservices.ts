@@ -135,6 +135,17 @@ export class MicroservicesDefinition {
                                 label: 'Type',
                                 type: 'string',
                                 default: 'bpm',
+                                field: {
+                                    type: 'select',
+                                    options: {
+                                        'bpm': 'BPM',
+                                        'info': 'Info',
+                                        'link': 'Link',
+                                    },
+                                },
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
                             },
                             'data': {
                                 label: 'Data',

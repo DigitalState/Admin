@@ -177,6 +177,7 @@
           "identityUuid": "Identité UUID",
           "owner": "Propriétaire",
           "ownerUuid": "Propriétaire UUID",
+          "type": "Type",
           "channel": "Canal",
           "data": "Data",
           "status": "Statut",

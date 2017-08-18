@@ -44,6 +44,10 @@
 					<dt>{{ 'ds.microservices.entity.property.weight' | translate }}</dt>
 					<dd>{{entity.weight}}</dd>
 				</dl>
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.type' | translate }}</dt>
+					<dd>{{entityMetadata['type'].field.options[entity.type]}}</dd>
+				</dl>
 			</div>
 		</div>
 		<div class="row">

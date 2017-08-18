@@ -177,6 +177,7 @@
           "identityUuid": "Identity UUID",
           "owner": "Owner",
           "ownerUuid": "Owner UUID",
+          "type": "Type",
           "channel": "Channel",
           "data": "Data",
           "status": "Status",
