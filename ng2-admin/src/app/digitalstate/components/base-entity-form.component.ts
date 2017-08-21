@@ -15,11 +15,9 @@ import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
 
-import clone from 'lodash/clone';
 import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
 
 
 const VALIDATION_TRANS_PREFIX = 'ds.microservices.entity.validation.';
@@ -325,9 +323,22 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
      * @returns {any}
      */
     preSave(entity): any {
+        const propertiesToRemove = this.getPropertiesToRemoveOnSave();
+        // Remove property if it's read only
+        propertiesToRemove.forEach((propertyName) => {
+            if (entity.hasOwnProperty(propertyName)) {
+                delete entity[propertyName];
+            }
+        });
+
         // Strip out empty (yet required) language-based properties that may fail validation.
         Object.keys(this.entityMetadata).forEach((propertyName, prop) => {
             let property = this.entityMetadata[propertyName];
+
+            // Skip read-only properties
+            if (propertiesToRemove.indexOf(propertyName) > -1) {
+                return;
+            }
 
             if (property.hasOwnProperty('translated') && property.translated === true) {
                 this.translate.langs.forEach((lang) => {
@@ -367,6 +378,25 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
         console.log('sanitized entity', entity);
         return entity;
+    }
+
+    /**
+     * This method is called prior to saving an entity to get a list of properties to omit. Subclasses can override
+     * but make sure to call the super method first.
+     *
+     * @returns Array<string>
+     */
+    getPropertiesToRemoveOnSave(): Array<string> {
+        return [
+            '@context',
+            '@id',
+            '@type',
+            'id',
+            'uuid',
+            'createdAt',
+            'updatedAt',
+            'deletedAt',
+        ];
     }
 
     setFormError(propertyName, validationKey) {
