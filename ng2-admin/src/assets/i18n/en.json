@@ -26,6 +26,7 @@
     "signUpButton": "Sign up"
   },
   "general": {
+    "new": "New",
     "details": "Details",
     "home": "Home",
     "forms": {
@@ -81,8 +82,11 @@
       "records": "Records",
       "interactions": "Interactions",
       "communications": "Communications",
-      "individuals": "Individuals",
       "identities": "Identities",
+      "individuals": "Individuals",
+      "staffs": "Staffs",
+      "anonymouses": "Anonymous",
+      "personas": "Personas",
 
       "scenario_activation": "Scenario Activation"
     },
@@ -158,7 +162,12 @@
           "scenario": "Scenario",
           "submission": "Soumission",
           "case": "Case",
-          "caseStatus": "Case Status"
+          "caseStatus": "Case Status",
+          "identity": "Identity",
+          "individual": "Individual",
+          "staff": "Staff",
+          "anonymous": "Anonymous",
+          "persona": "Persona"
         },
         "property": {
           "createdAt": "Created At",

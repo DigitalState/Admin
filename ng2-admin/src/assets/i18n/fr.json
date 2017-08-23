@@ -26,6 +26,7 @@
     "signUpButton": "S'inscrire"
   },
   "general": {
+    "new": "Nouveau",
     "details": "Détails",
     "home": "Accueil",
     "forms": {
@@ -81,8 +82,11 @@
       "records": "Enregistrements",
       "interactions": "Interactions",
       "communications": "Communications",
-      "individuals": "Personnes",
       "identities": "Identités",
+      "individuals": "Personnes",
+      "staffs": "Personnel",
+      "anonymouses": "Anonyme",
+      "personas": "Personnes",
 
       "scenario_activation": "Activation du scénario"
     },
@@ -158,7 +162,12 @@
           "scenario": "Scénario",
           "submission": "Soumission",
           "case": "Cas",
-          "caseStatus": "État de cas"
+          "caseStatus": "État de cas",
+          "identity": "Identité",
+          "individual": "Individuel",
+          "staff": "Personnel",
+          "anonymous": "Anonyme",
+          "persona": "Persona"
         },
         "property": {
           "createdAt": "Créé à",
