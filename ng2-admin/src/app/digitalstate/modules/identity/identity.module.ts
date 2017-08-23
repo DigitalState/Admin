@@ -4,16 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { DsSharedModule } from '../../../shared/shared.module';
+
 import { routing } from './routing';
 import { EntityApiService } from './entity-api.service';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
 import { DsBaseMicroserviceModule } from '../base-microservice.module';
 import { DsMicroservicesModule } from '../../microservices.module';
 import { DsIdentityComponent } from './identity.component';
-import { DsIdentityListComponent } from './components/identity-list.component';
-import { DsIdentityShowComponent } from './components/identity-show.component';
-import { DsIdentityCreateComponent } from './components/identity-create.component';
-import { DsIdentityEditComponent } from './components/identity-edit.component';
+import { DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent } from './components/identity-list.component';
+import { DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent } from './components/identity-show.component';
+import { DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent } from './components/identity-create.component';
+import { DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent } from './components/identity-edit.component';
+import { DsPersonaListComponent } from './components/persona-list.component';
+import { DsPersonaShowComponent } from './components/persona-show.component';
+import { DsPersonaCreateComponent } from './components/persona-create.component';
+import { DsPersonaEditComponent } from './components/persona-edit.component';
 
 export const MICROSERVICE_NAME = 'identities';
 
@@ -22,15 +28,20 @@ export const MICROSERVICE_NAME = 'identities';
         CommonModule,
         FormsModule,
         NgxDatatableModule,
+        DsSharedModule,
         DsMicroservicesModule,
         routing,
     ],
     declarations: [
         DsIdentityComponent,
-        DsIdentityListComponent,
-        DsIdentityShowComponent,
-        DsIdentityCreateComponent,
-        DsIdentityEditComponent,
+        DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent,
+        DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent,
+        DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent,
+        DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent,
+        DsPersonaListComponent,
+        DsPersonaShowComponent,
+        DsPersonaCreateComponent,
+        DsPersonaEditComponent,
     ],
     providers: [
         EntityApiService,

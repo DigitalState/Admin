@@ -1,31 +1,85 @@
 import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { ToastsManager } from 'ng2-toastr';
+
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
+import { IdentityUtils } from '../../../../shared/utils/identity.utils';
+
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { Link } from '../../../models/link';
+
 import 'rxjs/Rx';
 
 @Component({
     selector: 'ds-identity-create',
-    templateUrl: '../templates/form.template.html'
+    templateUrl: '../templates/identity-form.template.html'
 })
 export class DsIdentityCreateComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'identities';
-    headerTitle = 'Create Identity';
+    pageTitle = 'general.menu.identities';
+    backLink = new Link(['../list'], 'general.list');
     isNew = true;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
-                toastr: ToastsManager,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
+    }
+}
+
+@Component({
+    selector: 'ds-individual-create',
+    templateUrl: '../templates/identity-form.template.html'
+})
+export class DsIndividualCreateComponent extends DsIdentityCreateComponent {
+
+    entityUrlPrefix = 'individuals';
+    personaUrlPrefix = IdentityUtils.getPersonaUrlPrefix('Individual');
+    headerTitle = 'ds.microservices.entity.types.individual';
+    isNew = true;
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
+    selector: 'ds-staff-create',
+    templateUrl: '../templates/identity-form.template.html'
+})
+export class DsStaffCreateComponent extends DsIdentityCreateComponent {
+
+    entityUrlPrefix = 'staffs';
+    headerTitle = 'ds.microservices.entity.types.staff';
+    isNew = true;
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
+    selector: 'ds-anonymous-create',
+    templateUrl: '../templates/identity-form.template.html'
+})
+export class DsAnonymousCreateComponent extends DsIdentityCreateComponent {
+
+    entityUrlPrefix = 'anonymouses';
+    headerTitle = 'ds.microservices.entity.types.anonymous';
+    isNew = true;
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
     }
 }

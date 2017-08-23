@@ -11,11 +11,9 @@ import 'rxjs/Rx';
 })
 export class DsIdentityListComponent extends DsBaseEntityListComponent {
 
-    entityUrlPrefix = 'identities';
+    pageTitle = 'general.menu.identities';
 
-    constructor(injector: Injector,
-                microserviceConfig: MicroserviceConfig,
-                entityApiService: EntityApiService) {
+    constructor(injector: Injector, microserviceConfig: MicroserviceConfig, entityApiService: EntityApiService) {
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
     }
@@ -23,7 +21,52 @@ export class DsIdentityListComponent extends DsBaseEntityListComponent {
     setupList() {
         super.setupList();
         this.columns = [
-            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
+            { prop: 'uuid', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
         ];
     }
+}
+
+@Component({
+    selector: 'ds-individual-list',
+    templateUrl: '../../../templates/generic-list.template.html'
+})
+export class DsIndividualListComponent extends DsIdentityListComponent {
+
+    entityUrlPrefix = 'individuals';
+    headerTitle = 'general.menu.individuals';
+
+    constructor(injector: Injector, microserviceConfig: MicroserviceConfig, entityApiService: EntityApiService) {
+        super(injector, microserviceConfig, entityApiService);
+    }
+
+}
+
+@Component({
+    selector: 'ds-staff-list',
+    templateUrl: '../../../templates/generic-list.template.html'
+})
+export class DsStaffListComponent extends DsIdentityListComponent {
+
+    entityUrlPrefix = 'staffs';
+    headerTitle = 'general.menu.staffs';
+
+    constructor(injector: Injector, microserviceConfig: MicroserviceConfig, entityApiService: EntityApiService) {
+        super(injector, microserviceConfig, entityApiService);
+    }
+
+}
+
+@Component({
+    selector: 'ds-anonymous-list',
+    templateUrl: '../../../templates/generic-list.template.html'
+})
+export class DsAnonymousListComponent extends DsIdentityListComponent {
+
+    entityUrlPrefix = 'anonymouses';
+    headerTitle = 'general.menu.anonymouses';
+
+    constructor(injector: Injector, microserviceConfig: MicroserviceConfig, entityApiService: EntityApiService) {
+        super(injector, microserviceConfig, entityApiService);
+    }
+
 }

@@ -1,0 +1,49 @@
+<ds-entity-form *ngIf="entity"
+				[entity]="entity"
+				[backLink]="backLink"
+				[headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				[isNew]="isNew"
+				(onFormInit)="onFormInit($event)"
+				(onFormChange)="onFormChange($event)"
+				(onFormSubmit)="onFormSubmit($event)"
+				(onFormCancel)="onFormCancel($event)"
+				(onFormLanguageChange)="onFormLanguageChange($event)"
+>
+	<div class="card-block">
+		<div *ngIf="!isNew" class="row">
+			<div class="col">
+				<div class="form-group">
+					<Label>UUID</Label>
+					<div class="entity-uuid form-control" disabled>{{entity.uuid}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group required translatable">
+					<label for="title">{{ 'ds.microservices.entity.property.title' | translate }}</label>
+					<span class="translation-icon"></span>
+					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
+					<div *ngIf="formErrors.title" class="alert alert-danger">
+						{{ formErrors.title }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group required">
+					<label for="data">{{ 'ds.microservices.entity.property.data' | staticTranslate:[formLang] }}</label>
+					<span class="translation-icon"></span>
+					<textarea id="data" name="data" [(ngModel)]="entity.data" class="form-control" placeholder="" required json>
+					</textarea>
+					<div *ngIf="formErrors.data" class="alert alert-danger">
+						{{ formErrors.data }}
+					</div>
+					<p class="alert alert-danger" *ngIf="json?.errors?.json">json error</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</ds-entity-form>
