@@ -4,7 +4,12 @@
 			<div class="row justify-content-between">
 				<div class="card-title-container col-sm-6">
 					<back-link *ngIf="backLink" [link]="backLink"></back-link>
-					<h3 class="card-title" translate="" ng-reflect-translate="">{{headerTitle}}</h3>
+					<h3 class="card-title" translate="" ng-reflect-translate="">
+						{{headerTitle}}
+						<span class="badge badge-default badge-pill font-weight-normal text-capitalize align-top ml-3">
+							{{ (isNew ? 'general.new' : 'ds.microservices.entity.action.edit') | translate }}
+						</span>
+					</h3>
 					<h4 *ngIf="headerSubtitle" class="card-subtitle" translate="" ng-reflect-translate="">{{headerSubtitle}}</h4>
 				</div>
 				<div class="col-sm-6">
