@@ -99,7 +99,10 @@ $card-header-font-size: 18px;
 }
 
 .card-title-container {
-
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card-title {
