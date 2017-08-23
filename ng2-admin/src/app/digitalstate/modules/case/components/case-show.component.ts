@@ -4,10 +4,10 @@ import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { IdentityApiService } from '../../../../shared/services/identity.service';
 import { EntityApiService } from '../entity-api.service';
+import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-import { Link } from '../../../models/link';
 
 @Component({
     selector: 'ds-case-show',
@@ -38,6 +38,8 @@ export class DsCaseShowComponent extends DsBaseEntityShowComponent {
             let ownerResource = this.identityApiService.oneByType(entity.owner, entity.ownerUuid);
             ownerResource.get().subscribe(ownerEntity => {
                 this.ownerEntity = ownerEntity;
+            }, () => {
+                console.log('Unable to fetch Case owner', entity.owner, entity.ownerUuid);
             });
 
             this.identityApiService.getPersonas(entity.identity, entity.identityUuid).subscribe(personas => {

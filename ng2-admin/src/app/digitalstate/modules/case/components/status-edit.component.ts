@@ -19,7 +19,7 @@ export class DsCaseStatusEditComponent extends DsBaseEntityFormComponent {
     entityUrlPrefix = 'case-statuses';
     entityParentUrlPrefix = 'cases';
     entityParentUrlParam = 'caseUuid';
-    headerTitle = 'ds.microservices.entity.types.submission';
+    headerTitle = 'ds.microservices.entity.types.caseStatus';
     headerSubtitle = null;
     isNew = false;
 
