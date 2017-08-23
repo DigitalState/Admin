@@ -12,7 +12,8 @@ import { AppState } from '../app.service';
 import { NgaModule } from '../../theme/nga.module';
 
 import { DsEnvironmentConfig } from '../shared/providers/environment.provider';
-import { DSAuthModule } from '../shared/modules/auth/auth.module';
+import { DsSharedModule } from '../shared/shared.module';
+// import { DSAuthModule } from '../shared/modules/auth/auth.module';
 
 import { MicroservicesDefinition } from './microservices';
 import { TemplateStorage } from './services/template-storage.service';
@@ -38,7 +39,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
         MdProgressBarModule,
         // AppTranslationModule,
         TranslateModule,
-        DSAuthModule,
+        DsSharedModule,
     ],
     declarations: [
         DefaultModal,
