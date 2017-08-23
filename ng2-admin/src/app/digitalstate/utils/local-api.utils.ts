@@ -31,6 +31,11 @@ export class LocalApiUtils {
                         alert('Case Statuses link is not implemented yet.');
                         link.routerLink = ['/pages', 'cases', entityPrefix, uuid, 'show'];
                         break;
+                    case 'individuals':
+                    case 'staffs':
+                    case 'anonymouses':
+                        link.routerLink = ['/pages', 'identities', entityPrefix, uuid, 'show'];
+                        break;
                     default:
                         link.routerLink = ['/pages', entityPrefix, uuid, 'show'];
                         break;
