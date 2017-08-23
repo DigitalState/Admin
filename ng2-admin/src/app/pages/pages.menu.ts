@@ -94,6 +94,45 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'identities',
+        data: {
+          menu: {
+            title: 'general.menu.identities',
+            icon: 'ion-person',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        },
+        children: [
+          {
+            path: ['identities/individuals/list'],
+            data: {
+              menu: {
+                title: 'general.menu.individuals'
+              }
+            }
+          },
+          {
+            path: ['identities/staffs/list'],
+            data: {
+              menu: {
+                title: 'general.menu.staffs'
+              }
+            }
+          },
+          {
+            path: ['identities/anonymouses/list'],
+            data: {
+              menu: {
+                title: 'general.menu.anonymouses'
+              }
+            }
+          },
+        ]
+      },
+      {
         path: 'systems',
         data: {
           menu: {
@@ -195,19 +234,6 @@ export const PAGES_MENU = [
       //     menu: {
       //       title: 'general.menu.individuals',
       //       icon: 'ion-person',
-      //       pathMatch: 'prefix', // use it if item children not displayed in menu
-      //       selected: false,
-      //       expanded: false,
-      //       order: 0
-      //     }
-      //   }
-      // },
-      // {
-      //   path: 'identities',
-      //   data: {
-      //     menu: {
-      //       title: 'general.menu.identities',
-      //       icon: 'ion-card',
       //       pathMatch: 'prefix', // use it if item children not displayed in menu
       //       selected: false,
       //       expanded: false,
