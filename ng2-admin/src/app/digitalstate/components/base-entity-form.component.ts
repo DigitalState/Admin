@@ -153,10 +153,6 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
                 return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
                     this.entity = entity;
 
-                    // if (this.headerTitle == null) {
-                    //     this.headerTitle = this.entity.uuid;
-                    // }
-
                     return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
                         return Observable.of({'entity': entity, 'entityParent': entityParent});
                     });
@@ -167,7 +163,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     }
 
     protected prepareEntityParent(urlPrefix: string, urlParam: string): Observable<any> {
-        if (urlPrefix && urlParam) {
+        if (this.entityParent) {
+            this.generateBackLink();
+            return Observable.of(this.entityParent);
+        }
+        else if (urlPrefix && urlParam) {
             return this.entityApiService.getOne(urlPrefix, urlParam).flatMap(entityParent => {
                 this.entityParent = entityParent;
                 this.generateBackLink();
