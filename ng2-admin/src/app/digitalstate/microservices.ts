@@ -292,6 +292,156 @@ export class MicroservicesDefinition {
                     },
                 },
             },
+            'identities': {
+                label: 'Identities',
+                entrypoint: {
+                    url: `${scheme}://${host}:8054/app_dev.php/`,
+                },
+                entities: {
+                    'individuals': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'staffs': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'anonymouses': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'individual-personas': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                    'json': { message: 'json' },
+                                },
+                            },
+                        },
+                    },
+                    'staff-personas': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                            },
+                        },
+                    },
+                    'anonymous-personas': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                            },
+                        },
+                    },
+                },
+            },
             'assets': {
                 label: 'Assets',
                 entrypoint: {
@@ -305,7 +455,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                         },
@@ -325,7 +475,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                         },
@@ -345,7 +495,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                         },
@@ -365,7 +515,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                         },
@@ -385,7 +535,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                         },
@@ -397,7 +547,7 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 default: '',
                                 validation: {
-                                    'required': {message: 'Title is required.'},
+                                    'required': {message: 'required'},
                                 },
                             },
                             'channel': {
@@ -421,65 +571,26 @@ export class MicroservicesDefinition {
                     },
                 },
             },
-            'individuals': {
-                label: 'Individuals',
-                entrypoint: {
-                    url: `${scheme}://${host}:8013/`,
-                },
-                entities: {
-                    'individuals': {
-                        properties: {
-                            'username': {
-                                label: 'Username',
-                                type: 'string',
-                                default: '',
-                                validation: {
-                                    'required': {message: 'username is required.'},
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            'identities': {
-                label: 'Identities',
-                entrypoint: {
-                    url: `${scheme}://${host}:8054/app_dev.php/`,
-                },
-                entities: {
-                    'individuals': {
-                        properties: {
-                            'title': {
-                                label: 'Title',
-                                type: 'string',
-                                default: '',
-                                translated: true,
-                                validation: {
-                                    'required': {message: 'Title is required.'},
-                                },
-                            },
-                        },
-                    },
-                    'staff-personas': {
-                        properties: {
-                            'title': {
-                                label: 'Title',
-                                type: 'string',
-                                default: '',
-                                translated: true,
-                                validation: {
-                                    'required': {message: 'Title is required.'},
-                                },
-                            },
-                            'data': {
-                                label: 'Data',
-                                type: 'json',
-                                default: {},
-                            },
-                        },
-                    },
-                },
-            },
+            // 'individuals': {
+            //     label: 'Individuals',
+            //     entrypoint: {
+            //         url: `${scheme}://${host}:8013/`,
+            //     },
+            //     entities: {
+            //         'individuals': {
+            //             properties: {
+            //                 'username': {
+            //                     label: 'Username',
+            //                     type: 'string',
+            //                     default: '',
+            //                     validation: {
+            //                         'required': {message: 'username is required.'},
+            //                     },
+            //                 },
+            //             },
+            //         },
+            //     },
+            // },
         };
     }
 }
