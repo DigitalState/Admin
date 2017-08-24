@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Http } from '@angular/http';
 
+import { FormioOptions } from 'angular-formio';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -30,6 +31,7 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
     headerSubtitle = null;
     pageTitle = '';
 
+    protected formioOptions: FormioOptions;
     protected formioFormSchema;
     protected submissionResult: string;
     protected status: null | 'success' | 'failure';
@@ -47,6 +49,31 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
         super(injector, microserviceConfig);
         this.applyPageTitle();
     }
+
+    // ngOnInit() {
+    //     super.ngOnInit();
+    //
+    //     this.formioOptions = {
+    //         i18n: {
+    //             lng: 'fr',
+    //             resources: {
+    //                 en: {
+    //                     translation: {
+    //                         firstName: 'FooBar',
+    //                     }
+    //                 },
+    //                 fr: {
+    //                     translation: {
+    //                         firstName: 'Prénom',
+    //                     }
+    //                 }
+    //             }
+    //         },
+    //         errors: null,
+    //         hooks: null,
+    //         alerts: null
+    //     };
+    // }
 
     protected activate() {
         let uuid = this.entity.uuid;

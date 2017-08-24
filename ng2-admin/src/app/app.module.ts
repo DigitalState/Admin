@@ -24,7 +24,8 @@ import {PagesModule} from './pages/pages.module';
 //
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {RestangularModule} from 'ngx-restangular';
-import {FormioAppConfig} from 'ng2-formio';
+// import {FormioAppConfig} from 'ng2-formio';
+import { FormioModule, FormioAppConfig } from 'angular-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
 import { DsSharedModule } from './shared/shared.module';
@@ -128,6 +129,7 @@ const storageLockerConfig = {
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
+        FormioModule,
         RestangularModule.forRoot(restangularConfigFactory),
         ToastModule.forRoot(),
         NgaModule.forRoot(),
