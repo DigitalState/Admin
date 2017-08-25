@@ -63,4 +63,9 @@ export class DsSubmissionListComponent extends DsBaseEntityListComponent {
             { prop: 'updatedAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
+
+    protected setupQuery(): void {
+        super.setupQuery();
+        this.query.setFilter('order[updatedAt]', 'desc');
+    }
 }
