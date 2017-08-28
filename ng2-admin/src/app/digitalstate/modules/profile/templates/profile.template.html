@@ -68,7 +68,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group required" *ngFor="let item of persona.data | keyValue">
-								<label [for]="item.key">{{ ('ds.microservices.entity.property.' + item.key) | translate }}</label>
+								<label [for]="item.key">{{ item.key | translate }}</label>
 								<input [id]="item.key" [name]="item.key" type="text" [(ngModel)]="persona.data[item.key]" class="form-control" placeholder="" required>
 								<!--<label for="title">{{ 'ds.microservices.entity.property.title' | translate }}  [{{formLang}}]</label>-->
 								<!--<input id="title" name="title" type="text" [(ngModel)]="persona.title[formLang]" class="form-control" placeholder="" required>-->

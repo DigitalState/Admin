@@ -65,7 +65,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<dl *ngFor="let item of entity.data | keyValue">
-						<dt>{{ ('ds.microservices.entity.property.' + item.key) | translate }}</dt>
+						<dt>{{ item.key | translate }}</dt>
 						<dd>{{ item.value }}</dd>
 					</dl>
 				</div>
