@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MdProgressBarModule } from '@angular/material';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { FilterByPipe } from 'ngx-pipes/src/app/pipes/array/filter-by';
 
@@ -29,6 +29,11 @@ import { DsLanguageSwitcherComponent } from './components/language-switcher.comp
 import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
 import { DsBackLink } from './components/back-link.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
+import { CmsApiService } from '../shared/services/cms.service';
+
+import isObject from 'lodash/isObject';
+import forEach from 'lodash/forEach';
+
 
 @NgModule({
     imports: [
@@ -79,9 +84,26 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
 })
 export class DsMicroservicesModule {
 
-    constructor(private appState: AppState, dsEnv: DsEnvironmentConfig) {
-        let msDefinition = new MicroservicesDefinition(dsEnv);
-        appState.set('microservices', msDefinition.getAll());
-    }
-
+    // constructor(protected cmsService: CmsApiService,
+    //             protected translate: TranslateService) {
+    //     // this.loadContent();
+    // }
+    //
+    // private loadContent() {
+    //     this.loadTranslations();
+    // }
+    //
+    // private loadTranslations() {
+    //     this.cmsService.getTranslations().subscribe((translations: any) => {
+    //         console.log('DsMicroservicesModule :: loadTranslations', translations);
+    //
+    //         if (isObject(translations)) {
+    //             forEach(translations, (translation, lang) => {
+    //                 this.translate.setTranslation(lang, translation, true);
+    //             })
+    //         }
+    //     }, (err) => { // error
+    //         console.warn('DsMicroservicesModule :: loadTranslations :: Unable to load translations', err);
+    //     });
+    // }
 }

@@ -1,4 +1,5 @@
 {
+  "test": "This is a translation test from fr.json",
   "languages": {
     "en": "Anglais",
     "fr": "Français"

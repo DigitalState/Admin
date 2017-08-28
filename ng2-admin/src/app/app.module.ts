@@ -29,11 +29,13 @@ import { FormioModule, FormioAppConfig } from 'angular-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
 import { DsSharedModule } from './shared/shared.module';
-import {DsMicroservicesModule} from './digitalstate/microservices.module';
+import { DsMicroservicesModule } from './digitalstate/microservices.module';
 
 import * as _ from 'lodash';
 
 import APP_CONFIG from './app.config';
+import { CmsTranslateLoader } from './shared/services/cms-translation-loader.service';
+import { CmsApiService } from './shared/services/cms.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -94,15 +96,20 @@ export function restangularConfigFactory(restangularProvider) {
     });
 }
 
-export function createTranslateLoader(http: Http) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+// export function createTranslateLoader(http: Http) {
+//     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+// }
+
+export function createTranslateLoader(http: Http, cms: CmsApiService) {
+    return new CmsTranslateLoader(http, cms, './assets/i18n/', '.json');
 }
 
 const translationOptions = {
     loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [Http]
+        // deps: [Http]
+        deps: [Http, CmsApiService]
     }
 };
 
