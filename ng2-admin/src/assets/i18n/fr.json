@@ -30,6 +30,7 @@
     "new": "Nouveau",
     "details": "Détails",
     "home": "Accueil",
+    "translatableField": "Champ traduisible",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"

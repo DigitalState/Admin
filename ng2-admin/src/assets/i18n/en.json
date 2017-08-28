@@ -30,6 +30,7 @@
     "new": "New",
     "details": "Details",
     "home": "Home",
+    "translatableField": "Translatable field",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Passwords don't match."

@@ -23,7 +23,7 @@
 			<div class="col-sm-12">
 				<div class="form-group required translatable">
 					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
-					<span class="translation-icon"></span>
+					<translatable-icon></translatable-icon>
 					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.title" class="alert alert-danger">
 						{{ formErrors.title }}
@@ -84,7 +84,7 @@
 			<div class="col-sm-12">
 				<div class="form-group required translatable">
 					<label for="data">{{ 'ds.microservices.entity.property.data' | staticTranslate:[formLang] }}</label>
-					<span class="translation-icon"></span>
+					<translatable-icon></translatable-icon>
 					<textarea id="data" name="data" [(ngModel)]="entity.data[formLang]" class="form-control" placeholder="" required json></textarea>
 					<div *ngIf="formErrors.data" class="alert alert-danger">
 						{{ formErrors.data }}

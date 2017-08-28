@@ -28,6 +28,7 @@ import { DsDatatableCellActions } from './components/datatable/datatable-cell-ac
 import { DsLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
 import { DsBackLink } from './components/back-link.component';
+import { DsTranslatableIconComponent } from './components/translatable-icon.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 import { CmsApiService } from '../shared/services/cms.service';
 
@@ -59,6 +60,7 @@ import forEach from 'lodash/forEach';
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
         DsBackLink,
+        DsTranslatableIconComponent,
     ],
     entryComponents: [
         DefaultModal,
@@ -80,6 +82,7 @@ import forEach from 'lodash/forEach';
         DsLanguageSwitcherTabsComponent,
         // AppTranslationModule,
         TranslateModule,
+        DsTranslatableIconComponent,
     ]
 })
 export class DsMicroservicesModule {
