@@ -20,6 +20,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
     @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
     @ViewChild('textCellTpl') textCellTpl: TemplateRef<any>;
+    @ViewChild('textCellUuidTpl') textCellUuidTpl: TemplateRef<any>;
     @ViewChild('actionsTpl') actionsCellTpl: TemplateRef<any>;
 
     rows = [];

@@ -34,6 +34,10 @@
 	<ds-datatable-cell [column]="column" [row]="row" [value]="value"></ds-datatable-cell>
 </ng-template>
 
+<ng-template #textCellUuidTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell-uuid [column]="column" [row]="row" [value]="value"></ds-datatable-cell-uuid>
+</ng-template>
+
 <!--<ng-container *ngTemplateOutlet="actionsTpl; context: {actions: actions}"></ng-container>-->
 <ng-template #actionsTpl let-column="column" let-row="row">
 	<ds-datatable-cell-actions [row]="row" (rowActionEmitter)="handleRowEvent($event)"></ds-datatable-cell-actions>
