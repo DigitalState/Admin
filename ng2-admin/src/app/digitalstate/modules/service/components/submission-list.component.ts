@@ -27,7 +27,7 @@ export class DsSubmissionListComponent extends DsBaseEntityListComponent {
 
 
     ngOnInit(): any {
-        this.datatableAttributes.headerHeight = 45;
+        // this.datatableAttributes.headerHeight = 45;
 
         // this.actions.refresh = false;
         // this.actions.create = false;
@@ -59,7 +59,7 @@ export class DsSubmissionListComponent extends DsBaseEntityListComponent {
     setupList() {
         super.setupList();
         this.columns = [
-            { prop: 'uuid', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
+            { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'updatedAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
