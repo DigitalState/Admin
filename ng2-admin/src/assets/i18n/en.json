@@ -31,6 +31,7 @@
     "details": "Details",
     "home": "Home",
     "translatableField": "Translatable field",
+    "copyToClipboard": "Copy to clipboard",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Passwords don't match."

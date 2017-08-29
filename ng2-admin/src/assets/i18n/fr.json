@@ -31,6 +31,7 @@
     "details": "Détails",
     "home": "Accueil",
     "translatableField": "Champ traduisible",
+    "copyToClipboard": "Copier dans le presse-papier",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"
