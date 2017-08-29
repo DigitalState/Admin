@@ -40,6 +40,10 @@ export class MicroservicesDefinition {
                 entities: {
                     'services': {
                         properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
                             'title': {
                                 label: 'Title',
                                 type: 'string',
@@ -101,6 +105,14 @@ export class MicroservicesDefinition {
                     },
                     'scenarios': {
                         properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
                             'title': {
                                 label: 'Title',
                                 type: 'string',
@@ -271,6 +283,10 @@ export class MicroservicesDefinition {
                     },
                     'case-statuses': {
                         properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
                             'title': {
                                 label: 'Title',
                                 type: 'string',
@@ -298,6 +314,14 @@ export class MicroservicesDefinition {
                                     'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                     'json': { message: 'json' },
                                 },
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
                             },
                         },
                     },

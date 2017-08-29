@@ -24,6 +24,7 @@ import { DsEntityShowComponent } from './components/entity-show.component';
 import { DsEntityFormComponent } from './components/entity-form.component';
 import { DsDatatableHeader } from './components/datatable/datatable-header.component';
 import { DsDatatableCell } from './components/datatable/datatable-cell.component';
+import { DsDatatableCellUuid } from './components/datatable/datatable-cell-uuid.component';
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
 import { DsLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
@@ -56,6 +57,7 @@ import forEach from 'lodash/forEach';
         DsEntityFormComponent,
         DsDatatableHeader,
         DsDatatableCell,
+        DsDatatableCellUuid,
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
@@ -77,6 +79,7 @@ import forEach from 'lodash/forEach';
         DsEntityFormComponent,
         DsDatatableHeader,
         DsDatatableCell,
+        DsDatatableCellUuid,
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
