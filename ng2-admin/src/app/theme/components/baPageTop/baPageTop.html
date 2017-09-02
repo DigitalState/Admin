@@ -1,7 +1,7 @@
 <div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
      [ngClass]="{scrolled: isScrolled}">
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
-  <a routerLink="/pages/services/list" class="al-logo clearfix">
+  <a class="al-logo clearfix">
     <!--<span>ng2-</span>admin-->
     <img src="{{ ( 'app/digitalstate-logo.png' | baAppPicture ) }}" />
   </a>
@@ -19,7 +19,7 @@
     <div class="dropdown al-dropdown profile-dropdown">
       <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
         <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
-        <span class="user-identity {{ userIdentity | lowercase }}">{{ userIdentity }}</span>
+        <span class="user-identity {{ userIdentity | lowercase }}">{{ 'ds.microservices.entity.types.' + userIdentity | lowercase | translate }}</span>
       </a>
       <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
         <li class="dropdown-item">
