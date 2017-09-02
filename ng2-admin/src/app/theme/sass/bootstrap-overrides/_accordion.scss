@@ -1,0 +1,21 @@
+.accordion {
+
+  * [data-toggle="collapse"] {
+    &.collapsed {
+      .show-on-collapse {
+        display: block;
+      }
+      .hide-on-collapse {
+        display: none;
+      }
+    }
+
+    .show-on-collapse {
+      display: none;
+    }
+    .hide-on-collapse {
+      display: block;
+    }
+  }
+
+}
