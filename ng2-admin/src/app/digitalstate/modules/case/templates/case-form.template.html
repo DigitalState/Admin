@@ -12,10 +12,23 @@
 >
 	<div class="card-block">
 		<div *ngIf="!isNew" class="row">
-			<div class="col">
+			<div class="col-sm-6">
 				<div class="form-group">
 					<Label>UUID</Label>
 					<div class="entity-uuid form-control" disabled>{{entity.uuid}}</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="state">{{ 'ds.microservices.entity.property.state' | translate }}</label>
+					<select id="state" name="state" [(ngModel)]="entity.state" class="form-control" required>
+						<option *ngFor="let item of entityMetadata['state'].field.options | keyValue" [value]="item.key">
+							{{item.value}}
+						</option>
+					</select>
+					<div *ngIf="formErrors.state" class="alert alert-danger">
+						{{ formErrors.state }}
+					</div>
 				</div>
 			</div>
 		</div>
