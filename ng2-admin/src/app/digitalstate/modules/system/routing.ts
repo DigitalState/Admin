@@ -1,20 +1,21 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { DsSystemComponent } from './components/system.component';
+import { DsTranslationsComponent } from './components/translations.component';
 
 const routes: Routes = [
 
     // Default route is `DsSystemListComponent`. See pages.routing.ts
     {
         path: '',
-        component: DsSystemComponent,
+        // component: DsSystemComponent,
         children: [
             // Uncomment the following to have the default EMPTY routerLink redirect back to the dashboard
             // { path: '', redirectTo: '/pages/dashboard', pathMatch: 'full' },
 
-            // { path: '', redirectTo: '/pages/system/list', pathMatch: 'full' },
-            // { path: 'list', component: DsSystemListComponent  },
-            // { path: 'create', component: DsSystemCreateComponent },
+            { path: '', redirectTo: '/pages/settings/systems', pathMatch: 'full' },
+            { path: 'systems', component: DsSystemComponent },
+            { path: 'translations', component: DsTranslationsComponent },
             // { path: ':id/show', component: DsSystemShowComponent },
             // { path: ':id/edit', component: DsSystemEditComponent },
         ]

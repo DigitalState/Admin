@@ -133,17 +133,35 @@ export const PAGES_MENU = [
         ]
       },
       {
-        path: 'systems',
+        path: 'settings',
         data: {
           menu: {
-            title: 'general.menu.systems',
+            title: 'general.menu.settings',
             icon: 'ion-ios-gear',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,
             order: 0
           }
-        }
+        },
+        children: [
+          {
+            path: ['settings/systems'],
+            data: {
+              menu: {
+                title: 'general.menu.systems',
+              }
+            }
+          },
+          {
+            path: ['settings/translations'],
+            data: {
+              menu: {
+                title: 'general.menu.translations',
+              }
+            }
+          },
+        ]
       },
       // {
       //   path: 'assets',

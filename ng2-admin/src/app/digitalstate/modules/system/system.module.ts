@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LaddaModule } from 'angular2-ladda';
@@ -11,12 +11,14 @@ import { routing } from './routing';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
 import { DsMicroservicesModule } from '../../microservices.module';
 import { DsSystemComponent } from './components/system.component';
+import { DsTranslationsComponent } from './components/translations.component';
 
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         NgxDatatableModule,
         LaddaModule,
         DsSharedModule,
@@ -25,6 +27,7 @@ import { DsSystemComponent } from './components/system.component';
     ],
     declarations: [
         DsSystemComponent,
+        DsTranslationsComponent,
     ],
     providers: [
         MicroserviceConfig,

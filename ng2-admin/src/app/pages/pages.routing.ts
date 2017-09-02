@@ -26,7 +26,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'services', pathMatch: 'full' },
       { path: 'profile', loadChildren: 'app/digitalstate/modules/profile/profile.module#DsProfileModule' },
       { path: 'logout', component: LogoutComponent },
-      { path: 'systems', loadChildren: 'app/digitalstate/modules/system/system.module#DsSystemModule' },
+      { path: 'settings', loadChildren: 'app/digitalstate/modules/system/system.module#DsSystemModule' },
       { path: 'services', loadChildren: 'app/digitalstate/modules/service/service.module#DsServiceModule' },
       { path: 'cases', loadChildren: 'app/digitalstate/modules/case/case.module#DsCaseModule' },
       { path: 'identities', loadChildren: 'app/digitalstate/modules/identity/identity.module#DsIdentityModule' },
