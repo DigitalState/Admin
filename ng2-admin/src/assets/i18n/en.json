@@ -31,6 +31,10 @@
     "details": "Details",
     "home": "Home",
     "translatableField": "Translatable field",
+    "activeTranslation": "Active Translations",
+    "translation": "Common Translations",
+    "admin-translation": "Admin Translations",
+    "portal-translation": "Portal Translations",
     "copyToClipboard": "Copy to clipboard",
     "forms": {
       "option1": "Option 1",
@@ -73,7 +77,6 @@
 
       "myAccount": "My Account",
       "profile": "Profile",
-      "systems": "Systems",
       "serviceDirectory": "Service Directory",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -91,6 +94,9 @@
       "staffs": "Staffs",
       "anonymouses": "Anonymous",
       "personas": "Personas",
+      "settings": "Settings",
+      "systems": "Systems",
+      "translations": "Translations",
 
       "scenario_activation": "Scenario Activation"
     },
@@ -186,6 +192,9 @@
           "description": "Description",
           "username": "Username",
           "customId": "Custom ID",
+          "state": "State",
+          "opened": "Opened",
+          "closed": "Closed",
           "identity": "Identity",
           "identityUuid": "Identity UUID",
           "owner": "Owner",
@@ -205,6 +214,7 @@
           "edit": "Edit",
           "delete": "Delete",
           "refresh": "Refresh",
+          "reload": "Reload",
           "activate": "Activate",
           "save": "Save",
           "cancel": "Cancel",
@@ -235,10 +245,14 @@
       "entitySaveFailed": "Unable to save the entity.",
       "entityDeletionSucceeded": "Entity deleted successfully.",
       "entityDeletionFailed": "Failed to delete entity!",
+      "entityNotFound": "Entity not found!",
       "personaSaveSucceeded": "Persona information saved successfully.",
       "personaSaveFailed": "Failed to save persona information.",
       "identitySaveSucceeded": "Identity information saved successfully.",
-      "identitySaveFailed": "Failed to save identity information."
+      "identitySaveFailed": "Failed to save identity information.",
+      "translationLoadingFailed": "Failed to load translation.",
+      "translationSaveSucceeded": "Translation saved successfully.",
+      "translationSaveFailed": "Failed to save translation."
     }
   }
 }

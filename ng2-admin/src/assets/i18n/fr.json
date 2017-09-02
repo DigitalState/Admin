@@ -31,6 +31,10 @@
     "details": "Détails",
     "home": "Accueil",
     "translatableField": "Champ traduisible",
+    "activeTranslation": "Traductions actives",
+    "translation": "Traductions communes",
+    "admin-translation": "Traductions d'administration",
+    "portal-translation": "Traduction du portail",
     "copyToClipboard": "Copier dans le presse-papier",
     "forms": {
       "option1": "Option 1",
@@ -73,7 +77,6 @@
 
       "myAccount": "Mon compte",
       "profile": "Profil",
-      "systems": "Systèmes",
       "serviceDirectory": "Répertoire des services",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -91,6 +94,9 @@
       "staffs": "Personnel",
       "anonymouses": "Anonyme",
       "personas": "Personnes",
+      "settings": "Paramètres",
+      "systems": "Systèmes",
+      "translations": "Traductions",
 
       "scenario_activation": "Activation du scénario"
     },
@@ -186,6 +192,9 @@
           "description": "Description",
           "username": "Nom d'utilisateur",
           "customId": "ID personnalisé",
+          "state": "State",
+          "opened": "Ouvert",
+          "closed": "Fermé",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
           "owner": "Propriétaire",
@@ -205,6 +214,7 @@
           "edit": "Modifier",
           "delete": "Supprimez",
           "refresh": "Recharger",
+          "reload": "Recharger",
           "activate": "Activer",
           "save": "Enregistrer",
           "cancel": "Annuler",
@@ -235,10 +245,14 @@
       "entitySaveFailed": "Impossible d'enregistrer l'entité",
       "entityDeletionSucceeded": "Entité supprimée avec succès",
       "entityDeletionFailed": "Échec de la suppression de l'entité",
+      "entityNotFound": "Entité introuvable!",
       "personaSaveSucceeded": "Les informations personnalisées ont été enregistrées avec succès.",
       "personaSaveFailed": "Échec de l'enregistrement des informations personnelles.",
       "identitySaveSucceeded": "Les informations d'identité ont été enregistrées avec succès.",
-      "identitySaveFailed": "Échec de l'enregistrement des informations d'identité."
+      "identitySaveFailed": "Échec de l'enregistrement des informations d'identité.",
+      "translationLoadingFailed": "Impossible de charger la traduction.",
+      "translationSaveSucceeded": "Traduction enregistrée avec succès.",
+      "translationSaveFailed": "Impossible de sauvegarder la traduction."
     }
   }
 }
