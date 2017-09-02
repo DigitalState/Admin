@@ -207,6 +207,10 @@ export class MicroservicesDefinition {
                                 label: 'Updated At',
                                 type: 'date',
                             },
+                            'createdAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
                         },
                     },
                 },

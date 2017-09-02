@@ -60,14 +60,14 @@ export class DsCaseStatusListComponent extends DsBaseEntityListComponent {
         this.columns = [
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
-            { prop: 'updatedAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
+            { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
 
     protected setupQuery(): void {
         super.setupQuery();
         this.query.setFilter('case.uuid', this.entityParent.uuid);
-        this.query.setFilter('order[updatedAt]', 'desc');
+        this.query.setFilter('order[createdAt]', 'desc');
     }
 
     protected updateTranslations(newLang: string) {
