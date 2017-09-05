@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { AfterViewInit, Injector } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
@@ -111,12 +111,12 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.lang = this.translate.currentLang;
-        this.formLang = this.translate.currentLang;
 
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             // this.prepareEntity();
             this.lang = this.translate.currentLang;
+            this.formLang = this.translate.currentLang;
         });
 
         // Setup form errors object with empty messages
@@ -192,7 +192,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             'owner': 'BusinessUnit',
             'ownerUuid': '8454c987-cbc5-4a24-ba1a-d420283caabd',
             'weight': 0,
-            'version': 0,
+            'version': 1,
         };
 
         Object.keys(this.entityMetadata).forEach((propertyName, prop) => {
