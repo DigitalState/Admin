@@ -1,4 +1,5 @@
 import isArray from 'lodash/isArray';
+import { IdentityUtils } from '../../shared/utils/identity.utils';
 
 export class LocalApiUtils {
 
@@ -45,4 +46,21 @@ export class LocalApiUtils {
             }
         }
     }
+
+    /**
+     * Generates a Router Link to an Identity's entity `show` component.
+     *
+     * @param identity One of the known identity values (individual, staff, etc..)
+     * @param identityUuid the UUID of the identity
+     * @returns {{routerLink: Array, title: null}}
+     */
+    static createIdentityEntityLink(identity: string, identityUuid: string): { routerLink: Array<string>, title: any } {
+        let link = {
+            routerLink: ['/pages', 'identities', IdentityUtils.getPlural(identity), identityUuid, 'show'],
+            title: null,
+        };
+
+        return link;
+    }
+
 }
