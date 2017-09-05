@@ -133,6 +133,19 @@ export const PAGES_MENU = [
         ]
       },
       {
+        path: 'users',
+        data: {
+          menu: {
+            title: 'general.menu.users',
+            icon: 'ion-ios-people',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        },
+      },
+      {
         path: 'settings',
         data: {
           menu: {
