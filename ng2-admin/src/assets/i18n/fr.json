@@ -197,7 +197,7 @@
           "email": "Email",
           "customId": "ID personnalisé",
           "state": "State",
-          "opened": "Ouvert",
+          "open": "Ouvert",
           "closed": "Fermé",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
@@ -210,7 +210,12 @@
           "statuses": "Statuts",
           "processDefinitionKey": "Clé de définition de processus",
           "firstName": "Prénom",
-          "lastName": "Nom de famille"
+          "lastName": "Nom de famille",
+          "subffix": "Subffix",
+          "address": "Adresse",
+          "phone": "Téléphone",
+          "email": "Email",
+          "birthDate": "Date de naissance"
         },
         "action": {
           "create": "Créer",
