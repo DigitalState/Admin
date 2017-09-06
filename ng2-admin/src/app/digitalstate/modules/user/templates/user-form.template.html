@@ -13,7 +13,7 @@
 	<div class="card-block">
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="form-group">
+				<div class="form-group required">
 					<label for="username">{{ 'ds.microservices.entity.property.username' | staticTranslate:[formLang] }}</label>
 					<input id="username" name="username" type="text" [(ngModel)]="entity.username" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.username" class="alert alert-danger">
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<div class="form-group">
+				<div class="form-group required">
 					<label for="email">{{ 'ds.microservices.entity.property.email' | staticTranslate:[formLang] }}</label>
 					<input id="email" name="email" type="text" [(ngModel)]="entity.email" class="form-control" placeholder="" required email>
 					<div *ngIf="formErrors.email" class="alert alert-danger">

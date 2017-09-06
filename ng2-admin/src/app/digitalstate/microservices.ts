@@ -61,11 +61,17 @@ export class MicroservicesDefinition {
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
                                 default: 'Individual',
                             },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
                             },
                             'owner': {
                                 label: 'Owner',
