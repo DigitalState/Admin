@@ -41,7 +41,7 @@ export class DsDatatableCell {
                     break;
                 // For a property of type `date`, convert the value from UTC to local time
                 case 'date':
-                    this.outputValue = moment(this.value).local().format(config.date.format.long);
+                    this.outputValue = moment(this.value).local().format(config.date.format.medium);
                     break;
                 default:
                     this.outputValue = this.value;

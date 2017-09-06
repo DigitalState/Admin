@@ -8,7 +8,7 @@ import { DsDatatableCell } from './datatable-cell.component';
 @Component({
     selector: 'ds-datatable-cell-uuid',
     template: `
-        <span title="{{ outputTitle }}" class="cursor-pointer border-b-dotted">{{ outputValue }}</span>
+        <span title="{{ outputTitle }}" class="cursor-pointer">{{ outputValue }}</span>
     `
 })
 export class DsDatatableCellUuid extends DsDatatableCell {
