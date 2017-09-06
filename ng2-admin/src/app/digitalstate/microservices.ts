@@ -21,6 +21,83 @@ export class MicroservicesDefinition {
                     login: 'tokens/staff',
                     anonymous: 'tokens/anonymous',
                 },
+                entities: {
+                    'users': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'username': {
+                                label: 'Username',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'plainPassword': {
+                                label: 'Password',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'email': {
+                                label: 'Email',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                    'email': {message: 'email'},
+                                },
+                            },
+                            'enabled': {
+                                label: 'Enabled',
+                                type: 'boolean',
+                                default: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'identity': {
+                                label: 'Identity',
+                                type: 'string',
+                                default: 'Individual',
+                            },
+                            'identityUuid': {
+                                label: 'Identity UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'lastLogin': {
+                                label: 'Last Login',
+                                type: 'date',
+                            },
+                        },
+                    },
+                },
             },
             'cms': {
                 label: 'CMS',

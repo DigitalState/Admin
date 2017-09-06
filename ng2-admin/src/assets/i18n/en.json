@@ -90,6 +90,7 @@
       "interactions": "Interactions",
       "communications": "Communications",
       "identities": "Identities",
+      "users": "Users",
       "individuals": "Individuals",
       "staffs": "Staffs",
       "anonymouses": "Anonymous",
@@ -174,6 +175,7 @@
           "case": "Case",
           "caseStatus": "Case Status",
           "identity": "Identity",
+          "user": "User",
           "individual": "Individual",
           "staff": "Staff",
           "anonymous": "Anonymous",
@@ -191,6 +193,8 @@
           "slug": "Slug",
           "description": "Description",
           "username": "Username",
+          "password": "Password",
+          "email": "Email",
           "customId": "Custom ID",
           "state": "State",
           "opened": "Opened",
@@ -223,6 +227,7 @@
         },
         "validation": {
           "required": "Required field.",
+          "email": "Invalid e-mail address.",
           "minlength": "Minimum of {{chars}} characters.",
           "json": "Invalid JSON value."
         },
