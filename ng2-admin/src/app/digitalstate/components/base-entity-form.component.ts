@@ -116,6 +116,10 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             // this.prepareEntity();
             this.lang = this.translate.currentLang;
+        });
+
+        // Subscribe to current translation to make sure formLang is sent only when translations are ready
+        this.translate.getTranslation(this.translate.currentLang).subscribe(() => {
             this.formLang = this.translate.currentLang;
         });
 
