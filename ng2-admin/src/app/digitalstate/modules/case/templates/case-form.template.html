@@ -23,7 +23,7 @@
 					<label for="state">{{ 'ds.microservices.entity.property.state' | translate }}</label>
 					<select id="state" name="state" [(ngModel)]="entity.state" class="form-control" required>
 						<option *ngFor="let item of entityMetadata['state'].field.options | keyValue" [value]="item.key">
-							{{item.value}}
+							{{ 'ds.microservices.entity.property.' + item.key | staticTranslate:[formLang] }}
 						</option>
 					</select>
 					<div *ngIf="formErrors.state" class="alert alert-danger">

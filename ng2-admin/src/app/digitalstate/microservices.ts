@@ -328,7 +328,7 @@ export class MicroservicesDefinition {
                                 field: {
                                     type: 'select',
                                     options: {
-                                        'opened': 'Opened',
+                                        'open': 'Open',
                                         'closed': 'Closed',
                                     },
                                 },
