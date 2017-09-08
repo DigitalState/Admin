@@ -114,10 +114,11 @@
 		<div class="card-block entity-body entity-data">
 			<div class="row">
 				<div class="col-sm-12">
-					<dl *ngFor="let item of (entity.data | entityTranslate) | keyValue">
-						<dt>{{ item.key }}</dt>
-						<dd>{{ item.value }}</dd>
-					</dl>
+					<pre>{{ entity.data | entityTranslate | json }}</pre>
+					<!--<dl *ngFor="let item of (entity.data | entityTranslate) | keyValue">-->
+						<!--<dt>{{ item.key }}</dt>-->
+						<!--<dd>{{ item.value }}</dd>-->
+					<!--</dl>-->
 				</div>
 			</div>
 		</div>
