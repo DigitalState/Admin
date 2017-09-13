@@ -20,8 +20,8 @@ import { DsServiceEditComponent } from './components/service-edit.component';
 import { DsScenarioActivateComponent } from './components/scenario-activate.component';
 import { DsScenarioListComponent } from './components/scenario-list.component';
 import { DsScenarioShowComponent } from './components/scenario-show.component';
-import { DsScenarioCreateComponent } from './components/scenario-create.component';
-import { DsScenarioEditComponent } from './components/scenario-edit.component';
+import { DsScenarioCreateInfoComponent, DsScenarioCreateBpmComponent, DsScenarioCreateUrlComponent, DsScenarioCreateApiComponent } from './components/scenario-create.component';
+import { DsScenarioEditInfoComponent, DsScenarioEditBpmComponent, DsScenarioEditUrlComponent, DsScenarioEditApiComponent } from './components/scenario-edit.component';
 import { DsSubmissionListComponent } from './components/submission-list.component';
 import { DsSubmissionShowComponent } from './components/submission-show.component';
 
@@ -47,8 +47,14 @@ export const MICROSERVICE_NAME = 'services';
 
         DsScenarioListComponent,
         DsScenarioShowComponent,
-        DsScenarioCreateComponent,
-        DsScenarioEditComponent,
+        DsScenarioCreateInfoComponent,
+        DsScenarioCreateBpmComponent,
+        DsScenarioCreateUrlComponent,
+        DsScenarioCreateApiComponent,
+        DsScenarioEditInfoComponent,
+        DsScenarioEditBpmComponent,
+        DsScenarioEditUrlComponent,
+        DsScenarioEditApiComponent,
 
         DsSubmissionListComponent,
         DsSubmissionShowComponent,

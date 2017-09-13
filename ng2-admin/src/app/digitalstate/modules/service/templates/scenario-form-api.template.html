@@ -1,5 +1,4 @@
-<!-- DEPRECATED -->
-<!--ds-entity-form *ngIf="entity"
+<ds-entity-form *ngIf="entity && formLang"
 				[entity]="entity"
 				[backLink]="backLink"
 				[headerTitle]="headerTitle"
@@ -23,7 +22,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
-					<label for="title">{{ 'ds.microservices.entity.property.title' | translate }}</label>
+					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
 					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.title" class="alert alert-danger">
@@ -31,23 +30,16 @@
 					</div>
 				</div>
 				<div class="form-group required">
-					<label for="slug">{{ 'ds.microservices.entity.property.slug' | translate }}</label>
+					<label for="slug">{{ 'ds.microservices.entity.property.slug' | staticTranslate:[formLang] }}</label>
 					<input id="slug" name="slug" type="text" [(ngModel)]="entity.slug" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.slug" class="alert alert-danger">
 						{{ formErrors.slug }}
 					</div>
 				</div>
-				<div class="form-group required">
-					<label for="process-definition-key">{{ 'ds.microservices.entity.property.processDefinitionKey' | translate }}</label>
-					<input id="process-definition-key" name="process_definition_key" type="text" [(ngModel)]="entity.data.process_definition_key" class="form-control" required>
-					<div *ngIf="formErrors.data" class="alert alert-danger">
-						{{ formErrors.data }}
-					</div>
-				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
-					<label for="presentation">{{ 'ds.microservices.entity.property.presentation' | translate }}</label>
+					<label for="presentation">{{ 'ds.microservices.entity.property.presentation' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
 					<input id="presentation" name="presentation" type="text" [(ngModel)]="entity.presentation[formLang]" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.presentation" class="alert alert-danger">
@@ -55,21 +47,10 @@
 					</div>
 				</div>
 				<div class="form-group required">
-					<label for="weight">{{ 'ds.microservices.entity.property.weight' | translate }}</label>
+					<label for="weight">{{ 'ds.microservices.entity.property.weight' | staticTranslate:[formLang] }}</label>
 					<input id="weight" name="weight" type="number" [(ngModel)]="entity.weight" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.weight" class="alert alert-danger">
 						{{ formErrors.weight }}
-					</div>
-				</div>
-				<div class="form-group required">
-					<label for="type">{{ 'ds.microservices.entity.property.type' | translate }}</label>
-					<select id="type" name="type" [(ngModel)]="entity.type" class="form-control" required>
-						<option *ngFor="let item of entityMetadata['type'].field.options | keyValue" [value]="item.key">
-							{{item.value}}
-						</option>
-					</select>
-					<div *ngIf="formErrors.type" class="alert alert-danger">
-						{{ formErrors.type }}
 					</div>
 				</div>
 			</div>
@@ -77,7 +58,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group required translatable">
-					<label for="description">{{ 'ds.microservices.entity.property.description' | translate }}</label>
+					<label for="description">{{ 'ds.microservices.entity.property.description' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
 					<textarea id="description" name="description" type="text" [(ngModel)]="entity.description[formLang]" class="form-control" placeholder="" required></textarea>
 					<div *ngIf="formErrors.description" class="alert alert-danger">
@@ -86,5 +67,26 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="url">{{ 'ds.microservices.entity.property.url' | staticTranslate:[formLang] }}</label>
+					<input id="url" name="url" type="text" [(ngModel)]="entity.data.url" class="form-control" required>
+					<div *ngIf="formErrors.url" class="alert alert-danger">
+						{{ formErrors.url }}
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group required translatable">
+					<label for="button-text">{{ 'ds.microservices.entity.property.button_text' | staticTranslate:[formLang] }}</label>
+					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data.button_text" class="form-control" required>
+					<div *ngIf="formErrors.button_text" class="alert alert-danger">
+						{{ formErrors.button_text }}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</ds-entity-form-->
+</ds-entity-form>

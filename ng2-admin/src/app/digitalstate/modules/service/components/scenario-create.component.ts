@@ -1,13 +1,11 @@
 import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { ToastsManager } from 'ng2-toastr';
+import { NgForm } from '@angular/forms';
 import { Slug } from 'ng2-slugify';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
-import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { DsScenarioFormComponent } from './scenario-form.component';
 
 import 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,12 +13,14 @@ import { Observable } from 'rxjs/Observable';
 
 import isString from 'lodash/isString';
 import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
+import assign from 'lodash/assign';
 
-@Component({
-    selector: 'ds-scenario-create',
-    templateUrl: '../templates/scenario-form.template.html'
-})
-export class DsScenarioCreateComponent extends DsBaseEntityFormComponent {
+// @Component({
+//     selector: 'ds-scenario-create',
+//     templateUrl: '../templates/scenario-form.template.html'
+// })
+export class DsScenarioCreateComponent extends DsScenarioFormComponent {
 
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
@@ -34,22 +34,11 @@ export class DsScenarioCreateComponent extends DsBaseEntityFormComponent {
     protected routeParamsSubscription: Subscription;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
                 translate: TranslateService,
-                toastr: ToastsManager,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig);
-
-        this.translate = translate;
-        this.entityApiService = entityApiService;
-
-        // Create a place-holder for the back-link until it gets generated
-        this.backLink = this.getEmptyBackLink();
-
+        super(injector, translate, microserviceConfig, entityApiService);
         this.slug = new Slug('default');
     }
 
@@ -74,8 +63,11 @@ export class DsScenarioCreateComponent extends DsBaseEntityFormComponent {
     }
 
     saveNewEntity(): any {
-        // this.entity['data'] = JSON.parse(this.entity['data']);
         return super.saveNewEntity();
+    }
+
+    getRoutingUrlOnSave(response: any): Array<any> {
+        return ['../../' + response.uuid, 'show'];
     }
 
     onValueChanged(data?: any) {
@@ -91,5 +83,141 @@ export class DsScenarioCreateComponent extends DsBaseEntityFormComponent {
 
         // Disable auto-sluggify to avoid overwriting the slug when the interface language is changed
         this.autoSluggify = false;
+    }
+}
+
+
+@Component({
+    selector: 'ds-scenario-create-bpm',
+    templateUrl: '../templates/scenario-form-info.template.html'
+})
+export class DsScenarioCreateInfoComponent extends DsScenarioCreateComponent {
+
+    constructor(injector: Injector,
+                translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, translate, microserviceConfig, entityApiService);
+    }
+
+    protected createBlankEntity(): any {
+        return super.createBlankEntity().flatMap(entity => {
+            entity.type = 'info';
+            return Observable.of(entity);
+        });
+    }
+}
+
+@Component({
+    selector: 'ds-scenario-create-bpm',
+    templateUrl: '../templates/scenario-form-bpm.template.html'
+})
+export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
+
+    constructor(injector: Injector,
+                translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, translate, microserviceConfig, entityApiService);
+    }
+
+    protected loadEntityMetaData(): void {
+        super.loadEntityMetaData();
+        let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
+            'process_definition_key',
+            'button_text',
+        ]);
+
+        assign(this.entityMetadata, extraProps);
+        console.log(this.entityMetadata);
+    }
+
+    protected createBlankEntity(): any {
+        return super.createBlankEntity().flatMap(entity => {
+            entity.type = 'bpm';
+            entity.data = {
+                'bpm': 'camunda',
+                'process_definition_key': '',
+                'button_text': '',
+            };
+            return Observable.of(entity);
+        });
+    }
+}
+
+@Component({
+    selector: 'ds-scenario-create-url',
+    templateUrl: '../templates/scenario-form-url.template.html'
+})
+export class DsScenarioCreateUrlComponent extends DsScenarioCreateComponent {
+
+    constructor(injector: Injector,
+                translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, translate, microserviceConfig, entityApiService);
+    }
+
+    protected loadEntityMetaData(): void {
+        super.loadEntityMetaData();
+        let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
+            'url',
+            'button_text',
+        ]);
+
+        assign(this.entityMetadata, extraProps);
+        console.log(this.entityMetadata);
+    }
+
+    protected createBlankEntity(): any {
+        return super.createBlankEntity().flatMap(entity => {
+            entity.type = 'url';
+            entity.data = {
+                'url': '',
+                'button_text': '',
+            };
+            return Observable.of(entity);
+        });
+    }
+}
+
+
+@Component({
+    selector: 'ds-scenario-create-api',
+    templateUrl: '../templates/scenario-form-api.template.html'
+})
+export class DsScenarioCreateApiComponent extends DsScenarioCreateComponent {
+
+    constructor(injector: Injector,
+                translate: TranslateService,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, translate, microserviceConfig, entityApiService);
+    }
+
+    protected loadEntityMetaData(): void {
+        super.loadEntityMetaData();
+        let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
+            'url',
+            'button_text',
+        ]);
+
+        assign(this.entityMetadata, extraProps);
+        console.log(this.entityMetadata);
+    }
+
+    protected createBlankEntity(): any {
+        return super.createBlankEntity().flatMap(entity => {
+            entity.type = 'api';
+            entity.data = {
+                'url': '',
+                'button_text': '',
+            };
+            return Observable.of(entity);
+        });
     }
 }

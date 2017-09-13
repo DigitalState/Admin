@@ -238,30 +238,6 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
-                            'type': {
-                                label: 'Type',
-                                type: 'string',
-                                default: 'bpm',
-                                field: {
-                                    type: 'select',
-                                    options: {
-                                        'bpm': 'BPM',
-                                        'info': 'Info',
-                                        'link': 'Link',
-                                    },
-                                },
-                                validation: {
-                                    'required': { message: 'required'},
-                                },
-                            },
-                            'data': {
-                                label: 'Data',
-                                type: 'json',
-                                default: {
-                                    'bpm': 'camunda',
-                                    'process_definition_key': ''
-                                },
-                            },
                             'weight': {
                                 label: 'Weight',
                                 type: 'number',
@@ -276,6 +252,60 @@ export class MicroservicesDefinition {
                                 default: true,
                                 validation: {
                                     'required': { message: 'required'},
+                                },
+                            },
+                            'type': {
+                                label: 'Type',
+                                type: 'string',
+                                // default: 'bpm',
+                                field: {
+                                    type: 'select',
+                                    options: {
+                                        'info': 'Info',
+                                        'bpm': 'BPM',
+                                        'url': 'URL',
+                                        'api': 'API',
+                                    },
+                                },
+                                validation: {
+                                    'required': { message: 'required' },
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {
+                                    // 'bpm': 'camunda',
+                                    // 'process_definition_key': '',
+                                    // 'info': {},
+                                },
+                            },
+                        },
+                        conditionalProperties: { // based on scenario types
+                            'process_definition_key': {
+                                parent: 'data',
+                                label: 'Process definition key',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required' },
+                                },
+                            },
+                            'url': {
+                                parent: 'data',
+                                label: 'url',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required' },
+                                },
+                            },
+                            'button_text': {
+                                parent: 'data',
+                                label: 'Button Text',
+                                type: 'string',
+                                validation: {
+                                    'required': { message: 'required' },
                                 },
                             },
                         },
