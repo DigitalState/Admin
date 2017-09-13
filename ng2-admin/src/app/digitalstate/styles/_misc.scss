@@ -22,21 +22,3 @@
   //min-height: 1em;
   padding-bottom: 13px;
 }
-
-.dropdown-item {
-  padding-top: 4px;
-  padding-bottom: 4px;
-
-  a {
-    display: block;
-    color: $dropdown-text;
-
-    &:hover {
-      color: $dropdown-text-hover;
-    }
-  }
-
-  &:hover {
-    background-color: $dropdown-background-hover;
-  }
-}
