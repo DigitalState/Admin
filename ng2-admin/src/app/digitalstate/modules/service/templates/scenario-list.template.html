@@ -1,0 +1,78 @@
+<ds-entity-list [headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				[actions]="actions"
+				[headerActions]="headerActions"
+				[headerActionsTemplate]="headerActionsTemplate"
+				(headerActionEmitter)="handleHeaderEvent($event)">
+
+	<ngx-datatable #datatable
+				   [loadingIndicator]="loading"
+				   [sorts]="sorts"
+				   [rows]="rows"
+				   [columns]="columns"
+				   [count]="pager.totalItems"
+				   [offset]="pager.pageNumber"
+				   [limit]="pager.size"
+				   (page)="setPage($event)"
+				   (sort)="onSort($event)"
+				   class="material">
+	</ngx-datatable>
+</ds-entity-list>
+
+<ng-template #headerActionsTemplate>
+	<div class="col-sm-6 mt-3 mt-sm-0">
+		<div class="container">
+			<ul class="row header-actions-list btn-list clearfix">
+				<li>
+					<div class="btn-group btn-group-primary">
+						<button type="button" class="btn btn-primary">{{ 'ds.microservices.entity.action.create' | translate }}</button>
+						<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="sr-only">{{ 'ds.microservices.entity.action.create' | translate }}</span>
+						</button>
+						<div class="dropdown-menu">
+							<a *ngFor="let action of headerCreateActions" class="dropdown-item" [routerLink]="action.routerLink">
+								{{ action.title | translate }}
+							</a>
+
+							<!--<a class="dropdown-item" href="#">Action</a>-->
+							<!--<a class="dropdown-item" href="#">Another action</a>-->
+							<!--<a class="dropdown-item" href="#">Something else here</a>-->
+							<!--<div class="dropdown-divider"></div>-->
+							<!--<a class="dropdown-item" href="#">Separated link</a>-->
+						</div>
+					</div>
+				</li>
+				<li *ngFor="let action of headerActions">
+					<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitHeaderAction(action)">
+						<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #headerTpl let-column="column" let-sorts="sorts" let-sortDir="sortDir" let-sort="sortFn">
+	<ds-datatable-header sortType="single"
+						 sortAscendingIcon="datatable-icon-up"
+						 sortDescendingIcon="datatable-icon-down"
+						 [column]="column"
+						 [sort]="sort"
+						 [sortDir]="sortDir"
+						 (onFilterValueChange)="onFilterValueChange($event)"
+	>
+	</ds-datatable-header>
+</ng-template>
+
+<ng-template #textCellTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell [column]="column" [row]="row" [value]="value"></ds-datatable-cell>
+</ng-template>
+
+<ng-template #textCellUuidTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell-uuid [column]="column" [row]="row" [value]="value"></ds-datatable-cell-uuid>
+</ng-template>
+
+<!--<ng-container *ngTemplateOutlet="actionsTpl; context: {actions: actions}"></ng-container>-->
+<ng-template #actionsTpl let-column="column" let-row="row">
+	<ds-datatable-cell-actions [row]="row" (rowActionEmitter)="handleRowEvent($event)"></ds-datatable-cell-actions>
+</ng-template>

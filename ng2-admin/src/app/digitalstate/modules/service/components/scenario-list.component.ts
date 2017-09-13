@@ -6,9 +6,11 @@ import { DsBaseEntityListComponent } from '../../../components/base-list.compone
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/Rx';
 
+import remove from 'lodash/remove';
+
 @Component({
     selector: 'ds-scenario-list',
-    templateUrl: '../../../templates/generic-list.template.html'
+    templateUrl: '../templates/scenario-list.template.html'
 })
 export class DsScenarioListComponent extends DsBaseEntityListComponent {
 
@@ -19,6 +21,26 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
     entityParentUrlParam = 'serviceUuid';
     headerTitle = 'general.menu.scenarios';
     headerSubtitle = '';
+
+    // Dropdown Actions
+    headerCreateActions: Array<any> = [
+        {
+            title: 'ds.microservices.entity.property.info',
+            routerLink: ['../scenarios/create/info'],
+        },
+        {
+            title: 'ds.microservices.entity.property.bpm',
+            routerLink: ['../scenarios/create/bpm'],
+        },
+        {
+            title: 'ds.microservices.entity.property.url',
+            routerLink: ['../scenarios/create/url'],
+        },
+        {
+            title: 'ds.microservices.entity.property.api',
+            routerLink: ['../scenarios/create/api'],
+        },
+    ];
 
     protected routeParamsSubscription: Subscription;
 
@@ -31,6 +53,10 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
     }
 
     ngOnInit() {
+        // Keep only the `refresh` action in the default headerActions since we are creating
+        // a custom template for the `create` action (dropdown with links to multiple scenario types)
+        remove(this.headerActions, (action: any) => { return action.name !== 'refresh' });
+
         // Skip fetching the entity parent if already set, for example, when passed in as a component input.
         if (this.entityParent) {
             super.ngOnInit();
@@ -57,6 +83,7 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
         this.columns = [
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
+            { prop: 'type', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'updatedAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
@@ -72,6 +99,19 @@ export class DsScenarioListComponent extends DsBaseEntityListComponent {
 
         if (this.entityParent.hasOwnProperty('title') && this.entityParent.title.hasOwnProperty(newLang)) {
             this.headerSubtitle = this.entityParent.title[newLang];
+        }
+    }
+
+    protected handleRowEvent(event: any) {
+        let relativePath = '../';
+
+        switch (event.action.name) {
+            case 'edit':
+                this.router.navigate([relativePath, 'scenarios', event.row.uuid, 'edit', event.row.type], { relativeTo: this.route });
+                break;
+            default:
+                super.handleRowEvent(event);
+                break;
         }
     }
 }
