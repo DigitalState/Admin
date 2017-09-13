@@ -1,5 +1,20 @@
 .dropdown-item {
   line-height: 1;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  a {
+    display: block;
+    color: $dropdown-text;
+
+    &:hover {
+      color: $dropdown-text-hover;
+    }
+  }
+
+  &:hover {
+    background-color: $dropdown-background-hover;
+  }
 }
 
 .dropdown-menu {

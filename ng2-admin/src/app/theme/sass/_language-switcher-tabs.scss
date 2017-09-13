@@ -36,7 +36,7 @@ ds-language-switcher-tabs {
     &.active {
       background-color: $tab-title-background-clear;
 
-      a {
+      .link-container {
         border: $border-style $border-color;
         border-width: 3px $border-width $border-width;
         border-bottom-color: $tab-title-background-clear;
@@ -48,9 +48,9 @@ ds-language-switcher-tabs {
       }
     }
 
-    a {
+    .link-container {
       display: block;
-      padding: 0.5em 1em;
+      padding: 0.5em 1em 0.1em;
 
       &:hover {
         background-color: $tab-hover-background;
@@ -59,6 +59,10 @@ ds-language-switcher-tabs {
 
     i.fa {
       display: none;
+    }
+
+    .lang-checkbox {
+      vertical-align: middle;
     }
   }
 }
