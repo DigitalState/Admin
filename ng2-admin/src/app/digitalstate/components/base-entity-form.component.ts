@@ -16,6 +16,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
 
 import cloneDeep from 'lodash/cloneDeep';
+import omit from 'lodash/omit';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 
@@ -109,7 +110,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     ngOnInit() {
         super.ngOnInit();
 
-        this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
+        this.loadEntityMetaData();
         this.lang = this.translate.currentLang;
 
         // Subscribe to language-change events
@@ -136,6 +137,13 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         if (this.languageChangeSubscriber) {
             this.languageChangeSubscriber.unsubscribe();
         }
+    }
+
+    /**
+     * Override this method to manipulate the entity meta-data that is loaded from `microservices.ts`.
+     */
+    protected loadEntityMetaData(): void {
+        this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
     }
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
@@ -328,12 +336,13 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
      */
     preSave(entity): any {
         const propertiesToRemove = this.getPropertiesToRemoveOnSave();
+        entity = omit(entity, propertiesToRemove);
         // Remove property if it's read only
-        propertiesToRemove.forEach((propertyName) => {
-            if (entity.hasOwnProperty(propertyName)) {
-                delete entity[propertyName];
-            }
-        });
+        // propertiesToRemove.forEach((propertyName) => {
+        //     if (entity.hasOwnProperty(propertyName)) {
+        //         delete entity[propertyName];
+        //     }
+        // });
 
         // Strip out empty (yet required) language-based properties that may fail validation.
         Object.keys(this.entityMetadata).forEach((propertyName, prop) => {
@@ -346,7 +355,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
             if (property.hasOwnProperty('translated') && property.translated === true) {
                 this.translate.langs.forEach((lang) => {
-                    if (isString(entity[propertyName][lang]) && isEmpty(entity[propertyName][lang])) {
+                    if (entity[propertyName] && isString(entity[propertyName][lang]) && isEmpty(entity[propertyName][lang])) {
                         delete entity[propertyName][lang];
                     }
 
@@ -411,14 +420,19 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.formErrors[propertyName] += message + ' ';
     }
 
+    getRoutingUrlOnSave(response: any): Array<any> {
+        let relativeUrl = this.isNew ? '../' + response.uuid : '../';
+        return [relativeUrl, 'show'];
+    }
+
     onEntitySave(response) {
         console.log('Entity saved successfully, server response: ', response);
         this.toastr.success(this.translate.instant('ds.messages.entitySaveSucceeded'));
 
         // const routerLink = this.isNew ? '../list' : '../show';
         if (response.uuid) {
-            let relativeUrl = this.isNew ? '../' + response.uuid : '../';
-            this.router.navigate([relativeUrl, 'show'], {relativeTo: this.route});
+            let routingUrl = this.getRoutingUrlOnSave(response);
+            this.router.navigate(routingUrl, { relativeTo: this.route });
         }
         else {
             this.toastr.error(this.translate.instant('ds.messages.unexpectedError'));
