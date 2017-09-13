@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MdProgressBarModule } from '@angular/material';
+import { MdProgressBarModule, MdCheckboxModule } from '@angular/material';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { FilterByPipe } from 'ngx-pipes/src/app/pipes/array/filter-by';
@@ -44,6 +44,7 @@ import forEach from 'lodash/forEach';
         FormsModule,
         NgArrayPipesModule,
         MdProgressBarModule,
+        MdCheckboxModule,
         // AppTranslationModule,
         TranslateModule,
         DsSharedModule,
@@ -73,6 +74,7 @@ import forEach from 'lodash/forEach';
     ],
     exports: [
         MdProgressBarModule,
+        MdCheckboxModule,
         DsMicroservicesComponent,
         DsEntityListComponent,
         DsEntityShowComponent,

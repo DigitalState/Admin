@@ -10,10 +10,15 @@ import { DsLanguageSwitcherComponent } from './language-switcher.component';
             <li *ngFor="let language of getListedLanguages()" 
                 [ngClass]="{'active': currentLanguage.key === language.key}" 
                 class="switcher-tab-item lang-{{language.key}}">
-                <a href="javascript:;" (click)="switchLang(language.key)">
-                    <!--<i class="fa fa-flag"></i>-->
-                    {{ 'languages.' + language.key | translate }}
-                </a>
+                <span class="link-container">
+                    <span class="lang-checkbox">
+                        <md-checkbox></md-checkbox>
+                    </span>
+                    <a href="javascript:;" (click)="switchLang(language.key)">
+                        <!--<i class="fa fa-flag"></i>-->
+                        {{ 'languages.' + language.key | translate }}
+                    </a>
+                </span>
             </li>
         </ul>
     `,
@@ -29,6 +34,7 @@ export class DsLanguageSwitcherTabsComponent extends DsLanguageSwitcherComponent
 
     currentLanguage: object;
     languages: object[];
+    checked: true;
 
     constructor(protected translate: TranslateService) {
         super(translate);
