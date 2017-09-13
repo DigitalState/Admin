@@ -9,17 +9,8 @@
 					<!--<input type="text" class="form-control" placeholder="Type to filter by title ..." (keyup)="updateFilter($event)" />-->
 				<!--</div>-->
 			</div>
-			<div class="col-sm-6 mt-3 mt-sm-0">
-				<div class="container">
-					<ul class="row header-actions-list btn-list clearfix">
-						<li *ngFor="let action of headerActions">
-							<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitHeaderAction(action)">
-								<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
-							</button>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<ng-container *ngTemplateOutlet="headerActionsTemplate ? headerActionsTemplate: defaultHeaderActionsTemplate"></ng-container>
+
 		</div>
 	</div>
 
@@ -27,3 +18,19 @@
 		<ng-content></ng-content>
 	</div>
 </div>
+
+
+
+<ng-template #defaultHeaderActionsTemplate>
+	<div class="col-sm-6 mt-3 mt-sm-0">
+		<div class="container">
+			<ul class="row header-actions-list btn-list clearfix">
+				<li *ngFor="let action of headerActions">
+					<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitHeaderAction(action)">
+						<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</ng-template>

@@ -17,6 +17,7 @@ export class DsEntityListComponent {
     @Input() backLink: Link;
     @Input() actions: { [s: string]: boolean };
     @Input() headerActions: Array<object>;
+    @Input() headerActionsTemplate: TemplateRef<any>;
 
     @Output() headerActionEmitter = new EventEmitter();
 
