@@ -32,29 +32,30 @@
 </form>
 
 <div id="accordion-active-translations" class="accordion" role="tablist" aria-multiselectable="true">
-	<div class="card entity-card no-shadow animated fadeIn">
+	<div class="card entity-card collapsed animated fadeIn">
 		<div class="card-header">
 			<div class="row justify-content-between">
 				<div class="col-sm-12">
+					<div class="ml-4 float-right zindex-1 position-relative">
+						<a data-toggle="collapse"
+						   data-parent="#accordion-active-translations"
+						   href="#collapse-active-translations"
+						   class="btn btn-default btn-icon collapsed">
+							<i class="ion-plus show-on-collapse"></i>
+							<i class="ion-minus hide-on-collapse"></i>
+						</a>
+					</div>
+
 					<button (click)="reloadTranslations()" type="button"
 							class="btn btn-default float-right zindex-1 position-relative">
 						{{ 'ds.microservices.entity.action.reload' | translate }}
 					</button>
-					<!--<div class="m-0 float-right zindex-1 position-relative">-->
-						<!--<a data-toggle="collapse"-->
-						   <!--data-parent="#accordion-active-translations"-->
-						   <!--href="#collapse-active-translations"-->
-						   <!--class="btn btn-default btn-icon">-->
-							<!--<i class="ion-plus show-on-collapse"></i>-->
-							<!--<i class="ion-minus hide-on-collapse"></i>-->
-						<!--</a>-->
-					<!--</div>-->
 					<h3 class="card-title pt-2">{{ 'general.activeTranslation' | translate }}</h3>
 				</div>
 			</div>
 		</div>
 
-		<div id="collapse-active-translations" class="card-block collapse show">
+		<div id="collapse-active-translations" class="card-block collapse">
 			<pre class="code">{{ activeTranslations | json }}</pre>
 		</div>
 	</div>
