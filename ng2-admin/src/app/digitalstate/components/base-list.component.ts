@@ -2,6 +2,8 @@ import { AfterViewInit, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import enquire from 'enquire.js';
 
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 // import 'style-loader!../styles/style.scss';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Pager } from '../models/pager';
@@ -13,6 +15,7 @@ import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-
 import 'rxjs/Rx';
 import { Subject, Subscriber } from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { forEach, isString } from 'lodash';
 
 export class DsBaseEntityListComponent extends DsEntityCrudComponent implements AfterViewInit {
@@ -28,6 +31,12 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     sorts = [];
     query: ListQuery;
     pager = new Pager();
+
+    customFiltersForm: FormGroup;
+    customFiltersFormChangeSubscription: Subscription;
+    showCustomFilters: boolean = false;
+
+    formBuilder: FormBuilder;
 
     // progress bar bindings
     loading: boolean;
@@ -124,21 +133,31 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
 
     /**
+     * Interface language holder.
+     */
+    lang: string;
+
+    /**
      * EnquireJS media queries and their handlers in key/value format.
      */
     protected mediaQueryHandlers = {};
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    constructor(injector: Injector, protected microserviceConfig: MicroserviceConfig) {
+    constructor(injector: Injector,
+                protected microserviceConfig: MicroserviceConfig) {
         super(injector);
+        this.formBuilder = injector.get(FormBuilder);
     }
 
     ngOnInit() {
         super.ngOnInit();
 
+        this.lang = this.translate.currentLang;
+
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.lang = event.lang;
             this.updateTranslations(event.lang);
             this.refreshList();
         });
@@ -168,9 +187,13 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     }
 
     ngOnDestroy() {
-        // Unsubscribe from language-change events
+        // Unsubscribe from observables
         if (this.languageChangeSubscriber) {
             this.languageChangeSubscriber.unsubscribe();
+        }
+
+        if (this.customFiltersFormChangeSubscription) {
+            this.customFiltersFormChangeSubscription.unsubscribe();
         }
 
         this.destroyUi();
@@ -195,6 +218,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      */
     protected setupUi() {
         this.setupMediaQueries();
+        this.setupCustomFilters();
 
         forEach(this.datatableAttributes, (value, key) => {
             this.datatable[key] = value;
@@ -241,6 +265,13 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
         forEach(this.mediaQueryHandlers, (value, key) => {
             enquire.register(key, value);
         });
+    }
+
+    /**
+     * Create an empty Custom Filters form by default.
+     */
+    protected setupCustomFilters() {
+       this.customFiltersForm = this.formBuilder.group({});
     }
 
     /**

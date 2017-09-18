@@ -4,6 +4,11 @@
 				[headerActions]="headerActions"
 				(headerActionEmitter)="handleHeaderEvent($event)">
 
+	<div *ngIf="showCustomFilters" class="custom-filters">
+		<form [formGroup]="customFiltersForm">
+		</form>
+	</div>
+
 	<ngx-datatable #datatable
 				   [loadingIndicator]="loading"
 				   [sorts]="sorts"
