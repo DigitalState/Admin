@@ -36,6 +36,7 @@
     "admin-translation": "Traductions d'administration",
     "portal-translation": "Traduction du portail",
     "copyToClipboard": "Copier dans le presse-papier",
+    "businessUnit": "Unité d'affaires",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"
@@ -85,6 +86,7 @@
       "caseStatuses": "État des cas",
       "assets": "Atouts",
       "topics": "Sujets",
+      "taskDirectory": "Répertoire des tâches",
       "tasks": "Tâches",
       "records": "Enregistrements",
       "interactions": "Interactions",
@@ -232,6 +234,9 @@
           "refresh": "Recharger",
           "reload": "Recharger",
           "activate": "Activer",
+          "open": "Ouvrir",
+          "claim": "Réclamer",
+          "unclaim": "Non réclamé",
           "save": "Enregistrer",
           "cancel": "Annuler",
           "back": "Retour",
@@ -247,6 +252,11 @@
           "activationFailure": "<h4>Activation echouée</h4> <div>Please try again later.</div>",
           "submissionFailure": "<h4>Submission failed!</h4> <div>Please try again later or use a different method.</div>",
           "submissionSuccess": "<h4>Soumission réussie!</h4> <div>Vous recevrez bientôt un e-mail de suivi.</div>"
+        },
+        "task": {
+          "activationFailure": "<h4>Activation echouée</h4>",
+          "submissionFailure": "<h4>Submission echouée</h4>",
+          "submissionSuccess": "<h4>Soumission réussie</h4>"
         }
       }
     },

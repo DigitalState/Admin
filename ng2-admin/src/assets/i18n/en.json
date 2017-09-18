@@ -36,6 +36,7 @@
     "admin-translation": "Admin Translations",
     "portal-translation": "Portal Translations",
     "copyToClipboard": "Copy to clipboard",
+    "businessUnit": "Business Unit",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Passwords don't match."
@@ -85,6 +86,7 @@
       "caseStatuses": "Case Statuses",
       "assets": "Assets",
       "topics": "Topics",
+      "taskDirectory": "Task Directory",
       "tasks": "Tasks",
       "records": "Records",
       "interactions": "Interactions",
@@ -232,6 +234,9 @@
           "refresh": "Refresh",
           "reload": "Reload",
           "activate": "Activate",
+          "open": "Open",
+          "claim": "Claim",
+          "unclaim": "Unclaim",
           "save": "Save",
           "cancel": "Cancel",
           "back": "Back",
@@ -247,6 +252,11 @@
           "activationFailure": "<h4>Activation failed!</h4> <div>Please try again later.</div>",
           "submissionFailure": "<h4>Submission failed!</h4> <div>Please try again later or use a different method.</div>",
           "submissionSuccess": "<h4>Submission succeeded!</h4> <div>You will receive a follow-up e-mail soon.</div>"
+        },
+        "task": {
+          "activationFailure": "<h4>Activation failed!</h4>",
+          "submissionFailure": "<h4>Submission failed!</h4>",
+          "submissionSuccess": "<h4>Submission succeeded!</h4>"
         }
       }
     },
