@@ -14,8 +14,10 @@
 		</div>
 	</div>
 
+	<ng-content select=".card-header"></ng-content>
+
 	<div class="card-block p-0">
-		<ng-content></ng-content>
+		<ng-content select="ngx-datatable"></ng-content>
 	</div>
 </div>
 
@@ -25,8 +27,8 @@
 	<div class="col-sm-6 mt-3 mt-sm-0">
 		<div class="container">
 			<ul class="row header-actions-list btn-list clearfix">
-				<li *ngFor="let action of headerActions">
-					<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitHeaderAction(action)">
+				<li *ngFor="let action of headerActions" [hidden]="!action.visible">
+					<button class="{{ action.class }}" (click)="emitHeaderAction(action)">
 						<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
 					</button>
 				</li>
