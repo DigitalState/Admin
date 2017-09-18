@@ -81,6 +81,37 @@ export const PAGES_MENU = [
         ]
       },
       {
+        path: 'tasks',
+        data: {
+          menu: {
+            title: 'general.menu.taskDirectory',
+            icon: 'ion-clipboard',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        },
+        children: [
+          {
+            path: ['tasks/list'],
+            data: {
+              menu: {
+                title: 'general.menu.tasks',
+              }
+            }
+          },
+          {
+            path: ['tasks/submissions/list'],
+            data: {
+              menu: {
+                title: 'general.menu.submissions'
+              }
+            }
+          },
+        ]
+      },
+      {
         path: 'cases',
         data: {
           menu: {
@@ -195,19 +226,6 @@ export const PAGES_MENU = [
       //     menu: {
       //       title: 'general.menu.topics',
       //       icon: 'ion-pound',
-      //       pathMatch: 'prefix', // use it if item children not displayed in menu
-      //       selected: false,
-      //       expanded: false,
-      //       order: 0
-      //     }
-      //   }
-      // },
-      // {
-      //   path: 'tasks',
-      //   data: {
-      //     menu: {
-      //       title: 'general.menu.tasks',
-      //       icon: 'ion-clipboard',
       //       pathMatch: 'prefix', // use it if item children not displayed in menu
       //       selected: false,
       //       expanded: false,

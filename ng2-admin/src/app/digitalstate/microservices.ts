@@ -630,7 +630,7 @@ export class MicroservicesDefinition {
             'topics': {
                 label: 'Topics',
                 entrypoint: {
-                    url: `${scheme}://${host}:8016/`,
+                    url: `${scheme}://${host}:8016/app_dev.php/`,
                 },
                 entities: {
                     'topics': {
@@ -650,18 +650,45 @@ export class MicroservicesDefinition {
             'tasks': {
                 label: 'Tasks',
                 entrypoint: {
-                    url: `${scheme}://${host}:8019/`,
+                    url: `${scheme}://${host}:8060/app_dev.php/`,
                 },
                 entities: {
                     'tasks': {
                         properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
                             'title': {
                                 label: 'Title',
                                 type: 'string',
-                                default: '',
+                            },
+                            'form': {
+                                label: 'Form',
+                                type: 'string',
+                            },
+                            'identityUuid': {
+                                label: 'Identity UUID',
+                                type: 'string',
                                 validation: {
-                                    'required': {message: 'required'},
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                 },
+                            },
+                        },
+                    },
+                    'submissions': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Updated At',
+                                type: 'date',
                             },
                         },
                     },
