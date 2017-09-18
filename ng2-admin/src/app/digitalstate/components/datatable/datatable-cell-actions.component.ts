@@ -6,8 +6,8 @@ import { TableColumn } from '@swimlane/ngx-datatable';
     selector: 'ds-datatable-cell-actions',
     template: `
 		<ul class="btn-list clearfix">
-			<li *ngFor="let action of row._.actions">
-				<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitRowAction(action)">
+			<li *ngFor="let action of row._.actions" [hidden]="!action.visible">
+				<button class="{{ action.class }}" (click)="emitRowAction(action)">
 					<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
 				</button>
 			</li>
