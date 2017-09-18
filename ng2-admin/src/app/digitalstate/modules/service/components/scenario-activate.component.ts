@@ -29,7 +29,7 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
     entityParentUrlParam = 'serviceUuid';
     headerTitle = 'general.menu.scenarios';
     headerSubtitle = null;
-    pageTitle = '';
+    pageTitle = 'general.menu.serviceDirectory';
 
     protected formioOptions: FormioOptions;
     protected formioFormSchema;
