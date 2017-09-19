@@ -19,29 +19,29 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'tasks';
     pageTitle = 'general.menu.taskDirectory';
-    actions: Array<any> = [
-        {
-            name: 'activate',
-            title: 'ds.microservices.entity.action.activate',
-            class: 'btn btn-default btn-with-icon',
-            // iconClass: 'ion-power',
-            visible: true,
-        },
-        {
-            name: 'claim',
-            title: 'ds.microservices.entity.action.claim',
-            class: 'btn btn-default btn-with-icon',
-            // iconClass: 'ion-power',
-            visible: false,
-        },
-        {
-            name: 'unclaim',
-            title: 'ds.microservices.entity.action.unclaim',
-            class: 'btn btn-default btn-with-icon',
-            // iconClass: 'ion-power',
-            visible: false,
-        },
-    ];
+    // actions: Array<any> = [
+    //     {
+    //         name: 'activate',
+    //         title: 'ds.microservices.entity.action.activate',
+    //         class: 'btn btn-default btn-with-icon',
+    //         iconClass: 'ion-power',
+    //         visible: true,
+    //     },
+    //     {
+    //         name: 'claim',
+    //         title: 'ds.microservices.entity.action.claim',
+    //         class: 'btn btn-default btn-with-icon',
+    //         // iconClass: 'ion-power',
+    //         visible: false,
+    //     },
+    //     {
+    //         name: 'unclaim',
+    //         title: 'ds.microservices.entity.action.unclaim',
+    //         class: 'btn btn-default btn-with-icon',
+    //         // iconClass: 'ion-power',
+    //         visible: false,
+    //     },
+    // ];
 
     // @todo Hardcoded "Public Works" UUID is used as a default OwnerUuid in Tasks custom filter
     defaultOwnerUuid = '8454c987-cbc5-4a24-ba1a-d420283caabd';
@@ -61,6 +61,26 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
 
     setupUi(): any {
         this.datatableAttributes.headerHeight = 45;
+
+        this.actions = this.actions.map((action: any) => {
+            switch (action.name) {
+                case 'edit':
+                    action.visible = false;
+                    break;
+            }
+
+            return action;
+        });
+
+        // Add the `Activate` action to list items
+        this.actions.push({
+            name: 'activate',
+            title: 'ds.microservices.entity.action.activate',
+            class: 'btn btn-default btn-with-icon',
+            iconClass: 'ion-power',
+            visible: true,
+        });
+
         return super.setupUi();
     }
 
@@ -70,7 +90,6 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false },
             { prop: 'identityUuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
-            { prop: 'form', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false },
         ];
     }
 
@@ -124,30 +143,30 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
      * @param fetchedData
      * @returns {any}
      */
-    protected preprocessRowsData(fetchedData): Array<any> {
-        let rows;
-        let userIdentityUuid = this.authUser.identityUuid;
-
-        if (fetchedData) {
-            rows = fetchedData.map((row) => {
-                row['_'] = {
-                    'actions': this.actions.map(action => {
-                        switch (action.name) {
-                            case 'claim':
-                                action.visible = (userIdentityUuid !== row.identityUuid);
-                                break;
-                            case 'unclaim':
-                                action.visible = (userIdentityUuid === row.identityUuid);
-                                break;
-                        }
-                        return clone(action);
-                    })
-                };
-                return row;
-            });
-        }
-        return rows;
-    }
+    // protected preprocessRowsData(fetchedData): Array<any> {
+    //     let rows;
+    //     let userIdentityUuid = this.authUser.identityUuid;
+    //
+    //     if (fetchedData) {
+    //         rows = fetchedData.map((row) => {
+    //             row['_'] = {
+    //                 'actions': this.actions.map(action => {
+    //                     switch (action.name) {
+    //                         case 'claim':
+    //                             action.visible = (userIdentityUuid !== row.identityUuid);
+    //                             break;
+    //                         case 'unclaim':
+    //                             action.visible = (userIdentityUuid === row.identityUuid);
+    //                             break;
+    //                     }
+    //                     return clone(action);
+    //                 })
+    //             };
+    //             return row;
+    //         });
+    //     }
+    //     return rows;
+    // }
 
     protected handleRowEvent(event: any) {
         let relativePath = '../';
