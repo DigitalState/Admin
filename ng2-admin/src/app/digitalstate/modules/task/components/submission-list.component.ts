@@ -48,6 +48,9 @@ export class DsSubmissionListComponent extends DsBaseEntityListComponent {
                 case 'edit':
                     action.visible = false;
                     break;
+                case 'show':
+                    action.visible = false;
+                    break;
             }
 
             return action;
