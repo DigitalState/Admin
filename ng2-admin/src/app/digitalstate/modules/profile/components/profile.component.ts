@@ -12,6 +12,7 @@ import { Persona } from '../../../../shared/modules/auth/persona';
 
 import { Subscriber } from 'rxjs/Subscriber';
 import assign from 'lodash/assign';
+import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 
 @Component({
     selector: 'ds-profile',
@@ -85,10 +86,15 @@ export class DsProfileComponent{
 
     loadPersona() {
         // Load persona
-        const entityUrlPrefix = 'individual-personas';
+        // const entityUrlPrefix = 'individual-personas';
+        const entityUrlPrefix = IdentityUtils.getPersonaUrlPrefix(this.user.identity);
+        const identitySingular = IdentityUtils.getSingular(this.user.identity);
+        const requestParams = {};
+
+        requestParams[ identitySingular + '.uuid' ] = this.user.identityUuid
 
         // Filter personas by Staff UUID which is the current user's IdentityUuid
-        this.identityApiService.resource(entityUrlPrefix).getList({'individual.uuid': this.user.identityUuid}).subscribe(personas => {
+        this.identityApiService.resource(entityUrlPrefix).getList(requestParams).subscribe(personas => {
             if (personas.length > 0) {
                 this.persona = personas[0];
                 this.persona.route += '/' + this.persona.uuid;
