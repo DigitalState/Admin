@@ -177,6 +177,7 @@
           "case": "Case",
           "caseStatus": "Case Status",
           "identity": "Identity",
+          "task": "Task",
           "user": "User",
           "individual": "Individual",
           "staff": "Staff",
@@ -256,7 +257,11 @@
         "task": {
           "activationFailure": "<h4>Activation failed!</h4>",
           "submissionFailure": "<h4>Submission failed!</h4>",
-          "submissionSuccess": "<h4>Submission succeeded!</h4>"
+          "submissionSuccess": "<h4>Submission succeeded!</h4>",
+          "claimSuccess": "Task claimed successfully",
+          "claimFailure": "Failed to claim Task",
+          "unclaimSuccess": "Task unclaimed successfully",
+          "unclaimFailure": "Failed to unclaim Task"
         }
       }
     },

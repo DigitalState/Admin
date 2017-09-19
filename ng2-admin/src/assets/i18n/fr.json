@@ -177,6 +177,7 @@
           "case": "Cas",
           "caseStatus": "État de cas",
           "identity": "Identité",
+          "task": "Tâche",
           "user": "Utilisateur",
           "individual": "Individuel",
           "staff": "Personnel",
@@ -256,7 +257,11 @@
         "task": {
           "activationFailure": "<h4>Activation echouée</h4>",
           "submissionFailure": "<h4>Submission echouée</h4>",
-          "submissionSuccess": "<h4>Soumission réussie</h4>"
+          "submissionSuccess": "<h4>Soumission réussie</h4>",
+          "claimSuccess": "Tâche réclamée avec succès",
+          "claimFailure": "Échec de la réclamation de la tâche",
+          "unclaimSuccess": "Tâche non réclamée avec succès",
+          "unclaimFailure": "Échec de la non-responsabilité de la tâche"
         }
       }
     },
