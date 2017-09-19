@@ -667,12 +667,36 @@ export class MicroservicesDefinition {
                                 label: 'Form',
                                 type: 'string',
                             },
+                            'identity': {
+                                label: 'Identity',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'Individual',
+                            },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
                                 validation: {
                                     'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                 },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
                         },
                     },
@@ -687,7 +711,7 @@ export class MicroservicesDefinition {
                                 type: 'date',
                             },
                             'createdAt': {
-                                label: 'Updated At',
+                                label: 'Created At',
                                 type: 'date',
                             },
                         },
