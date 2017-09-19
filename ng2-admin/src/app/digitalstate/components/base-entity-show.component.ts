@@ -31,7 +31,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
      * Descriptor of entity action buttons in the page.
      * @type  Array<object>
      */
-    actions: Array<object> = [
+    actions: Array<any> = [
         {
             name: 'edit',
             title: 'ds.microservices.entity.action.edit',
@@ -121,6 +121,13 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
                 return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
                     return Observable.of({'entity': entity, 'entityParent': entityParent});
                 });
+            }).catch(error => {
+                if (error instanceof Response) {
+                    this.onPrepareEntityError(error);
+                } else {
+                    console.warn('Unexpected error occurred while fetching entity: ' + error);
+                }
+                throw error;
             });
         });
     }
@@ -136,6 +143,11 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
         else {
             return Observable.of(null);
         }
+    }
+
+    onPrepareEntityError(response: Response) {
+        const message = this.translate.instant('ds.messages.http.' + response.status);
+        this.toastr.error(message);
     }
 
     /**
@@ -190,5 +202,22 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     onEntityDeleteError(error) {
         console.error('Failed to delete entity', error);
         this.toastr.error(this.translate.instant('ds.messages.entityDeletionFailed'));
+    }
+
+    /**
+     * Change visibility of action buttons.
+     * @param actionName
+     * @param isVisible
+     */
+    protected setActionVisibility(actionName: string, isVisible: boolean) {
+        this.actions = this.actions.map(action => {
+            switch (action.name) {
+                case actionName:
+                    action.visible = isVisible;
+                    break;
+            }
+
+            return action;
+        });
     }
 }
