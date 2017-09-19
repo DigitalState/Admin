@@ -15,8 +15,8 @@
 								<!--<button [hidden]="!actions.edit" [routerLink]="['../edit']" type="button" class="btn btn-primary btn-with-icon"><i class="ion-edit">{{'ds.microservices.entity.action.edit' | translate}}</i></button>-->
 								<!--<ng-content select="button.entity-action"></ng-content>-->
 							<!--</li>-->
-							<li *ngFor="let action of actions | filterBy: ['region']: 'header'">
-								<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitEntityAction(action)">
+							<li *ngFor="let action of actions | filterBy: ['region']: 'header'" [hidden]="!action.visible">
+								<button class="{{ action.class }}" (click)="emitEntityAction(action)">
 									<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
 								</button>
 							</li>
