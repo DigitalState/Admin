@@ -698,6 +698,10 @@ export class MicroservicesDefinition {
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                         },
                     },
                     'submissions': {

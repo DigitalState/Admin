@@ -90,6 +90,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false },
             { prop: 'identityUuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
+            { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
         ];
     }
 
