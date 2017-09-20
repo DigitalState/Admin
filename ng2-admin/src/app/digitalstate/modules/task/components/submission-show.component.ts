@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { LocalApiUtils } from '../../../utils/local-api.utils';
 
 @Component({
-    selector: 'ds-submission-show',
+    selector: 'ds-task-submission-show',
     templateUrl: '../templates/submission-show.template.html'
 })
 export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
@@ -20,7 +20,7 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
     headerTitle = 'ds.microservices.entity.types.submission';
     headerSubtitle = null;
     backLink = new Link(['../../list'], 'general.list');
-    scenarioLink: any;
+    taskLink: any;
 
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig,
@@ -47,11 +47,11 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
         return super.ngOnInit();
     }
 
-    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
-        return super.prepareEntity().flatMap((prepared) => {
-            let entity = prepared.entity;
-            this.scenarioLink = LocalApiUtils.createEntityLinkFromUri(entity.scenario);
-            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
-        });
-    }
+    // protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+    //     return super.prepareEntity().flatMap((prepared) => {
+    //         let entity = prepared.entity;
+    //         this.taskLink = LocalApiUtils.createEntityLinkFromUri(entity.scenario);
+    //         return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
+    //     });
+    // }
 }

@@ -23,8 +23,6 @@ import { isFunction } from 'rxjs/util/isFunction';
 export class DsTaskActivateComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'tasks';
-    entityParentUrlPrefix = 'services';
-    entityParentUrlParam = 'serviceUuid';
     headerTitle = 'general.menu.tasks';
     headerSubtitle = null;
     pageTitle = '';
