@@ -360,7 +360,7 @@ export class MicroservicesDefinition {
                             'state': {
                                 label: 'State',
                                 type: 'string',
-                                default: 'opened',
+                                default: 'open',
                                 field: {
                                     type: 'select',
                                     options: {
