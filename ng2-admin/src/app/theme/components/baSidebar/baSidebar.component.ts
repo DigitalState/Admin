@@ -17,6 +17,18 @@ export class BaSidebar {
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
+
+      // Trigger a window-resize event to force Datatable grids to recalculate their columns widths
+      /* @Todo move this functionality into a global utility class */
+      setTimeout(() => {
+        // // Modern way of dispatching the resize event
+        // window.dispatchEvent(new Event('resize'));
+
+        // // A more browser-independent way of dispatching the resize event
+        const evt = document.createEvent("HTMLEvents");
+        evt.initEvent('resize', true, false);
+        window.dispatchEvent(evt);
+      }, 200);
     });
   }
 
