@@ -18,6 +18,7 @@ import clone from 'lodash/clone';
 export class DsTaskListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'tasks';
+    headerTitle = 'general.menu.tasks';
     pageTitle = 'general.menu.taskDirectory';
     // actions: Array<any> = [
     //     {
@@ -62,6 +63,15 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
     setupUi(): any {
         this.datatableAttributes.headerHeight = 45;
 
+        this.headerActions = this.headerActions.map((action: any) => {
+            switch (action.name) {
+                case 'create':
+                    action.visible = false;
+                    break;
+            }
+            return action;
+        });
+
         this.actions = this.actions.map((action: any) => {
             switch (action.name) {
                 case 'edit':
@@ -96,9 +106,6 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
 
     protected setupQuery(): void {
         super.setupQuery();
-
-        // @Fixme Disabling page size because `itemsPerPage` query param causes an error in the Tasks MS (error: `Task criterion does not exist`)
-        this.query.enableParamItemsPerPage = false;
         this.query.setFilter('ownerUuid', this.defaultOwnerUuid);
     }
 

@@ -43,6 +43,9 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent {
                 case 'edit':
                     action.visible = false;
                     break;
+                case 'delete':
+                    action.visible = false;
+                    break;
             }
 
             return action;
