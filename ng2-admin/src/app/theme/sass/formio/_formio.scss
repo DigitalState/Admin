@@ -6,6 +6,13 @@
  * Form.io styles reset and override.
  */
 
+.formio {
+  formio-loader, // Hide the loading spinner since we are using our own
+  .alert.alert-success {
+    display: none;
+  }
+}
+
 .formio-form {
 
   //// Responsive Layout

@@ -1,4 +1,4 @@
-import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Injector, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Http } from '@angular/http';
@@ -7,14 +7,17 @@ import { FormioOptions } from 'angular-formio';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-import { DefaultModal } from '../../../components/modals/default-modal/default-modal.component';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
+import { CmsApiService } from '../../../../shared/services/cms.service';
+
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { isFunction } from 'rxjs/util/isFunction';
+
+import isEmpty from 'lodash/isEmpty';
 
 @Component({
     selector: 'ds-service-activate',
@@ -33,10 +36,13 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
 
     protected formioOptions: FormioOptions;
     protected formioFormSchema;
-    protected submissionResult: string;
+    protected formioLanguageEmitter: EventEmitter<string>;
+
     protected status: null | 'success' | 'failure';
     protected statusMessage: string;
     protected id: number;
+    protected isActivated: boolean = false;
+    protected isFormRendered: boolean = false;
 
     constructor(protected injector: Injector,
                 protected route: ActivatedRoute,
@@ -44,51 +50,14 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
                 protected location: Location,
                 protected microserviceConfig: MicroserviceConfig,
                 protected entityApiService: EntityApiService,
+                protected cms: CmsApiService,
                 protected modal: NgbModal,
                 protected toastr: ToastsManager) {
+
         super(injector, microserviceConfig);
         this.applyPageTitle();
-    }
 
-    // ngOnInit() {
-    //     super.ngOnInit();
-    //
-    //     this.formioOptions = {
-    //         i18n: {
-    //             lng: 'fr',
-    //             resources: {
-    //                 en: {
-    //                     translation: {
-    //                         firstName: 'FooBar',
-    //                     }
-    //                 },
-    //                 fr: {
-    //                     translation: {
-    //                         firstName: 'Prénom',
-    //                     }
-    //                 }
-    //             }
-    //         },
-    //         errors: null,
-    //         hooks: null,
-    //         alerts: null
-    //     };
-    // }
-
-    protected activate() {
-        let uuid = this.entity.uuid;
-        this.entityApiService.one('scenarios', uuid).customGET('form').subscribe(result => {
-            console.log('Scenarios/Form:', result);
-            this.formioFormSchema = {
-                'components': result.schema
-            };
-        }, (error) => { // error handling
-            this.handleActivationRequestError(error);
-        });
-    }
-
-    protected navigateBack() {
-        this.location.back();
+        this.formioLanguageEmitter = new EventEmitter();
     }
 
     protected prepareEntity(): Observable<any> {
@@ -96,21 +65,53 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
             this.activate();
             return Observable.empty();
         });
+    }
 
-        // this.entityApiService.getOne('scenarios', this.id).subscribe(res => {
-        //     this.entity = res;
-        //
-        //     let activationRequestUrl = this.ACTIVATION_REQUEST_URL_PREFIX + this.id;
-        //     this.http.get(activationRequestUrl)
-        //         .toPromise()
-        //         .then(response => {
-        //             this.formioFormSchema = response.json();
-        //         })
-        //         .catch((error) => {
-        //             this.handleActivationRequestError(error);
-        //         }
-        //     );
-        // });
+    protected activate() {
+        if (this.isActivated) {
+            return;
+        }
+
+        this.isActivated = true;
+        let uuid = this.entity.uuid;
+
+        this.entityApiService.one('scenarios', uuid).customGET('form').subscribe(result => {
+            // For some reason, FormioOptions has to be initialized with some values after view init
+            // but before the form schema is set
+            this.formioOptions = {
+                i18n: {}
+            };
+
+            // Load form translations from the CMS
+            this.cms.getFormioFormTranslations(result.id).subscribe((formTranslations) => {
+                // If translations exist for the form, merge them into the i18n form options
+                if (!isEmpty(formTranslations)) {
+                    this.formioOptions.i18n = formTranslations;
+                }
+            }, (error) => { // getFormioFormTranslations error handling
+                console.warn('Error while fetching form translations', error);
+            }, () => { // complete
+                this.formioFormSchema = {
+                    'components': result.schema
+                };
+            });
+
+        }, (error) => { // error handling
+            this.handleActivationRequestError(error);
+        });
+    }
+
+    protected switchFormLanguage(lang) {
+        this.formioLanguageEmitter.emit(lang);
+    }
+
+    /**
+     * When it renders, initialize form language to current UI language.
+     * @param renderEvent
+     */
+    protected onFormioFormRender(renderEvent) {
+        this.isFormRendered = true;
+        this.switchFormLanguage(this.translate.currentLang);
     }
 
     /**
@@ -205,4 +206,9 @@ export class DsScenarioActivateComponent extends DsBaseEntityShowComponent {
             this.statusMessage = 'ds.microservices.entity.scenario.submissionFailure';
         }
     }
+
+    protected navigateBack() {
+        this.location.back();
+    }
+
 }

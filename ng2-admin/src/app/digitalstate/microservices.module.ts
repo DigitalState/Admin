@@ -28,6 +28,7 @@ import { DsDatatableCellUuid } from './components/datatable/datatable-cell-uuid.
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
 import { DsLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
+import { DsLanguageSwitcherDropdownComponent } from './components/language-switcher-dropdown.component';
 import { DsBackLink } from './components/back-link.component';
 import { DsTranslatableIconComponent } from './components/translatable-icon.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
@@ -64,6 +65,7 @@ import forEach from 'lodash/forEach';
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
+        DsLanguageSwitcherDropdownComponent,
         DsBackLink,
         DsTranslatableIconComponent,
     ],
@@ -89,6 +91,7 @@ import forEach from 'lodash/forEach';
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
+        DsLanguageSwitcherDropdownComponent,
         // AppTranslationModule,
         TranslateModule,
         DsTranslatableIconComponent,
