@@ -72,8 +72,33 @@
 			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.createdAt' | translate }}</dt>
-					<dd>N/A</dd>
-					<!--<dd>{{ entity.createdAt | amLocal | amDateFormat: config.date.format.long }}</dd>-->
+					<dd>{{ entity.createdAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.dueAt' | translate }}</dt>
+					<dd>{{ entity.dueAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.followUpAt' | translate }}</dt>
+					<dd>{{ entity.followUpAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.priority' | translate }}</dt>
+					<dd>{{ entity.priority }}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
+					<dd>{{ entity.description }}</dd>
 				</dl>
 			</div>
 		</div>

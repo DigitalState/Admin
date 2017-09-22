@@ -663,6 +663,10 @@ export class MicroservicesDefinition {
                                 label: 'Title',
                                 type: 'string',
                             },
+                            'description': {
+                                label: 'Description',
+                                type: 'string',
+                            },
                             'form': {
                                 label: 'Form',
                                 type: 'string',
@@ -700,6 +704,18 @@ export class MicroservicesDefinition {
                             },
                             'createdAt': {
                                 label: 'Created At',
+                                type: 'date',
+                            },
+                            'dueAt': {
+                                label: 'Due At',
+                                type: 'date',
+                            },
+                            'followUpAt': {
+                                label: 'Follow-up At',
+                                type: 'date',
+                            },
+                            'priority': {
+                                label: 'Priority',
                                 type: 'date',
                             },
                         },
