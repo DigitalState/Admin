@@ -188,6 +188,9 @@
           "createdAt": "Created At",
           "updatedAt": "Updated At",
           "deletedAt": "Deleted At",
+          "dueAt": "Due At",
+          "followUpAt": "Follow-up At",
+          "priority": "Priority",
           "uuid": "UUID",
           "title": "Title",
           "form": "Form",
@@ -266,6 +269,10 @@
       }
     },
     "messages": {
+      "http": {
+        "400": "Invalid data",
+        "404": "Entity not found"
+      },
       "unexpectedError": "Unexpected error occured.",
       "registrationSucceeded": "You have been registered successfully.",
       "registrationFailed": "Registration failed.",

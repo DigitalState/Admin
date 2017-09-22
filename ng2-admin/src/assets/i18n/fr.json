@@ -188,6 +188,9 @@
           "createdAt": "Créé à",
           "updatedAt": "Mis à jour",
           "deletedAt": "Supprimé à",
+          "dueAt": "Dû à",
+          "followUpAt": "Suivi à",
+          "priority": "Priorité",
           "uuid": "UUID",
           "title": "Titre",
           "form": "Form",
@@ -266,6 +269,10 @@
       }
     },
     "messages": {
+      "http": {
+        "400": "Données invalides",
+        "404": "Entité introuvable"
+      },
       "unexpectedError": "Une erreur inattendue s'est produite.",
       "registrationSucceeded": "Vous avez été enregistré avec succès.",
       "registrationFailed": "Échec de l'enregistrement",
