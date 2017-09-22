@@ -1,5 +1,7 @@
 import { Injector } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Response } from '@angular/http';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager } from 'ng2-toastr';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
@@ -146,8 +148,10 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     }
 
     onPrepareEntityError(response: Response) {
-        const message = this.translate.instant('ds.messages.http.' + response.status);
-        this.toastr.error(message);
+        const title = this.translate.instant('ds.messages.http.' + response.status);
+        const data = response.json()
+        const message = (data && data.error) ? data.error : '';
+        this.toastr.error(message, title);
     }
 
     /**
