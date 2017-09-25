@@ -68,6 +68,24 @@
 	<!-- end: ng-content[select=".entity-body"] -->
 
 	<!-- begin: ng-content[select=".additional-card"] -->
+	<div *ngIf="entity.data" class="card entity-card additional-card animated fadeIn">
+		<div class="card-header">
+			<div class="row justify-content-between">
+				<div class="col-sm-12">
+					<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.data' | translate }}</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-block entity-body entity-data">
+			<div class="row">
+				<div class="col-sm-12">
+					<pre>{{ entity.data | entityTranslate | json }}</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div *ngIf="entity.scenarios" class="additional-card">
 		<ds-scenario-list [entityParent]="entity"></ds-scenario-list>
 	</div>

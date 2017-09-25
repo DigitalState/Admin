@@ -67,5 +67,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group required translatable">
+					<label for="data">{{ 'ds.microservices.entity.property.data' | staticTranslate:[formLang] }}</label>
+					<translatable-icon></translatable-icon>
+					<textarea id="data" name="data" [(ngModel)]="entity.data[formLang]" class="form-control" placeholder="" required json></textarea>
+					<div *ngIf="formErrors.data" class="alert alert-danger">
+						{{ formErrors.data }}
+					</div>
+					<p class="alert alert-danger" *ngIf="json?.errors?.json">json error</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </ds-entity-form>
