@@ -117,6 +117,9 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             // this.prepareEntity();
             this.lang = this.translate.currentLang;
+
+            // For entities that have parent UUIDs in the URL, generate the back-link when UI language changes
+            this.prepareEntityParent();
         });
 
         // Subscribe to current translation to make sure formLang is sent only when translations are ready
@@ -174,7 +177,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
     }
 
-    protected prepareEntityParent(urlPrefix: string, urlParam: string): Observable<any> {
+    protected prepareEntityParent(urlPrefix?: string, urlParam?: string): Observable<any> {
         if (this.entityParent) {
             this.generateBackLink();
             return Observable.of(this.entityParent);
