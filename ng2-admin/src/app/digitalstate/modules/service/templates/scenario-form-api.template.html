@@ -72,7 +72,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required">
 					<label for="url">{{ 'ds.microservices.entity.property.url' | staticTranslate:[formLang] }}</label>
-					<input id="url" name="url" type="text" [(ngModel)]="entity.data.url" class="form-control" required>
+					<input id="url" name="url" type="text" [(ngModel)]="entity.config.url" class="form-control" required>
 					<div *ngIf="formErrors.url" class="alert alert-danger">
 						{{ formErrors.url }}
 					</div>
@@ -81,7 +81,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
 					<label for="button-text">{{ 'ds.microservices.entity.property.button_text' | staticTranslate:[formLang] }}</label>
-					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data.button_text" class="form-control" required>
+					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data[formLang].button_text" class="form-control" required>
 					<div *ngIf="formErrors.button_text" class="alert alert-danger">
 						{{ formErrors.button_text }}
 					</div>

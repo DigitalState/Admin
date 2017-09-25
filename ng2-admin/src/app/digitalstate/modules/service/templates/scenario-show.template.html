@@ -77,16 +77,16 @@
 			<div *ngIf="entity.type === 'bpm'" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.process_definition_key' | translate }}</dt>
-					<dd>{{ entity.data.process_definition_key }}</dd>
+					<dd>{{ entity.config.process_definition_key }}</dd>
 				</dl>
 			</div>
 			<div *ngIf="['url', 'api'].indexOf(entity.type) >= 0" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.url' | translate }}</dt>
-					<dd>{{ entity.data.url }}</dd>
+					<dd>{{ entity.config.url }}</dd>
 				</dl>
 			</div>
-			<div *ngIf="entity.data && entity.data.button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
+			<div *ngIf="entity.data && entity.data[lang].button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.button_text' | translate }}</dt>
 					<dd>
@@ -94,13 +94,13 @@
 						   class="btn btn-primary"
 						   [routerLink]="['../activate']"
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
-							{{ entity.data.button_text | translate }}
+							{{ entity.data[lang].button_text }}
 						</a>
 						<a *ngIf="['url', 'api'].indexOf(entity.type) >= 0"
 						   class="btn btn-primary"
-						   href="{{ entity.data.url }}" target="_blank"
+						   href="{{ entity.config.url }}" target="_blank"
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
-							{{ entity.data.button_text | translate }}
+							{{ entity.data[lang].button_text }}
 						</a>
 					</dd>
 				</dl>

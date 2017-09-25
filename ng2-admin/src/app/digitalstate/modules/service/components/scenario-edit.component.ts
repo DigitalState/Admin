@@ -23,8 +23,7 @@ export class DsScenarioEditComponent extends DsScenarioFormComponent {
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
     entityParentUrlParam = 'serviceUuid';
-    headerTitle = 'Edit Scenario';
-    // headerTitle = 'general.menu.scenarios';
+    headerTitle = 'ds.microservices.entity.types.scenario';
     headerSubtitle = null;
     isNew = false;
 

@@ -16,7 +16,7 @@ export class DsScenarioFormComponent extends DsBaseEntityFormComponent {
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
     entityParentUrlParam = 'serviceUuid';
-    headerTitle = 'ds.microservices.entity.types.case';
+    pageTitle = 'general.menu.serviceDirectory';
     headerSubtitle = null;
 
     constructor(injector: Injector,

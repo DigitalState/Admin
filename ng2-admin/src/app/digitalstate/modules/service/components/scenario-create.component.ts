@@ -25,7 +25,7 @@ export class DsScenarioCreateComponent extends DsScenarioFormComponent {
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
     entityParentUrlParam = 'serviceUuid';
-    headerTitle = 'Add Scenario';
+    headerTitle = 'ds.microservices.entity.types.scenario';
     isNew = true;
 
     slug: Slug = null;
@@ -88,7 +88,7 @@ export class DsScenarioCreateComponent extends DsScenarioFormComponent {
 
 
 @Component({
-    selector: 'ds-scenario-create-bpm',
+    selector: 'ds-scenario-create-info',
     templateUrl: '../templates/scenario-form-info.template.html'
 })
 export class DsScenarioCreateInfoComponent extends DsScenarioCreateComponent {
@@ -131,17 +131,23 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
         ]);
 
         assign(this.entityMetadata, extraProps);
-        console.log(this.entityMetadata);
     }
 
     protected createBlankEntity(): any {
         return super.createBlankEntity().flatMap(entity => {
             entity.type = 'bpm';
-            entity.data = {
+            entity.config = {
                 'bpm': 'camunda',
                 'process_definition_key': '',
-                'button_text': '',
             };
+
+            // Initialize multilingual metadata
+            entity.data = {};
+            this.translate.langs.forEach(function(lang) {
+                entity.data[lang] = {};
+                entity.data[lang]['button_text'] = '';
+            });
+
             return Observable.of(entity);
         });
     }
@@ -169,16 +175,22 @@ export class DsScenarioCreateUrlComponent extends DsScenarioCreateComponent {
         ]);
 
         assign(this.entityMetadata, extraProps);
-        console.log(this.entityMetadata);
     }
 
     protected createBlankEntity(): any {
         return super.createBlankEntity().flatMap(entity => {
             entity.type = 'url';
-            entity.data = {
+            entity.config = {
                 'url': '',
-                'button_text': '',
             };
+
+            // Initialize multilingual metadata
+            entity.data = {};
+            this.translate.langs.forEach(function(lang) {
+                entity.data[lang] = {};
+                entity.data[lang]['button_text'] = '';
+            });
+
             return Observable.of(entity);
         });
     }
@@ -207,16 +219,22 @@ export class DsScenarioCreateApiComponent extends DsScenarioCreateComponent {
         ]);
 
         assign(this.entityMetadata, extraProps);
-        console.log(this.entityMetadata);
     }
 
     protected createBlankEntity(): any {
         return super.createBlankEntity().flatMap(entity => {
             entity.type = 'api';
-            entity.data = {
+            entity.config = {
                 'url': '',
-                'button_text': '',
             };
+
+            // Initialize multilingual metadata
+            entity.data = {};
+            this.translate.langs.forEach(function(lang) {
+                entity.data[lang] = {};
+                entity.data[lang]['button_text'] = '';
+            });
+
             return Observable.of(entity);
         });
     }

@@ -169,6 +169,16 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                translated: true,
+                                validation: {
+                                    'json': { message: 'json' },
+                                    'required': { message: 'required'},
+                                },
+                            },
                             'weight': {
                                 label: 'Weight',
                                 type: 'number',
@@ -271,19 +281,27 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required' },
                                 },
                             },
+                            'config': {
+                                label: 'Config',
+                                type: 'json',
+                                default: {},
+                                validation: {
+                                    'json': { message: 'json' },
+                                },
+                            },
                             'data': {
                                 label: 'Data',
                                 type: 'json',
-                                default: {
-                                    // 'bpm': 'camunda',
-                                    // 'process_definition_key': '',
-                                    // 'info': {},
+                                default: {},
+                                translated: true,
+                                validation: {
+                                    'json': { message: 'json' },
                                 },
                             },
                         },
                         conditionalProperties: { // based on scenario types
                             'process_definition_key': {
-                                parent: 'data',
+                                parent: 'config',
                                 label: 'Process definition key',
                                 type: 'string',
                                 default: '',
@@ -292,7 +310,7 @@ export class MicroservicesDefinition {
                                 },
                             },
                             'url': {
-                                parent: 'data',
+                                parent: 'config',
                                 label: 'url',
                                 type: 'string',
                                 default: '',
@@ -407,6 +425,7 @@ export class MicroservicesDefinition {
                                 translated: true,
                                 validation: {
                                     'json': { message: 'json' },
+                                    'required': { message: 'required'},
                                 },
                             },
                         },

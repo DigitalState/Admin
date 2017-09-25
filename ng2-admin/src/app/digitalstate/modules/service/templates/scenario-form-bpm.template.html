@@ -72,7 +72,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required">
 					<label for="process-definition-key">{{ 'ds.microservices.entity.property.process_definition_key' | staticTranslate:[formLang] }}</label>
-					<input id="process-definition-key" name="process_definition_key" type="text" [(ngModel)]="entity.data.process_definition_key" class="form-control" required>
+					<input id="process-definition-key" name="process_definition_key" type="text" [(ngModel)]="entity.config.process_definition_key" class="form-control" required>
 					<div *ngIf="formErrors.process_definition_key" class="alert alert-danger">
 						{{ formErrors.process_definition_key }}
 					</div>
@@ -81,7 +81,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
 					<label for="button-text">{{ 'ds.microservices.entity.property.button_text' | staticTranslate:[formLang] }}</label>
-					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data.button_text" class="form-control" required>
+					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data[formLang].button_text" class="form-control" required>
 					<div *ngIf="formErrors.button_text" class="alert alert-danger">
 						{{ formErrors.button_text }}
 					</div>
