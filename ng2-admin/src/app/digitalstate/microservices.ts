@@ -735,7 +735,7 @@ export class MicroservicesDefinition {
                             },
                             'priority': {
                                 label: 'Priority',
-                                type: 'date',
+                                type: 'number',
                             },
                         },
                     },
