@@ -13,7 +13,7 @@ import 'rxjs/Rx';
 export class DsSubmissionListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'submissions';
-    pageTitle = 'general.menu.taskDirectory';
+    pageTitle = 'general.menu.tasks';
     headerTitle = 'general.menu.submissions';
     headerSubtitle = '';
 

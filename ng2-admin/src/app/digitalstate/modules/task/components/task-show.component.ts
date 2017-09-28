@@ -20,7 +20,7 @@ import isEmpty from 'lodash/isEmpty';
 export class DsTaskShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'tasks';
-    pageTitle = 'general.menu.taskDirectory';
+    pageTitle = 'general.menu.tasks';
     headerTitle = 'ds.microservices.entity.types.task';
     backLink = new Link(['../../list'], 'general.list');
 

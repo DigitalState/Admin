@@ -16,7 +16,7 @@ import { LocalApiUtils } from '../../../utils/local-api.utils';
 export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'submissions';
-    pageTitle = 'general.menu.taskDirectory';
+    pageTitle = 'general.menu.tasks';
     headerTitle = 'ds.microservices.entity.types.submission';
     headerSubtitle = null;
     backLink = new Link(['../../list'], 'general.list');

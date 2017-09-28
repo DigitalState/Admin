@@ -19,7 +19,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'tasks';
     headerTitle = 'general.menu.tasks';
-    pageTitle = 'general.menu.taskDirectory';
+    pageTitle = 'general.menu.tasks';
     // actions: Array<any> = [
     //     {
     //         name: 'activate',
