@@ -28,6 +28,8 @@ export class DsCaseListComponent extends DsBaseEntityListComponent {
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'customId', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'state', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
+            { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
+            { prop: 'updatedAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
 }

@@ -428,6 +428,14 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
                         },
                     },
                     'case-statuses': {
