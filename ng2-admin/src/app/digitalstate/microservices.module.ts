@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdProgressBarModule, MdCheckboxModule, MdProgressSpinnerModule } from '@angular/material';
+import { MdProgressBarModule, MdCheckboxModule } from '@angular/material';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { FilterByPipe } from 'ngx-pipes/src/app/pipes/array/filter-by';
@@ -28,7 +28,6 @@ import { DsDatatableCellUuid } from './components/datatable/datatable-cell-uuid.
 import { DsDatatableCellActions } from './components/datatable/datatable-cell-actions.component';
 import { DsLanguageSwitcherComponent } from './components/language-switcher.component';
 import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-tabs.component';
-import { DsLanguageSwitcherDropdownComponent } from './components/language-switcher-dropdown.component';
 import { DsBackLink } from './components/back-link.component';
 import { DsTranslatableIconComponent } from './components/translatable-icon.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
@@ -46,7 +45,6 @@ import forEach from 'lodash/forEach';
         ReactiveFormsModule,
         NgArrayPipesModule,
         MdProgressBarModule,
-        MdProgressSpinnerModule,
         MdCheckboxModule,
         // AppTranslationModule,
         TranslateModule,
@@ -65,7 +63,6 @@ import forEach from 'lodash/forEach';
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
-        DsLanguageSwitcherDropdownComponent,
         DsBackLink,
         DsTranslatableIconComponent,
     ],
@@ -79,7 +76,6 @@ import forEach from 'lodash/forEach';
     exports: [
         ReactiveFormsModule,
         MdProgressBarModule,
-        MdProgressSpinnerModule,
         MdCheckboxModule,
         DsMicroservicesComponent,
         DsEntityListComponent,
@@ -91,7 +87,6 @@ import forEach from 'lodash/forEach';
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
-        DsLanguageSwitcherDropdownComponent,
         // AppTranslationModule,
         TranslateModule,
         DsTranslatableIconComponent,
