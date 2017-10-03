@@ -1,8 +1,13 @@
 import { Component, Injector } from '@angular/core';
 
+import { NgbModalOptions, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { AuthService } from '../../../../shared/modules/auth/auth.service';
 import { User } from '../../../../shared/modules/auth/user';
+import { FormioApiService } from '../../../../shared/services/formio-api.service';
+import { FormioController } from "../../../../shared/components/modals/formio-controller";
+import { FormioModalFrameComponent } from "../../../../shared/components/modals/formio-modal-frame.component";
 
 import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
 import { EntityApiService } from '../entity-api.service';
@@ -17,23 +22,27 @@ import isEmpty from 'lodash/isEmpty';
     selector: 'ds-task-show',
     templateUrl: '../templates/task-show.template.html'
 })
-export class DsTaskShowComponent extends DsBaseEntityShowComponent {
+export class DsTaskShowComponent extends DsBaseEntityShowComponent implements FormioController {
 
     entityUrlPrefix = 'tasks';
     pageTitle = 'general.menu.tasks';
     headerTitle = 'ds.microservices.entity.types.task';
     backLink = new Link(['../../list'], 'general.list');
-
     authUser: User;
+
+    formioModal: NgbModalRef;
+    iFrameModalComponent: FormioModalFrameComponent;
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService,
-                auth: AuthService) {
+                auth: AuthService,
+                protected formioApiService: FormioApiService) {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
         this.authUser = auth.getAuthUser();
+        this.formioApiService.setEntityApiService(entityApiService);
     }
 
     ngOnInit() {
@@ -59,7 +68,7 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent {
                 class: 'btn btn-primary btn-with-icon',
                 // iconClass: 'ion-power',
                 visible: true,
-                routerLink: ['../activate'],
+                // routerLink: ['../activate'],
                 region: 'header',
             },
             {
@@ -114,6 +123,9 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent {
 
     protected handleEntityEvent(event: any): any {
         switch (event.action.name) {
+            case 'activate':
+                this.activateFormioForm();
+                break;
             case 'claim':
                 this.claimTask();
                 break;
@@ -168,6 +180,39 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent {
             const message = this.translate.instant('ds.microservices.entity.task.unclaimFailure')
             this.toastr.error(message);
         });
+    }
+
+    // // // Formio // // // // // // // // // // // // // // // // // // // // // // //
+
+    protected activateFormioForm() {
+        this.openModalIFrame();
+    }
+
+    protected openModalIFrame() {
+        const modalOptions: NgbModalOptions = {
+            size: 'lg',
+            windowClass: 'formio-modal-frame',
+        };
+
+        this.formioModal = this.modal.open(FormioModalFrameComponent, modalOptions);
+        this.iFrameModalComponent = this.formioModal.componentInstance;
+        this.iFrameModalComponent.setFormioController(this);
+    }
+
+    requestFormioForm(): Observable<any> {
+        return this.formioApiService.getForm('tasks', this.entity.uuid);
+    }
+
+    submitFormioForm(formData: any): Observable<any> {
+        return this.formioApiService.submitFormUsingPut('tasks', this.entity.uuid, formData, 'submission').flatMap(submissionResult => {
+            this.formioModal.close();
+            this.toastr.success(this.translate.instant('ds.microservices.entity.task.submissionSuccess'));
+            return Observable.of(submissionResult);
+        });
+    }
+
+    handleFormioFormEvent(lifeCycleMethod: string, arg: any) {
+        // Do nothing
     }
 
 }

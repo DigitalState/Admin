@@ -1,11 +1,18 @@
-import { Component, Injector } from '@angular/core';
+import { Component, ElementRef, Injector } from '@angular/core';
+
+import { NgbModalOptions, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+
+import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
+import { ApiUtils } from '../../../../shared/utils/api.utils';
+import { FormioApiService } from '../../../../shared/services/formio-api.service';
+import { FormioController } from "../../../../shared/components/modals/formio-controller";
+import { FormioModalFrameComponent } from "../../../../shared/components/modals/formio-modal-frame.component";
 
 import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
-import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
+
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-import { ApiUtils } from '../../../../shared/utils/api.utils';
 
 import omit from 'lodash/omit';
 
@@ -13,7 +20,7 @@ import omit from 'lodash/omit';
     selector: 'ds-scenario-show',
     templateUrl: '../templates/scenario-show.template.html'
 })
-export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
+export class DsScenarioShowComponent extends DsBaseEntityShowComponent implements FormioController {
 
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
@@ -21,12 +28,17 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
     headerTitle = 'ds.microservices.entity.types.scenario';
     headerSubtitle = null;
 
+    formioModal: NgbModalRef;
+    iFrameModalComponent: FormioModalFrameComponent;
+
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig,
-                protected entityApiService: EntityApiService) {
+                protected entityApiService: EntityApiService,
+                protected formioApiService: FormioApiService) {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
+        this.formioApiService.setEntityApiService(entityApiService);
 
         // Create a place-holder for the back-link until it gets generated
         this.backLink = this.getEmptyBackLink();
@@ -90,4 +102,38 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent {
         }
         return super.prepareEntityParent(urlPrefix, urlParam);
     }
+
+    // // // Formio // // // // // // // // // // // // // // // // // // // // // // // //
+
+    protected activateFormioForm() {
+        this.openModalIFrame();
+    }
+
+    protected openModalIFrame() {
+        const modalOptions: NgbModalOptions = {
+            size: 'lg',
+            windowClass: 'formio-modal-frame',
+        };
+
+        this.formioModal = this.modal.open(FormioModalFrameComponent, modalOptions);
+        this.iFrameModalComponent = this.formioModal.componentInstance;
+        this.iFrameModalComponent.setFormioController(this);
+    }
+
+    requestFormioForm(): Observable<any> {
+        return this.formioApiService.getForm('scenarios', this.entity.uuid);
+    }
+
+    submitFormioForm(formData: any): Observable<any> {
+        return this.formioApiService.submitFormUsingPost('scenarios', this.entity.uuid, formData).flatMap(submissionResult => {
+            this.formioModal.close();
+            this.toastr.success(this.translate.instant('ds.microservices.entity.scenario.submissionSuccess'));
+            return Observable.of(submissionResult);
+        });
+    }
+
+    handleFormioFormEvent(lifeCycleMethod: string, arg: any) {
+        // Do nothing
+    }
+
 }

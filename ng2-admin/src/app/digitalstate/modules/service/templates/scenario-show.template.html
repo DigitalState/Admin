@@ -91,8 +91,9 @@
 					<dt>{{ 'ds.microservices.entity.property.button_text' | translate }}</dt>
 					<dd>
 						<a *ngIf="entity.type === 'bpm'"
+						   (click)="activateFormioForm(); false"
 						   class="btn btn-primary"
-						   [routerLink]="['../activate']"
+						   href=""
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
 							{{ entity.data[lang].button_text }}
 						</a>
@@ -103,6 +104,20 @@
 							{{ entity.data[lang].button_text }}
 						</a>
 					</dd>
+					<!--<dd>-->
+						<!--<a *ngIf="entity.type === 'bpm'"-->
+						   <!--class="btn btn-primary"-->
+						   <!--[routerLink]="['../activate']"-->
+						   <!--title="{{ 'ds.microservices.entity.action.activate' | translate }}">-->
+							<!--{{ entity.data[lang].button_text }}-->
+						<!--</a>-->
+						<!--<a *ngIf="['url', 'api'].indexOf(entity.type) >= 0"-->
+						   <!--class="btn btn-primary"-->
+						   <!--href="{{ entity.config.url }}" target="_blank"-->
+						   <!--title="{{ 'ds.microservices.entity.action.activate' | translate }}">-->
+							<!--{{ entity.data[lang].button_text }}-->
+						<!--</a>-->
+					<!--</dd>-->
 				</dl>
 			</div>
 		</div>
