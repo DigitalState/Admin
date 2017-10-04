@@ -60,23 +60,11 @@ module.exports = function (env) {
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        // filename: 'index.html',
         title: METADATA.title,
-        // chunks: ['polyfills', 'vendor', 'main'],
         chunksSortMode: 'dependency',
         metadata: METADATA,
         inject: 'head'
       })
-
-      // new HtmlWebpackPlugin({
-      //   template: 'src/formio.html',
-      //   filename: 'formio.html',
-      //   metadata: METADATA,
-      //   title: METADATA.title,
-      //   chunks: ['simplex', 'formio'],
-      //   chunksSortMode: 'dependency',
-      //   inject: false,
-      // }),
     ]
   };
 };
