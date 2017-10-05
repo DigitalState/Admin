@@ -57,7 +57,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
 
     formioModal: NgbModalRef;
     iFrameModalComponent: FormioModalFrameComponent;
-    selectedEntityUuid: string; // set upon clicking `Activate` on a row
+    selectedRow: any; // set upon clicking `Activate` on a row
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
@@ -215,12 +215,13 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
 
     // // // Formio // // // // // // // // // // // // // // // // // // // // // // //
 
-    protected activateFormioForm(entity) {
-        this.selectedEntityUuid = entity.uuid;
-        this.openModalIFrame();
+    protected activateFormioForm(entity: any) {
+        this.openModalIFrame(entity);
     }
 
-    protected openModalIFrame() {
+    protected openModalIFrame(entity: any) {
+        this.selectedRow = entity;
+
         const modalOptions: NgbModalOptions = {
             size: 'lg',
             windowClass: 'formio-modal-frame',
@@ -228,15 +229,16 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
 
         this.formioModal = this.modal.open(FormioModalFrameComponent, modalOptions);
         this.iFrameModalComponent = this.formioModal.componentInstance;
+        this.iFrameModalComponent.modalHeader = this.getTranslatedPropertyValue(this.selectedRow, 'title');
         this.iFrameModalComponent.setFormioController(this);
     }
 
     requestFormioForm(): Observable<any> {
-        return this.formioApiService.getForm('tasks', this.selectedEntityUuid);
+        return this.formioApiService.getForm('tasks', this.selectedRow.uuid);
     }
 
     submitFormioForm(formData: any): Observable<any> {
-        return this.formioApiService.submitFormUsingPut('tasks', this.selectedEntityUuid, formData, 'submission').flatMap(submissionResult => {
+        return this.formioApiService.submitFormUsingPut('tasks', this.selectedRow.uuid, formData, 'submission').flatMap(submissionResult => {
             this.formioModal.close();
             this.toastr.success(this.translate.instant('ds.microservices.entity.task.submissionSuccess'));
             this.refreshList();

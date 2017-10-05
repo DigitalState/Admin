@@ -114,11 +114,11 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent implement
 
     // // // Formio // // // // // // // // // // // // // // // // // // // // // // // //
 
-    protected activateFormioForm() {
-        this.openModalIFrame();
+    protected activateFormioForm(entity: any) {
+        this.openModalIFrame(entity);
     }
 
-    protected openModalIFrame() {
+    protected openModalIFrame(entity: any) {
         const modalOptions: NgbModalOptions = {
             size: 'lg',
             windowClass: 'formio-modal-frame',
@@ -126,6 +126,7 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent implement
 
         this.formioModal = this.modal.open(FormioModalFrameComponent, modalOptions);
         this.iFrameModalComponent = this.formioModal.componentInstance;
+        this.iFrameModalComponent.modalHeader = this.getTranslatedPropertyValue(entity, 'title');
         this.iFrameModalComponent.setFormioController(this);
     }
 

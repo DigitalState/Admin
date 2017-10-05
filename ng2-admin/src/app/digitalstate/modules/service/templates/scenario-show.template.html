@@ -91,7 +91,7 @@
 					<dt>{{ 'ds.microservices.entity.property.button_text' | translate }}</dt>
 					<dd>
 						<a *ngIf="entity.type === 'bpm'"
-						   (click)="activateFormioForm(); false"
+						   (click)="activateFormioForm(entity); false"
 						   class="btn btn-primary"
 						   href=""
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
