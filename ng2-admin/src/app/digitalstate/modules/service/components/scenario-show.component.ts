@@ -25,6 +25,7 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent implement
     entityUrlPrefix = 'scenarios';
     entityParentUrlPrefix = 'services';
     entityParentUrlParam = 'serviceUuid';
+    pageTitle = 'general.menu.serviceDirectory';
     headerTitle = 'ds.microservices.entity.types.scenario';
     headerSubtitle = null;
 

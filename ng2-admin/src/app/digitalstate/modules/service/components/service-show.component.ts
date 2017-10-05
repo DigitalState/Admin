@@ -13,6 +13,7 @@ import { Link } from '../../../models/link';
 export class DsServiceShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'services';
+    pageTitle = 'general.menu.serviceDirectory';
     headerTitle = 'ds.microservices.entity.types.service';
     backLink = new Link(['../../list'], 'general.list');
 
