@@ -92,6 +92,14 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent implements Fo
         super.ngOnInit();
     }
 
+    ngOnDestroy() {
+        if (this.formioModal) {
+            this.formioModal.close();
+        }
+
+        super.ngOnDestroy();
+    }
+
     /**
      * Depending on the Task assignee (identity) setting, show either `Claim` or `Unclaim` action.
      * Already claimed tasks cannot be reclaimed unless unclaimed first.

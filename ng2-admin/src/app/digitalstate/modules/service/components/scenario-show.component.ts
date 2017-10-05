@@ -70,6 +70,14 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent implement
         super.ngOnInit();
     }
 
+    ngOnDestroy() {
+        if (this.formioModal) {
+            this.formioModal.close();
+        }
+
+        super.ngOnDestroy();
+    }
+
     /**
      * Change the route of the `edit` header action by appending the scenario's type to it.
      * @returns {Observable<R>}

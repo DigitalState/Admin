@@ -73,6 +73,14 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
         this.formioApiService.setEntityApiService(entityApiService);
     }
 
+    ngOnDestroy() {
+        if (this.formioModal) {
+            this.formioModal.close();
+        }
+
+        super.ngOnDestroy();
+    }
+
     setupUi(): any {
         this.datatableAttributes.headerHeight = 45;
 
@@ -130,7 +138,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
             console.log(businessUnits);
             this.businessUnits = businessUnits;
             this.customFiltersForm = this.formBuilder.group({
-                'ownerUuid': ''
+                'ownerUuid': this.defaultOwnerUuid
             });
 
             this.showCustomFilters = true;
