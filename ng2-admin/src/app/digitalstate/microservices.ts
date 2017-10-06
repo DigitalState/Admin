@@ -195,6 +195,34 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'deletedAt': {
+                                label: 'Deleted At',
+                                type: 'date',
+                            },
                         },
                     },
                     'scenarios': {
