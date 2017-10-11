@@ -86,7 +86,7 @@
 					<dd>{{ entity.config.url }}</dd>
 				</dl>
 			</div>
-			<div *ngIf="entity.data && entity.data[lang].button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
+			<div *ngIf="entityParent && entity.data && entity.data[lang].button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.button_text' | translate }}</dt>
 					<dd>

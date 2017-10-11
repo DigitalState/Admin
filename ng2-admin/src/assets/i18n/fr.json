@@ -37,6 +37,7 @@
     "portal-translation": "Traduction du portail",
     "copyToClipboard": "Copier dans le presse-papier",
     "businessUnit": "Unité d'affaires",
+    "form": "Form",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"

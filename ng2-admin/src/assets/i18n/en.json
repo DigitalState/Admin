@@ -37,6 +37,7 @@
     "portal-translation": "Portal Translations",
     "copyToClipboard": "Copy to clipboard",
     "businessUnit": "Business Unit",
+    "form": "Form",
     "forms": {
       "option1": "Option 1",
       "passwordsDoNotMatch": "Passwords don't match."
