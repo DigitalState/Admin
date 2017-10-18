@@ -36,6 +36,9 @@
     "admin-translation": "Admin Translations",
     "portal-translation": "Portal Translations",
     "copyToClipboard": "Copy to clipboard",
+    "chooseFile": "Choose File",
+    "fileName": "File Name",
+    "fileType": "File Type",
     "businessUnit": "Business Unit",
     "form": "Form",
     "forms": {
@@ -110,6 +113,10 @@
       "definitions": "Definitions",
       "anonymousCaseLookup": "Anonymous Case Lookup",
       "cms": "CMS",
+      "data": "Data",
+      "text": "Text",
+      "pages": "Pages",
+      "files": "Files",
       "camunda": "Camunda",
       "configs": "Configs",
       "discovery": "Discovery",
@@ -229,7 +236,11 @@
           "individual": "Individual",
           "staff": "Staff",
           "anonymous": "Anonymous",
-          "persona": "Persona"
+          "persona": "Persona",
+          "data": "Data",
+          "text": "Text",
+          "page": "Page",
+          "file": "File"
         },
         "property": {
           "createdAt": "Created At",
@@ -259,6 +270,7 @@
           "type": "Type",
           "channel": "Channel",
           "data": "Data",
+          "value": "Value",
           "status": "Status",
           "statuses": "Statuses",
           "info": "Info",

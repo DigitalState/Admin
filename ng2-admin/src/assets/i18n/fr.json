@@ -36,6 +36,9 @@
     "admin-translation": "Traductions d'administration",
     "portal-translation": "Traduction du portail",
     "copyToClipboard": "Copier dans le presse-papier",
+    "chooseFile": "Choisir le fichier",
+    "fileName": "Nom de fichier",
+    "fileType": "Type de fichier",
     "businessUnit": "Unité d'affaires",
     "form": "Form",
     "forms": {
@@ -110,6 +113,10 @@
       "definitions": "Définitions",
       "anonymousCaseLookup": "Cas anonyme",
       "cms": "CMS",
+      "data": "Les Données",
+      "text": "Texte",
+      "pages": "Pages",
+      "files": "Fichiers",
       "camunda": "Camunda",
       "configs": "Configurations",
       "discovery": "Découverte",
@@ -228,7 +235,11 @@
           "individual": "Individuel",
           "staff": "Personnel",
           "anonymous": "Anonyme",
-          "persona": "Persona"
+          "persona": "Persona",
+          "data": "Données",
+          "text": "Texte",
+          "page": "Page",
+          "file": "Fichier"
         },
         "property": {
           "createdAt": "Créé à",
@@ -258,6 +269,7 @@
           "type": "Type",
           "channel": "Canal",
           "data": "Data",
+          "value": "Valeur",
           "status": "Statut",
           "statuses": "Statuts",
           "info": "Info",
