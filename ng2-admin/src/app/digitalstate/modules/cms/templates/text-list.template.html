@@ -1,0 +1,58 @@
+<ds-entity-list [headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				[actions]="actions"
+				[headerActions]="headerActions"
+				(headerActionEmitter)="handleHeaderEvent($event)">
+
+	<div *ngIf="showCustomFilters" class="card-header custom-filters">
+		<form [formGroup]="customFiltersForm" class="form-inline">
+			<div class="form-group">
+				<label for="filter-ownerUuid" class="form-control-static w-auto">{{ 'general.businessUnit' | translate }}</label>
+				<select id="filter-ownerUuid" formControlName="ownerUuid" class="form-control">
+					<option *ngFor="let bu of businessUnits" [value]="bu.uuid" [selected]="bu.uuid === defaultOwnerUuid">
+						{{ bu.title[lang] }}
+					</option>
+				</select>
+				<!--<button (click)="resetCustomFilters()">Reset</button>-->
+			</div>
+		</form>
+	</div>
+
+	<ngx-datatable #datatable
+				   [loadingIndicator]="loading"
+				   [sorts]="sorts"
+				   [rows]="rows"
+				   [columns]="columns"
+				   [count]="pager.totalItems"
+				   [offset]="pager.pageNumber"
+				   [limit]="pager.size"
+				   (page)="setPage($event)"
+				   (sort)="onSort($event)"
+				   class="material">
+	</ngx-datatable>
+</ds-entity-list>
+
+<ng-template #headerTpl let-column="column" let-sorts="sorts" let-sortDir="sortDir" let-sort="sortFn">
+	<ds-datatable-header sortType="single"
+						 sortAscendingIcon="datatable-icon-up"
+						 sortDescendingIcon="datatable-icon-down"
+						 [column]="column"
+						 [sort]="sort"
+						 [sortDir]="sortDir"
+						 (onFilterValueChange)="onFilterValueChange($event)"
+	>
+	</ds-datatable-header>
+</ng-template>
+
+<ng-template #textCellTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell [column]="column" [row]="row" [value]="value"></ds-datatable-cell>
+</ng-template>
+
+<ng-template #textCellUuidTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell-uuid [column]="column" [row]="row" [value]="value"></ds-datatable-cell-uuid>
+</ng-template>
+
+<!--<ng-container *ngTemplateOutlet="actionsTpl; context: {actions: actions}"></ng-container>-->
+<ng-template #actionsTpl let-column="column" let-row="row">
+	<ds-datatable-cell-actions [row]="row" (rowActionEmitter)="handleRowEvent($event)"></ds-datatable-cell-actions>
+</ng-template>
