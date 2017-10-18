@@ -1,5 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuardService } from '../../../shared/modules/auth/auth-guard.service';
+
 import { DsTaskComponent } from './task.component';
 import { DsTaskListComponent } from './components/task-list.component';
 import { DsTaskActivateComponent } from './components/task-activate.component';
@@ -16,6 +18,7 @@ const routes: Routes = [
     {
         path: '',
         component: DsTaskComponent,
+        canActivate: [AuthGuardService],
         children: [
             // Uncomment the following to have the default EMPTY route redirect back to the dashboard
             // { path: '', redirectTo: '/pages/dashboard', pathMatch: 'full' },
