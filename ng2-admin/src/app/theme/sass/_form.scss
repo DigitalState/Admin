@@ -719,3 +719,26 @@ label.custom-checkbox {
     }
   }
 }
+
+.file-preview {
+  display: block;
+  width: 50%;
+  height: auto;
+  background-image: url($images-root + 'checkered-bg.png');
+  border: 1px solid $input-border-color;
+}
+
+.file-metadata {
+  dl {
+    margin-bottom: 0;
+
+    dt, dd {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    dt {
+      margin-right: 10px;
+    }
+  }
+}

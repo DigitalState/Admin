@@ -1,0 +1,107 @@
+<ds-entity-show *ngIf="entity"
+				[entity]="entity"
+				[backLink]="backLink"
+				[headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				[actions]="actions"
+				(entityActionEmitter)="handleEntityEvent($event)">
+
+	<!-- begin: ng-content[select="button.entity-action"] -->
+	<!-- end: ng-content[select="button.entity-action"] -->
+
+	<!-- begin: ng-content[select=".entity-body"] -->
+	<div class="card-block entity-body entity-data">
+		<div class="row">
+			<div class="col-sm-12">
+				<dl>
+					<dt>UUID</dt>
+					<dd><ds-clipboard-copy [copyContent]="entity.uuid">{{entity.uuid}}</ds-clipboard-copy></dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
+					<dd>{{entity.title | entityTranslate}}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.slug' | translate }}</dt>
+					<dd>{{entity.slug}}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.owner' | translate }}</dt>
+					<dd>
+						{{ entity.owner }}
+						<!--<span *ngIf="ownerEntity">({{ ownerEntity.title | entityTranslate }})</span>-->
+					</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.ownerUuid' | translate }}</dt>
+					<dd>{{ entity.ownerUuid }}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.createdAt' | translate }}</dt>
+					<dd>{{ entity.createdAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.updatedAt' | translate }}</dt>
+					<dd>{{ entity.updatedAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+			<div *ngIf="entity.deletedAt" class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.deletedAt' | translate }}</dt>
+					<dd>{{entity.deletedAt | amLocal | amDateFormat: config.date.format.long }}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
+					<dd class="ws-pre-line">{{entity.description | entityTranslate}}</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<!-- end: ng-content[select=".entity-body"] -->
+
+	<!-- begin: ng-content[select=".additional-card"] -->
+	<div *ngIf="entity.presentation" class="card entity-card additional-card animated fadeIn">
+		<div class="card-header">
+			<div class="row justify-content-between">
+				<div class="col-sm-12">
+					<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.presentation' | translate }}</h3>
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="entity.presentation && entity.presentation[lang]" class="card-block entity-body entity-data">
+			<div class="row">
+				<div class="col-sm-12">
+					<!--<img #filePreviewImg class="file-preview" [src]="entity.presentation[lang] || '/assets/img/placeholder.svg'" />-->
+					<!--<a class="btn btn-info mb-3" *ngIf="entity.presentation[lang] && entity.file[lang]" [href]="entity.presentation[lang]" download="download.{{entity.file[lang].extension}}">Download</a>-->
+					<button class="btn btn-info mb-3" *ngIf="entity.presentation[lang] && entity.file[lang]" (click)="downloadFile($event)">Download</button>
+					<img *ngIf="entity.file" #filePreviewImg class="file-preview" [src]="(entity.file[lang] && entity.file[lang].canPreview ? entity.presentation[lang] : false) || '/assets/img/placeholder.svg'" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end: ng-content[select=".additional-card"] -->
+
+</ds-entity-show>
