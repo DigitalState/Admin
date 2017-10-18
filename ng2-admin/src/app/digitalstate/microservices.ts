@@ -115,6 +115,266 @@ export class MicroservicesDefinition {
                     datas: 'datas',
                 },
                 translationSlugs: [ 'translation', 'admin-translation' ], // Order matters; latter overrides former
+                entities: {
+                    'datas': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                translated: true,
+                                validation: {
+                                    'json': { message: 'json' },
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'deletedAt': {
+                                label: 'Deleted At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'texts': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'value': {
+                                label: 'Value',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'deletedAt': {
+                                label: 'Deleted At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'pages': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'description': {
+                                label: 'Description',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'deletedAt': {
+                                label: 'Deleted At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'files': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'slug': {
+                                label: 'Slug',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'presentation': {
+                                label: 'Presentation',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'description': {
+                                label: 'Description',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'deletedAt': {
+                                label: 'Deleted At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                },
             },
             'services': {
                 label: 'Services',
