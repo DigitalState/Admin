@@ -34,6 +34,7 @@ export const routes: Routes = [
       { path: 'assets', loadChildren: 'app/digitalstate/modules/asset/asset.module#DsAssetModule' },
       { path: 'topics', loadChildren: 'app/digitalstate/modules/topic/topic.module#DsTopicModule' },
       { path: 'tasks', loadChildren: 'app/digitalstate/modules/task/task.module#DsTaskModule' },
+      { path: 'cms', loadChildren: 'app/digitalstate/modules/cms/cms.module#DsCmsModule' },
       { path: 'records', loadChildren: 'app/digitalstate/modules/record/record.module#DsRecordModule' },
       { path: 'interactions', loadChildren: 'app/digitalstate/modules/interaction/interaction.module#DsInteractionModule' },
 

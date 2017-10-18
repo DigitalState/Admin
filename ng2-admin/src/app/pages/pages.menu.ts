@@ -162,7 +162,7 @@ export const PAGES_MENU = [
       },
 
       {
-        path: '',
+        path: 'cms',
         data: {
           menu: {
             title: 'general.menu.cms',
@@ -173,17 +173,40 @@ export const PAGES_MENU = [
             order: 0
           }
         },
-        // children: [
-        //   {
-        //     path: '',
-        //     data: {
-        //       menu: {
-        //         title: 'general.menu.',
-        //         url: '#'
-        //       }
-        //     }
-        //   },
-        // ]
+        children: [
+          {
+            path: ['cms', 'data', 'list'],
+            data: {
+              menu: {
+                title: 'general.menu.data',
+              }
+            }
+          },
+          {
+            path: ['cms', 'text', 'list'],
+            data: {
+              menu: {
+                title: 'general.menu.text',
+              }
+            }
+          },
+          {
+            path: ['cms', 'pages', 'list'],
+            data: {
+              menu: {
+                title: 'general.menu.pages',
+              }
+            }
+          },
+          {
+            path: ['cms', 'files', 'list'],
+            data: {
+              menu: {
+                title: 'general.menu.files',
+              }
+            }
+          },
+        ]
       },
 
       {
