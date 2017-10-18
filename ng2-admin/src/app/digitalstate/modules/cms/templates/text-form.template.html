@@ -58,7 +58,7 @@
 				<div class="form-group required translatable">
 					<label for="value">{{ 'ds.microservices.entity.property.value' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
-					<input id="value" name="value" type="text" [(ngModel)]="entity.value[formLang]" class="form-control" placeholder="" required>
+					<textarea id="value" name="value" type="text" [(ngModel)]="entity.value[formLang]" class="form-control" placeholder="" required></textarea>
 					<div *ngIf="formErrors.value" class="alert alert-danger">
 						{{ formErrors.value }}
 					</div>

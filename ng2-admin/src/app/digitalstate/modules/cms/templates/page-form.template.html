@@ -13,7 +13,7 @@
 
 	<div class="card-block">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<div class="form-group required translatable">
 					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
@@ -23,15 +23,15 @@
 					</div>
 				</div>
 			</div>
-			<!--<div class="col-sm-6">-->
-				<!--<div class="form-group required">-->
-					<!--<label for="slug">{{ 'ds.microservices.entity.property.slug' | staticTranslate:[formLang] }}</label>-->
-					<!--<input id="slug" name="slug" type="text" [(ngModel)]="entity.slug" class="form-control" placeholder="" required>-->
-					<!--<div *ngIf="formErrors.slug" class="alert alert-danger">-->
-						<!--{{ formErrors.slug }}-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="slug">{{ 'ds.microservices.entity.property.slug' | staticTranslate:[formLang] }}</label>
+					<input id="slug" name="slug" type="text" [(ngModel)]="entity.slug" class="form-control" placeholder="" required>
+					<div *ngIf="formErrors.slug" class="alert alert-danger">
+						{{ formErrors.slug }}
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6">

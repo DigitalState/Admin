@@ -29,7 +29,6 @@ export class DsPageListComponent extends DsBaseEntityListComponent {
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'slug', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
-            { prop: 'value', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
         ];
     }
