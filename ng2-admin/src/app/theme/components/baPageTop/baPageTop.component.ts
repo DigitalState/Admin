@@ -1,28 +1,49 @@
-import {Component} from '@angular/core';
+import { Injector } from '@angular/core';
+import { Component } from '@angular/core';
 
-import {GlobalState} from '../../../global.state';
+import { AuthService } from '../../../shared/modules/auth/auth.service';
+import { DsCmsContentSubscriber } from '../../../shared/components/cms-content-subscriber.component';
+
+import { GlobalState } from '../../../global.state';
 
 import 'style-loader!./baPageTop.scss';
-import {AuthService} from '../../../shared/modules/auth/auth.service';
 
 @Component({
   selector: 'ba-page-top',
   templateUrl: './baPageTop.html',
 })
-export class BaPageTop {
+export class BaPageTop extends DsCmsContentSubscriber {
 
   public isScrolled: boolean = false;
   public isMenuCollapsed: boolean = false;
 
   protected userIdentity: string;
+  protected appTitle: any;
+  protected lang: string;
 
-  constructor(private _state: GlobalState,
+  constructor(private injector: Injector,
+              private _state: GlobalState,
               private auth: AuthService) {
+
+    super(injector);
+
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
 
     this.userIdentity = auth.getAuthUser().identity;
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+  }
+
+  protected onAppCmsContent() {
+    this.appTitle = this.appState.get('appCmsContent', {})['texts']['admin-title'];
   }
 
   public toggleMenu() {
