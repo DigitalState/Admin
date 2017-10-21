@@ -39,7 +39,7 @@ export class DsScenarioEditComponent extends DsScenarioFormComponent {
      * Override to get the parent's entity UUID from the entity itself if not detected int the URL.
      */
     protected prepareEntityParent(urlPrefix: string, urlParam: string): Observable<any> {
-        if (!urlParam) {
+        if (!urlParam && this.entity && this.entity.service) {
             urlParam = ApiUtils.getUuidFromUri(this.entity.service);
         }
         return super.prepareEntityParent(urlPrefix, urlParam);
