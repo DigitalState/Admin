@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
 
 
 import { AppState } from '../../../app.service';
@@ -13,9 +13,10 @@ import 'rxjs/Rx';
 export class EntityApiService extends IdentityApiService {
 
     constructor(@Inject(MICROSERVICE_RESTANGULAR) public restangular,
+                protected injector: Injector,
                 protected appState: AppState,
                 protected auth: AuthService) {
-        super(restangular, appState, auth);
+        super(restangular, injector, appState, auth);
     }
 
 }
