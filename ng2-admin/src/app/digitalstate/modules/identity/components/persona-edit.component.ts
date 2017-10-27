@@ -10,7 +10,7 @@ import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 
 import { Link } from '../../../models/link';
 import { EntityApiService } from '../entity-api.service';
-import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { DsPersonaFormComponent } from './persona-form.component';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
@@ -19,25 +19,17 @@ import { Observable } from 'rxjs/Observable';
     selector: 'ds-persona-edit',
     templateUrl: '../templates/persona-form.template.html'
 })
-export class DsPersonaEditComponent extends DsBaseEntityFormComponent {
+export class DsPersonaEditComponent extends DsPersonaFormComponent {
 
-    entityParentUrlParam = 'identityUuid';
-    headerTitle = 'ds.microservices.entity.types.persona';
-    headerSubtitle = null;
-    backLink = new Link(['../../../show'], 'ds.microservices.entity.types.identity');
     isNew = false;
 
     protected routeParamsSubscription: Subscription;
 
     constructor(injector: Injector,
-                translate: TranslateService,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig);
-
-        this.translate = translate;
-        this.entityApiService = entityApiService;
+        super(injector, microserviceConfig, entityApiService);
     }
 
     ngOnInit() {
