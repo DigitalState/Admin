@@ -175,7 +175,7 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: ['cms', 'data', 'list'],
+            path: ['cms', 'datas', 'list'],
             data: {
               menu: {
                 title: 'general.menu.data',
@@ -183,7 +183,7 @@ export const PAGES_MENU = [
             }
           },
           {
-            path: ['cms', 'text', 'list'],
+            path: ['cms', 'texts', 'list'],
             data: {
               menu: {
                 title: 'general.menu.text',
