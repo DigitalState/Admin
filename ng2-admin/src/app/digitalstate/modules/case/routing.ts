@@ -24,12 +24,17 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/cases/list', pathMatch: 'full' },
             { path: 'list', component: DsCaseListComponent },
             { path: 'create', component: DsCaseCreateComponent },
+            { path: 'create/:formLang', component: DsCaseCreateComponent },
             { path: ':id/show', component: DsCaseShowComponent },
             { path: ':id/edit', component: DsCaseEditComponent },
+            { path: ':id/edit/:formLang', component: DsCaseEditComponent },
+
             // { path: ':caseUuid/case-status/list', component: DsCaseStatusListComponent },
             { path: ':caseUuid/case-statuses/create', component: DsCaseStatusCreateComponent },
+            { path: ':caseUuid/case-statuses/create/:formLang', component: DsCaseStatusCreateComponent },
             { path: ':caseUuid/case-statuses/:id/show', component: DsCaseStatusShowComponent },
             { path: ':caseUuid/case-statuses/:id/edit', component: DsCaseStatusEditComponent },
+            { path: ':caseUuid/case-statuses/:id/edit/:formLang', component: DsCaseStatusEditComponent },
 
         ]
     }

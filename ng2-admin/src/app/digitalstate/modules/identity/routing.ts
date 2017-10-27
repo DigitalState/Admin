@@ -26,19 +26,31 @@ const routes: Routes = [
             // { path: ':id/edit', component: DsIdentityEditComponent },
             { path: 'individuals/list', component: DsIndividualListComponent },
             { path: 'individuals/create', component: DsIndividualCreateComponent },
+            { path: 'individuals/create/:formLang', component: DsIndividualCreateComponent },
             { path: 'individuals/:id/show', component: DsIndividualShowComponent },
             { path: 'individuals/:id/edit', component: DsIndividualEditComponent },
+            { path: 'individuals/:id/edit/:formLang', component: DsIndividualEditComponent },
+
             { path: 'staffs/list', component: DsStaffListComponent },
             { path: 'staffs/create', component: DsStaffCreateComponent },
+            { path: 'staffs/create/:formLang', component: DsStaffCreateComponent },
             { path: 'staffs/:id/show', component: DsStaffShowComponent },
             { path: 'staffs/:id/edit', component: DsStaffEditComponent },
+            { path: 'staffs/:id/edit/:formLang', component: DsStaffEditComponent },
+
             { path: 'anonymouses/list', component: DsAnonymousListComponent },
             { path: 'anonymouses/create', component: DsAnonymousCreateComponent },
+            { path: 'anonymouses/create/:formLang', component: DsAnonymousCreateComponent },
             { path: 'anonymouses/:id/show', component: DsAnonymousShowComponent },
             { path: 'anonymouses/:id/edit', component: DsAnonymousEditComponent },
+            { path: 'anonymouses/:id/edit/:formLang', component: DsAnonymousEditComponent },
+
             { path: ':identityPlural/:identityUuid/personas/create', component: DsPersonaCreateComponent },
+            { path: ':identityPlural/:identityUuid/personas/create/:formLang', component: DsPersonaCreateComponent },
             { path: ':identityPlural/:identityUuid/personas/:id/show', component: DsPersonaShowComponent },
             { path: ':identityPlural/:identityUuid/personas/:id/edit', component: DsPersonaEditComponent },
+            { path: ':identityPlural/:identityUuid/personas/:id/edit/:formLang', component: DsPersonaEditComponent },
+
         ]
     }
 ];

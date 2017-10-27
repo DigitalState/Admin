@@ -18,8 +18,10 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/topics/list', pathMatch: 'full' },
             { path: 'list', component: DsTopicListComponent  },
             { path: 'create', component: DsTopicCreateComponent },
+            { path: 'create/:formLang', component: DsTopicCreateComponent },
             { path: ':id/show', component: DsTopicShowComponent },
             { path: ':id/edit', component: DsTopicEditComponent },
+            { path: ':id/edit/:formLang', component: DsTopicEditComponent },
         ]
     }
 ];

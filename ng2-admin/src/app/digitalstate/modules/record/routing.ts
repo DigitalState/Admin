@@ -18,8 +18,10 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/records/list', pathMatch: 'full' },
             { path: 'list', component: DsRecordListComponent  },
             { path: 'create', component: DsRecordCreateComponent },
+            { path: 'create/:formLang', component: DsRecordCreateComponent },
             { path: ':id/show', component: DsRecordShowComponent },
             { path: ':id/edit', component: DsRecordEditComponent },
+            { path: ':id/edit/:formLang', component: DsRecordEditComponent },
         ]
     }
 ];

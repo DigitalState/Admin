@@ -22,12 +22,16 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/communications/list', pathMatch: 'full' },
             { path: 'communications/list', component: DsCommunicationListComponent  },
             { path: 'communications/create', component: DsCommunicationCreateComponent },
+            { path: 'communications/create/:formLang', component: DsCommunicationCreateComponent },
             { path: 'communications/:id/show', component: DsCommunicationShowComponent },
             { path: 'communications/:id/edit', component: DsCommunicationEditComponent },
+            { path: 'communications/:id/edit/:formLang', component: DsCommunicationEditComponent },
             { path: 'interactions/list', component: DsInteractionListComponent  },
             { path: 'interactions/create', component: DsInteractionCreateComponent },
+            { path: 'interactions/create/:formLang', component: DsInteractionCreateComponent },
             { path: 'interactions/:id/show', component: DsInteractionShowComponent },
             { path: 'interactions/:id/edit', component: DsInteractionEditComponent },
+            { path: 'interactions/:id/edit/:formLang', component: DsInteractionEditComponent },
         ]
     }
 ];

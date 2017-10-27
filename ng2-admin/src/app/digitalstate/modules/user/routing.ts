@@ -18,8 +18,10 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/users/list', pathMatch: 'full' },
             { path: 'list', component: DsUserListComponent  },
             { path: 'create', component: DsUserCreateComponent },
+            { path: 'create/:formLang', component: DsUserCreateComponent },
             { path: ':id/show', component: DsUserShowComponent },
             { path: ':id/edit', component: DsUserEditComponent },
+            { path: ':id/edit/:formLang', component: DsUserEditComponent },
         ]
     }
 ];
