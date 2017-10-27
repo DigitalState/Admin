@@ -3,7 +3,7 @@ import { Component, Injector } from '@angular/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 
 import { EntityApiService } from '../entity-api.service';
-import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { DsCmsFormComponent } from './cms-form.component';
 import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
     selector: 'ds-text-edit',
     templateUrl: '../templates/text-form.template.html'
 })
-export class DsTextEditComponent extends DsBaseEntityFormComponent {
+export class DsTextEditComponent extends DsCmsFormComponent {
 
     entityUrlPrefix = 'texts';
     pageTitle = 'general.menu.cms';
@@ -25,7 +25,6 @@ export class DsTextEditComponent extends DsBaseEntityFormComponent {
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig);
-        this.entityApiService = entityApiService;
+        super(injector, microserviceConfig, entityApiService);
     }
 }

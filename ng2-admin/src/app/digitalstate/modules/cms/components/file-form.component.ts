@@ -3,12 +3,12 @@ import { ElementRef, Injector, ViewChild } from '@angular/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 
 import { EntityApiService } from '../entity-api.service';
-import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { DsCmsFormComponent } from './cms-form.component';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
-export class DsFileFormComponent extends DsBaseEntityFormComponent {
+export class DsFileFormComponent extends DsCmsFormComponent {
 
     entityUrlPrefix = 'files';
     pageTitle = 'general.menu.cms';
@@ -22,9 +22,7 @@ export class DsFileFormComponent extends DsBaseEntityFormComponent {
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig);
-
-        this.entityApiService = entityApiService;
+        super(injector, microserviceConfig, entityApiService);
         this.fileReader = new FileReader();
     }
 
@@ -38,10 +36,10 @@ export class DsFileFormComponent extends DsBaseEntityFormComponent {
         });
     }
 
-    onFormLanguageChange(newLanguage: { key: string; name: string }): any {
-        super.onFormLanguageChange(newLanguage);
-        this.prepareFile();
-    }
+    // onFormLanguageChange(newLanguage: string): any {
+    //     super.onFormLanguageChange(newLanguage);
+    //     this.prepareFile();
+    // }
 
     protected prepareFile() {
         const fileTestRegex = /^image\/(jp.?g|gif|png)$/;
@@ -92,6 +90,11 @@ export class DsFileFormComponent extends DsBaseEntityFormComponent {
                         ? loadEvent.target.result
                         : '/assets/img/placeholder.svg';
                 });
+
+                // Manually mark the form as dirty since there's no input field to automatically
+                // detect the changes on
+                this.entityForm.form.markAsDirty();
+                this.displayFormErrors(false);
 
                 // console.log({
                 //     filename: file.name,

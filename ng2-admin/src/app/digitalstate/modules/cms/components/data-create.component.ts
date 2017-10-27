@@ -5,7 +5,7 @@ import { CustomValidators } from 'ng2-validation';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 
 import { EntityApiService } from '../entity-api.service';
-import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { DsCmsFormComponent } from './cms-form.component';
 import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
     selector: 'ds-data-create',
     templateUrl: '../templates/data-form.template.html'
 })
-export class DsDataCreateComponent extends DsBaseEntityFormComponent {
+export class DsDataCreateComponent extends DsCmsFormComponent {
 
     entityUrlPrefix = 'datas';
     pageTitle = 'general.menu.cms';
@@ -27,8 +27,7 @@ export class DsDataCreateComponent extends DsBaseEntityFormComponent {
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig);
-        this.entityApiService = entityApiService;
+        super(injector, microserviceConfig, entityApiService);
     }
 
     /**
