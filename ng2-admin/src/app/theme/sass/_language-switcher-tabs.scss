@@ -45,6 +45,15 @@ ds-language-switcher-tabs {
          &:hover {
            background-color: $tab-title-background-clear;
          }
+
+        // Add an icon to indicate a dirty form
+        span.icon {
+          .ng-dirty & {
+            @include fa-icon();
+            @extend .fa-pencil;
+            color: $primary;
+          }
+        }
       }
     }
 

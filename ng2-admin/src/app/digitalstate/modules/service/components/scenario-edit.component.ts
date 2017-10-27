@@ -45,9 +45,9 @@ export class DsScenarioEditComponent extends DsScenarioFormComponent {
         return super.prepareEntityParent(urlPrefix, urlParam);
     }
 
-    getRoutingUrlOnSave(response: any): Array<any> {
-        return ['../../show'];
-    }
+    // getRoutingUrlOnSave(response: any): Array<any> {
+    //     return ['../../show'];
+    // }
 }
 
 @Component({

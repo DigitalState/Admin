@@ -66,9 +66,9 @@ export class DsScenarioCreateComponent extends DsScenarioFormComponent {
         return super.saveNewEntity();
     }
 
-    getRoutingUrlOnSave(response: any): Array<any> {
-        return ['../../' + response.uuid, 'show'];
-    }
+    // getRoutingUrlOnSave(response: any): Array<any> {
+    //     return ['../../' + response.uuid, 'show'];
+    // }
 
     onValueChanged(data?: any) {
         super.onValueChanged(data);
@@ -78,12 +78,12 @@ export class DsScenarioCreateComponent extends DsScenarioFormComponent {
         }
     }
 
-    onFormLanguageChange(newLanguage) {
-        super.onFormLanguageChange(newLanguage);
-
-        // Disable auto-sluggify to avoid overwriting the slug when the interface language is changed
-        this.autoSluggify = false;
-    }
+    // onFormLanguageChange(newLanguage) {
+    //     super.onFormLanguageChange(newLanguage);
+    //
+    //     // Disable auto-sluggify to avoid overwriting the slug when the interface language is changed
+    //     this.autoSluggify = false;
+    // }
 }
 
 

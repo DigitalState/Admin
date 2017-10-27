@@ -1,15 +1,18 @@
-import { AfterViewInit, Injector } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Injector } from '@angular/core';
+import { Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
-import { CustomValidators } from 'ng2-validation';
+
+import { LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DsStaticTranslationService } from '../../shared/services/static-translation.service';
 import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsBaseEntityApiService } from '../../shared/services/base-entity-api.service';
 import { MicroserviceConfig } from '../../shared/providers/microservice.provider';
-import { LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
+
+import { DefaultModal } from './modals/default-modal/default-modal.component';
+import { Link } from '../models/link';
 
 import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -43,6 +46,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected formErrors = {};
 
     /**
+     *
+     */
+    protected urlParams: Params;
+
+    /**
      * The URL portion of the REST resource URL that refers to the entity's collection.
      * @type {string}
      */
@@ -71,6 +79,8 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
      */
     protected translate: TranslateService;
     protected staticTranslate: DsStaticTranslationService
+
+    protected modal: NgbModal;
 
     /**
      * Auth service
@@ -115,6 +125,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         super(injector);
         this.auth = injector.get(AuthService);
         this.staticTranslate = injector.get(DsStaticTranslationService);
+        this.modal = this.injector.get(NgbModal);
     }
 
     ngOnInit() {
@@ -135,17 +146,39 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             this.prepareEntityParent();
         });
 
-        // Subscribe to current translation to make sure formLang is sent only when translations are ready
-        this.translate.getTranslation(this.translate.currentLang).subscribe(() => {
-            this.formLang = this.translate.currentLang;
-        });
-
         // Setup form errors object with empty messages
         Object.keys(this.entityMetadata).forEach((propertyName) => {
             this.formErrors[propertyName] = '';
         });
 
-        this.prepareEntity().subscribe();
+        // Subscribe to current translation to make sure formLang is sent only when translations are ready
+        // this.translate.getTranslation(this.translate.currentLang).subscribe(() => {
+        //     this.formLang = this.translate.currentLang;
+        // });
+
+        this.route.params.subscribe((params: Params) => {
+            this.urlParams = params;
+
+            // Set form language to UI language if not passed explicitly in the URL
+            this.formLang = params['formLang'] || this.lang;
+
+            // Check if the formLang is NOT already loaded in Translations, request it from
+            // the Translation service before preparing the entity
+            // let formTranslationsObservable = Observable.if(
+            //     () => this.translate.translations.hasOwnProperty(this.formLang), // condition
+            //     Observable.of(this.translate.translations[this.formLang]), // .. then
+            //     this.translate.getTranslation(this.formLang) // .. else
+            // );
+            //
+            // formTranslationsObservable.subscribe(() => {
+            //     this.prepareEntity().subscribe();
+            // });
+
+            this.translate.getTranslation(this.formLang).subscribe(() => {
+                this.prepareEntity().subscribe();
+            });
+        });
+
     }
 
     ngOnDestroy() {
@@ -164,9 +197,9 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
 
-        return this.route.params.flatMap((params: Params) => {
-            let uuid = params['id'];
-            let parentUuid = params[this.entityParentUrlParam];
+        // return this.route.params.flatMap((params: Params) => {
+            let uuid = this.urlParams['id'];
+            let parentUuid = this.urlParams[this.entityParentUrlParam];
 
             if (this.isNew) {
                 return this.createBlankEntity().flatMap(entity => {
@@ -186,7 +219,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
                     });
                 });
             }
-        });
+        // });
 
     }
 
@@ -202,9 +235,40 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
                 return Observable.of(entityParent);
             });
         }
-        else {
+        else { // Root entity (has no parent)
+            // Build backlink to point the  `list` component
+            this.generateListBackLink();
             return Observable.of(null);
         }
+    }
+
+    /**
+     * Build backlink to point the `list` component. The list path is relative
+     * and it depends on the form type (create vs. edit) and whether a language
+     * suffix is present at the end of the current path.
+     */
+    protected generateListBackLink(): Link {
+        const currentPath = this.location.path();
+        this.backLink = new Link;
+        this.backLink.text = 'general.list';
+
+        if (/\/create$/.test(currentPath)) {
+            this.backLink.routerLink = ['../list'];
+        }
+        else if (/\/create\/.{2}$/.test(currentPath)) {
+            this.backLink.routerLink = ['../../list'];
+        }
+        else if (/\/edit$/.test(currentPath)) {
+            this.backLink.routerLink = ['../../list'];
+        }
+        else if (/\/edit\/.{2}$/.test(currentPath)) {
+            this.backLink.routerLink = ['../../../list'];
+        }
+        else {
+            this.backLink.routerLink = ['../../../list'];
+        }
+
+        return this.backLink;
     }
 
     /**
@@ -248,6 +312,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         }
 
         const form = this.entityForm.form;
+        this.canSwitchLanguage = form.pristine;
 
         for (const field in this.formErrors) {
             // clear previous error message (if any)
@@ -286,8 +351,63 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.location.back();
     }
 
-    onFormLanguageChange(newLanguage: { key: string, name: string }) {
-        this.formLang = newLanguage.key;
+    /**
+     * Called upon an attempt to switch the form language.
+     * @param newLanguage
+     */
+    onFormLanguageChange(newLanguage: string) {
+        // this.formLang = newLanguage.key;
+        // console.log('newLanguage', newLanguage, 'formLang', this.formLang);
+
+        // Warn the user if the form is dirty before navigating to the new language
+        if (this.entityForm.dirty) {
+            this.buildConfirmationModal('ds.messages.confirmUnsavedForm', 'general.confirm').then((modalResult) => {
+                if (modalResult && modalResult.command === 'yes') {
+                    this.navigateToFormLanguage(newLanguage, this.formLang);
+                }
+            }, () => {}); // this is here to catch promise rejection error and ignore it
+        }
+        else {
+            this.navigateToFormLanguage(newLanguage, this.formLang);
+        }
+    }
+
+    /**
+     * Issues the routing command to navigate to another form language after clearing some
+     * local form and entity states.
+     *
+     * @param newFormLang
+     * @param oldFormLang
+     */
+    protected navigateToFormLanguage(newFormLang: string, oldFormLang: string) {
+        const newPath = this.getFormLanguagePath(newFormLang, oldFormLang);
+
+        this.entityForm.reset();
+        this.entity = null;
+        this.router.navigateByUrl(newPath, { replaceUrl: true });
+    }
+
+    /**
+     * Determines the path to a form language based on current location path, old and new
+     * language to navigate to.
+     *
+     * @param newFormLang
+     * @param oldFormLang
+     * @return {string}
+     */
+    protected getFormLanguagePath(newFormLang: string, oldFormLang: string): string {
+        let newPath: string;
+        const oldPath = this.location.path();
+
+        // Check whether the old path ends with a language key so we can replace it with the new one
+        if (new RegExp('/' + oldFormLang + '$').test(oldPath)) {
+            newPath = oldPath.replace(new RegExp('\/' + oldFormLang + '$'), '\/' + newFormLang);
+        }
+        else { // otherwise just append the new language key to the path
+            newPath = oldPath + '/' + newFormLang;
+        }
+
+        return newPath;
     }
 
     onFormSubmit(form: NgForm) {
@@ -370,10 +490,17 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             }
 
             if (property.hasOwnProperty('translated') && property.translated === true) {
-                this.translate.langs.forEach((lang) => {
-                    if (entity[propertyName] && isString(entity[propertyName][lang]) && isEmpty(entity[propertyName][lang])) {
+                this.formLanguages.forEach((lang) => {
+
+                    // Only allow properties translated in the current form language
+                    if (lang !== this.formLang) {
                         delete entity[propertyName][lang];
+                        return;
                     }
+
+                    // if (entity[propertyName] && isString(entity[propertyName][lang]) && isEmpty(entity[propertyName][lang])) {
+                    //     delete entity[propertyName][lang];
+                    // }
 
                     // Convert JSON properties from strings to JSON objects
                     if (property.hasOwnProperty('type') && property.type === 'json') {
@@ -436,9 +563,15 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.formErrors[propertyName] += message + ' ';
     }
 
-    getRoutingUrlOnSave(response: any): Array<any> {
-        let relativeUrl = this.isNew ? '../' + response.uuid : '../';
-        return [relativeUrl, 'show'];
+    getRoutingUrlOnSave(response: any): any {
+        const currentPath = this.location.path();
+        const search = this.isNew ? /\/create.*$/ : /\/edit.*$/;
+        const replacement = this.isNew ? '/' + response.uuid + '/show' : '/show';
+        let url = currentPath.replace(search, replacement);
+
+        // let relativeUrl = this.isNew ? '../' + response.uuid : '../';
+        // return [relativeUrl, 'show'];
+        return url;
     }
 
     onEntitySave(response) {
@@ -448,7 +581,14 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         // const routerLink = this.isNew ? '../list' : '../show';
         if (response.uuid) {
             let routingUrl = this.getRoutingUrlOnSave(response);
-            this.router.navigate(routingUrl, { relativeTo: this.route });
+
+            // Use a navigation method based on the type of the returned routing URL
+            if (routingUrl.indexOf('/') === 0) { // absolute URL
+                this.router.navigateByUrl(routingUrl);
+            }
+            else { // relative URL
+                this.router.navigate(routingUrl, { relativeTo: this.route });
+            }
         }
         else {
             this.toastr.error(this.translate.instant('ds.messages.unexpectedError'));
@@ -470,5 +610,24 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         }
 
         this.toastr.error(errorMessage, errorTitle);
+    }
+
+    /**
+     * Builds a generic confirmation modal box and returns it's result so the caller can assign actions
+     * to perform when the box is closed.
+     * @param content
+     * @param title
+     * @return {Promise<any>}
+     */
+    protected buildConfirmationModal(content: string, title?: string): Promise<any> {
+        const modal = this.modal.open(DefaultModal, {size: 'sm'});
+        modal.componentInstance.modalHeader = title || 'general.confirm';
+        modal.componentInstance.modalContent = content;
+        modal.componentInstance.actions = [
+            { command: 'yes', label: 'general.yes' },
+            { command: 'no', label: 'general.no' },
+        ];
+
+        return modal.result;
     }
 }

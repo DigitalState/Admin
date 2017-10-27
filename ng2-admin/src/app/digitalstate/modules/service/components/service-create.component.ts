@@ -86,10 +86,10 @@ export class DsServiceCreateComponent extends DsBaseEntityFormComponent {
         }
     }
 
-    onFormLanguageChange(newLanguage) {
-        super.onFormLanguageChange(newLanguage);
-
-        // Disable auto-sluggify to avoid overwriting the slug when the interface language is changed
-        this.autoSluggify = false;
-    }
+    // onFormLanguageChange(newLanguage) {
+    //     super.onFormLanguageChange(newLanguage);
+    //
+    //     // Disable auto-sluggify to avoid overwriting the slug when the interface language is changed
+    //     this.autoSluggify = false;
+    // }
 }
