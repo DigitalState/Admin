@@ -16,6 +16,7 @@ import { DsSharedModule } from '../shared/shared.module';
 // import { DSAuthModule } from '../shared/modules/auth/auth.module';
 
 import { MicroservicesDefinition } from './microservices';
+import { DsRouteDeactivationConfirmerGuard } from './services/route-decativation-confirmer.service';
 import { TemplateStorage } from './services/template-storage.service';
 import { TemplateStorageComponent } from './components/template-storage.component';
 import { DsMicroservicesComponent } from './components/microservices.component';
@@ -72,6 +73,7 @@ import forEach from 'lodash/forEach';
     providers: [
         TemplateStorage,
         FilterByPipe,
+        DsRouteDeactivationConfirmerGuard,
     ],
     exports: [
         ReactiveFormsModule,
