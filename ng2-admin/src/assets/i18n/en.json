@@ -27,9 +27,12 @@
     "signUpButton": "Sign up"
   },
   "general": {
+    "yes": "Yes",
+    "no": "No",
     "new": "New",
     "details": "Details",
     "home": "Home",
+    "confirm": "Confirm",
     "translatableField": "Translatable field",
     "activeTranslation": "Active Translations",
     "translation": "Common Translations",
@@ -353,7 +356,8 @@
       "identitySaveFailed": "Failed to save identity information.",
       "translationLoadingFailed": "Failed to load translation.",
       "translationSaveSucceeded": "Translation saved successfully.",
-      "translationSaveFailed": "Failed to save translation."
+      "translationSaveFailed": "Failed to save translation.",
+      "confirmUnsavedForm": "The form contains unsaved data. Would you still like to navigate away?"
     }
   }
 }

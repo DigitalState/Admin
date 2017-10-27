@@ -27,9 +27,12 @@
     "signUpButton": "S'inscrire"
   },
   "general": {
+    "yes": "Oui",
+    "no": "Non",
     "new": "Nouveau",
     "details": "Détails",
     "home": "Accueil",
+    "confirm": "Confirmer",
     "translatableField": "Champ traduisible",
     "activeTranslation": "Traductions actives",
     "translation": "Traductions communes",
@@ -352,7 +355,8 @@
       "identitySaveFailed": "Échec de l'enregistrement des informations d'identité.",
       "translationLoadingFailed": "Impossible de charger la traduction.",
       "translationSaveSucceeded": "Traduction enregistrée avec succès.",
-      "translationSaveFailed": "Impossible de sauvegarder la traduction."
+      "translationSaveFailed": "Impossible de sauvegarder la traduction.",
+      "confirmUnsavedForm": "Le formulaire contient des données non enregistrées. Voulez-vous toujours partir?"
     }
   }
 }
