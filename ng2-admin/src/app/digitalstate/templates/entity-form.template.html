@@ -29,7 +29,10 @@
 		</div>
 
 		<!-- Form Language Switch -->
-		<ds-language-switcher-tabs (onLanguageChange)="switchLang($event)"></ds-language-switcher-tabs>
+		<ds-language-switcher-tabs [languages]="formLanguages"
+								   [currentLanguage]="formLang"
+								   [canUpdateTabsOnSwitch]="canSwitchLanguage"
+								   (onLanguageChange)="switchLang($event)"></ds-language-switcher-tabs>
 
 		<ng-content></ng-content>
 

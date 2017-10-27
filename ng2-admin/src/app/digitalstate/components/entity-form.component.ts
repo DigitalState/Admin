@@ -24,6 +24,9 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     @Input() entity: any;
     @Input() backLink: Link;
     @Input() isNew: boolean;
+    @Input() formLanguages: Array<string>;
+    @Input() formLang: string;
+    @Input() canSwitchLanguage: boolean;
 
     @Output() onFormSubmit = new EventEmitter<any>();
     @Output() onFormCancel = new EventEmitter<any>();
@@ -35,8 +38,6 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     @ContentChildren(NgModel) public models: QueryList<NgModel>;
 
     entityForm: NgForm;
-    languages: object[];
-    formLanguage: any;
     submitted: boolean = false;
     protected id: number;
 
@@ -57,14 +58,14 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     }
 
     ngOnInit() {
-        this.languages = this.translate.getLangs().map((langKey) =>
-            ({
-                key: langKey,
-                name: this.translate.instant('ds.language-switcher.languages.' + langKey)
-            })
-        );
-
-        this.loadCurrentLanguageTranslation();
+        // this.languages = this.translate.getLangs().map((langKey) =>
+        //     ({
+        //         key: langKey,
+        //         name: this.translate.instant('ds.language-switcher.languages.' + langKey)
+        //     })
+        // );
+        //
+        // this.loadCurrentLanguageTranslation();
     }
 
     ngAfterViewInit() {
@@ -126,19 +127,20 @@ export class DsEntityFormComponent implements AfterContentInit, AfterViewChecked
     }
 
     switchLang(newLangKey: string) {
-        this.formLanguage = this.languages.find((language:any) => (language.key == newLangKey));
-        this.onFormLanguageChange.emit(this.formLanguage);
+        // this.formLang = this.languages.find((language:any) => (language.key == newLangKey));
+        // this.formLang = newLangKey;
+        this.onFormLanguageChange.emit(newLangKey);
     }
 
-    getListedLanguages() {
-        return this.languages.filter((language:any) => (language.key !== this.formLanguage.key));
-    }
+    // getListedLanguages() {
+    //     return this.languages.filter((language:any) => (language.key !== this.formLang.key));
+    // }
 
-    protected loadCurrentLanguageTranslation() {
-        this.formLanguage = {
-            key: this.translate.currentLang,
-            name: this.translate.instant('ds.language-switcher.languages.' + this.translate.currentLang)
-        };
-    }
+    // protected loadCurrentLanguageTranslation() {
+    //     this.formLang = {
+    //         key: this.translate.currentLang,
+    //         name: this.translate.instant('ds.language-switcher.languages.' + this.translate.currentLang)
+    //     };
+    // }
 
 }

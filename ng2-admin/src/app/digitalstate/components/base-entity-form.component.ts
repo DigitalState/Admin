@@ -93,6 +93,16 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected formLang: string;
 
     /**
+     * A list of supported form translations. This defaults to all translations supported by the UI.
+     */
+    protected formLanguages: Array<string>;
+
+    /**
+     * Based on form state, use this to determine whether language switching is enabled at any moment.
+     */
+    protected canSwitchLanguage: boolean = true;
+
+    /**
      * Reset the form with a new entity AND restore 'pristine' class state by toggling 'active'
      * flag which causes the form to be removed/re-added in a tick via NgIf
      * TODO: Workaround until NgForm has a reset method (#6822)
@@ -112,6 +122,9 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
 
         this.loadEntityMetaData();
         this.lang = this.translate.currentLang;
+
+        // Load default form translations from the Translation service's supported languages
+        this.formLanguages = this.translate.getLangs();
 
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
