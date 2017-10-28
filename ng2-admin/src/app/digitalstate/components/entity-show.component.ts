@@ -14,10 +14,13 @@ export class DsEntityShowComponent {
     @Input() headerSubtitle: string;
     @Input() entity: any;
     @Input() backLink: Link;
+    @Input() entityLanguages: Array<string>;
+    @Input() entityLang: string;
     @Input() actions: Array<object>;
 
     @Output() entityActionEmitter = new EventEmitter();
     @Output() onDelete = new EventEmitter<any>();
+    @Output() onEntityLanguageChange = new EventEmitter<string>();
 
     constructor() {
 
@@ -35,5 +38,9 @@ export class DsEntityShowComponent {
 
     onDeleteClick(event) {
         this.onDelete.emit(event);
+    }
+
+    switchLang(newLangKey: string) {
+        this.onEntityLanguageChange.emit(newLangKey);
     }
 }

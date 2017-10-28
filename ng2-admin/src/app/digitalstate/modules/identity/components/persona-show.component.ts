@@ -19,7 +19,6 @@ export class DsPersonaShowComponent extends DsBaseEntityShowComponent {
 
     entityParentUrlParam = 'identityUuid';
     headerTitle = 'ds.microservices.entity.types.persona';
-    backLink = new Link(['../../../show'], 'ds.microservices.entity.types.identity');
 
     identityPersonaEntity: any;
     ownerEntity: any;
@@ -47,5 +46,11 @@ export class DsPersonaShowComponent extends DsBaseEntityShowComponent {
             this.routeParamsSubscription.unsubscribe();
         }
         super.ngOnDestroy();
+    }
+
+
+    protected generateBackLink(): Link {
+        this.backLink = new Link(['../../../show'], 'ds.microservices.entity.types.identity');
+        return this.backLink;
     }
 }

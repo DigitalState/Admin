@@ -4,7 +4,11 @@
 				[headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(entityActionEmitter)="handleEntityEvent($event)">
+				[entityLang]="entityLang"
+				[entityLanguages]="entityLanguages"
+				(onEntityLanguageChange)="onEntityLanguageChange($event)"
+				(entityActionEmitter)="handleEntityEvent($event)"
+>
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!-- end: ng-content[select="button.entity-action"] -->
@@ -55,7 +59,7 @@
 					<dt>{{ 'ds.microservices.entity.property.owner' | translate }}</dt>
 					<dd>
 						{{entity.owner}}
-						<span *ngIf="ownerEntity">({{ ownerEntity.title | entityTranslate }})</span>
+						<span *ngIf="ownerEntity">({{ ownerEntity.title[entityLang] }})</span>
 					</dd>
 				</dl>
 			</div>

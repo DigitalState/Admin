@@ -44,6 +44,16 @@ export class DsFileShowComponent extends DsBaseEntityShowComponent {
         });
     }
 
+    onEntityLanguageChange(newLanguage: string): void {
+        super.onEntityLanguageChange(newLanguage);
+        this.prepareFile();
+    }
+
+    /**
+     * Builds a descriptor object out of the Base64 representation of the file.
+     * This is used to extract some metadata to determine whether the file can be
+     * previewed.
+     */
     protected prepareFile() {
         const fileTestRegex = /^image\/(jp.?g|gif|png)$/;
 
@@ -54,25 +64,25 @@ export class DsFileShowComponent extends DsBaseEntityShowComponent {
 
         // Extract the type from the Base64 representation of the file and use it
         // to create the file metadata
-        const fileStr = this.entity.presentation[this.lang];
+        const fileStr = this.entity.presentation[this.entityLang];
         if (!fileStr) {
             return;
         }
 
         const fileType = fileStr.substring('data:'.length, fileStr.indexOf(';base64'));
 
-        this.entity.file[this.lang] = {
+        this.entity.file[this.entityLang] = {
             type: fileType,
             extension: fileType.substring(fileType.indexOf('/') + 1),
             canPreview: fileTestRegex.test(fileType)
         };
 
-        console.log(this.entity.file[this.lang]);
+        // console.log(this.entity.file[this.entityLang]);
     }
 
     protected downloadFile() {
-        download(this.entity.presentation[this.lang],
-            'download.' + this.entity.file[this.lang].extension,
-            this.entity.file[this.lang].fileType);
+        download(this.entity.presentation[this.entityLang],
+            'download.' + this.entity.file[this.entityLang].extension,
+            this.entity.file[this.entityLang].fileType);
     }
 }

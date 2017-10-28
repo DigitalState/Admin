@@ -69,6 +69,17 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     protected lang: string;
 
     /**
+     * The language in which translated properties will be displayed.
+     * This is synonymous to formLang in form components.
+     */
+    protected entityLang: string;
+
+    /**
+     * A list of supported entity translations. This defaults to all translations supported by the UI.
+     */
+    protected entityLanguages: Array<string>;
+
+    /**
      * The Enity API service is not injected into this base component class because
      * the API service configurations are Microservice-specific.
      */
@@ -96,7 +107,13 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
         this.lang = this.translate.currentLang;
-        
+
+        // Load default entity translations from the Translation service's supported languages
+        this.entityLanguages = this.translate.getLangs();
+
+        // Initialize entity language to interface language
+        this.entityLang = this.translate.currentLang;
+
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             this.lang = event.lang;
@@ -224,5 +241,9 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
             return action;
         });
+    }
+
+    onEntityLanguageChange(newLanguage: string): void {
+        this.entityLang = newLanguage;
     }
 }

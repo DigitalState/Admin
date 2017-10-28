@@ -15,6 +15,10 @@
   .card-footer {
     border-bottom: none;
   }
+
+  ds-entity-show & .card-header {
+    border-bottom: none;
+  }
 }
 
 .back-link {

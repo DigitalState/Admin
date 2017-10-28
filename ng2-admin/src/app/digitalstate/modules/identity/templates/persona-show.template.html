@@ -4,7 +4,11 @@
 				[headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(entityActionEmitter)="handleEntityEvent($event)">
+				[entityLang]="entityLang"
+				[entityLanguages]="entityLanguages"
+				(onEntityLanguageChange)="onEntityLanguageChange($event)"
+				(entityActionEmitter)="handleEntityEvent($event)"
+>
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!--<button [routerLink]="['../activate']" type="button" class="entity-action btn btn-secondary btn-with-icon"><i class="ion-power">{{ 'ds.microservices.entity.action.activate' | translate }}</i></button>-->
@@ -24,7 +28,7 @@
 			<div class="col-sm-12">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
-					<dd>{{entity.title | entityTranslate}}</dd>
+					<dd>{{entity.title[entityLang]}}</dd>
 				</dl>
 			</div>
 		</div>

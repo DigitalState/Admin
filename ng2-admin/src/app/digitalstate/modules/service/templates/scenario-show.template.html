@@ -4,7 +4,11 @@
 				[headerTitle]="headerTitle"
 				[headerSubtitle]="headerSubtitle"
 				[actions]="actions"
-				(entityActionEmitter)="handleEntityEvent($event)">
+				[entityLang]="entityLang"
+				[entityLanguages]="entityLanguages"
+				(onEntityLanguageChange)="onEntityLanguageChange($event)"
+				(entityActionEmitter)="handleEntityEvent($event)"
+>
 
 	<!-- begin: ng-content[select="button.entity-action"] -->
 	<!--<button [routerLink]="['../activate']" type="button" class="entity-action btn btn-secondary btn-with-icon"><i class="ion-power">{{ 'ds.microservices.entity.action.activate' | translate }}</i></button>-->
@@ -24,7 +28,7 @@
 			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
-					<dd>{{entity.title | entityTranslate}}</dd>
+					<dd>{{entity.title[entityLang]}}</dd>
 				</dl>
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.slug' | translate }}</dt>
@@ -34,7 +38,7 @@
 			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.presentation' | translate }}</dt>
-					<dd>{{entity.presentation | entityTranslate}}</dd>
+					<dd>{{entity.presentation[entityLang]}}</dd>
 				</dl>
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.weight' | translate }}</dt>
@@ -46,7 +50,7 @@
 			<div class="col-sm-12">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
-					<dd class="ws-pre-line">{{entity.description | entityTranslate}}</dd>
+					<dd class="ws-pre-line">{{entity.description[entityLang]}}</dd>
 				</dl>
 			</div>
 		</div>
@@ -86,7 +90,7 @@
 					<dd>{{ entity.config.url }}</dd>
 				</dl>
 			</div>
-			<div *ngIf="entityParent && entity.data && entity.data[lang] && entity.data[lang].button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
+			<div *ngIf="entityParent && entity.data && entity.data[entityLang] && entity.data[entityLang].button_text && (['bpm', 'url', 'api'].indexOf(entity.type) >= 0)" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.button_text' | translate }}</dt>
 					<dd>
@@ -95,13 +99,13 @@
 						   class="btn btn-primary"
 						   href=""
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
-							{{ entity.data[lang].button_text }}
+							{{ entity.data[entityLang].button_text }}
 						</a>
 						<a *ngIf="['url', 'api'].indexOf(entity.type) >= 0"
 						   class="btn btn-primary"
 						   href="{{ entity.config.url }}" target="_blank"
 						   title="{{ 'ds.microservices.entity.action.activate' | translate }}">
-							{{ entity.data[lang].button_text }}
+							{{ entity.data[entityLang].button_text }}
 						</a>
 					</dd>
 					<!--<dd>-->
@@ -109,13 +113,13 @@
 						   <!--class="btn btn-primary"-->
 						   <!--[routerLink]="['../activate']"-->
 						   <!--title="{{ 'ds.microservices.entity.action.activate' | translate }}">-->
-							<!--{{ entity.data[lang].button_text }}-->
+							<!--{{ entity.data[entityLang].button_text }}-->
 						<!--</a>-->
 						<!--<a *ngIf="['url', 'api'].indexOf(entity.type) >= 0"-->
 						   <!--class="btn btn-primary"-->
 						   <!--href="{{ entity.config.url }}" target="_blank"-->
 						   <!--title="{{ 'ds.microservices.entity.action.activate' | translate }}">-->
-							<!--{{ entity.data[lang].button_text }}-->
+							<!--{{ entity.data[entityLang].button_text }}-->
 						<!--</a>-->
 					<!--</dd>-->
 				</dl>

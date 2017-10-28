@@ -26,6 +26,11 @@
 			</div>
 		</div>
 
+		<!-- Language Switch -->
+		<ds-language-switcher-tabs [languages]="entityLanguages"
+								   [currentLanguage]="entityLang"
+								   (onLanguageChange)="switchLang($event)"></ds-language-switcher-tabs>
+
 		<ng-content select=".entity-body"></ng-content>
 
 		<div class="card-footer">
