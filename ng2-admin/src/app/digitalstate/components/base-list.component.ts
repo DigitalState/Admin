@@ -16,7 +16,7 @@ import 'rxjs/Rx';
 import { Subject, Subscriber } from 'rxjs';
 import { ObservableInput } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { forEach, isString } from 'lodash';
+import { forEach, isString, find } from 'lodash';
 
 export class DsBaseEntityListComponent extends DsEntityCrudComponent implements AfterViewInit {
 
@@ -290,7 +290,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
 
         // Append the Actions column
         this.columns.push(
-            { label: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
+            { id: 'actions', name: 'actions', label: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
         );
 
         this.updateTranslations(this.translate.currentLang);
@@ -457,6 +457,36 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
             this.query.unsetOrder();
             this.query.setOrder(sortEvent.column.prop, sortEvent.newValue);
             this.refreshList();
+        }
+    }
+
+    /**
+     * Event handler for Datatable row activation when A cell or row is focused
+     * via keyboard or mouse click.
+     *
+     * This handler emulates the `show` event for the activated row.
+     *
+     * @param event:
+     * {
+     *      type: 'keydown'|'click'|'dblclick'
+     *      event
+     *      row
+     *      column
+     *      value
+     *      cellElement
+     *      rowElement
+     * }
+     */
+    protected onRowActivation(event) {
+        // Do not trigger the event if the activation source is the `Actions` column
+        // since this will interfere with the dropdown and the action buttons
+        if (event.column.id !== 'actions') {
+            const rowEvent = {
+                'action': find(this.actions, { 'name': 'show' }),
+                'row': event.row
+            };
+
+            this.handleRowEvent(rowEvent);
         }
     }
 
