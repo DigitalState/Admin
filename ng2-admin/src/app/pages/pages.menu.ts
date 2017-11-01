@@ -380,11 +380,18 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: '',
+            path: ['identities/business-units/list'],
             data: {
               menu: {
-                title: 'general.menu.organizations',
-                url: '#'
+                title: 'general.menu.businessUnits',
+              }
+            }
+          },
+          {
+            path: ['identities/organizations/list'],
+            data: {
+              menu: {
+                title: 'general.menu.organizations'
               }
             }
           },

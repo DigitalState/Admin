@@ -11,6 +11,26 @@
 				(onFormLanguageChange)="onFormLanguageChange($event)"
 >
 	<div class="card-block">
+		<div *ngIf="!isNew" class="row">
+			<div class="col">
+				<div class="form-group">
+					<Label>UUID</Label>
+					<div class="entity-uuid form-control" disabled>{{entity.uuid}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group required translatable">
+					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
+					<translatable-icon></translatable-icon>
+					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
+					<div *ngIf="formErrors.title" class="alert alert-danger">
+						{{ formErrors.title }}
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group required">

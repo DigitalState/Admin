@@ -778,6 +778,47 @@ export class MicroservicesDefinition {
                     url: `${scheme}://${host}:8054/app_dev.php/`,
                 },
                 entities: {
+                    'business-units': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
                     'individuals': {
                         properties: {
                             'uuid': {
@@ -799,6 +840,42 @@ export class MicroservicesDefinition {
                                     'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'organizations': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
                             },
                             'updatedAt': {
                                 label: 'Updated At',
@@ -828,6 +905,10 @@ export class MicroservicesDefinition {
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
@@ -856,9 +937,35 @@ export class MicroservicesDefinition {
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
+                            },
+                        },
+                    },
+                    'organization-personas': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                    'json': { message: 'json' },
+                                },
                             },
                         },
                     },

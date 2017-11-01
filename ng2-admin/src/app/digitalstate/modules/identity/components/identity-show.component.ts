@@ -34,6 +34,40 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
 }
 
 @Component({
+    selector: 'ds-business-unit-show',
+    templateUrl: '../templates/business-unit-show.template.html'
+})
+export class DsBusinessUnitShowComponent extends DsIdentityShowComponent {
+
+    entityUrlPrefix = 'business-units';
+    headerTitle = 'ds.microservices.entity.types.businessUnit';
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
+    selector: 'ds-organization-show',
+    templateUrl: '../templates/identity-show.template.html'
+})
+export class DsOrganizationShowComponent extends DsIdentityShowComponent {
+
+    entityUrlPrefix = 'organizations';
+    headerTitle = 'ds.microservices.entity.types.organization';
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
     selector: 'ds-individual-show',
     templateUrl: '../templates/identity-show.template.html'
 })

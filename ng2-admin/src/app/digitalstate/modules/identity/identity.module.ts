@@ -12,10 +12,10 @@ import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../sh
 import { DsBaseMicroserviceModule } from '../base-microservice.module';
 import { DsMicroservicesModule } from '../../microservices.module';
 import { DsIdentityComponent } from './identity.component';
-import { DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent } from './components/identity-list.component';
-import { DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent } from './components/identity-show.component';
-import { DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent } from './components/identity-create.component';
-import { DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent } from './components/identity-edit.component';
+import { DsBusinessUnitListComponent, DsOrganizationListComponent, DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent } from './components/identity-list.component';
+import { DsBusinessUnitShowComponent, DsOrganizationShowComponent, DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent } from './components/identity-show.component';
+import { DsBusinessUnitCreateComponent, DsOrganizationCreateComponent, DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent } from './components/identity-create.component';
+import { DsBusinessUnitEditComponent, DsOrganizationEditComponent, DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent } from './components/identity-edit.component';
 import { DsPersonaListComponent } from './components/persona-list.component';
 import { DsPersonaShowComponent } from './components/persona-show.component';
 import { DsPersonaCreateComponent } from './components/persona-create.component';
@@ -34,10 +34,10 @@ export const MICROSERVICE_NAME = 'identities';
     ],
     declarations: [
         DsIdentityComponent,
-        DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent,
-        DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent,
-        DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent,
-        DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent,
+        DsBusinessUnitListComponent, DsOrganizationListComponent, DsIndividualListComponent, DsIdentityListComponent, DsIndividualListComponent, DsStaffListComponent, DsAnonymousListComponent,
+        DsBusinessUnitShowComponent, DsOrganizationShowComponent, DsIndividualShowComponent, DsIdentityShowComponent, DsIndividualShowComponent, DsStaffShowComponent, DsAnonymousShowComponent,
+        DsBusinessUnitCreateComponent, DsOrganizationCreateComponent, DsIndividualCreateComponent, DsIdentityCreateComponent, DsIndividualCreateComponent, DsStaffCreateComponent, DsAnonymousCreateComponent,
+        DsBusinessUnitEditComponent, DsOrganizationEditComponent, DsIndividualEditComponent, DsIdentityEditComponent, DsIndividualEditComponent, DsStaffEditComponent, DsAnonymousEditComponent,
         DsPersonaListComponent,
         DsPersonaShowComponent,
         DsPersonaCreateComponent,
