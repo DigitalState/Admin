@@ -6,7 +6,6 @@ import { TableColumn } from '@swimlane/ngx-datatable';
     selector: 'ds-datatable-cell-actions',
     template: `
 		<div class="btn-group btn-group-primary">
-			<!--<button type="button" class="btn btn-default" (click)="emitRowAction(row._.actions[0])">{{ row._.actions[0].title | translate }}</button>-->
 			<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fa fa-ellipsis-h align-middle"></i>
 				<span class="sr-only">{{ 'ds.microservices.entity.action.actions' | translate }}</span>
@@ -21,14 +20,6 @@ import { TableColumn } from '@swimlane/ngx-datatable';
 				</button>
 			</div>
 		</div>
-        
-		<!--<ul class="btn-list clearfix">-->
-			<!--<li *ngFor="let action of row._.actions" [hidden]="!action.visible">-->
-				<!--<button class="{{ action.class }}" (click)="emitRowAction(action)">-->
-					<!--<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>-->
-				<!--</button>-->
-			<!--</li>-->
-		<!--</ul>-->
     `,
     host: {
         class: 'ds-datatable-cell-actions'
