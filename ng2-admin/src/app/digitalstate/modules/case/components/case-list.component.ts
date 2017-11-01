@@ -13,6 +13,7 @@ export class DsCaseListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'cases';
     pageTitle = 'general.menu.cases';
+    headerTitle = 'general.menu.cases';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
