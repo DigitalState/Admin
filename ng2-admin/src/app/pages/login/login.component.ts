@@ -23,6 +23,7 @@ export class Login extends DsCmsContentSubscriber {
     form: FormGroup;
     username: AbstractControl;
     password: AbstractControl;
+    authEndpoint: string;
     redirectUrl: string;
 
     submitted: boolean = false;
@@ -48,7 +49,9 @@ export class Login extends DsCmsContentSubscriber {
         this.username = this.form.controls['username'];
         this.password = this.form.controls['password'];
 
-        console.log('ActivatedRoute: ', router.url);
+        // Initialize the Authentication endpoint
+        this.authEndpoint = this.appState.get('microservices').authentication.paths.staff;
+
         router.events
             .filter(event => event instanceof NavigationStart)
             .subscribe((navStartEvent: NavigationStart) => {
@@ -80,7 +83,7 @@ export class Login extends DsCmsContentSubscriber {
         this.inProgress = true;
 
         if (this.form.valid) {
-            this.auth.login(values.username, values.password)
+            this.auth.login(this.authEndpoint, values.username, values.password)
                 .finally(() => {
                     this.inProgress = false;
                 })

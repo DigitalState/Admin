@@ -18,7 +18,7 @@ export class MicroservicesDefinition {
                 },
                 paths: {
                     registration: 'registration',
-                    login: 'tokens/staff',
+                    staff: 'tokens/staff',
                     anonymous: 'tokens/anonymous',
                 },
                 entities: {
