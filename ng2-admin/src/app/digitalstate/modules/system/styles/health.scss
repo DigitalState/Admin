@@ -1,0 +1,69 @@
+@import '../../../../theme/sass/conf/conf';
+
+table.health-statuses {
+  width: 100%;
+
+  thead {
+    tr > *:nth-child(even) {
+      background: rgba(225, 225, 225, 0.25);
+    }
+    tr > *:nth-child(odd) {
+
+    }
+  }
+
+  tbody {
+    tr:nth-child(odd) {
+      background: rgba(225, 225, 225, 0.25);
+    }
+    tr:nth-child(even) {
+      background: transparent;
+    }
+    tr > *:nth-child(even) {
+      background: rgba(225, 225, 225, 0.25);
+    }
+    tr > *:nth-child(odd) {
+
+    }
+  }
+
+  th, td {
+    & > div {
+      padding: 1rem;
+    }
+  }
+
+  th {
+    .healthy {
+      background-color: tint($success-bg, 50%);
+    }
+
+    .sick {
+      background-color: tint($danger-bg, 50%);
+    }
+  }
+
+  td {
+    text-align: center;
+  }
+
+  thead {
+
+  }
+
+  tbody {
+
+  }
+
+  div.indicator {
+    color: $disabled;
+
+    &.healthy {
+      color: $success;
+    }
+
+    &.sick {
+      color: $danger;
+    }
+  }
+}

@@ -304,10 +304,11 @@ export const PAGES_MENU = [
           },
           {
             path: '',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
             data: {
               menu: {
                 title: 'general.menu.healthCheck',
-                url: '#'
+                url: '#/pages/settings/health'
               }
             },
           },

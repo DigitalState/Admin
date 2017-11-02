@@ -12,6 +12,7 @@ import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../sh
 import { DsMicroservicesModule } from '../../microservices.module';
 import { DsSystemComponent } from './components/system.component';
 import { DsTranslationsComponent } from './components/translations.component';
+import { DsHealthComponent } from './components/health.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DsTranslationsComponent } from './components/translations.component';
     declarations: [
         DsSystemComponent,
         DsTranslationsComponent,
+        DsHealthComponent,
     ],
     providers: [
         MicroserviceConfig,
