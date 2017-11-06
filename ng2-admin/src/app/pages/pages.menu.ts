@@ -13,7 +13,7 @@ export const PAGES_MENU = [
             icon: 'ion-person',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
-            expanded: true,
+            expanded: false,
             order: 0,
             class: 'my-account hidden-xs-up'
           }
