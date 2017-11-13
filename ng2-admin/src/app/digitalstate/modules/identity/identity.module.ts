@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import { DsSharedModule } from '../../../shared/shared.module';
 
 import { routing } from './routing';
 import { EntityApiService } from './entity-api.service';
@@ -28,7 +27,6 @@ export const MICROSERVICE_NAME = 'identities';
         CommonModule,
         FormsModule,
         NgxDatatableModule,
-        DsSharedModule,
         DsMicroservicesModule,
         routing,
     ],
