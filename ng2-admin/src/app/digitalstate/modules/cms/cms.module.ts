@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormioModule } from 'angular-formio';
 
-import { DsSharedModule } from '../../../shared/shared.module';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
 
 import { routing } from './routing';
@@ -38,7 +37,6 @@ export const MICROSERVICE_NAME = 'cms';
         FormsModule,
         FormioModule,
         NgxDatatableModule,
-        DsSharedModule,
         DsMicroservicesModule,
         routing,
     ],

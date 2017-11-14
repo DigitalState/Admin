@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LaddaModule } from 'angular2-ladda';
 
-import { DsSharedModule } from '../../../shared/shared.module';
 
 import { routing } from './routing';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
@@ -22,7 +21,6 @@ import { DsHealthComponent } from './components/health.component';
         ReactiveFormsModule,
         NgxDatatableModule,
         LaddaModule,
-        DsSharedModule,
         DsMicroservicesModule,
         routing,
     ],

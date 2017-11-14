@@ -140,7 +140,7 @@ const storageLockerConfig = {
         CustomFormsModule,
         LaddaModule,
         PagesModule,
-        DsSharedModule,
+        DsSharedModule.forRoot(),
         DsMicroservicesModule,
         routing
     ],
