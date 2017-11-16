@@ -17,7 +17,7 @@ export class MicroservicesDefinition {
             'authentication': {
                 label: 'Authentication',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8010`
+                    url: `${scheme}://api.authentication.ds/${pathPrefix}/`, // Formerly `:8010`
                     host: 'api.authentication.ds',
                 },
                 paths: {
@@ -112,7 +112,7 @@ export class MicroservicesDefinition {
             'cms': {
                 label: 'CMS',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8056`
+                    url: `${scheme}://api.cms.ds/${pathPrefix}/`, // Formerly `:8056`
                     host: 'api.cms.ds',
                 },
                 paths: {
@@ -384,7 +384,7 @@ export class MicroservicesDefinition {
             'services': {
                 label: 'Services',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8051`
+                    url: `${scheme}://api.services.ds/${pathPrefix}/`, // Formerly `:8051`
                     host: 'api.services.ds',
                 },
                 entities: {
@@ -643,7 +643,7 @@ export class MicroservicesDefinition {
             'cases': {
                 label: 'Cases',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8050`
+                    url: `${scheme}://api.cases.ds/${pathPrefix}/`, // Formerly `:8050`
                     host: 'api.cases.ds',
                 },
                 entities: {
@@ -782,7 +782,7 @@ export class MicroservicesDefinition {
             'identities': {
                 label: 'Identities',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8054`
+                    url: `${scheme}://api.identities.ds/${pathPrefix}/`, // Formerly `:8054`
                     host: 'api.identities.ds',
                 },
                 entities: {
@@ -1040,7 +1040,7 @@ export class MicroservicesDefinition {
             'assets': {
                 label: 'Assets',
                 entrypoint: {
-                    url: `${scheme}://${host}/`, // Formerly `:8053`
+                    url: `${scheme}://api.assets.ds/${pathPrefix}/`, // Formerly `:8053`
                     host: 'api.assets.ds',
                 },
                 entities: {
@@ -1061,7 +1061,7 @@ export class MicroservicesDefinition {
             'topics': {
                 label: 'Topics',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8016`
+                    url: `${scheme}://api.topics.ds/${pathPrefix}/`, // Formerly `:8016`
                     host: 'api.topics.ds',
                 },
                 entities: {
@@ -1082,7 +1082,7 @@ export class MicroservicesDefinition {
             'tasks': {
                 label: 'Tasks',
                 entrypoint: {
-                    url: `${scheme}://${host}/${pathPrefix}/`, // Formerly `:8060`
+                    url: `${scheme}://api.tasks.ds/${pathPrefix}/`, // Formerly `:8060`
                     host: 'api.tasks.ds',
                 },
                 entities: {
@@ -1174,7 +1174,7 @@ export class MicroservicesDefinition {
             'records': {
                 label: 'Records',
                 entrypoint: {
-                    url: `${scheme}://${host}/`, // Formerly `:8052`
+                    url: `${scheme}://api.records.ds/${pathPrefix}/`, // Formerly `:8052`
                     host: 'api.records.ds',
                 },
                 entities: {
@@ -1195,7 +1195,7 @@ export class MicroservicesDefinition {
             'interactions': {
                 label: 'Interactions',
                 entrypoint: {
-                    url: `${scheme}://${host}/`, // Formerly `:8017`
+                    url: `${scheme}://api.interactions.ds/${pathPrefix}/`, // Formerly `:8017`
                     host: 'api.interactions.ds',
                 },
                 entities: {
