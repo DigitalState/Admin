@@ -9,16 +9,20 @@ export class MicroservicesDefinition {
     getAll() {
         let scheme = this.dsEnv.msUrlScheme;
         let host = this.dsEnv.msHost;
+        let pathPrefix = 'app_dev.php';
+
+        // host = 'localhost';
 
         return {
             'authentication': {
                 label: 'Authentication',
                 entrypoint: {
-                    url: `${scheme}://${host}:8010/app_dev.php/`,
+                    url: `${scheme}://api.authentication.ds/${pathPrefix}/`, // Formerly `:8010`
+                    host: 'api.authentication.ds',
                 },
                 paths: {
                     registration: 'registration',
-                    login: 'tokens/staff',
+                    staff: 'tokens/staff',
                     anonymous: 'tokens/anonymous',
                 },
                 entities: {
@@ -108,7 +112,8 @@ export class MicroservicesDefinition {
             'cms': {
                 label: 'CMS',
                 entrypoint: {
-                    url: `${scheme}://${host}:8056/app_dev.php/`,
+                    url: `${scheme}://api.cms.ds/${pathPrefix}/`, // Formerly `:8056`
+                    host: 'api.cms.ds',
                 },
                 paths: {
                     content: 'content',
@@ -379,7 +384,8 @@ export class MicroservicesDefinition {
             'services': {
                 label: 'Services',
                 entrypoint: {
-                    url: `${scheme}://${host}:8051/app_dev.php/`,
+                    url: `${scheme}://api.services.ds/${pathPrefix}/`, // Formerly `:8051`
+                    host: 'api.services.ds',
                 },
                 entities: {
                     'services': {
@@ -637,7 +643,8 @@ export class MicroservicesDefinition {
             'cases': {
                 label: 'Cases',
                 entrypoint: {
-                    url: `${scheme}://${host}:8050/app_dev.php/`,
+                    url: `${scheme}://api.cases.ds/${pathPrefix}/`, // Formerly `:8050`
+                    host: 'api.cases.ds',
                 },
                 entities: {
                     'cases': {
@@ -775,9 +782,51 @@ export class MicroservicesDefinition {
             'identities': {
                 label: 'Identities',
                 entrypoint: {
-                    url: `${scheme}://${host}:8054/app_dev.php/`,
+                    url: `${scheme}://api.identities.ds/${pathPrefix}/`, // Formerly `:8054`
+                    host: 'api.identities.ds',
                 },
                 entities: {
+                    'business-units': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
                     'individuals': {
                         properties: {
                             'uuid': {
@@ -799,6 +848,42 @@ export class MicroservicesDefinition {
                                     'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'organizations': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
                             },
                             'updatedAt': {
                                 label: 'Updated At',
@@ -828,6 +913,10 @@ export class MicroservicesDefinition {
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
@@ -856,9 +945,35 @@ export class MicroservicesDefinition {
                                 },
                                 default: '8454c987-cbc5-4a24-ba1a-d420283caabd',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
+                            },
+                        },
+                    },
+                    'organization-personas': {
+                        properties: {
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                    'json': { message: 'json' },
+                                },
                             },
                         },
                     },
@@ -925,7 +1040,8 @@ export class MicroservicesDefinition {
             'assets': {
                 label: 'Assets',
                 entrypoint: {
-                    url: `${scheme}://${host}:8053/`,
+                    url: `${scheme}://api.assets.ds/${pathPrefix}/`, // Formerly `:8053`
+                    host: 'api.assets.ds',
                 },
                 entities: {
                     'assets': {
@@ -945,7 +1061,8 @@ export class MicroservicesDefinition {
             'topics': {
                 label: 'Topics',
                 entrypoint: {
-                    url: `${scheme}://${host}:8016/app_dev.php/`,
+                    url: `${scheme}://api.topics.ds/${pathPrefix}/`, // Formerly `:8016`
+                    host: 'api.topics.ds',
                 },
                 entities: {
                     'topics': {
@@ -965,7 +1082,8 @@ export class MicroservicesDefinition {
             'tasks': {
                 label: 'Tasks',
                 entrypoint: {
-                    url: `${scheme}://${host}:8060/app_dev.php/`,
+                    url: `${scheme}://api.tasks.ds/${pathPrefix}/`, // Formerly `:8060`
+                    host: 'api.tasks.ds',
                 },
                 entities: {
                     'tasks': {
@@ -1056,7 +1174,8 @@ export class MicroservicesDefinition {
             'records': {
                 label: 'Records',
                 entrypoint: {
-                    url: `${scheme}://${host}:8052/`,
+                    url: `${scheme}://api.records.ds/${pathPrefix}/`, // Formerly `:8052`
+                    host: 'api.records.ds',
                 },
                 entities: {
                     'records': {
@@ -1076,7 +1195,8 @@ export class MicroservicesDefinition {
             'interactions': {
                 label: 'Interactions',
                 entrypoint: {
-                    url: `${scheme}://${host}:8017/`,
+                    url: `${scheme}://api.interactions.ds/${pathPrefix}/`, // Formerly `:8017`
+                    host: 'api.interactions.ds',
                 },
                 entities: {
                     'communications': {
@@ -1122,26 +1242,6 @@ export class MicroservicesDefinition {
                     },
                 },
             },
-            // 'individuals': {
-            //     label: 'Individuals',
-            //     entrypoint: {
-            //         url: `${scheme}://${host}:8013/`,
-            //     },
-            //     entities: {
-            //         'individuals': {
-            //             properties: {
-            //                 'username': {
-            //                     label: 'Username',
-            //                     type: 'string',
-            //                     default: '',
-            //                     validation: {
-            //                         'required': {message: 'username is required.'},
-            //                     },
-            //                 },
-            //             },
-            //         },
-            //     },
-            // },
         };
     }
 }

@@ -92,6 +92,8 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     protected toastr: ToastsManager;
     protected modal: NgbModal;
 
+    protected entitySubscribed: boolean = false;
+    protected initialLang: string;
 
     constructor(injector: Injector, protected microserviceConfig: MicroserviceConfig) {
         super(injector);
@@ -100,6 +102,8 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
         this.translate = this.injector.get(TranslateService);
         this.modal = this.injector.get(NgbModal);
         this.toastr = this.injector.get(ToastsManager);
+
+        this.initialLang = this.translate.currentLang;
     }
 
     ngOnInit() {
@@ -116,11 +120,19 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
         // Subscribe to language-change events
         this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+
+            if (this.initialLang === event.lang) {
+                this.initialLang = null;
+                return;
+            }
+
             this.lang = event.lang;
-            return this.prepareEntity().subscribe();
+            this.initialLang = event.lang;
+            this.prepareEntity().subscribe();
         });
 
         this.prepareEntity().subscribe();
+        this.entitySubscribed = true;
     }
 
     ngOnDestroy() {
@@ -132,23 +144,29 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
         return this.route.params.flatMap((params: Params) => {
-            let uuid = params['id'];
-            let parentUuid = params[this.entityParentUrlParam];
+            if (this.entity) {
+                return Observable.of({'entity': this.entity, 'entityParent': this.entityParent});
+            }
+            else {
+                let uuid = params['id'];
+                let parentUuid = params[this.entityParentUrlParam];
 
-            return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
-                this.entity = entity;
+                return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
+                    this.entity = entity;
+                    this.onEntityPrepared();
 
-                return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
-                    return Observable.of({'entity': entity, 'entityParent': entityParent});
+                    return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
+                        return Observable.of({'entity': entity, 'entityParent': entityParent});
+                    });
+                }).catch(error => {
+                    if (error instanceof Response) {
+                        this.onPrepareEntityError(error);
+                    } else {
+                        console.warn('Unexpected error occurred while fetching entity: ' + error);
+                    }
+                    throw error;
                 });
-            }).catch(error => {
-                if (error instanceof Response) {
-                    this.onPrepareEntityError(error);
-                } else {
-                    console.warn('Unexpected error occurred while fetching entity: ' + error);
-                }
-                throw error;
-            });
+            }
         });
     }
 
@@ -224,6 +242,13 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     onEntityDeleteError(error) {
         console.error('Failed to delete entity', error);
         this.toastr.error(this.translate.instant('ds.messages.entityDeletionFailed'));
+    }
+
+    /**
+     * Stub called when the entity is fetched.
+     */
+    onEntityPrepared() {
+
     }
 
     /**

@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DsSystemComponent } from './components/system.component';
 import { DsTranslationsComponent } from './components/translations.component';
+import { DsHealthComponent } from './components/health.component';
 
 const routes: Routes = [
 
@@ -16,8 +17,7 @@ const routes: Routes = [
             { path: '', redirectTo: '/pages/settings/systems', pathMatch: 'full' },
             { path: 'systems', component: DsSystemComponent },
             { path: 'translations', component: DsTranslationsComponent },
-            // { path: ':id/show', component: DsSystemShowComponent },
-            // { path: ':id/edit', component: DsSystemEditComponent },
+            { path: 'health', component: DsHealthComponent },
         ]
     }
 ];

@@ -7,15 +7,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { FilterByPipe } from 'ngx-pipes/src/app/pipes/array/filter-by';
 
-import { AppTranslationModule } from '../app.translation.module';
-import { AppState } from '../app.service';
 import { NgaModule } from '../../theme/nga.module';
 
-import { DsEnvironmentConfig } from '../shared/providers/environment.provider';
 import { DsSharedModule } from '../shared/shared.module';
-// import { DSAuthModule } from '../shared/modules/auth/auth.module';
 
-import { MicroservicesDefinition } from './microservices';
 import { DsRouteDeactivationConfirmerGuard } from './services/route-decativation-confirmer.service';
 import { TemplateStorage } from './services/template-storage.service';
 import { TemplateStorageComponent } from './components/template-storage.component';
@@ -32,14 +27,10 @@ import { DsLanguageSwitcherTabsComponent } from './components/language-switcher-
 import { DsBackLink } from './components/back-link.component';
 import { DsTranslatableIconComponent } from './components/translatable-icon.component';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
-import { CmsApiService } from '../shared/services/cms.service';
-
-import isObject from 'lodash/isObject';
-import forEach from 'lodash/forEach';
-
 
 @NgModule({
     imports: [
+        DsSharedModule,
         CommonModule,
         RouterModule,
         FormsModule,
@@ -47,9 +38,7 @@ import forEach from 'lodash/forEach';
         NgArrayPipesModule,
         MdProgressBarModule,
         MdCheckboxModule,
-        // AppTranslationModule,
         TranslateModule,
-        DsSharedModule,
     ],
     declarations: [
         DefaultModal,
@@ -76,6 +65,7 @@ import forEach from 'lodash/forEach';
         DsRouteDeactivationConfirmerGuard,
     ],
     exports: [
+        DsSharedModule,
         ReactiveFormsModule,
         MdProgressBarModule,
         MdCheckboxModule,
@@ -89,7 +79,6 @@ import forEach from 'lodash/forEach';
         DsDatatableCellActions,
         DsLanguageSwitcherComponent,
         DsLanguageSwitcherTabsComponent,
-        // AppTranslationModule,
         TranslateModule,
         DsTranslatableIconComponent,
     ]

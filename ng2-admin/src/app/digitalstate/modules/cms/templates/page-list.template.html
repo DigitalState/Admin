@@ -28,6 +28,7 @@
 				   [limit]="pager.size"
 				   (page)="setPage($event)"
 				   (sort)="onSort($event)"
+				   (activate)="onRowActivation($event)"
 				   class="material">
 	</ngx-datatable>
 </ds-entity-list>

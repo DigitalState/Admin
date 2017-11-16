@@ -13,6 +13,7 @@ export class DsServiceListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'services';
     pageTitle = 'general.menu.serviceDirectory';
+    headerTitle = 'general.menu.services';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,

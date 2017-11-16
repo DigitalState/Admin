@@ -30,6 +30,40 @@ export class DsIdentityEditComponent extends DsBaseEntityFormComponent {
 }
 
 @Component({
+    selector: 'ds-business-unit-edit',
+    templateUrl: '../templates/business-unit-form.template.html'
+})
+export class DsBusinessUnitEditComponent extends DsIdentityEditComponent {
+
+    entityUrlPrefix = 'business-units';
+    headerTitle = 'ds.microservices.entity.types.businessUnit';
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
+    selector: 'ds-organization-edit',
+    templateUrl: '../templates/identity-form.template.html'
+})
+export class DsOrganizationEditComponent extends DsIdentityEditComponent {
+
+    entityUrlPrefix = 'organizations';
+    headerTitle = 'ds.microservices.entity.types.organization';
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
     selector: 'ds-individual-edit',
     templateUrl: '../templates/identity-form.template.html'
 })

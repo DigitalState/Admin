@@ -13,7 +13,7 @@ export const PAGES_MENU = [
             icon: 'ion-person',
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
-            expanded: true,
+            expanded: false,
             order: 0,
             class: 'my-account hidden-xs-up'
           }
@@ -304,10 +304,11 @@ export const PAGES_MENU = [
           },
           {
             path: '',
+            pathMatch: 'prefix', // use it if item children not displayed in menu
             data: {
               menu: {
                 title: 'general.menu.healthCheck',
-                url: '#'
+                url: '#/pages/settings/health'
               }
             },
           },
@@ -380,11 +381,18 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: '',
+            path: ['identities/business-units/list'],
             data: {
               menu: {
-                title: 'general.menu.organizations',
-                url: '#'
+                title: 'general.menu.businessUnits',
+              }
+            }
+          },
+          {
+            path: ['identities/organizations/list'],
+            data: {
+              menu: {
+                title: 'general.menu.organizations'
               }
             }
           },

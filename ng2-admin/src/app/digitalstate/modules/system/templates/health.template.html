@@ -1,0 +1,38 @@
+<div class="card no-shadow">
+	<div class="card-header p-0 border-0">
+		<!--<h3 class="card-title"></h3>-->
+		<button (click)="runRequests()" class="btn btn-default btn-icon collapsed">
+			<i class="fa fa-refresh"></i>
+		</button>
+	</div>
+
+	<div class="card-block p-0">
+		<table class="health-statuses">
+			<thead>
+				<tr>
+					<th scope="row"><span></span></th>
+					<th *ngFor="let msStatus of microservicesStatuses">
+						<div [ngClass]="{ 'healthy': msStatus.isHealthy === true, 'sick': msStatus.isHealthy === false }">
+							{{ msStatus.name }}
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let statusName of statusesNames">
+					<th scope="row">
+						<div>{{ statusName }}</div>
+					</th>
+					<td *ngFor="let msStatus of microservicesStatuses">
+						<div *ngIf="!msStatus.itemsStatuses[statusName]"
+							  class="indicator fa fa-question"></div>
+						<div *ngIf="msStatus.itemsStatuses[statusName]"
+							  class="indicator fa"
+							  [ngClass]="{ 'healthy fa-check': msStatus.itemsStatuses[statusName].isHealthy === true,
+							               'sick fa-times': msStatus.itemsStatuses[statusName].isHealthy === false }"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

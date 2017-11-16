@@ -30,6 +30,44 @@ export class DsIdentityCreateComponent extends DsBaseEntityFormComponent {
 }
 
 @Component({
+    selector: 'ds-business-unit-create',
+    templateUrl: '../templates/business-unit-form.template.html'
+})
+export class DsBusinessUnitCreateComponent extends DsIdentityCreateComponent {
+
+    entityUrlPrefix = 'business-units';
+    personaUrlPrefix = IdentityUtils.getPersonaUrlPrefix('BusinessUnit');
+    headerTitle = 'ds.microservices.entity.types.businessUnit';
+    isNew = true;
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
+    selector: 'ds-organization-create',
+    templateUrl: '../templates/identity-form.template.html'
+})
+export class DsOrganizationCreateComponent extends DsIdentityCreateComponent {
+
+    entityUrlPrefix = 'organizations';
+    personaUrlPrefix = IdentityUtils.getPersonaUrlPrefix('Organization');
+    headerTitle = 'ds.microservices.entity.types.organization';
+    isNew = true;
+
+    constructor(injector: Injector,
+                microserviceConfig: MicroserviceConfig,
+                entityApiService: EntityApiService) {
+
+        super(injector, microserviceConfig, entityApiService);
+    }
+}
+
+@Component({
     selector: 'ds-individual-create',
     templateUrl: '../templates/identity-form.template.html'
 })

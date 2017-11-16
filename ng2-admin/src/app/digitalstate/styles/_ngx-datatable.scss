@@ -51,6 +51,29 @@
 
       .datatable-body-cell-label {
         align-self: center;
+
+        .ds-datatable-cell-actions {
+          .dropdown-toggle {
+            &:after {
+              display: none;
+            }
+          }
+
+          .dropdown-menu {
+            min-width: inherit;
+            left: auto;
+            right: 100%;
+            top: 0;
+            white-space: nowrap;
+            padding: 0px 2px 2px;
+            box-shadow: #ddd 1px 1px 10px;
+
+            .dropdown-item {
+              display: inline-block;
+              width: auto;
+            }
+          }
+        }
       }
     }
   }
