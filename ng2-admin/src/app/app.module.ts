@@ -26,6 +26,7 @@ import {RestangularModule} from 'ngx-restangular';
 import { FormioModule, FormioAppConfig } from 'angular-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
+import { WindowTokenModule } from 'ngx-window-token';
 import { DsSharedModule } from './shared/shared.module';
 import { DsMicroservicesModule } from './digitalstate/microservices.module';
 
@@ -139,6 +140,7 @@ const storageLockerConfig = {
         LockerModule.withConfig(storageLockerConfig),
         CustomFormsModule,
         LaddaModule,
+        WindowTokenModule,
         PagesModule,
         DsSharedModule.forRoot(),
         DsMicroservicesModule,

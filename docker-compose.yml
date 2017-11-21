@@ -3,12 +3,14 @@ version: '2.1'
 services:
     admin_ng2admin:
         build: .
-        volumes:
-            - '${DIRECTORY}/ng2-admin/src:/var/www/src'
+#        volumes:
+#            - '/srv/admin/ng2-admin:/var/www'
+#            - '${DIRECTORY}/docker/nginx/conf.d:/etc/nginx/conf.d:ro'
         environment:
             - VIRTUAL_HOST
+            - DISCOVERY
         working_dir: /var/www
-        command: bash -c /var/www/run-prod.sh
+#        command: bash -c /var/www/run-prod.sh
 
 networks:
     default:
