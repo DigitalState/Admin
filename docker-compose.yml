@@ -1,11 +1,11 @@
 version: '2.1'
 
 services:
-    ng2admin:
+    admin_ng2admin:
         build: .
-        volumes:
-            - '/srv/admin/ng2-admin:/var/www'
-            - '${DIRECTORY}/docker/nginx/conf.d:/etc/nginx/conf.d:ro'
+#        volumes:
+#            - '/srv/admin/ng2-admin:/var/www'
+#            - '${DIRECTORY}/docker/nginx/conf.d:/etc/nginx/conf.d:ro'
         environment:
             - VIRTUAL_HOST
             - DISCOVERY
