@@ -5,7 +5,7 @@ FROM nginx:1.11-alpine
 #RUN apk add --update bash \
 #                     git
 
-ADD ./ng2-admin /var/www
+#ADD ./ng2-admin /var/www
 
 #RUN cd /var/www
 
