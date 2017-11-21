@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-    ng2admin:
+    admin_ng2admin:
         build: .
         volumes:
             - '${DIRECTORY}/ng2-admin/src:/var/www/src'
