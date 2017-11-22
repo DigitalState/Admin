@@ -8,11 +8,8 @@ export class MicroservicesDefinition {
 
     getAll() {
         const scheme = this.dsEnv.msUrlScheme;
-        // const host = this.dsEnv.msHost;
         const dsDiscoveryEnv = this.dsEnv.dsDiscoveryEnv;
         const pathPrefix = 'app_dev.php';
-
-        // host = 'localhost';
 
         return {
             'authentication': {
