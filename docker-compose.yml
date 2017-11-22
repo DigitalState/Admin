@@ -1,12 +1,33 @@
 version: '2.1'
 
 services:
-  ng2admin:
-    build: .
-    ports:
-      - '8001:8080'
-#      - '3000:3000'
-    volumes:
-      - './ng2-admin/src:/var/www/src'
-    working_dir: '/var/www'
-    command: 'bash -c /var/www/run-prod.sh'
+    admin_ng2admin:
+        build: .
+#        volumes:
+#            - '/srv/admin/ng2-admin:/var/www'
+#            - '${DIRECTORY}/docker/nginx/conf.d:/etc/nginx/conf.d:ro'
+        environment:
+            - VIRTUAL_HOST
+            - DISCOVERY
+        extra_hosts:
+            - 'api.assets.ds:${PROXY_HOST}'
+            - 'api.authentication.ds:${PROXY_HOST}'
+            - 'api.camunda.ds:${PROXY_HOST}'
+            - 'api.cases.ds:${PROXY_HOST}'
+            - 'api.cms.ds:${PROXY_HOST}'
+            - 'api.discovery.ds:${PROXY_HOST}'
+            - 'api.formio.ds:${PROXY_HOST}'
+            - 'api.identities.ds:${PROXY_HOST}'
+            - 'api.interactions.ds:${PROXY_HOST}'
+            - 'api.logs.ds:${PROXY_HOST}'
+            - 'api.records.ds:${PROXY_HOST}'
+            - 'api.services.ds:${PROXY_HOST}'
+            - 'api.tasks.ds:${PROXY_HOST}'
+            - 'api.topics.ds:${PROXY_HOST}'
+        working_dir: /var/www
+#        command: bash -c /var/www/run-prod.sh
+
+networks:
+    default:
+        external:
+          name: '${PROXY_NETWORK}'
