@@ -458,13 +458,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         let errorTitle = this.translate.instant('ds.messages.entitySaveFailed');
         let errorMessage = '';
 
-        if (error.data) {
-            if (error.data['@type'] == 'ConstraintViolationList' && error.data['hydra:description']) {
-                errorMessage = error.data['hydra:description'];
-                // setTimeout(() => {
-                //     this.toastr.info(this.translate.instant('ds.messages.ensureFormValid'));
-                // }, 500);
-            }
+        if (error.data && error.data['hydra:description']) {
+            errorMessage = error.data['hydra:description'];
+            // setTimeout(() => {
+            //     this.toastr.info(this.translate.instant('ds.messages.ensureFormValid'));
+            // }, 500);
         }
 
         this.toastr.error(errorMessage, errorTitle);
