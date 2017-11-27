@@ -99,6 +99,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
      */
     protected active = true;
 
+    /**
+     * Set when route params are available
+     */
+    protected routeParams: Params;
+
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig) {
 
@@ -149,11 +154,17 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
     }
 
+    protected onRouteParams(params: Params) {
+        this.routeParams = params;
+    }
+
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
 
         return this.route.params.flatMap((params: Params) => {
             let uuid = params['id'];
             let parentUuid = params[this.entityParentUrlParam];
+
+            this.onRouteParams(params);
 
             if (this.isNew) {
                 return this.createBlankEntity().flatMap(entity => {
