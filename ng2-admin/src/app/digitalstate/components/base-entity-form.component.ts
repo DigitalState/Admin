@@ -119,6 +119,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
      */
     protected active = true;
 
+    /**
+     * Set when route params are available
+     */
+    protected routeParams: Params;
+
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig) {
 
@@ -195,11 +200,17 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
     }
 
+    protected onRouteParams(params: Params) {
+        this.routeParams = params;
+    }
+
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
 
         // return this.route.params.flatMap((params: Params) => {
             let uuid = this.urlParams['id'];
             let parentUuid = this.urlParams[this.entityParentUrlParam];
+
+            this.onRouteParams(params);
 
             if (this.isNew) {
                 return this.createBlankEntity().flatMap(entity => {
@@ -600,13 +611,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         let errorTitle = this.translate.instant('ds.messages.entitySaveFailed');
         let errorMessage = '';
 
-        if (error.data) {
-            if (error.data['@type'] == 'ConstraintViolationList' && error.data['hydra:description']) {
-                errorMessage = error.data['hydra:description'];
-                // setTimeout(() => {
-                //     this.toastr.info(this.translate.instant('ds.messages.ensureFormValid'));
-                // }, 500);
-            }
+        if (error.data && error.data['hydra:description']) {
+            errorMessage = error.data['hydra:description'];
+            // setTimeout(() => {
+            //     this.toastr.info(this.translate.instant('ds.messages.ensureFormValid'));
+            // }, 500);
         }
 
         this.toastr.error(errorMessage, errorTitle);

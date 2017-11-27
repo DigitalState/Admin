@@ -94,6 +94,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
     protected entitySubscribed: boolean = false;
     protected initialLang: string;
+    protected routeParams: Params;
 
     constructor(injector: Injector, protected microserviceConfig: MicroserviceConfig) {
         super(injector);
@@ -144,6 +145,8 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
         return this.route.params.flatMap((params: Params) => {
+            this.onRouteParams(params);
+
             if (this.entity) {
                 return Observable.of({'entity': this.entity, 'entityParent': this.entityParent});
             }
@@ -249,6 +252,13 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
      */
     onEntityPrepared() {
 
+    }
+
+    /**
+     * Stub called when route params are set.
+     */
+    onRouteParams(params: Params) {
+        this.routeParams = params;
     }
 
     /**
