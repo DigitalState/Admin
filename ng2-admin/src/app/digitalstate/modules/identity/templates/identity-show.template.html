@@ -56,6 +56,17 @@
 				</dl>
 			</div>
 		</div>
+
+		<div *ngIf="userLinks && userLinks.length > 0" class="row">
+			<div class="col-sm-12">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.types.user' | translate }}</dt>
+					<dd>
+						<a *ngFor="let userLink of userLinks" [routerLink]="userLink.routerLink">{{ userLink.title }}</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
 	</div>
 	<!-- end: ng-content[select=".entity-body"] -->
 

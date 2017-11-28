@@ -1,5 +1,6 @@
 import { Component, Injector } from '@angular/core';
 
+import { UserApiService } from '../../../../shared/services/user-api.service';
 import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 
@@ -9,6 +10,7 @@ import { Link } from '../../../models/link';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import { LocalApiUtils } from '../../../utils/local-api.utils';
 
 @Component({
     selector: 'ds-identity-show',
@@ -16,20 +18,36 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
 
+    userApi: UserApiService;
+
     pageTitle = 'general.menu.identities';
     backLink = new Link(['../../list'], 'general.list');
     identitySingularName: string;
+
+    /** Links to User entities that are associated with the identity */
+    userLinks: Array<any>;
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
                 protected entityApiService: EntityApiService) {
 
         super(injector, microserviceConfig);
+        this.userApi = injector.get(UserApiService);
     }
 
     ngOnInit() {
         this.identitySingularName = IdentityUtils.getSingular(this.entityUrlPrefix);
         super.ngOnInit();
+    }
+
+    onEntityPrepared(): void {
+        super.onEntityPrepared();
+
+        this.userApi.loadUsersByIdentity(this.entity.uuid).subscribe((users: Array<any>) => {
+            this.userLinks = users.map(user => {
+                return LocalApiUtils.createEntityLink('user', user.uuid, user.uuid);
+            });
+        });
     }
 }
 
