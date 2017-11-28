@@ -52,27 +52,17 @@ export class DsFileShowComponent extends DsBaseEntityShowComponent {
             this.entity.file = {};
         }
 
-        // Extract the type from the Base64 representation of the file and use it
-        // to create the file metadata
-        const fileStr = this.entity.presentation[this.lang];
-        if (!fileStr) {
-            return;
-        }
-
-        const fileType = fileStr.substring('data:'.length, fileStr.indexOf(';base64'));
-
         this.entity.file[this.lang] = {
-            type: fileType,
-            extension: fileType.substring(fileType.indexOf('/') + 1),
-            canPreview: fileTestRegex.test(fileType)
+            dataPrefix: 'data:' + this.entity.type + ';base64,',
+            extension: this.entity.type.substring(this.entity.type.indexOf('/') + 1),
+            canPreview: fileTestRegex.test(this.entity.type)
         };
-
-        console.log(this.entity.file[this.lang]);
     }
 
     protected downloadFile() {
-        download(this.entity.presentation[this.lang],
+        const fileSrc = this.entity.file[this.lang].dataPrefix + this.entity.presentation[this.lang];
+        download(fileSrc,
             'download.' + this.entity.file[this.lang].extension,
-            this.entity.file[this.lang].fileType);
+            this.entity.type);
     }
 }
