@@ -15,7 +15,7 @@ import { TableColumn } from '@swimlane/ngx-datatable';
                         class="dropdown-item" 
                         [hidden]="!action.visible" 
                         [ngClass]="action.class" 
-                        (click)="emitRowAction(action)">
+                        (mousedown)="emitRowAction(action)">
 					<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
 				</button>
 			</div>
