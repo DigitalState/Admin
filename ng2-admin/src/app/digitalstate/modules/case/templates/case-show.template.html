@@ -29,7 +29,7 @@
 			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.title' | translate }}</dt>
-					<dd>{{entity.title | entityTranslate}}</dd>
+					<dd>{{entity.title[lang]}}</dd>
 				</dl>
 			</div>
 			<div class="col-sm-6">
@@ -65,7 +65,7 @@
 					<dt>{{ 'ds.microservices.entity.property.owner' | translate }}</dt>
 					<dd>
 						{{entity.owner}}
-						<span *ngIf="ownerEntity">({{ ownerEntity.title | entityTranslate }})</span>
+						<span *ngIf="ownerEntity">({{ ownerEntity.title[lang] }})</span>
 					</dd>
 				</dl>
 			</div>
@@ -115,8 +115,8 @@
 		<div class="card-block entity-body entity-data">
 			<div class="row">
 				<div class="col-sm-12">
-					<pre>{{ entity.data | entityTranslate | json }}</pre>
-					<!--<dl *ngFor="let item of (entity.data | entityTranslate) | keyValue">-->
+					<pre>{{ entity.data[lang] | json }}</pre>
+					<!--<dl *ngFor="let item of (entity.data[lang]) | keyValue">-->
 						<!--<dt>{{ item.key }}</dt>-->
 						<!--<dd>{{ item.value }}</dd>-->
 					<!--</dl>-->
