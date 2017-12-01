@@ -41,8 +41,11 @@
 			<div class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.identity' | translate }}</dt>
-					<dd>
+					<dd *ngIf="identityLink">
 						<a [routerLink]="identityLink?.routerLink">{{entity.identity}}</a>
+					</dd>
+					<dd *ngIf="!identityLink">
+						<a>{{entity.identity}}</a>
 					</dd>
 				</dl>
 			</div>

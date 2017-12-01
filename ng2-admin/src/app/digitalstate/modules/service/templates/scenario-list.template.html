@@ -44,7 +44,7 @@
 					</div>
 				</li>
 				<li *ngFor="let action of headerActions">
-					<button [hidden]="!action.visible" class="{{ action.class }}" (click)="emitHeaderAction(action)">
+					<button [hidden]="!action.visible" class="{{ action.class }}" (click)="handleHeaderEvent({ action: action })">
 						<i class="{{ action.iconClass }}">{{ action.title | translate}}</i>
 					</button>
 				</li>

@@ -4,47 +4,74 @@ import { IdentityUtils } from '../../shared/utils/identity.utils';
 export class LocalApiUtils {
 
     /**
+     *
+     * @param uri
+     * @return {{uuid: string, entityPrefix: string}}
+     */
+    static explodeUri(uri: string): { entityPrefix: string, uuid: string } {
+        const exploded = uri.split('/');
+
+        if (isArray(exploded) && exploded.length >= 2) {
+            return {
+                uuid: exploded[exploded.length - 1],
+                entityPrefix: exploded[exploded.length - 2],
+            };
+        }
+        else {
+            throw 'Not a valid URI array';
+        }
+    }
+
+    /**
+     *
+     * @param entityPrefix
+     * @param uuid
+     * @return {{routerLink: Array, title: null}}
+     */
+    static createEntityLink(entityPrefix: string, uuid: string, title?: string): { routerLink: Array<string>, title: any } {
+        let link = {
+            routerLink: [],
+            title: title,
+        };
+
+        switch (entityPrefix) {
+            case 'scenario': entityPrefix = 'scenarios';
+            case 'scenarios':
+            case 'submission': entityPrefix = 'submissions';
+            case 'submissions':
+                link.routerLink = ['/pages', 'services', entityPrefix, uuid, 'show'];
+                break;
+            case 'case-statuses':
+                // @Todo Implement case statuses link by changing the route to the case-status component in a similar way to how scenarios are implemented
+                alert('Case Statuses link is not implemented yet.');
+                link.routerLink = ['/pages', 'cases', entityPrefix, uuid, 'show'];
+                break;
+            case 'individuals':
+            case 'staffs':
+            case 'anonymouses':
+                link.routerLink = ['/pages', 'identities', entityPrefix, uuid, 'show'];
+                break;
+            case 'user': entityPrefix = 'users';
+            // case 'users':
+            //     link.routerLink = ['/pages', entityPrefix, uuid, 'show'];
+            //     break;
+            default:
+                link.routerLink = ['/pages', entityPrefix, uuid, 'show'];
+                break;
+        }
+
+        return link;
+    }
+
+    /**
      * Generates a Router Link to an entity's `show` component from a URI.
      *
      * @param uri
      * @returns {{routerLink: Array, title: null}}
      */
     static createEntityLinkFromUri(uri: string): { routerLink: Array<string>, title: any } {
-        if (uri) {
-            const exploded = uri.split('/');
-
-            if (isArray(exploded) && exploded.length >= 2) {
-                let link = {
-                    routerLink: [],
-                    title: null,
-                };
-
-                const uuid = exploded[exploded.length - 1];
-                const entityPrefix = exploded[exploded.length - 2];
-
-                switch (entityPrefix) {
-                    case 'scenarios':
-                    case 'submissions':
-                        link.routerLink = ['/pages', 'services', entityPrefix, uuid, 'show'];
-                        break;
-                    case 'case-statuses':
-                        // @Todo Implement case statuses link by changing the route to the case-status component in a similar way to how scenarios are implemented
-                        alert('Case Statuses link is not implemented yet.');
-                        link.routerLink = ['/pages', 'cases', entityPrefix, uuid, 'show'];
-                        break;
-                    case 'individuals':
-                    case 'staffs':
-                    case 'anonymouses':
-                        link.routerLink = ['/pages', 'identities', entityPrefix, uuid, 'show'];
-                        break;
-                    default:
-                        link.routerLink = ['/pages', entityPrefix, uuid, 'show'];
-                        break;
-                }
-
-                return link;
-            }
-        }
+        let explodedUri = LocalApiUtils.explodeUri(uri);
+        return LocalApiUtils.createEntityLink(explodedUri.entityPrefix, explodedUri.uuid);
     }
 
     /**
@@ -55,8 +82,14 @@ export class LocalApiUtils {
      * @returns {{routerLink: Array, title: null}}
      */
     static createIdentityEntityLink(identity: string, identityUuid: string): { routerLink: Array<string>, title: any } {
+        const identityPlural = IdentityUtils.getPlural(identity);
+
+        if (!identityPlural) {
+            return null;
+        }
+
         let link = {
-            routerLink: ['/pages', 'identities', IdentityUtils.getPlural(identity), identityUuid, 'show'],
+            routerLink: ['/pages', 'identities', identityPlural, identityUuid, 'show'],
             title: null,
         };
 

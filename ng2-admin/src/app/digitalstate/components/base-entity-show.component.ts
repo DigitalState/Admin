@@ -250,7 +250,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     /**
      * Stub called when the entity is fetched.
      */
-    onEntityPrepared() {
+    onEntityPrepared(): void {
 
     }
 

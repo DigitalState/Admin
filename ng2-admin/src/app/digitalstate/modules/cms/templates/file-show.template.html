@@ -101,7 +101,7 @@
 					<!--<img #filePreviewImg class="file-preview" [src]="entity.presentation[entityLang] || '/assets/img/placeholder.svg'" />-->
 					<!--<a class="btn btn-info mb-3" *ngIf="entity.presentation[entityLang] && entity.file[entityLang]" [href]="entity.presentation[entityLang]" download="download.{{entity.file[entityLang].extension}}">Download</a>-->
 					<button class="btn btn-info mb-3" *ngIf="entity.presentation[entityLang] && entity.file[entityLang]" (click)="downloadFile($event)">Download</button>
-					<img *ngIf="entity.file" #filePreviewImg class="file-preview" [src]="(entity.file[entityLang] && entity.file[entityLang].canPreview ? entity.presentation[entityLang] : false) || '/assets/img/placeholder.svg'" />
+					<img *ngIf="entity.file" #filePreviewImg class="file-preview" [src]="(entity.file[entityLang] && entity.file[entityLang].canPreview ? entity.file[entityLang].dataPrefix + entity.presentation[entityLang] : false) || '/assets/img/placeholder.svg'" />
 				</div>
 			</div>
 		</div>

@@ -327,6 +327,14 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'type': {
+                                label: 'Type',
+                                type: 'string',
+                                default: '',
+                                validation: {
+                                    'required': { message: 'required'},
+                                },
+                            },
                             'presentation': {
                                 label: 'Presentation',
                                 type: 'string',

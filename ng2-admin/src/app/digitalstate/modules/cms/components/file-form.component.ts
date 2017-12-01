@@ -3,12 +3,12 @@ import { ElementRef, Injector, ViewChild } from '@angular/core';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 
 import { EntityApiService } from '../entity-api.service';
-import { DsCmsFormComponent } from './cms-form.component';
+import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
-export class DsFileFormComponent extends DsCmsFormComponent {
+export class DsFileFormComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'files';
     pageTitle = 'general.menu.cms';
@@ -22,7 +22,9 @@ export class DsFileFormComponent extends DsCmsFormComponent {
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
-        super(injector, microserviceConfig, entityApiService);
+        super(injector, microserviceConfig);
+
+        this.entityApiService = entityApiService;
         this.fileReader = new FileReader();
     }
 
@@ -36,10 +38,29 @@ export class DsFileFormComponent extends DsCmsFormComponent {
         });
     }
 
-    // onFormLanguageChange(newLanguage: string): any {
-    //     super.onFormLanguageChange(newLanguage);
-    //     this.prepareFile();
+    /**
+     * Strip out the base64 metadata from the image in the `presentation` property.
+     * @param entity
+     * @return {any}
+     */
+    // preSave(entity): any {
+    //     let sanitizedEntity = super.preSave(entity);
+    //     let delimiter = ';base64,';
+    //
+    //     Object.keys(sanitizedEntity.presentation).forEach((lang) => {
+    //         let image = sanitizedEntity.presentation[lang];
+    //         console.log('presentation before: ', image);
+    //         sanitizedEntity.presentation[lang] = image.substr(image.indexOf(delimiter) + delimiter.length);
+    //         console.log('presentation after: ', sanitizedEntity.presentation[lang]);
+    //     });
+    //
+    //     return sanitizedEntity;
     // }
+
+    onFormLanguageChange(newLanguage: { key: string; name: string }): any {
+        super.onFormLanguageChange(newLanguage);
+        this.prepareFile();
+    }
 
     protected prepareFile() {
         const fileTestRegex = /^image\/(jp.?g|gif|png)$/;
@@ -56,11 +77,9 @@ export class DsFileFormComponent extends DsCmsFormComponent {
             return;
         }
 
-        const fileType = fileStr.substring("data:".length, fileStr.indexOf(";base64"))
-
         this.entity.file[this.formLang] = {
-            type: fileType,
-            canPreview: fileTestRegex.test(fileType)
+            dataPrefix: 'data:' + this.entity.type + ';base64,',
+            canPreview: fileTestRegex.test(this.entity.type)
         };
     }
 
@@ -73,16 +92,24 @@ export class DsFileFormComponent extends DsCmsFormComponent {
         if (event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
             const fileTestRegex = /^image\/(jp.?g|gif|png)$/;
+            let delimiter = ';base64,';
 
             this.fileReader.readAsDataURL(file);
             this.fileReader.onload = (loadEvent: any) => {
+                const image = loadEvent.target.result;
+
                 // Set presentation value to the base64 blob and also set file metadata
-                this.entity.presentation[this.formLang] = loadEvent.target.result;
+                this.entity.presentation[this.formLang] = image.substr(image.indexOf(delimiter) + delimiter.length);
+                // this.entity.presentation[this.formLang] = loadEvent.target.result;
+
                 this.entity.file[this.formLang] = {
+                    dataPrefix: image.substr(0, image.indexOf(delimiter) + delimiter.length),
                     name: file.name,
                     type: file.type,
                     canPreview: fileTestRegex.test(file.type)
                 };
+
+                this.entity.type = file.type;
 
                 // Update the preview only if the file is an image
                 setTimeout(() => {
@@ -90,18 +117,6 @@ export class DsFileFormComponent extends DsCmsFormComponent {
                         ? loadEvent.target.result
                         : '/assets/img/placeholder.svg';
                 });
-
-                // Manually mark the form as dirty since there's no input field to automatically
-                // detect the changes on
-                this.entityForm.form.markAsDirty();
-                this.displayFormErrors(false);
-
-                // console.log({
-                //     filename: file.name,
-                //     filetype: file.type,
-                //     value: this.fileReader.result
-                //     // value: reader.result.split(',')[1]
-                // });
             };
         }
     }
