@@ -82,8 +82,14 @@ export class LocalApiUtils {
      * @returns {{routerLink: Array, title: null}}
      */
     static createIdentityEntityLink(identity: string, identityUuid: string): { routerLink: Array<string>, title: any } {
+        const identityPlural = IdentityUtils.getPlural(identity);
+
+        if (!identityPlural) {
+            return null;
+        }
+
         let link = {
-            routerLink: ['/pages', 'identities', IdentityUtils.getPlural(identity), identityUuid, 'show'],
+            routerLink: ['/pages', 'identities', identityPlural, identityUuid, 'show'],
             title: null,
         };
 

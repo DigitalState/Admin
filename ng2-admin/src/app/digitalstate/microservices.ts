@@ -500,6 +500,10 @@ export class MicroservicesDefinition {
                                 label: 'UUID',
                                 type: 'string',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
