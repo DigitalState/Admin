@@ -19,7 +19,7 @@ export class BaPageTop extends DsCmsContentSubscriber {
 
   protected userIdentity: string;
   protected appTitle: any;
-  protected lang: string;
+  protected appLogo: any;
 
   constructor(private injector: Injector,
               private _state: GlobalState,
@@ -44,6 +44,7 @@ export class BaPageTop extends DsCmsContentSubscriber {
 
   protected onAppCmsContent() {
     this.appTitle = this.appState.get('appCmsContent', {})['texts']['admin-title'];
+    this.appLogo = this.appState.get('appCmsContent', {})['files']['admin-logo-header'];
   }
 
   public toggleMenu() {

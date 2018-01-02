@@ -30,6 +30,7 @@ export class Login extends DsCmsContentSubscriber {
     inProgress: boolean = false;
 
     protected appTitle: any; // Translated String
+    protected appLogo: any; // Translated String
 
     constructor(protected injector: Injector,
                 protected router: Router,
@@ -76,6 +77,7 @@ export class Login extends DsCmsContentSubscriber {
 
     protected onAppCmsContent() {
         this.appTitle = this.appState.get('appCmsContent', {})['texts']['admin-title'];
+        this.appLogo = this.appState.get('appCmsContent', {})['files']['admin-logo-login'];
     }
 
     public onSubmit(values):void {
