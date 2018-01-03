@@ -43,6 +43,7 @@ a.al-logo {
 
   img {
     height: auto; //26px;
+    max-width: 255px;
     margin-left: 16px;
   }
 }
@@ -330,7 +331,7 @@ a.collapse-menu-link {
 
     a.al-logo {
       position: absolute;
-      margin-left: 15%;
+      margin-left: 50px;
       margin-right: 15%;
 
       img {
