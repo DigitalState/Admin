@@ -31,7 +31,7 @@ export class LocalApiUtils {
     static createEntityLink(entityPrefix: string, uuid: string, title?: string): { routerLink: Array<string>, title: any } {
         let link = {
             routerLink: [],
-            title: title,
+            title: title ? title : uuid,
         };
 
         switch (entityPrefix) {
@@ -82,7 +82,7 @@ export class LocalApiUtils {
      * @returns {{routerLink: Array, title: null}}
      */
     static createIdentityEntityLink(identity: string, identityUuid: string): { routerLink: Array<string>, title: any } {
-        const identityPlural = IdentityUtils.getPlural(identity);
+        const identityPlural = IdentityUtils.getIdentityUrlPrefix(identity);
 
         if (!identityPlural) {
             return null;
