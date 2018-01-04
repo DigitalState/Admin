@@ -31,6 +31,7 @@ export class Login extends DsCmsContentSubscriber {
 
     protected appTitle: any; // Translated String
     protected appLogo: any; // Translated String
+    protected appLogoType;
 
     constructor(protected injector: Injector,
                 protected router: Router,
@@ -77,7 +78,10 @@ export class Login extends DsCmsContentSubscriber {
 
     protected onAppCmsContent() {
         this.appTitle = this.appState.get('appCmsContent', {})['texts']['admin-title'];
-        this.appLogo = this.appState.get('appCmsContent', {})['files']['admin-logo-login'];
+
+        const appLogoObj = this.appState.get('appCmsContent', {})['files']['admin-logo-login'];
+        this.appLogo = appLogoObj &&  appLogoObj.hasOwnProperty('presentation') ? appLogoObj['presentation'] : null;
+        this.appLogoType = appLogoObj && appLogoObj.hasOwnProperty('type') ? appLogoObj['type'] : 'image/png';
     }
 
     public onSubmit(values):void {
