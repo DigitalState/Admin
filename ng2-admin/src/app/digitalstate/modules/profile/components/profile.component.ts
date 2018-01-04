@@ -9,10 +9,10 @@ import { MicroserviceConfig } from '../../../../shared/providers/microservice.pr
 import { EntityApiService, IdentityApiService } from '../entity-api.service';
 import { User } from '../../../../shared/modules/auth/user';
 import { Persona } from '../../../../shared/modules/auth/persona';
+import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 
 import { Subscriber } from 'rxjs/Subscriber';
 import assign from 'lodash/assign';
-import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 
 @Component({
     selector: 'ds-profile',
@@ -86,12 +86,11 @@ export class DsProfileComponent{
 
     loadPersona() {
         // Load persona
-        // const entityUrlPrefix = 'individual-personas';
         const entityUrlPrefix = IdentityUtils.getPersonaUrlPrefix(this.user.identity);
         const identitySingular = IdentityUtils.getSingular(this.user.identity);
         const requestParams = {};
 
-        requestParams[ identitySingular + '.uuid' ] = this.user.identityUuid
+        requestParams[ identitySingular + '.uuid' ] = this.user.identityUuid;
 
         // Filter personas by Staff UUID which is the current user's IdentityUuid
         this.identityApiService.resource(entityUrlPrefix).getList(requestParams).subscribe(personas => {
