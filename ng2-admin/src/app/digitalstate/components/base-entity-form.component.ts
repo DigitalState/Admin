@@ -15,6 +15,7 @@ import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
 
+import merge from 'lodash/merge';
 import cloneDeep from 'lodash/cloneDeep';
 import omit from 'lodash/omit';
 import isEmpty from 'lodash/isEmpty';
@@ -177,7 +178,8 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             }
             else {
                 return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
-                    this.entity = entity;
+                    // Merge existing entity (if any) with the fetched entity
+                    this.entity = merge(this.entity, entity);
 
                     return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
                         return Observable.of({'entity': entity, 'entityParent': entityParent});
