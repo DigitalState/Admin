@@ -1,5 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, Validators } from '@angular/forms';
+
+import { CustomValidators } from 'ng2-validation';
 import { Slug } from 'ng2-slugify';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -128,6 +130,8 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
         let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
             'process_definition_key',
             'button_text',
+            'variable_name',
+            'variable_value',
         ]);
 
         assign(this.entityMetadata, extraProps);
@@ -139,6 +143,7 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
             entity.config = {
                 'bpm': 'camunda',
                 'process_definition_key': '',
+                'custom_data': {},
             };
 
             // Initialize multilingual metadata
@@ -150,6 +155,54 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
 
             return Observable.of(entity);
         });
+    }
+
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            let entity = prepared.entity;
+
+            try {
+                if (entity.config) {
+                    entity.config.custom_data.variable_value = JSON.stringify(entity.config.custom_data.variable_value, null, 2);
+                }
+            }
+            catch(e) {
+                console.warn('Error parsing variable value as JSON', e);
+            }
+
+            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
+        });
+    }
+
+    onFormInit(form: NgForm) {
+        super.onFormInit(form);
+
+        setTimeout(() => {
+            form.controls['variable_value'].setValidators([
+                Validators.required,
+                CustomValidators.json,
+            ]);
+        }, 0);
+    }
+
+    preSave(entity): any {
+        let presavedEntity = super.preSave(entity);
+
+        try {
+            presavedEntity.config.custom_data.variable_value = JSON.parse(presavedEntity.config.custom_data.variable_value);
+        }
+        catch(e) {
+            console.warn('Error parsing variable value as JSON', e);
+            this.setFormError('variable_value', 'json');
+            throw {
+                'type': 'validation',
+                'property': 'variable_value',
+                'field': 'json',
+                'language': this.formLang
+            };
+        }
+
+        return presavedEntity;
     }
 }
 

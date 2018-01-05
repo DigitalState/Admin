@@ -1,4 +1,4 @@
-<ds-entity-form *ngIf="entity && formLang"
+<ds-entity-form *ngIf="entity && entity.uuid && formLang"
 				[entity]="entity"
 				[backLink]="backLink"
 				[headerTitle]="headerTitle"
@@ -84,6 +84,32 @@
 					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data[formLang].button_text" class="form-control" required>
 					<div *ngIf="formErrors.button_text" class="alert alert-danger">
 						{{ formErrors.button_text }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-header pl-0 mt-3 mb-3">
+			<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.custom_data' | translate }}</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="variable-name">{{ 'ds.microservices.entity.property.variable_name' | staticTranslate:[formLang] }}</label>
+					<input id="variable-name" name="variable_name" type="text" [(ngModel)]="entity.config.custom_data.variable_name" class="form-control">
+					<div *ngIf="formErrors.variable_name" class="alert alert-danger">
+						{{ formErrors.variable_name }}
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="variable-value">{{ 'ds.microservices.entity.property.variable_value' | staticTranslate:[formLang] }}</label>
+					<translatable-icon></translatable-icon>
+					<textarea id="variable-value" name="variable_value" type="text" [(ngModel)]="entity.config.custom_data.variable_value" class="form-control" placeholder="" json></textarea>
+					<div *ngIf="formErrors.variable_value" class="alert alert-danger">
+						{{ formErrors.variable_value }}
 					</div>
 				</div>
 			</div>

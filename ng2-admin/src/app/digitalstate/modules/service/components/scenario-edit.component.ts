@@ -1,5 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormArray, FormControl, NgForm, Validators } from '@angular/forms';
+
+import { CustomValidators } from 'ng2-validation';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
@@ -80,14 +82,87 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
         super(injector, translate, microserviceConfig, entityApiService);
     }
 
+    ngOnInit() {
+        super.ngOnInit();
+
+        if (!this.entity) {
+            this.entity = {};
+        }
+
+        if (!this.entity.config) {
+            this.entity.config = {};
+        }
+
+        if (!this.entity.config.custom_data) {
+            this.entity.config.custom_data = {};
+        }
+    }
+
     protected loadEntityMetaData(): void {
         super.loadEntityMetaData();
         let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
             'process_definition_key',
             'button_text',
+            'variable_name',
+            'variable_value',
         ]);
 
         assign(this.entityMetadata, extraProps);
+    }
+
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            let entity = prepared.entity;
+
+            try {
+                if (entity.config) {
+                    if (!entity.config.custom_data) {
+                        entity.config.custom_data = {
+                            'variable_value': {},
+                        };
+                    }
+
+                    entity.config.custom_data.variable_value = JSON.stringify(entity.config.custom_data.variable_value, null, 2);
+                }
+            }
+            catch(e) {
+                console.warn('Error parsing variable value as JSON', e);
+            }
+
+            this.entity = entity;
+            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
+        });
+    }
+
+    onFormInit(form: NgForm) {
+        super.onFormInit(form);
+
+        setTimeout(() => {
+            form.controls['variable_value'].setValidators([
+                Validators.required,
+                CustomValidators.json,
+            ]);
+        }, 0);
+    }
+
+    preSave(entity): any {
+        let presavedEntity = super.preSave(entity);
+
+        try {
+            presavedEntity.config.custom_data.variable_value = JSON.parse(this.entity.config.custom_data.variable_value);
+        }
+        catch(e) {
+            console.warn('Error parsing variable value as JSON', e);
+            this.setFormError('variable_value', 'json');
+            throw {
+                'type': 'validation',
+                'property': 'variable_value',
+                'field': 'json',
+                'language': this.formLang
+            };
+        }
+
+        return presavedEntity;
     }
 }
 
