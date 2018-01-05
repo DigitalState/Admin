@@ -1,4 +1,4 @@
-<ds-entity-form *ngIf="entity && entity.uuid && formLang"
+<ds-entity-form *ngIf="entity && (entity.uuid || isNew) && formLang"
 				[entity]="entity"
 				[backLink]="backLink"
 				[headerTitle]="headerTitle"

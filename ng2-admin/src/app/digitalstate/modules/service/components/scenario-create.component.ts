@@ -143,7 +143,9 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
             entity.config = {
                 'bpm': 'camunda',
                 'process_definition_key': '',
-                'custom_data': {},
+                'custom_data': {
+                    'variable_value': {},
+                },
             };
 
             // Initialize multilingual metadata
