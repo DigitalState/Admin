@@ -8,6 +8,9 @@ import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
+import merge from 'lodash/merge';
+
+
 export class DsFileFormComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'files';
@@ -34,7 +37,8 @@ export class DsFileFormComponent extends DsBaseEntityFormComponent {
 
             this.prepareFile();
 
-            return Observable.of({'entity': entity});
+            this.entity = merge(entity, this.entity);
+            return Observable.of({'entity': this.entity});
         });
     }
 
