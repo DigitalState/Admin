@@ -103,6 +103,7 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
         let extraProps = pick(this.microserviceConfig.settings.entities[this.entityUrlPrefix].conditionalProperties, [
             'process_definition_key',
             'button_text',
+            'enable_custom_variables',
             'variable_name',
             'variable_value',
         ]);
@@ -118,6 +119,7 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
                 if (entity.config) {
                     if (!entity.config.custom_data) {
                         entity.config.custom_data = {
+                            'enable_custom_variables': true,
                             'variable_value': {},
                         };
                     }

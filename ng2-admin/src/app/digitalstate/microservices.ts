@@ -627,6 +627,14 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required' },
                                 },
                             },
+                            'enable_custom_variables': {
+                                parent: 'config.custom_data',
+                                label: 'Enable Custom Variables',
+                                type: 'boolean',
+                                validation: {
+
+                                },
+                            },
                             'variable_name': {
                                 parent: 'config.custom_data',
                                 label: 'Variable Name',

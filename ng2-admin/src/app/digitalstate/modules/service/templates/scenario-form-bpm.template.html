@@ -94,6 +94,17 @@
 		</div>
 
 		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group">
+					<input id="enable-custom-variables" name="enable_custom_variables" type="checkbox" [(ngModel)]="entity.config.custom_data.enable_custom_variables" class="form-control d-inline-block w-auto">
+					<label for="enable-custom-variables" class="w-auto">{{ 'ds.microservices.entity.property.enable_custom_variables' | staticTranslate:[formLang] }}</label>
+					<div *ngIf="formErrors.enable_custom_variables" class="alert alert-danger">
+						{{ formErrors.enable_custom_variables }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group">
 					<label for="variable-name">{{ 'ds.microservices.entity.property.variable_name' | staticTranslate:[formLang] }}</label>

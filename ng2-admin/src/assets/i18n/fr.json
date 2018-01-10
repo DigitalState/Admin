@@ -289,6 +289,7 @@
           "button_text": "Texte du bouton",
           "process_definition_key": "Clé de définition de processus",
           "processDefinitionKey": "Clé de définition de processus",
+          "enable_custom_variables": "Activer les variables personnalisées",
           "variable_name": "Nom de la variable",
           "variable_value": "Valeur de la variable",
           "first_name": "Prénom",

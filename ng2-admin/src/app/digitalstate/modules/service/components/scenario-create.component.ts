@@ -144,6 +144,7 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
                 'bpm': 'camunda',
                 'process_definition_key': '',
                 'custom_data': {
+                    'enable_custom_variables': true,
                     'variable_value': {},
                 },
             };
