@@ -87,7 +87,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<img *ngIf="entity.file" #filePreviewImg class="file-preview" [src]="(entity.file[formLang] && entity.file[formLang].canPreview ? entity.file[lang].dataPrefix + entity.presentation[formLang] : false) || '/assets/img/placeholder.svg'" />
+				<img *ngIf="entity.file" #filePreviewImg class="file-preview" [src]="(entity.file[formLang] && entity.file[formLang].canPreview ? entity.file[formLang].dataPrefix + entity.presentation[formLang] : false) || '/assets/img/placeholder.svg'" />
 			</div>
 		</div>
 	</div>
