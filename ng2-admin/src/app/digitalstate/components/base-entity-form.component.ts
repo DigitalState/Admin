@@ -18,6 +18,7 @@ import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
 
+import merge from 'lodash/merge';
 import cloneDeep from 'lodash/cloneDeep';
 import omit from 'lodash/omit';
 import isEmpty from 'lodash/isEmpty';
@@ -200,17 +201,11 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.entityMetadata = this.microserviceConfig.settings.entities[this.entityUrlPrefix].properties;
     }
 
-    protected onRouteParams(params: Params) {
-        this.routeParams = params;
-    }
-
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
 
         // return this.route.params.flatMap((params: Params) => {
             let uuid = this.urlParams['id'];
             let parentUuid = this.urlParams[this.entityParentUrlParam];
-
-            this.onRouteParams(params);
 
             if (this.isNew) {
                 return this.createBlankEntity().flatMap(entity => {
@@ -223,7 +218,8 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             }
             else {
                 return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
-                    this.entity = entity;
+                    // Merge existing entity (if any) with the fetched entity
+                    this.entity = merge(this.entity, entity);
 
                     return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
                         return Observable.of({'entity': entity, 'entityParent': entityParent});
@@ -394,7 +390,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         const newPath = this.getFormLanguagePath(newFormLang, oldFormLang);
 
         this.entityForm.reset();
-        this.entity = null;
+        // this.entity = null;
         this.router.navigateByUrl(newPath, { replaceUrl: true });
     }
 

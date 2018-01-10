@@ -239,12 +239,19 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     onEntityDeleteSuccess(response) {
         console.log('Entity deleted successfully, server response: ', response);
         this.toastr.success(this.translate.instant('ds.messages.entityDeletionSucceeded'));
-        this.router.navigate(['../../list'], { relativeTo: this.route });
+        this.navigateAfterDeletion();
     }
 
     onEntityDeleteError(error) {
         console.error('Failed to delete entity', error);
         this.toastr.error(this.translate.instant('ds.messages.entityDeletionFailed'));
+    }
+
+    /**
+     *
+     */
+    navigateAfterDeletion(): void {
+        this.router.navigate(['../../list'], { relativeTo: this.route });
     }
 
     /**

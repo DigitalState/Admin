@@ -68,6 +68,7 @@ export class DsCaseStatusEditComponent extends DsBaseEntityFormComponent {
                 console.warn('Error parsing incoming JSON', e)
             }
 
+            this.entity = entity;
             return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
         });
     }

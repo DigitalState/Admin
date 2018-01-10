@@ -45,7 +45,7 @@ export class DsScenarioFormComponent extends DsBaseEntityFormComponent {
 
         switch(this.entity.type) {
             case 'bpm':
-                propsToRemove.push('link', 'info');
+                propsToRemove.push('link', 'info', 'variable_name', 'variable_value');
                 break;
             case 'info':
                 propsToRemove.push('link', 'bpm', 'process_definition_key');

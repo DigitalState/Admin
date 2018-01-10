@@ -27,9 +27,12 @@
     "signUpButton": "Sign up"
   },
   "general": {
+    "yes": "Yes",
+    "no": "No",
     "new": "New",
     "details": "Details",
     "home": "Home",
+    "confirm": "Confirm",
     "translatableField": "Translatable field",
     "activeTranslation": "Active Translations",
     "translation": "Common Translations",
@@ -267,6 +270,10 @@
           "state": "State",
           "open": "Open",
           "closed": "Closed",
+          "paid": "Paid",
+          "unpaid": "Unpaid",
+          "entity": "Entity",
+          "entityUuid": "Entity UUID",
           "identity": "Identity",
           "identityUuid": "Identity UUID",
           "owner": "Owner",
@@ -274,6 +281,7 @@
           "type": "Type",
           "channel": "Channel",
           "data": "Data",
+          "custom_data": "Custom Data",
           "value": "Value",
           "status": "Status",
           "statuses": "Statuses",
@@ -285,6 +293,8 @@
           "button_text": "Button Text",
           "process_definition_key": "Process definition key",
           "processDefinitionKey": "Process definition key",
+          "variable_name": "Variable Name",
+          "variable_value": "Variable Value",
           "first_name": "First Name",
           "last_name": "Last Name",
           "suffix": "Suffix",
@@ -357,7 +367,8 @@
       "identitySaveFailed": "Failed to save identity information.",
       "translationLoadingFailed": "Failed to load translation.",
       "translationSaveSucceeded": "Translation saved successfully.",
-      "translationSaveFailed": "Failed to save translation."
+      "translationSaveFailed": "Failed to save translation.",
+      "confirmUnsavedForm": "The form contains unsaved data. Would you still like to navigate away?"
     }
   }
 }

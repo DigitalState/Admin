@@ -1,3 +1,4 @@
+
 import { Component, Injector } from '@angular/core';
 import { NgForm, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,10 +11,11 @@ import { IdentityUtils } from '../../../../shared/utils/identity.utils';
 
 import { Link } from '../../../models/link';
 import { EntityApiService } from '../entity-api.service';
+import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
 import { DsPersonaFormComponent } from './persona-form.component';
 
 import 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable'
 
 @Component({
     selector: 'ds-persona-edit',
@@ -76,6 +78,7 @@ export class DsPersonaEditComponent extends DsPersonaFormComponent {
                 console.warn('Error parsing incoming JSON', e)
             }
 
+            this.entity = entity;
             return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
         });
     }

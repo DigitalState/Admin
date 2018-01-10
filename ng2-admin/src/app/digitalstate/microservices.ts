@@ -500,6 +500,10 @@ export class MicroservicesDefinition {
                                 label: 'UUID',
                                 type: 'string',
                             },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
                             'updatedAt': {
                                 label: 'Updated At',
                                 type: 'date',
@@ -621,6 +625,24 @@ export class MicroservicesDefinition {
                                 type: 'string',
                                 validation: {
                                     'required': { message: 'required' },
+                                },
+                            },
+                            'variable_name': {
+                                parent: 'config.custom_data',
+                                label: 'Variable Name',
+                                type: 'string',
+                                validation: {
+
+                                },
+                            },
+                            'variable_value': {
+                                parent: 'config.custom_data',
+                                label: 'Variable Value',
+                                type: 'json',
+                                default: '{}',
+                                validation: {
+                                    'required': { message: 'required' },
+                                    'json': { message: 'json' },
                                 },
                             },
                         },

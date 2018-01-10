@@ -48,9 +48,9 @@ export class DsPersonaShowComponent extends DsBaseEntityShowComponent {
         super.ngOnDestroy();
     }
 
-
     protected generateBackLink(): Link {
-        this.backLink = new Link(['../../../show'], 'ds.microservices.entity.types.identity');
-        return this.backLink;
+        let backLink = super.generateBackLink();
+        backLink.routerLink.splice(2, 0, 'identities');
+        return backLink;
     }
 }

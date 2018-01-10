@@ -82,7 +82,8 @@ export class App {
      */
     private loadContent(): void {
         const contentSlugs = {
-            'texts[]': ['admin-title']
+            'texts[]': ['admin-title'],
+            'files[]': ['admin-logo-login', 'admin-logo-header'],
         };
 
         let cmsContentLoader: Observable<any> = this.cms.getContentBySlugs(contentSlugs).flatMap(content => {

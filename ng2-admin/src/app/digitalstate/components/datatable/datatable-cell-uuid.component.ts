@@ -24,9 +24,12 @@ export class DsDatatableCellUuid extends DsDatatableCell {
     }
 
     ngOnInit() {
-        if (this.value) {
-            this.outputTitle = this.value;
-            this.outputValue = this.value.substring(0, this.value.indexOf('-'));
+        super.ngOnInit();
+
+        // Use the outputValue that has been pre-formatted by the parent cell formatter
+        if (this.outputValue) {
+            this.outputTitle = this.outputValue;
+            this.outputValue = this.outputValue.substring(0, this.outputValue.indexOf('-'));
         }
     }
 

@@ -388,7 +388,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      *        - event: The DOM event resulting from the user interaction with the control.
      */
     protected onFilterValueChange(filterData) {
-        const filterProperty = filterData.column.prop;
+        const filterProperty = filterData.column.hasOwnProperty('filterProp') ? filterData.column.filterProp : filterData.column.prop;
         const filterValue = filterData.event.target.value;
         this.filterStream.next({ filterProperty, filterValue });
     }

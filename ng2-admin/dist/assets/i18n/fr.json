@@ -27,9 +27,12 @@
     "signUpButton": "S'inscrire"
   },
   "general": {
+    "yes": "Oui",
+    "no": "Non",
     "new": "Nouveau",
     "details": "Détails",
     "home": "Accueil",
+    "confirm": "Confirmer",
     "translatableField": "Champ traduisible",
     "activeTranslation": "Traductions actives",
     "translation": "Traductions communes",
@@ -266,6 +269,10 @@
           "state": "State",
           "open": "Ouvert",
           "closed": "Fermé",
+          "paid": "Payé",
+          "unpaid": "Non payé",
+          "entity": "Entité",
+          "entityUuid": "Entité UUID",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
           "owner": "Propriétaire",
@@ -274,6 +281,7 @@
           "channel": "Canal",
           "data": "Data",
           "value": "Valeur",
+          "custom_data": "Données personnalisées",
           "status": "Statut",
           "statuses": "Statuts",
           "info": "Info",
@@ -284,6 +292,8 @@
           "button_text": "Texte du bouton",
           "process_definition_key": "Clé de définition de processus",
           "processDefinitionKey": "Clé de définition de processus",
+          "variable_name": "Nom de la variable",
+          "variable_value": "Valeur de la variable",
           "first_name": "Prénom",
           "last_name": "Nom de famille",
           "suffix": "Suffixe",
@@ -356,7 +366,8 @@
       "identitySaveFailed": "Échec de l'enregistrement des informations d'identité.",
       "translationLoadingFailed": "Impossible de charger la traduction.",
       "translationSaveSucceeded": "Traduction enregistrée avec succès.",
-      "translationSaveFailed": "Impossible de sauvegarder la traduction."
+      "translationSaveFailed": "Impossible de sauvegarder la traduction.",
+      "confirmUnsavedForm": "Le formulaire contient des données non enregistrées. Voulez-vous toujours partir?"
     }
   }
 }

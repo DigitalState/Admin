@@ -1,9 +1,9 @@
 <div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
      [ngClass]="{scrolled: isScrolled}">
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
-  <a class="al-logo clearfix">
-    <!--<span>ng2-</span>admin-->
-    <img src="{{ ( 'app/digitalstate-logo.png' | baAppPicture ) }}" />
+  <a class="al-logo clearfix" [hidden]="!appLogo || !appLogo[lang]">
+    <!--<img src="{{ ( 'app/digitalstate-logo.png' | baAppPicture ) }}" />-->
+    <img [src]="'data:' + appLogoType + ';base64,' + (appLogo ? appLogo[lang]: 'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')" />
   </a>
   <!--<span *ngIf="appTitle">{{ appTitle[lang] }}</span>-->
 
@@ -31,7 +31,7 @@
         </li>
         <!--<li class="dropdown-item"><a href><i class="fa fa-cog"></i>Settings</a></li>-->
         <li class="dropdown-item">
-          <a href (click)="logout()" class="signout">
+          <a href="javascript:;" (click)="logout()" class="signout">
             <i class="fa fa-power-off"></i>
             {{ 'login.signOut' | translate }}
           </a>

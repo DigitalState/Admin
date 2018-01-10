@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import moment from 'moment';
 
 import { AppState } from '../../../app.service';
+
 import { DsEntityTranslationService } from '../../../shared/services/entity-translation.service';
+import { ApiUtils } from '../../../shared/utils/api.utils';
 
 @Component({
     selector: 'ds-datatable-cell',
@@ -46,6 +48,10 @@ export class DsDatatableCell {
                         this.outputValue = moment(this.value).local().format(config.date.format.medium);
                     }
                     break;
+                // For a property of type `uri`, output the UUID of the linked entity
+                case 'uri':
+                    this.outputValue = ApiUtils.getUuidFromUri(this.value);
+                    break;
                 default:
                     this.outputValue = this.value;
             }
@@ -54,7 +60,7 @@ export class DsDatatableCell {
             this.outputValue = this.value;
         }
 
-        if (property.hasOwnProperty('translated') && property.translated === true) {
+        if (property && property.hasOwnProperty('translated') && property.translated === true) {
             let translatedValue = this.entityTranslation.getTranslation(this.value, property);
             this.outputValue = translatedValue
         }
