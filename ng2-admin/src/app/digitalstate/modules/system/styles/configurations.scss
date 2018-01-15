@@ -1,0 +1,40 @@
+@import '../../../../theme/sass/conf/conf';
+
+.card-header {
+  padding-left: 0px;
+
+  .card-title {
+  }
+
+  .btn {
+    line-height: 1.5;
+    border: 0px;
+  }
+}
+
+table.config-table {
+  thead {
+    border-bottom: $bootstrap-panel-header-border;
+  }
+  tbody, thead {
+    tr {
+      > * {
+        padding: 0.5em;
+        white-space: nowrap;
+      }
+      > *:last-child {
+        width: 99%;
+      }
+      /deep/ a.c-inline-editor {
+        border-bottom: 1px dotted;
+        color: $link-color;
+      }
+    }
+  }
+}
+
+md-checkbox {
+  display: block;
+  height: 20px; // force height to counter margin added to inner label
+}
+

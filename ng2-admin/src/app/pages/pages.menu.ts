@@ -528,6 +528,14 @@ export class PagesMenu {
                                 }
                             },
                             {
+                                path: ['settings/configurations'],
+                                data: {
+                                    menu: {
+                                        title: 'general.menu.configurations',
+                                    }
+                                }
+                            },
+                            {
                                 path: ['settings/translations'],
                                 data: {
                                     menu: {

@@ -82,6 +82,7 @@
 
       "myAccount": "Mon compte",
       "profile": "Profil",
+      "authentication": "Authentification",
       "serviceDirectory": "Répertoire des services",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -106,6 +107,7 @@
       "personas": "Personnes",
       "settings": "Paramètres",
       "systems": "Systèmes",
+      "configurations": "Configurations",
       "translations": "Traductions",
 
       "scenario_activation": "Activation du scénario",
@@ -277,8 +279,10 @@
           "type": "Type",
           "channel": "Canal",
           "data": "Data",
-          "value": "Valeur",
           "custom_data": "Données personnalisées",
+          "enabled": "Activée",
+          "key": "Clé",
+          "value": "Valeur",
           "status": "Statut",
           "statuses": "Statuts",
           "info": "Info",

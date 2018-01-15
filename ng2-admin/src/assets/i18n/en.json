@@ -82,6 +82,7 @@
 
       "myAccount": "My Account",
       "profile": "Profile",
+      "authentication": "Authentication",
       "serviceDirectory": "Service Directory",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -106,6 +107,7 @@
       "personas": "Personas",
       "settings": "Settings",
       "systems": "Systems",
+      "configurations": "Configurations",
       "translations": "Translations",
 
       "scenario_activation": "Scenario Activation",
@@ -279,6 +281,8 @@
           "channel": "Channel",
           "data": "Data",
           "custom_data": "Custom Data",
+          "enabled": "enabled",
+          "key": "Key",
           "value": "Value",
           "status": "Status",
           "statuses": "Statuses",

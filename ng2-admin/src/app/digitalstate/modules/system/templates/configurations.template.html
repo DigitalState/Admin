@@ -1,0 +1,47 @@
+<div class="card no-shadow">
+	<div class="card-header pt-0">
+		<div class="btn-group btn-group-primary">
+			<!--<h3 class="card-title">-->
+				<!--<span>{{ 'general.menu.' + microservice.name | translate }}</span>-->
+			<!--</h3>-->
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="card-title">{{ 'general.menu.' + microservice.name | translate }}</span>
+				<span class="sr-only">{{ 'ds.microservices.entity.action.actions' | translate }}</span>
+			</button>
+			<div class="dropdown-menu">
+				<button *ngFor="let microservice of microservices | keyValue"
+						class="dropdown-item" (mousedown)="setCurrentMicroservice(microservice.key)">
+					{{ 'general.menu.' + microservice.key | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!configs || configs.length == 0" class="card-block pr-0 pl-0">
+		{{ 'datatable.emptyMessage' | translate }}
+	</div>
+	<div *ngIf="configs && configs.length" class="card-block pt-0 pr-0 pl-0">
+		<table class="config-table d-table name-value-table table-hover w-100">
+			<thead>
+				<tr>
+					<th class="font-weight-bold">{{ 'ds.microservices.entity.property.enabled' | translate }}</th>
+					<th class="font-weight-bold">{{ 'ds.microservices.entity.property.key' | translate }}</th>
+					<th class="font-weight-bold">{{ 'ds.microservices.entity.property.value' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let config of configs">
+					<td class="prop-enabled">
+						<md-checkbox [(ngModel)]="config.enabled" (change)="saveConfig(config, 'enabled', $event.checked)"></md-checkbox>
+					</td>
+					<th scope="row" class="prop-key">{{ config.key }}</th>
+					<td class="prop-value">
+						<div>
+							<inline-editor type="text" [(ngModel)]="config.value" (onSave)="saveConfig(config, 'value', $event)" name="{{ config.key }}" size="{{ config.value.length }}"></inline-editor>
+						</div>
+					</td>
+					<!--<td>{{ config.version }}</td>-->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
