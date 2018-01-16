@@ -17,7 +17,8 @@
     "signFromAppText": "or Sign in with one click",
     "shareOnFacebook": "Share on Facebook",
     "shareOnTwitter": "Share on Twitter",
-    "shareOnGooglePlus": "Share on Google Plus"
+    "shareOnGooglePlus": "Share on Google Plus",
+    "verifyIdentity": "Verify Identity"
   },
   "register": {
     "title": "Sign Up",
@@ -82,6 +83,7 @@
 
       "myAccount": "My Account",
       "profile": "Profile",
+      "authentication": "Authentication",
       "serviceDirectory": "Service Directory",
       "services": "Services",
       "scenarios": "Scenarios",
@@ -106,6 +108,7 @@
       "personas": "Personas",
       "settings": "Settings",
       "systems": "Systems",
+      "configurations": "Configurations",
       "translations": "Translations",
 
       "scenario_activation": "Scenario Activation",
@@ -279,6 +282,8 @@
           "channel": "Channel",
           "data": "Data",
           "custom_data": "Custom Data",
+          "enabled": "enabled",
+          "key": "Key",
           "value": "Value",
           "status": "Status",
           "statuses": "Statuses",
@@ -290,15 +295,23 @@
           "button_text": "Button Text",
           "process_definition_key": "Process definition key",
           "processDefinitionKey": "Process definition key",
+          "enable_custom_variables": "Enable Custom Variables",
           "variable_name": "Variable Name",
           "variable_value": "Variable Value",
-          "first_name": "First Name",
-          "last_name": "Last Name",
+          "firstName": "First Name",
+          "lastName": "Last Name",
           "suffix": "Suffix",
           "address": "Address",
+          "street": "Street",
+          "city": "City",
+          "province": "Province",
+          "country": "Country",
           "phone": "Phone",
           "email": "E-mail",
-          "birth_date": "Date of Birth"
+          "birthDate": "Date of Birth",
+          "postalCode": "Postal Code",
+          "businessNumber": "Business Number",
+          "anniversary": "Anniversary"
         },
         "action": {
           "create": "Create",
@@ -314,7 +327,8 @@
           "save": "Save",
           "cancel": "Cancel",
           "back": "Back",
-          "actions": "Actions"
+          "actions": "Actions",
+          "confirm": "Confirm"
         },
         "validation": {
           "required": "Required field.",
@@ -349,6 +363,9 @@
       "registrationFailed": "Registration failed.",
       "loginSucceeded": "You have been successfully signed in.",
       "loginFailed": "Sign in failed.",
+      "credentialsVerificationFailed": "Verification failed.",
+      "tokenUpdateSucceeded": "Token updated successfully.",
+      "tokenUpdateFailed": "Token update failed.",
       "formActivationError": "Form activation error",
       "formSubmissionError": "Form submission error",
       "formInvalid": "The form contains invalid fields.",
