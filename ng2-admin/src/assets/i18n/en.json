@@ -297,13 +297,20 @@
           "enable_custom_variables": "Enable Custom Variables",
           "variable_name": "Variable Name",
           "variable_value": "Variable Value",
-          "first_name": "First Name",
-          "last_name": "Last Name",
+          "firstName": "First Name",
+          "lastName": "Last Name",
           "suffix": "Suffix",
           "address": "Address",
+          "street": "Street",
+          "city": "City",
+          "province": "Province",
+          "country": "Country",
           "phone": "Phone",
           "email": "E-mail",
-          "birth_date": "Date of Birth"
+          "birthDate": "Date of Birth",
+          "postalCode": "Postal Code",
+          "businessNumber": "Business Number",
+          "anniversary": "Anniversary"
         },
         "action": {
           "create": "Create",
