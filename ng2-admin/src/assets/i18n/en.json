@@ -358,6 +358,7 @@
         "404": "Entity not found",
         "500": "Server error"
       },
+      "unableToAccessRemoteService": "Unable to access remote service.",
       "unexpectedError": "Unexpected error occured.",
       "registrationSucceeded": "You have been registered successfully.",
       "registrationFailed": "Registration failed.",

@@ -357,6 +357,7 @@
         "404": "Entité introuvable",
         "500": "Erreur du serveur"
       },
+      "unableToAccessRemoteService": "Impossible d'accéder au service distant.",
       "unexpectedError": "Une erreur inattendue s'est produite.",
       "registrationSucceeded": "Vous avez été enregistré avec succès.",
       "registrationFailed": "Échec de l'enregistrement",

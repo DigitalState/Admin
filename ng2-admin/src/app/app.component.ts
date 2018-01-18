@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Response } from '@angular/http';
 
 import { GlobalState } from './global.state';
 import { AppState } from './app.service';
@@ -86,10 +87,19 @@ export class App {
             'files[]': ['admin-logo-login', 'admin-logo-header'],
         };
 
-        let cmsContentLoader: Observable<any> = this.cms.getContentBySlugs(contentSlugs).flatMap(content => {
-            // console.log('AppState in loadContent', this.appState);
-            this.appState.set('appCmsContent', content);
-            return Observable.of(true);
+        let cmsContentLoader: Observable<any> = this.cms.getContentBySlugs(contentSlugs)
+            .catch(error => {
+                // Errors cannot be translated yet at this point
+                const errMessage = 'Unable to load initial content from CMS.';
+                this.toastr.error(errMessage, null, { 'dismiss': 'click' });
+                return Observable.throw({
+                    message: errMessage,
+                } as DsError);
+            })
+            .flatMap(content => {
+                // console.log('AppState in loadContent', this.appState);
+                this.appState.set('appCmsContent', content);
+                return Observable.of(true);
         });
 
         BaThemePreloader.registerLoader(cmsContentLoader);
