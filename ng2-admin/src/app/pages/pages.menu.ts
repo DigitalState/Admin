@@ -528,7 +528,7 @@ export class PagesMenu {
                                 }
                             },
                             {
-                                path: ['settings/configurations'],
+                                path: ['settings/configurations/services'],
                                 data: {
                                     menu: {
                                         title: 'general.menu.configurations',

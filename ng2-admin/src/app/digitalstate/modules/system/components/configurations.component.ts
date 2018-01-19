@@ -1,4 +1,6 @@
 import { Component, Injector } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormGroup, FormArray, FormControl, NgForm, Validators } from '@angular/forms';
 
 import { Restangular } from 'ngx-restangular';
@@ -39,8 +41,14 @@ export class DsConfigurationsComponent extends DsPageComponent {
      */
     configs: Array<any>;
 
+    /**
+     * Progress indicator
+     */
+    protected showProgressIndicator: boolean;
 
     constructor(protected injector: Injector,
+                protected route: ActivatedRoute,
+                protected location: Location,
                 protected restangular: Restangular,
                 protected translate: TranslateService,
                 protected toastr: ToastsManager,
@@ -53,41 +61,62 @@ export class DsConfigurationsComponent extends DsPageComponent {
     ngOnInit() {
         super.ngOnInit();
 
-        // Determine microservices eligible for configuration by intersecting them with ones provided by the environment
-        const envMicroservicesKeys = sortBy(Object.keys(this.dsEnv.dsDiscoveryEnv));
-        this.microservices = pick(this.appState.get('microservices'), envMicroservicesKeys);
-        this.microservice = new MicroserviceConfig();
+        // Determine whether a default microservice is set in the route paraemeters
+        this.route.params.subscribe((params: Params) => {
+            // Determine microservices eligible for configuration by intersecting them with ones provided by the environment
+            const envMicroservicesKeys = sortBy(Object.keys(this.dsEnv.dsDiscoveryEnv));
+            this.microservices = pick(this.appState.get('microservices'), envMicroservicesKeys);
+            this.microservice = new MicroserviceConfig();
 
-        // Build a Restangular instance out of the currently selected microservice
-        if (isArray(envMicroservicesKeys) && envMicroservicesKeys.length > 0) {
-            // this.microservice.name = Object.keys(this.microservices)[0];
-            const microserviceName = Object.keys(this.microservices)[0];
+            // Build a Restangular instance out of the currently selected microservice
+            if (isArray(envMicroservicesKeys) && envMicroservicesKeys.length > 0) {
+                // If default microservice is not provided in the route, pick the first one from the microservices list
+                let microserviceName = params['microservice'] && this.microservices.hasOwnProperty(params['microservice'])
+                    ? params['microservice']
+                    : Object.keys(this.microservices)[0];
 
-            // Fetch microservices server-side configs
-            this.loadMicroserviceConfigs(microserviceName);
-        }
-    }
-
-    loadMicroserviceConfigs(microserviceName) {
-        this.microservice.name = microserviceName;
-        this.microservice.settings = this.appState.get('microservices')[this.microservice.name];
-        this.restangular = microserviceRestangularFactory(this.restangular, this.auth, this.microservice);
-
-        this.restangular.all('configs').getList().subscribe(configs => {
-            console.log(configs);
-            this.configs = configs;
-        }, error => {
-            // Clear the current configs model
-            console.warn('Error fetching configs', error);
-            this.configs = null;
+                this.loadMicroserviceConfigs(microserviceName);
+            }
         });
     }
 
-    setCurrentMicroservice(microserviceName) {
-        // this.microservice.name = microserviceName;
-        this.loadMicroserviceConfigs(microserviceName);
+    /**
+     * Fetch a microservices' server-side configs
+     *
+     * @param microserviceName
+     */
+    loadMicroserviceConfigs(microserviceName) {
+        this.microservice.name = microserviceName;
+        this.microservice.settings = this.appState.get('microservices')[this.microservice.name];
+
+        // Update the page URL with the selected microservice name
+        this.location.go(`/pages/settings/configurations/${microserviceName}`);
+
+        this.configs = null;
+        this.showProgressIndicator = true;
+
+        this.restangular = microserviceRestangularFactory(this.restangular, this.auth, this.microservice);
+        this.restangular.all('configs').getList()
+            .finally(() => {
+                this.showProgressIndicator = false;
+            })
+            .subscribe(configs => {
+                this.configs = configs;
+            }, error => {
+                // Clear the current configs model
+                console.warn('Error fetching configs', error);
+                this.configs = null;
+            });
     }
 
+    /**
+     * Update the server-side Config entity given a Config model and optionally a specific property/value.
+     * Currently this method ignores the custom property/value arguments and saves a preset data structure of the model.
+     *
+     * @param config
+     * @param property
+     * @param value
+     */
     saveConfig(config, property?, value?) {
         const headers = { 'Content-Type': 'application/json' };
         const outgoingConfig = {
@@ -103,6 +132,11 @@ export class DsConfigurationsComponent extends DsPageComponent {
         });
     }
 
+    /**
+     * Config save success handler
+     *
+     * @param response
+     */
     onConfigSave(response) {
         console.log('Entity saved successfully, server response: ', response);
         this.toastr.success(this.translate.instant('ds.messages.entitySaveSucceeded'));
@@ -119,6 +153,11 @@ export class DsConfigurationsComponent extends DsPageComponent {
         }
     }
 
+    /**
+     * Config save error handler
+     *
+     * @param error
+     */
     onConfigSaveError(error: any) {
         console.error('There was an error saving entity', error);
         let errorTitle = this.translate.instant('ds.messages.entitySaveFailed');

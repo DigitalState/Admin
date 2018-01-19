@@ -10,13 +10,15 @@
 			</button>
 			<div class="dropdown-menu">
 				<button *ngFor="let microservice of microservices | keyValue"
-						class="dropdown-item" (mousedown)="setCurrentMicroservice(microservice.key)">
+						class="dropdown-item" (mousedown)="loadMicroserviceConfigs(microservice.key)">
 					{{ 'general.menu.' + microservice.key | translate }}
 				</button>
 			</div>
+			<md-progress-spinner [hidden]="!showProgressIndicator" mode="indeterminate"></md-progress-spinner>
 		</div>
 	</div>
-	<div *ngIf="!configs || configs.length == 0" class="card-block pr-0 pl-0">
+
+	<div *ngIf="!configs || configs.length === 0" [hidden]="showProgressIndicator" class="card-block pr-0 pl-0">
 		{{ 'datatable.emptyMessage' | translate }}
 	</div>
 	<div *ngIf="configs && configs.length" class="card-block pt-0 pr-0 pl-0">
