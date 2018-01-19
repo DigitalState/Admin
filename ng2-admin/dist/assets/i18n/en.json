@@ -282,7 +282,7 @@
           "channel": "Channel",
           "data": "Data",
           "custom_data": "Custom Data",
-          "enabled": "enabled",
+          "enabled": "Enabled",
           "key": "Key",
           "value": "Value",
           "status": "Status",
@@ -358,6 +358,7 @@
         "404": "Entity not found",
         "500": "Server error"
       },
+      "unableToAccessRemoteService": "Unable to access remote service.",
       "unexpectedError": "Unexpected error occured.",
       "registrationSucceeded": "You have been registered successfully.",
       "registrationFailed": "Registration failed.",
