@@ -298,6 +298,7 @@
           "enable_custom_variables": "Enable Custom Variables",
           "variable_name": "Variable Name",
           "variable_value": "Variable Value",
+          "name": "Name",
           "firstName": "First Name",
           "lastName": "Last Name",
           "suffix": "Suffix",
