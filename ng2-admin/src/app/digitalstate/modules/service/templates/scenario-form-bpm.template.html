@@ -81,6 +81,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
 					<label for="button-text">{{ 'ds.microservices.entity.property.button_text' | staticTranslate:[formLang] }}</label>
+					<translatable-icon></translatable-icon>
 					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data[formLang].button_text" class="form-control" required>
 					<div *ngIf="formErrors.button_text" class="alert alert-danger">
 						{{ formErrors.button_text }}
