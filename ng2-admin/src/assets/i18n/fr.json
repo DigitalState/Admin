@@ -297,6 +297,7 @@
           "enable_custom_variables": "Activer les variables personnalisées",
           "variable_name": "Nom de la variable",
           "variable_value": "Valeur de la variable",
+          "name": "Nom",
           "firstName": "Prénom",
           "lastName": "Nom de famille",
           "suffix": "Suffixe",
