@@ -112,6 +112,13 @@ export class DsScenarioShowComponent extends DsBaseEntityShowComponent implement
         return super.prepareEntityParent(urlPrefix, urlParam);
     }
 
+    /**
+     * After deletion, navigate back to the Service's `show` component.
+     */
+    navigateAfterDeletion(): void {
+        this.router.navigate(['../../../show'], { relativeTo: this.route });
+    }
+
     // // // Formio // // // // // // // // // // // // // // // // // // // // // // // //
 
     protected activateFormioForm(entity: any) {
