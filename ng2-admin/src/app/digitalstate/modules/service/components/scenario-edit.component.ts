@@ -93,8 +93,8 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
             this.entity.config = {};
         }
 
-        if (!this.entity.config.custom_data) {
-            this.entity.config.custom_data = {};
+        if (!this.entity.config.process_custom_variable) {
+            this.entity.config.process_custom_variable = {};
         }
     }
 
@@ -104,7 +104,7 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
             'process_definition_key',
             'button_text',
             'enable_custom_variables',
-            'variable_name',
+            // 'variable_name',
             'variable_value',
         ]);
 
@@ -117,14 +117,19 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
 
             try {
                 if (entity.config) {
-                    if (!entity.config.custom_data) {
-                        entity.config.custom_data = {
-                            'enable_custom_variables': true,
+                    if (!entity.config.process_custom_variable) {
+                        entity.config.process_custom_variable = {
+                            'enable_custom_variables': false,
                             'variable_value': {},
                         };
                     }
 
-                    entity.config.custom_data.variable_value = JSON.stringify(entity.config.custom_data.variable_value, null, 2);
+                    // Create aliases for metadata properties
+                    entity.config.process_custom_variable.variable_value = entity.config.process_custom_variable.value != null
+                        ? JSON.stringify(entity.config.process_custom_variable.value, null, 2)
+                        : '{}';
+
+                    entity.config.process_custom_variable.enable_custom_variables = entity.config.process_custom_variable.enabled;
                 }
             }
             catch(e) {
@@ -151,7 +156,12 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
         let presavedEntity = super.preSave(entity);
 
         try {
-            presavedEntity.config.custom_data.variable_value = JSON.parse(this.entity.config.custom_data.variable_value);
+            // Replace aliased metadata properties with their real names
+            presavedEntity.config.process_custom_variable.enabled = presavedEntity.config.process_custom_variable.enable_custom_variables;
+            delete presavedEntity.config.process_custom_variable.enable_custom_variables;
+
+            presavedEntity.config.process_custom_variable.value = JSON.parse(this.entity.config.process_custom_variable.variable_value);
+            delete presavedEntity.config.process_custom_variable.variable_value;
         }
         catch(e) {
             console.warn('Error parsing variable value as JSON', e);
