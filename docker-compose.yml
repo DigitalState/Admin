@@ -3,6 +3,7 @@ version: '2.1'
 services:
     ng2admin:
         build: .
+        restart: on-failures
         environment:
             - VIRTUAL_HOST
             - DISCOVERY
