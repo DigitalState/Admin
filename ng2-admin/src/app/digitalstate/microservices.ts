@@ -628,23 +628,23 @@ export class MicroservicesDefinition {
                                 },
                             },
                             'enable_custom_variables': {
-                                parent: 'config.custom_data',
+                                parent: 'config.process_custom_data',
                                 label: 'Enable Custom Variables',
                                 type: 'boolean',
                                 validation: {
 
                                 },
                             },
-                            'variable_name': {
-                                parent: 'config.custom_data',
-                                label: 'Variable Name',
-                                type: 'string',
-                                validation: {
-
-                                },
-                            },
+                            // 'variable_name': {
+                            //     parent: 'config.process_custom_data',
+                            //     label: 'Variable Name',
+                            //     type: 'string',
+                            //     validation: {
+                            //
+                            //     },
+                            // },
                             'variable_value': {
-                                parent: 'config.custom_data',
+                                parent: 'config.process_custom_data',
                                 label: 'Variable Value',
                                 type: 'json',
                                 default: '{}',

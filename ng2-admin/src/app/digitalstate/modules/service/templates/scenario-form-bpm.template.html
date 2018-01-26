@@ -81,6 +81,7 @@
 			<div class="col-sm-6">
 				<div class="form-group required translatable">
 					<label for="button-text">{{ 'ds.microservices.entity.property.button_text' | staticTranslate:[formLang] }}</label>
+					<translatable-icon></translatable-icon>
 					<input id="button-text" name="button_text" type="text" [(ngModel)]="entity.data[formLang].button_text" class="form-control" required>
 					<div *ngIf="formErrors.button_text" class="alert alert-danger">
 						{{ formErrors.button_text }}
@@ -96,7 +97,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group">
-					<input id="enable-custom-variables" name="enable_custom_variables" type="checkbox" [(ngModel)]="entity.config.custom_data.enable_custom_variables" class="form-control d-inline-block w-auto">
+					<input id="enable-custom-variables" name="enable_custom_variables" type="checkbox" [(ngModel)]="entity.config.process_custom_data.enable_custom_variables" class="form-control d-inline-block w-auto">
 					<label for="enable-custom-variables" class="w-auto">{{ 'ds.microservices.entity.property.enable_custom_variables' | staticTranslate:[formLang] }}</label>
 					<div *ngIf="formErrors.enable_custom_variables" class="alert alert-danger">
 						{{ formErrors.enable_custom_variables }}
@@ -105,20 +106,20 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
-				<div class="form-group">
-					<label for="variable-name">{{ 'ds.microservices.entity.property.variable_name' | staticTranslate:[formLang] }}</label>
-					<input id="variable-name" name="variable_name" type="text" [(ngModel)]="entity.config.custom_data.variable_name" class="form-control">
-					<div *ngIf="formErrors.variable_name" class="alert alert-danger">
-						{{ formErrors.variable_name }}
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6">
+			<!--<div class="col-sm-6">-->
+				<!--<div class="form-group">-->
+					<!--<label for="variable-name">{{ 'ds.microservices.entity.property.variable_name' | staticTranslate:[formLang] }}</label>-->
+					<!--<input id="variable-name" name="variable_name" type="text" [(ngModel)]="entity.config.process_custom_data.variable_name" class="form-control">-->
+					<!--<div *ngIf="formErrors.variable_name" class="alert alert-danger">-->
+						<!--{{ formErrors.variable_name }}-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div class="col-sm-12">
 				<div class="form-group required">
 					<label for="variable-value">{{ 'ds.microservices.entity.property.variable_value' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
-					<textarea id="variable-value" name="variable_value" type="text" [(ngModel)]="entity.config.custom_data.variable_value" class="form-control" placeholder="" json></textarea>
+					<textarea id="variable-value" name="variable_value" type="text" [(ngModel)]="entity.config.process_custom_data.variable_value" class="form-control" placeholder="" json></textarea>
 					<div *ngIf="formErrors.variable_value" class="alert alert-danger">
 						{{ formErrors.variable_value }}
 					</div>

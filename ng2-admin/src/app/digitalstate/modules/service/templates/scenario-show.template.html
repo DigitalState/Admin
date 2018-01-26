@@ -124,7 +124,7 @@
 	</div>
 	<!-- end: ng-content[select=".entity-body"] -->
 	<!-- begin: ng-content[select=".additional-card"] -->
-	<div *ngIf="entity.type === 'bpm' && entity.config.custom_data" class="card entity-card additional-card animated fadeIn">
+	<div *ngIf="entity.type === 'bpm' && entity.config.process_custom_data" class="card entity-card additional-card animated fadeIn">
 		<div class="card-header">
 			<div class="row justify-content-between">
 				<div class="col-sm-12">
@@ -136,7 +136,7 @@
 		<div class="card-block entity-body entity-data">
 			<div class="row">
 				<div class="col-sm-12">
-					<pre>{{ entity.config.custom_data | json }}</pre>
+					<pre>{{ entity.config.process_custom_data | json }}</pre>
 				</div>
 			</div>
 		</div>
