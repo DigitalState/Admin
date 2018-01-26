@@ -93,8 +93,8 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
             this.entity.config = {};
         }
 
-        if (!this.entity.config.process_custom_variable) {
-            this.entity.config.process_custom_variable = {};
+        if (!this.entity.config.process_custom_data) {
+            this.entity.config.process_custom_data = {};
         }
     }
 
@@ -117,19 +117,19 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
 
             try {
                 if (entity.config) {
-                    if (!entity.config.process_custom_variable) {
-                        entity.config.process_custom_variable = {
+                    if (!entity.config.process_custom_data) {
+                        entity.config.process_custom_data = {
                             'enable_custom_variables': false,
                             'variable_value': {},
                         };
                     }
 
                     // Create aliases for metadata properties
-                    entity.config.process_custom_variable.variable_value = entity.config.process_custom_variable.value != null
-                        ? JSON.stringify(entity.config.process_custom_variable.value, null, 2)
+                    entity.config.process_custom_data.variable_value = entity.config.process_custom_data.value != null
+                        ? JSON.stringify(entity.config.process_custom_data.value, null, 2)
                         : '{}';
 
-                    entity.config.process_custom_variable.enable_custom_variables = entity.config.process_custom_variable.enabled;
+                    entity.config.process_custom_data.enable_custom_variables = entity.config.process_custom_data.enabled;
                 }
             }
             catch(e) {
@@ -157,11 +157,11 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
 
         try {
             // Replace aliased metadata properties with their real names
-            presavedEntity.config.process_custom_variable.enabled = presavedEntity.config.process_custom_variable.enable_custom_variables;
-            delete presavedEntity.config.process_custom_variable.enable_custom_variables;
+            presavedEntity.config.process_custom_data.enabled = presavedEntity.config.process_custom_data.enable_custom_variables;
+            delete presavedEntity.config.process_custom_data.enable_custom_variables;
 
-            presavedEntity.config.process_custom_variable.value = JSON.parse(this.entity.config.process_custom_variable.variable_value);
-            delete presavedEntity.config.process_custom_variable.variable_value;
+            presavedEntity.config.process_custom_data.value = JSON.parse(this.entity.config.process_custom_data.variable_value);
+            delete presavedEntity.config.process_custom_data.variable_value;
         }
         catch(e) {
             console.warn('Error parsing variable value as JSON', e);

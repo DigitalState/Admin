@@ -628,7 +628,7 @@ export class MicroservicesDefinition {
                                 },
                             },
                             'enable_custom_variables': {
-                                parent: 'config.process_custom_variable',
+                                parent: 'config.process_custom_data',
                                 label: 'Enable Custom Variables',
                                 type: 'boolean',
                                 validation: {
@@ -636,7 +636,7 @@ export class MicroservicesDefinition {
                                 },
                             },
                             // 'variable_name': {
-                            //     parent: 'config.process_custom_variable',
+                            //     parent: 'config.process_custom_data',
                             //     label: 'Variable Name',
                             //     type: 'string',
                             //     validation: {
@@ -644,7 +644,7 @@ export class MicroservicesDefinition {
                             //     },
                             // },
                             'variable_value': {
-                                parent: 'config.process_custom_variable',
+                                parent: 'config.process_custom_data',
                                 label: 'Variable Value',
                                 type: 'json',
                                 default: '{}',

@@ -143,7 +143,7 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
             entity.config = {
                 'bpm': 'camunda',
                 'process_definition_key': '',
-                'process_custom_variable': {
+                'process_custom_data': {
                     'enable_custom_variables': false,
                     'variable_value': {},
                 },
@@ -167,11 +167,11 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
             try {
                 if (entity.config) {
                     // Create aliases for metadata properties
-                    entity.config.process_custom_variable.variable_value = entity.config.process_custom_variable.value != null
-                        ? JSON.stringify(entity.config.process_custom_variable.value, null, 2)
+                    entity.config.process_custom_data.variable_value = entity.config.process_custom_data.value != null
+                        ? JSON.stringify(entity.config.process_custom_data.value, null, 2)
                         : '{}';
 
-                    entity.config.process_custom_variable.enable_custom_variables = entity.config.process_custom_variable.enabled;
+                    entity.config.process_custom_data.enable_custom_variables = entity.config.process_custom_data.enabled;
                 }
             }
             catch(e) {
@@ -198,11 +198,11 @@ export class DsScenarioCreateBpmComponent extends DsScenarioCreateComponent {
 
         try {
             // Replace aliased metadata properties with their real names
-            presavedEntity.config.process_custom_variable.enabled = presavedEntity.config.process_custom_variable.enable_custom_variables || false;
-            delete presavedEntity.config.process_custom_variable.enable_custom_variables;
+            presavedEntity.config.process_custom_data.enabled = presavedEntity.config.process_custom_data.enable_custom_variables || false;
+            delete presavedEntity.config.process_custom_data.enable_custom_variables;
 
-            presavedEntity.config.process_custom_variable.value = JSON.parse(presavedEntity.config.process_custom_variable.variable_value);
-            delete presavedEntity.config.process_custom_variable.variable_value;
+            presavedEntity.config.process_custom_data.value = JSON.parse(presavedEntity.config.process_custom_data.variable_value);
+            delete presavedEntity.config.process_custom_data.variable_value;
         }
         catch(e) {
             console.warn('Error parsing variable value as JSON', e);
