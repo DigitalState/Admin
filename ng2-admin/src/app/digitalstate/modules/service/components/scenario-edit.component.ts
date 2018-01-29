@@ -157,7 +157,7 @@ export class DsScenarioEditBpmComponent extends DsScenarioEditComponent {
 
         try {
             // Replace aliased metadata properties with their real names
-            presavedEntity.config.process_custom_data.enabled = presavedEntity.config.process_custom_data.enable_custom_variables;
+            presavedEntity.config.process_custom_data.enabled = presavedEntity.config.process_custom_data.enable_custom_variables || false;
             delete presavedEntity.config.process_custom_data.enable_custom_variables;
 
             presavedEntity.config.process_custom_data.value = JSON.parse(this.entity.config.process_custom_data.variable_value);
