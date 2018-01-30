@@ -49,7 +49,6 @@ export class OwnerSelectComponent extends ElementBase<string> {
 
     ngOnInit() {
         this.identityApiService.getOwnersList().subscribe(owners => {
-            console.log(owners);
             this.owners = owners;
         }, error => {
             console.warn('Unable to fetch owners list.', error);
