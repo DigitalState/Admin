@@ -273,6 +273,7 @@
           "unpaid": "Non payé",
           "entity": "Entité",
           "entityUuid": "Entité UUID",
+          "ownershipHeader": "Possession",
           "identity": "Identité",
           "identityUuid": "Identité UUID",
           "owner": "Propriétaire",

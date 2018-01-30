@@ -274,6 +274,7 @@
           "unpaid": "Unpaid",
           "entity": "Entity",
           "entityUuid": "Entity UUID",
+          "ownershipHeader": "Ownership",
           "identity": "Identity",
           "identityUuid": "Identity UUID",
           "owner": "Owner",

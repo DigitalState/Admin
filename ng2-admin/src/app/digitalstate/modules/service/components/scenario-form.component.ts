@@ -6,6 +6,7 @@ import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
 
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import without from 'lodash/without';
 import { NgForm } from '@angular/forms';
@@ -33,6 +34,14 @@ export class DsScenarioFormComponent extends DsBaseEntityFormComponent {
         this.backLink = this.getEmptyBackLink();
     }
 
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            let entity = prepared.entity;
+
+            this.entity = entity;
+            return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
+        });
+    }
 
     /**
      * Set for removal mutually-exclusive `data` properties for various scenario types.

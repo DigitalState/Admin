@@ -88,5 +88,24 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="card-header pl-0 mt-3 mb-3">
+			<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.ownershipHeader' | translate }}</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="ownerUuid">
+						{{ 'ds.microservices.entity.property.owner' | staticTranslate:[formLang] }}
+						({{ 'ds.microservices.entity.types.businessUnit' | staticTranslate:[formLang] }})
+					</label>
+					<owner-select id="ownerUuid" name="ownerUuid" [(ngModel)]="entity.ownerUuid" [language]="formLang" required class="d-block"></owner-select>
+					<div *ngIf="formErrors.ownerUuid" class="alert alert-danger">
+						{{ formErrors.ownerUuid }}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </ds-entity-form>

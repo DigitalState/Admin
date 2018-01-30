@@ -565,6 +565,21 @@ export class MicroservicesDefinition {
                                     'required': { message: 'required'},
                                 },
                             },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                            },
                             'type': {
                                 label: 'Type',
                                 type: 'string',
