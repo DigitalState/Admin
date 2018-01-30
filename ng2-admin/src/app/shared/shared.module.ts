@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MdProgressSpinnerModule } from '@angular/material';
+import { MdProgressSpinnerModule, MdSelect, MdSelectModule } from '@angular/material';
 import { MdProgressBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule, DateFormatPipe, LocalTimePipe, LocalePipe, TimeAgoPipe } from 'angular2-moment';
@@ -33,6 +33,8 @@ import { DsStaticTranslatePipe } from './components/pipes/static-translate.pipe'
 import { DsClipboardCopyComponent } from './components/directives/ds-clipboard-copy.component';
 import { DsShortUuidComponent } from './components/short-uuid.component';
 import { DsFileUploadComponent } from './components/file-upload.component';
+import { OwnerSelectComponent } from './components/form/owner-select.component';
+import { IdentityLinkComponent } from './components/identity-link.component';
 
 import { authHttpServiceFactory, DsAuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/auth.service';
@@ -47,6 +49,7 @@ import { Http, RequestOptions } from '@angular/http';
         RouterModule,
         FormsModule,
         MdProgressSpinnerModule,
+        MdSelectModule,
         TranslateModule,
         MomentModule,
         MomentTimezoneModule,
@@ -65,6 +68,8 @@ import { Http, RequestOptions } from '@angular/http';
         DsFileUploadComponent,
         FormioModalFrameComponent,
         CredentialsVerificationModalComponent,
+        OwnerSelectComponent,
+        IdentityLinkComponent,
     ],
     entryComponents: [
         FormioModalFrameComponent,
@@ -76,6 +81,7 @@ import { Http, RequestOptions } from '@angular/http';
     ],
     exports: [
         MdProgressSpinnerModule,
+        MdSelectModule,
         TranslateModule,
         ClipboardModule,
         IsEmpty, IsNotEmpty, // lodash helpers
@@ -91,6 +97,8 @@ import { Http, RequestOptions } from '@angular/http';
         DsClipboardCopyComponent,
         DsShortUuidComponent,
         DsFileUploadComponent,
+        OwnerSelectComponent,
+        IdentityLinkComponent,
     ]
 })
 export class DsSharedModule {
