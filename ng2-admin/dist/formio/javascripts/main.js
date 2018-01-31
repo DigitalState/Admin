@@ -47,9 +47,7 @@
 
         // Prevent Submit button from hanging in a loading and/or disabled state
         // in case the form submission fails in the backend
-        var submitButton = formioForm.getComponent('submit');
-        submitButton.loading = false;
-        submitButton.disabled = false;
+        form.emit('submitDone');
       });
 
       form.on('error', (errors) => {
@@ -60,8 +58,7 @@
         window.scrollTo(0, 0);
 
         // Prevent Submit button from hanging in a disabled state
-        var submitButton = formioForm.getComponent('submit');
-        submitButton.disabled = false;
+        form.emit('submitDone');
       })
     }).catch(function(e) {
       console.log('IFrame: caught formio error in promise', e);
