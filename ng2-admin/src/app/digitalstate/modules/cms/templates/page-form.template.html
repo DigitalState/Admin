@@ -34,26 +34,6 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<label for="owner">{{ 'ds.microservices.entity.property.owner' | staticTranslate:[formLang] }}</label>
-					<input id="owner" name="owner" type="text" [(ngModel)]="entity.owner" class="form-control" placeholder="" required>
-					<div *ngIf="formErrors.owner" class="alert alert-danger">
-						{{ formErrors.owner }}
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<label for="ownerUuid">{{ 'ds.microservices.entity.property.ownerUuid' | staticTranslate:[formLang] }}</label>
-					<input id="ownerUuid" name="ownerUuid" type="text" [(ngModel)]="entity.ownerUuid" class="form-control" placeholder="" required>
-					<div *ngIf="formErrors.ownerUuid" class="alert alert-danger">
-						{{ formErrors.ownerUuid }}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group required translatable">
 					<label for="description">{{ 'ds.microservices.entity.property.description' | staticTranslate:[formLang] }}</label>
@@ -61,6 +41,25 @@
 					<textarea id="description" name="description" type="text" [(ngModel)]="entity.description[formLang]" class="form-control" placeholder="" required></textarea>
 					<div *ngIf="formErrors.description" class="alert alert-danger">
 						{{ formErrors.description }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-header pl-0 mt-3 mb-3">
+			<h3 class="card-title mb-0">{{ 'ds.microservices.entity.property.ownershipHeader' | translate }}</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group required">
+					<label for="ownerUuid">
+						{{ 'ds.microservices.entity.property.owner' | staticTranslate:[formLang] }}
+						({{ 'ds.microservices.entity.types.businessUnit' | staticTranslate:[formLang] }})
+					</label>
+					<owner-select id="ownerUuid" name="ownerUuid" [(ngModel)]="entity.ownerUuid" [language]="formLang" required class="d-block"></owner-select>
+					<div *ngIf="formErrors.ownerUuid" class="alert alert-danger">
+						{{ formErrors.ownerUuid }}
 					</div>
 				</div>
 			</div>

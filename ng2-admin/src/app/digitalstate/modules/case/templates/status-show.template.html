@@ -50,6 +50,22 @@
 				</dl>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.owner' | translate }}</dt>
+					<dd>
+						<identity-link [identityType]="entity.owner" [identityUuid]="entity.ownerUuid" [language]="lang"></identity-link>
+					</dd>
+				</dl>
+			</div>
+			<div class="col-sm-6">
+				<dl>
+					<dt>{{ 'ds.microservices.entity.property.ownerUuid' | translate }}</dt>
+					<dd>{{ entity.ownerUuid }}</dd>
+				</dl>
+			</div>
+		</div>
 	</div>
 	<!-- end: ng-content[select=".entity-body"] -->
 

@@ -218,7 +218,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             // 'owner': user.identity,
             // 'ownerUuid': user.identityUuid,
             'owner': 'BusinessUnit',
-            'ownerUuid': '8454c987-cbc5-4a24-ba1a-d420283caabd',
+            // 'ownerUuid': '8454c987-cbc5-4a24-ba1a-d420283caabd',
             'weight': 0,
             'version': 1,
         };

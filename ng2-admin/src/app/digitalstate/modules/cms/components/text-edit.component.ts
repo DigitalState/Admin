@@ -28,4 +28,15 @@ export class DsTextEditComponent extends DsBaseEntityFormComponent {
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
     }
+
+    /**
+     * @Todo Refactor the entity assignment behavior below to the parent `prepareEntity()` method.
+     * @return {Observable<R>}
+     */
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            this.entity = prepared.entity
+            return Observable.of({'entity': this.entity });
+        });
+    }
 }
