@@ -54,8 +54,7 @@ export class DsPersonaCreateComponent extends DsPersonaFormComponent {
     }
 
     /**
-     * Add the `Case` association to the newly created `Case Status` entity by assigning
-     * the case's IRI to the `case` property.
+     * Add the `Identity` association to the newly created `Persona` entity
      */
     protected createBlankEntity(): any {
         return this.route.params.flatMap(params => {
