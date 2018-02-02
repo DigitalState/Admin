@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group required translatable">
-					<label for="title">{{ 'ds.microservices.entity.property.title' | translate }}</label>
+					<label for="title">{{ 'ds.microservices.entity.property.title' | staticTranslate:[formLang] }}</label>
 					<translatable-icon></translatable-icon>
 					<input id="title" name="title" type="text" [(ngModel)]="entity.title[formLang]" class="form-control" placeholder="" required>
 					<div *ngIf="formErrors.title" class="alert alert-danger">
