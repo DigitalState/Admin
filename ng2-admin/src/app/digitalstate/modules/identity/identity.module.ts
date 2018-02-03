@@ -19,6 +19,10 @@ import { DsPersonaListComponent } from './components/persona-list.component';
 import { DsPersonaShowComponent } from './components/persona-show.component';
 import { DsPersonaCreateComponent } from './components/persona-create.component';
 import { DsPersonaEditComponent } from './components/persona-edit.component';
+import { DsRoleListComponent } from './components/role-list.component';
+import { DsRoleShowComponent } from './components/role-show.component';
+import { DsRoleCreateComponent } from './components/role-create.component';
+import { DsRoleEditComponent } from './components/role-edit.component';
 
 export const MICROSERVICE_NAME = 'identities';
 
@@ -40,6 +44,10 @@ export const MICROSERVICE_NAME = 'identities';
         DsPersonaShowComponent,
         DsPersonaCreateComponent,
         DsPersonaEditComponent,
+        DsRoleListComponent,
+        DsRoleShowComponent,
+        DsRoleCreateComponent,
+        DsRoleEditComponent,
     ],
     providers: [
         EntityApiService,

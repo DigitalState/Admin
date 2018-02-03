@@ -9,6 +9,10 @@ import { DsBusinessUnitEditComponent, DsOrganizationEditComponent, DsIndividualE
 import { DsPersonaCreateComponent } from './components/persona-create.component';
 import { DsPersonaShowComponent } from './components/persona-show.component';
 import { DsPersonaEditComponent } from './components/persona-edit.component';
+import { DsRoleListComponent } from './components/role-list.component';
+import { DsRoleCreateComponent } from './components/role-create.component';
+import { DsRoleShowComponent } from './components/role-show.component';
+import { DsRoleEditComponent } from './components/role-edit.component';
 
 const routes: Routes = [
 
@@ -47,6 +51,10 @@ const routes: Routes = [
             { path: ':identityPlural/:identityUuid/personas/create', component: DsPersonaCreateComponent },
             { path: ':identityPlural/:identityUuid/personas/:id/show', component: DsPersonaShowComponent },
             { path: ':identityPlural/:identityUuid/personas/:id/edit', component: DsPersonaEditComponent },
+            { path: 'roles/list', component: DsRoleListComponent },
+            { path: 'roles/create', component: DsRoleCreateComponent },
+            { path: 'roles/:id/show', component: DsRoleShowComponent },
+            { path: 'roles/:id/edit', component: DsRoleEditComponent },
         ]
     }
 ];

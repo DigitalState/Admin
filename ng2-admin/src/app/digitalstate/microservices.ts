@@ -1081,6 +1081,48 @@ export class MicroservicesDefinition {
                             },
                         },
                     },
+                    'roles': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
+                                default: '',
+                            },
+                            'title': {
+                                label: 'Title',
+                                type: 'string',
+                                default: '',
+                                translated: true,
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'data': {
+                                label: 'Data',
+                                type: 'json',
+                                default: {},
+                                validation: {
+                                    'json': { message: 'json' },
+                                    'required': { message: 'required'},
+                                },
+                            },
+                        },
+                    },
                 },
             },
             'assets': {

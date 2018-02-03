@@ -430,6 +430,14 @@ export class PagesMenu {
                                     }
                                 }
                             },
+                            {
+                                path: ['identities/roles/list'],
+                                data: {
+                                    menu: {
+                                        title: 'general.menu.roles'
+                                    }
+                                }
+                            },
                         ]
                     },
 
