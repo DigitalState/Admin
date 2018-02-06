@@ -4,6 +4,7 @@ import { DsSystemComponent } from './components/system.component';
 import { DsConfigurationsComponent } from './components/configurations.component';
 import { DsTranslationsComponent } from './components/translations.component';
 import { DsHealthComponent } from './components/health.component';
+import { DsThemerComponent } from './components/themer.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,7 @@ const routes: Routes = [
             { path: 'configurations/:microservice', component: DsConfigurationsComponent },
             { path: 'translations', component: DsTranslationsComponent },
             { path: 'health', component: DsHealthComponent },
+            { path: 'themer', component: DsThemerComponent },
         ]
     }
 ];

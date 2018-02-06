@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="form-group row" [ngClass]="{'has-error': (!sidebarBgColor.valid && sidebarBgColor.touched)}">
+				<label for="sidebarBgColor" class="col-sm-4 col-form-label control-label">{{ 'theme.bgColor' | translate }}</label>
+				<div class="col-sm-8">
+					<span [(colorPicker)]="data.sidebarBgColor" class="position-sm-absolute h-100">
+						<input [formControl]="sidebarBgColor" [(ngModel)]="data.sidebarBgColor" class="form-control" id="sidebarBgColor"/>
+						<span class="color-preview" [style.background]="data.sidebarBgColor"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-7">
+			<div class="form-group row" [ngClass]="{'has-error': (!sidebarTextColor.valid && sidebarTextColor.touched)}">
+				<label for="sidebarTextColor" class="col-sm-4 col-form-label control-label">{{ 'theme.textColor' | translate }}</label>
+				<div class="col-sm-8 position-relative">
+					<span [(colorPicker)]="data.sidebarTextColor" class="position-sm-absolute h-100">
+						<input [formControl]="sidebarTextColor" [(ngModel)]="data.sidebarTextColor" class="form-control" id="sidebarTextColor"/>
+						<span class="color-preview" [style.background]="data.sidebarTextColor"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>

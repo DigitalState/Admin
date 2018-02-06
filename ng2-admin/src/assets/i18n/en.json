@@ -109,6 +109,7 @@
       "roles": "Roles",
       "settings": "Settings",
       "systems": "Systems",
+      "themeEditor": "Theme Editor",
       "configurations": "Configurations",
       "translations": "Translations",
 
@@ -220,6 +221,10 @@
     "emptyMessage": "No data to display",
     "totalMessage": "total",
     "selectedMessage": "selected"
+  },
+  "theme": {
+    "bgColor": "Background Colour",
+    "textColor": "Text Colour"
   },
   "ds": {
     "language-switcher": {

@@ -551,6 +551,14 @@ export class PagesMenu {
                                     }
                                 }
                             },
+                            {
+                                path: ['settings/themer'],
+                                data: {
+                                    menu: {
+                                        title: 'general.menu.themeEditor',
+                                    }
+                                }
+                            },
                         ]
                     },
 

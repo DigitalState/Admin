@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LaddaModule } from 'angular2-ladda';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { routing } from './routing';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
@@ -13,6 +14,7 @@ import { DsSystemComponent } from './components/system.component';
 import { DsConfigurationsComponent } from './components/configurations.component';
 import { DsTranslationsComponent } from './components/translations.component';
 import { DsHealthComponent } from './components/health.component';
+import { DsThemerComponent } from './components/themer.component';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { DsHealthComponent } from './components/health.component';
         NgxDatatableModule,
         LaddaModule,
         InlineEditorModule,
+        ColorPickerModule,
         DsMicroservicesModule,
         routing,
     ],
@@ -31,6 +34,7 @@ import { DsHealthComponent } from './components/health.component';
         DsConfigurationsComponent,
         DsTranslationsComponent,
         DsHealthComponent,
+        DsThemerComponent,
     ],
     providers: [
         MicroserviceConfig,
