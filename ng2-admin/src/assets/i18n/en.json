@@ -28,6 +28,9 @@
     "signUpButton": "Sign up"
   },
   "general": {
+    "application": "Application",
+    "admin": "Admin",
+    "portal": "Portal",
     "new": "New",
     "details": "Details",
     "home": "Home",
@@ -223,6 +226,12 @@
     "selectedMessage": "selected"
   },
   "theme": {
+    "global": "Global",
+    "header": "Header",
+    "sidebar": "Sidebar",
+    "colorScheme": "Color Scheme",
+    "light": "Light",
+    "dark": "Dark",
     "bgColor": "Background Colour",
     "textColor": "Text Colour"
   },
@@ -337,7 +346,9 @@
           "cancel": "Cancel",
           "back": "Back",
           "actions": "Actions",
-          "confirm": "Confirm"
+          "confirm": "Confirm",
+          "yes": "Yes",
+          "no": "No"
         },
         "validation": {
           "required": "Required field.",
@@ -379,6 +390,7 @@
       "formActivationError": "Form activation error",
       "formSubmissionError": "Form submission error",
       "formInvalid": "The form contains invalid fields.",
+      "formNotSavedPrompt": "The form has unsaved changes. Do you wish to continue?",
       "ensureFormValid": "Please fill in required fields in all languages.",
       "entitySaveSucceeded": "Entity saved successfully.",
       "entitySaveFailed": "Unable to save the entity.",
@@ -389,6 +401,7 @@
       "personaSaveFailed": "Failed to save persona information.",
       "identitySaveSucceeded": "Identity information saved successfully.",
       "identitySaveFailed": "Failed to save identity information.",
+      "themeNotFound": "Unable to load the theme of the selected application",
       "translationLoadingFailed": "Failed to load translation.",
       "translationSaveSucceeded": "Translation saved successfully.",
       "translationSaveFailed": "Failed to save translation."
