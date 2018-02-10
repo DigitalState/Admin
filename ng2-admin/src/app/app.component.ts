@@ -85,6 +85,7 @@ export class App {
         const contentSlugs = {
             'texts[]': ['admin-title'],
             'files[]': ['admin-logo-login', 'admin-logo-header'],
+            'datas[]': ['admin-theme'],
         };
 
         let cmsContentLoader: Observable<any> = this.cms.getContentBySlugs(contentSlugs)
