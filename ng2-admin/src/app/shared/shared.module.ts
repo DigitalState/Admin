@@ -19,6 +19,7 @@ import { CmsApiService } from './services/cms.service';
 import { CmsTranslateLoader } from './services/cms-translation-loader.service';
 import { IdentityApiService } from './services/identity.service';
 import { UserApiService } from './services/user-api.service';
+import { ThemerService } from './services/themer.service';
 import { FormioApiService } from './services/formio-api.service';
 import { FormioModalFrameComponent } from './components/modals/formio-modal-frame.component';
 import { CredentialsVerificationModalComponent } from './components/modals/credentials-verification-modal/credentials-verification-modal.component';
@@ -33,6 +34,7 @@ import { DsStaticTranslatePipe } from './components/pipes/static-translate.pipe'
 import { DsClipboardCopyComponent } from './components/directives/ds-clipboard-copy.component';
 import { DsShortUuidComponent } from './components/short-uuid.component';
 import { DsFileUploadComponent } from './components/file-upload.component';
+import { DsThemerPipe } from './components/pipes/themer.pipe';
 import { OwnerSelectComponent } from './components/form/owner-select.component';
 import { IdentityLinkComponent } from './components/identity-link.component';
 
@@ -66,6 +68,7 @@ import { Http, RequestOptions } from '@angular/http';
         DsClipboardCopyComponent,
         DsShortUuidComponent,
         DsFileUploadComponent,
+        DsThemerPipe,
         FormioModalFrameComponent,
         CredentialsVerificationModalComponent,
         OwnerSelectComponent,
@@ -97,6 +100,7 @@ import { Http, RequestOptions } from '@angular/http';
         DsClipboardCopyComponent,
         DsShortUuidComponent,
         DsFileUploadComponent,
+        DsThemerPipe,
         OwnerSelectComponent,
         IdentityLinkComponent,
     ]
@@ -118,6 +122,7 @@ export class DsSharedModule {
                 IdentityApiService,
                 UserApiService,
                 FormioApiService,
+                ThemerService,
 
                 // Adopted submodules providers
                 AuthService,
