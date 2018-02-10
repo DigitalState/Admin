@@ -552,7 +552,7 @@ export class PagesMenu {
                                 }
                             },
                             {
-                                path: ['settings/themer'],
+                                path: ['settings/themer/admin'],
                                 data: {
                                     menu: {
                                         title: 'general.menu.themeEditor',
