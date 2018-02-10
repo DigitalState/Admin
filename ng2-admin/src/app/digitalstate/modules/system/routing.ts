@@ -21,7 +21,7 @@ const routes: Routes = [
             { path: 'configurations/:microservice', component: DsConfigurationsComponent },
             { path: 'translations', component: DsTranslationsComponent },
             { path: 'health', component: DsHealthComponent },
-            { path: 'themer', component: DsThemerComponent },
+            { path: 'themer/:app', component: DsThemerComponent },
         ]
     }
 ];

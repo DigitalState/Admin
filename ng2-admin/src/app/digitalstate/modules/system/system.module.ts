@@ -6,6 +6,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LaddaModule } from 'angular2-ladda';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { NgObjectPipesModule } from 'ngx-pipes';
+import { OmitPipe } from 'ngx-pipes/src/app/pipes/object/omit';
 
 import { routing } from './routing';
 import { MicroserviceConfig, MicroserviceRestangularProvider } from '../../../shared/providers/microservice.provider';
@@ -26,6 +28,7 @@ import { DsThemerComponent } from './components/themer.component';
         LaddaModule,
         InlineEditorModule,
         ColorPickerModule,
+        NgObjectPipesModule,
         DsMicroservicesModule,
         routing,
     ],
@@ -39,6 +42,7 @@ import { DsThemerComponent } from './components/themer.component';
     providers: [
         MicroserviceConfig,
         MicroserviceRestangularProvider,
+        OmitPipe,
     ]
 })
 export class DsSystemModule {

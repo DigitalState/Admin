@@ -1,28 +1,153 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="">
-	<div class="row">
-		<div class="col-md-5">
-			<div class="form-group row" [ngClass]="{'has-error': (!sidebarBgColor.valid && sidebarBgColor.touched)}">
-				<label for="sidebarBgColor" class="col-sm-4 col-form-label control-label">{{ 'theme.bgColor' | translate }}</label>
-				<div class="col-sm-8">
-					<span [(colorPicker)]="data.sidebarBgColor" class="position-sm-absolute h-100">
-						<input [formControl]="sidebarBgColor" [(ngModel)]="data.sidebarBgColor" class="form-control" id="sidebarBgColor"/>
-						<span class="color-preview" [style.background]="data.sidebarBgColor"></span>
-					</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-7">
-			<div class="form-group row" [ngClass]="{'has-error': (!sidebarTextColor.valid && sidebarTextColor.touched)}">
-				<label for="sidebarTextColor" class="col-sm-4 col-form-label control-label">{{ 'theme.textColor' | translate }}</label>
-				<div class="col-sm-8 position-relative">
-					<span [(colorPicker)]="data.sidebarTextColor" class="position-sm-absolute h-100">
-						<input [formControl]="sidebarTextColor" [(ngModel)]="data.sidebarTextColor" class="form-control" id="sidebarTextColor"/>
-						<span class="color-preview" [style.background]="data.sidebarTextColor"></span>
-					</span>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group position-relative">
+			<!--<md-select #appSelect [(ngModel)]="app" (change)="onAppSelectionChanged($event)" placeholder="{{ 'general.application' | translate }}" class="pt-3 pb-3" id="app-selector">-->
+				<!--<md-option *ngFor="let a of apps | keyValue" [value]="a.key">-->
+					<!--{{ a.value }}-->
+				<!--</md-option>-->
+			<!--</md-select>-->
+			<span class="mr-2">{{ 'general.application' | translate }}</span>
+			<div class="btn-group btn-group-primary">
+				<button type="button" class="btn btn-default dropdown-toggle font-size-inherit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="">{{ 'general.' + app | translate }}</span>
+					<span class="sr-only">{{ 'ds.microservices.entity.action.actions' | translate }}</span>
+				</button>
+				<div class="dropdown-menu">
+					<button *ngFor="let a of apps | omit: app | keyValue"
+							class="dropdown-item cursor-pointer"
+							(click)="onAppSelectionChanged(a.key)">
+						{{ a.value }}
+					</button>
+					<!--<button class="dropdown-item">xxx</button>-->
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<div *ngIf="!themeNotFound" class="col-sm-6 mb-3 align-right">
+		<button class="btn btn-primary" (click)="formRef.ngSubmit.emit()">{{ 'ds.microservices.entity.action.save' | translate }}</button>
+		<button class="btn btn-secondary" (click)="reloadApp()">{{ 'ds.microservices.entity.action.reload' | translate }}</button>
+	</div>
+</div>
+
+<div *ngIf="themeNotFound" class="alert alert-danger">
+	{{ 'ds.messages.themeNotFound' | translate }}
+</div>
+
+<!--<pre>form.dirty => {{ form.dirty }}</pre>-->
+<form #formRef="ngForm" [formGroup]="form" (ngSubmit)="submit(form.value)" class="">
+	<div class="card entity-card">
+		<div class="card-header">
+			<h3 class="card-title pt-2">{{ 'theme.global' | translate }}</h3>
+		</div>
+		<div class="card-block">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group" formGroupName="global">
+						<!--<label class="col-form-label control-label">{{ 'theme.colorScheme' | translate }}</label>-->
+						<md-select formControlName="colorScheme" placeholder="{{ 'theme.colorScheme' | translate }}" class="w-100 pt-3">
+							<md-option *ngFor="let colorScheme of colorSchemes | keyValue" [value]="colorScheme.key">
+								{{ 'theme.' + colorScheme.key | translate }}
+							</md-option>
+						</md-select>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+
+				</div>
+				<div class="col-md-4">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="card entity-card">
+		<div class="card-header">
+			<h3 class="card-title pt-2">{{ 'theme.header' | translate }}</h3>
+		</div>
+		<div class="card-block">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group" formGroupName="header" [ngClass]="{'has-error': controlHasErrors('header.bgColor')}">
+						<label class="col-form-label control-label">{{ 'theme.bgColor' | translate }}</label>
+						<div class="position-relative">
+							<div [colorPicker]="getControlValue('header.bgColor')" (colorPickerChange)="setControlValue('header.bgColor', $event)" class="position-sm-relative h-100">
+								<input formControlName="bgColor" class="form-control"/>
+								<span class="color-preview" [style.background]="getControlValue('header.bgColor')"></span>
+							</div>
+						</div>
+						<div *ngIf="controlHasErrors('header.bgColor')" class="error-msg">
+							<div [hidden]="!getControlErrors('header.bgColor').required">This field is required.</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group" formGroupName="header" [ngClass]="{'has-error': controlHasErrors('header.textColor')}">
+						<label class="col-form-label control-label">{{ 'theme.textColor' | translate }}</label>
+						<div class="position-relative">
+							<div [colorPicker]="getControlValue('header.textColor')" (colorPickerChange)="setControlValue('header.textColor', $event)" class="position-sm-relative h-100">
+								<input formControlName="textColor" class="form-control"/>
+								<span class="color-preview" [style.background]="getControlValue('header.textColor')"></span>
+							</div>
+						</div>
+						<div *ngIf="controlHasErrors('header.textColor')" class="error-msg">
+							<div [hidden]="!getControlErrors('header.textColor').required">This field is required.</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="card entity-card">
+		<div class="card-header">
+			<h3 class="card-title pt-2">{{ 'theme.sidebar' | translate }}</h3>
+		</div>
+		<div class="card-block">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group" formGroupName="sidebar" [ngClass]="{'has-error': controlHasErrors('sidebar.bgColor')}">
+						<label class="col-form-label control-label">{{ 'theme.bgColor' | translate }}</label>
+						<div class="position-relative">
+							<div [colorPicker]="getControlValue('sidebar.bgColor')" (colorPickerChange)="setControlValue('sidebar.bgColor', $event)" class="position-sm-relative h-100">
+								<input formControlName="bgColor" class="form-control"/>
+								<span class="color-preview" [style.background]="getControlValue('sidebar.bgColor')"></span>
+							</div>
+						</div>
+						<div *ngIf="controlHasErrors('sidebar.bgColor')" class="error-msg">
+							<div [hidden]="!getControlErrors('sidebar.bgColor').required">This field is required.</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group" formGroupName="sidebar" [ngClass]="{'has-error': controlHasErrors('sidebar.textColor')}">
+						<label class="col-form-label control-label">{{ 'theme.textColor' | translate }}</label>
+						<div class="position-relative">
+							<div [colorPicker]="getControlValue('sidebar.textColor')" (colorPickerChange)="setControlValue('sidebar.textColor', $event)" class="position-sm-relative h-100">
+								<input formControlName="textColor" class="form-control"/>
+								<span class="color-preview" [style.background]="getControlValue('sidebar.textColor')"></span>
+							</div>
+						</div>
+						<div *ngIf="controlHasErrors('sidebar.textColor')" class="error-msg">
+							<div [hidden]="!getControlErrors('sidebar.textColor').required">This field is required.</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--<pre>Theme Data: {{ theme | json }}</pre>-->
+	<!--<pre>Metadata: {{ metadata | json }}</pre>-->
+	<!--<pre>Form value: {{ form.value | json }}</pre>-->
 </form>
