@@ -44,6 +44,10 @@ export class DsThemerComponent extends DsPageComponent {
 
     protected routeParams: Params;
 
+    /** The ID of the this running SPA */
+    protected spaId: string;
+
+    /** SPAs to have themes configured for by this component */
     protected apps: {[key: string]: string } = {
         'admin': 'Admin',
         'portal': 'Portal'
@@ -52,10 +56,7 @@ export class DsThemerComponent extends DsPageComponent {
     protected app: string;
 
     /** Color Scheme Presets */
-    protected colorSchemes: any = {
-        'light': 'Light',
-        'dark': 'Dark',
-    };
+    protected colorSchemes: any;
 
     /** Form controls */
     protected form: FormGroup;
@@ -69,15 +70,29 @@ export class DsThemerComponent extends DsPageComponent {
 
     protected themeDefaults: any = {
         'global': {
+            'bgColor': '',
+            'textColor': '',
             'colorScheme': 'light',
         },
         'header': {
             'bgColor': '',
             'textColor': '',
+            'linkHoverColor': null,
+            'dropdownBgColor': '',
+            'dropdownTextColor': '',
+            'dropdownHighlight': '',
+            'showProfilePic': true,
+            'logoMaxWidth': 255,   // Desktop
+            'logoMaxWidthSm': 225, // Mobile
         },
         'sidebar': {
             'bgColor': null,
             'textColor': null,
+            'linkHoverColor': null,
+        },
+        'auth': {
+            'formBgColor': null,
+            'formTextColor': null,
         },
     };
 
@@ -99,17 +114,34 @@ export class DsThemerComponent extends DsPageComponent {
                 protected themer: ThemerService) {
         super(injector);
 
+        this.spaId = this.appState.get('config').spaId;
+        this.colorSchemes = themer.getColorSchemes();
+
         this.form = fb.group({
             'global': fb.group({
+                'bgColor': [this.themeDefaults.global.bgColor],
+                'textColor': [this.themeDefaults.global.textColor],
                 'colorScheme': [this.themeDefaults.global.colorScheme],
             }),
             'header': fb.group({
                 'bgColor': [this.themeDefaults.header.bgColor],
                 'textColor': [this.themeDefaults.header.textColor],
+                'linkHoverColor': [this.themeDefaults.sidebar.linkHoverColor],
+                'dropdownBgColor': [this.themeDefaults.header.dropdownBgColor],
+                'dropdownTextColor': [this.themeDefaults.header.dropdownTextColor],
+                'dropdownHighlight': [this.themeDefaults.header.dropdownHighlight],
+                'showProfilePic': [this.themeDefaults.header.showProfilePic],
+                'logoMaxWidth': [this.themeDefaults.header.logoMaxWidth],
+                'logoMaxWidthSm': [this.themeDefaults.header.logoMaxWidthSm],
             }),
             'sidebar': fb.group({
                 'bgColor': [this.themeDefaults.sidebar.bgColor],
                 'textColor': [this.themeDefaults.sidebar.textColor],
+                'linkHoverColor': [this.themeDefaults.sidebar.linkHoverColor],
+            }),
+            'auth': fb.group({ // Login and Registration
+                'formBgColor': [this.themeDefaults.auth.formBgColor],
+                'formTextColor': [this.themeDefaults.auth.formTextColor],
             }),
         });
     }
@@ -121,7 +153,7 @@ export class DsThemerComponent extends DsPageComponent {
             this.routeParams = params;
             this.app = params['app'] && this.apps.hasOwnProperty(params['app'])
                 ? params['app']
-                : this.appState.get('config').spaId;
+                : this.spaId;
 
             this.themer.loadTheme(this.themer.getSpaThemeKey(this.app)).subscribe(entity => {
 
@@ -206,8 +238,9 @@ export class DsThemerComponent extends DsPageComponent {
     /**
      * Reload entire application (browser window)
      */
-    protected reloadApp() {
-        window.location.reload();
+    protected reloadTheme() {
+        // window.location.reload();
+        this.themer.reloadTheme();
     }
 
     /**
