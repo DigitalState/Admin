@@ -228,11 +228,19 @@
     "global": "Global",
     "header": "Entête",
     "sidebar": "Barre latérale",
+    "auth": "Connexion et enregistrement",
+    "form": "Forme",
     "colorScheme": "Schéma de couleur",
     "light": "Light",
     "dark": "Dark",
     "bgColor": "Couleur de fond",
-    "textColor": "Couleur du texte"
+    "textColor": "Couleur du texte",
+    "linkHoverColor": "Lien en vol stationnaire",
+    "dropdown": "Menu déroulant",
+    "highlight": "Surligner",
+    "showProfilePic": "Montrer la photo de profil",
+    "logoMaxWidth": "Largeur max. du logo",
+    "logoMaxWidthSm": "Largeur max. du logo (Mobile)"
   },
   "ds": {
     "language-switcher": {

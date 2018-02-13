@@ -229,11 +229,19 @@
     "global": "Global",
     "header": "Header",
     "sidebar": "Sidebar",
-    "colorScheme": "Color Scheme",
+    "auth": "Login and Registration",
+    "form": "Form",
+    "colorScheme": "Color scheme",
     "light": "Light",
     "dark": "Dark",
-    "bgColor": "Background Colour",
-    "textColor": "Text Colour"
+    "bgColor": "Background",
+    "textColor": "Text",
+    "linkHoverColor": "Link hover",
+    "dropdown": "Dropdown",
+    "highlight": "Highlight",
+    "showProfilePic": "Show profile picture",
+    "logoMaxWidth": "Logo max. width",
+    "logoMaxWidthSm": "Logo max. width (Mobile)"
   },
   "ds": {
     "language-switcher": {
