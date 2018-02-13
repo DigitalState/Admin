@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, Renderer2, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -11,6 +11,7 @@ import { layoutPaths } from './theme/theme.constants';
 import { ToastsManager, Toast } from 'ng2-toastr';
 
 import { CmsApiService } from './shared/services/cms.service';
+import { ThemerService } from './shared/services/themer.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -35,7 +36,8 @@ export class App {
 
     isMenuCollapsed: boolean = false;
 
-    constructor(private router: Router,
+    constructor(private renderer: Renderer2,
+                private router: Router,
                 private _state: GlobalState,
                 private appState: AppState,
                 private _imageLoader: BaImageLoaderService,
@@ -43,8 +45,10 @@ export class App {
                 private viewContainerRef: ViewContainerRef,
                 private themeConfig: BaThemeConfig,
                 private toastr: ToastsManager,
-                private cms: CmsApiService) {
+                private cms: CmsApiService,
+                private themer: ThemerService) {
 
+        this.themer.init(renderer);
         this.toastr.setRootViewContainerRef(viewContainerRef);
         themeConfig.config();
         this.loadImages();
@@ -100,6 +104,9 @@ export class App {
             .flatMap(content => {
                 // console.log('AppState in loadContent', this.appState);
                 this.appState.set('appCmsContent', content);
+
+                // Notify Themer about theme data being available
+                this.themer.onThemeDataLoaded();
                 return Observable.of(true);
         });
 
