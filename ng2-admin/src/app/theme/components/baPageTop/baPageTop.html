@@ -1,5 +1,4 @@
-<div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
-     [ngClass]="{scrolled: isScrolled}" [ngStyle]="{ 'background-color': ('header.bgColor' | themer) }">
+<div class="page-top clearfix themed" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)">
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
   <a class="al-logo clearfix" [hidden]="!appLogo || !appLogo[lang]">
     <!--<img src="{{ ( 'app/digitalstate-logo.png' | baAppPicture ) }}" />-->
@@ -18,9 +17,10 @@
     <ds-language-switcher></ds-language-switcher>
 
     <div class="dropdown al-dropdown profile-dropdown">
-      <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
-        <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
+      <a href class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+        <img class="profile-pic" src="{{ ( 'Nasta' | baProfilePicture ) }}">
         <span class="user-identity {{ userIdentity | lowercase }}">{{ 'ds.microservices.entity.types.' + userIdentity | lowercase | translate }}</span>
+        <span class="my-account-text">{{ 'general.menu.myAccount' | translate }}</span>
       </a>
       <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
         <li class="dropdown-item">
