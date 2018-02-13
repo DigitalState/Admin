@@ -82,8 +82,8 @@ export class DsThemerComponent extends DsPageComponent {
             'dropdownTextColor': '',
             'dropdownHighlight': '',
             'showProfilePic': true,
-            'logoMaxWidth': 255,   // Desktop
-            'logoMaxWidthSm': 225, // Mobile
+            'logoMaxWidth': null,   // Desktop
+            'logoMaxWidthSm': null, // Mobile
         },
         'sidebar': {
             'bgColor': null,
@@ -93,6 +93,7 @@ export class DsThemerComponent extends DsPageComponent {
         'auth': {
             'formBgColor': null,
             'formTextColor': null,
+            'logoMaxWidth': null,   // Desktop
         },
     };
 
@@ -142,6 +143,7 @@ export class DsThemerComponent extends DsPageComponent {
             'auth': fb.group({ // Login and Registration
                 'formBgColor': [this.themeDefaults.auth.formBgColor],
                 'formTextColor': [this.themeDefaults.auth.formTextColor],
+                'logoMaxWidth': [this.themeDefaults.auth.logoMaxWidth],
             }),
         });
     }

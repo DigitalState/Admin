@@ -307,7 +307,13 @@
 				</div>
 
 				<div class="col-md-4">
-
+					<div class="form-group" formGroupName="auth" [ngClass]="{'has-error': controlHasErrors('auth.logoMaxWidth')}">
+						<label class="col-form-label control-label">{{ 'theme.logoMaxWidth' | translate }} (px)</label>
+						<input formControlName="logoMaxWidth" class="form-control" type="number"/>
+						<div *ngIf="controlHasErrors('auth.logoMaxWidth')" class="error-msg">
+							<div [hidden]="!getControlErrors('auth.logoMaxWidth').required">{{ 'ds.microservices.entity.validation.required' | translate }}</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
