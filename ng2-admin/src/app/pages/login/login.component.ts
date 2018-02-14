@@ -9,7 +9,10 @@ import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { AuthService } from '../../shared/modules/auth/auth.service';
 import { DsCmsContentSubscriber } from '../../shared/components/cms-content-subscriber.component';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import 'style-loader!./login.scss';
+
 
 @Component({
     selector: 'login',
@@ -33,6 +36,8 @@ export class Login extends DsCmsContentSubscriber {
     protected appLogo: any; // Translated String
     protected appLogoType;
 
+    protected routerNavigationSubscription: Subscription;
+
     constructor(protected injector: Injector,
                 protected router: Router,
                 protected route: ActivatedRoute,
@@ -54,7 +59,7 @@ export class Login extends DsCmsContentSubscriber {
         // Initialize the Authentication endpoint
         this.authEndpoint = this.appState.get('microservices').authentication.paths.staff;
 
-        router.events
+        this.routerNavigationSubscription = router.events
             .filter(event => event instanceof NavigationStart)
             .subscribe((navStartEvent: NavigationStart) => {
                 if (!navStartEvent.url.startsWith('/login')) {
@@ -73,6 +78,10 @@ export class Login extends DsCmsContentSubscriber {
     }
 
     ngOnDestroy() {
+        if (this.routerNavigationSubscription) {
+            this.routerNavigationSubscription.unsubscribe();
+        }
+
         super.ngOnDestroy();
     }
 
