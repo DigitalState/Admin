@@ -28,6 +28,9 @@
     "signUpButton": "S'inscrire"
   },
   "general": {
+    "application": "Application",
+    "admin": "Admin",
+    "portal": "Portail",
     "new": "Nouveau",
     "details": "Détails",
     "home": "Accueil",
@@ -109,6 +112,7 @@
       "roles": "Rôles",
       "settings": "Paramètres",
       "systems": "Systèmes",
+      "themeEditor": "Éditeur de thème",
       "configurations": "Configurations",
       "translations": "Traductions",
 
@@ -219,6 +223,24 @@
     "emptyMessage": "Aucune donnée à afficher",
     "totalMessage": "total",
     "selectedMessage": "sélectionné"
+  },
+  "theme": {
+    "global": "Global",
+    "header": "Entête",
+    "sidebar": "Barre latérale",
+    "auth": "Connexion et enregistrement",
+    "form": "Forme",
+    "colorScheme": "Schéma de couleur",
+    "light": "Light",
+    "dark": "Dark",
+    "bgColor": "Couleur de fond",
+    "textColor": "Couleur du texte",
+    "linkHoverColor": "Lien en vol stationnaire",
+    "dropdown": "Menu déroulant",
+    "highlight": "Surligner",
+    "showProfilePic": "Montrer la photo de profil",
+    "logoMaxWidth": "Largeur max. du logo",
+    "logoMaxWidthSm": "Largeur max. du logo (Mobile)"
   },
   "ds": {
     "language-switcher": {
@@ -331,7 +353,9 @@
           "cancel": "Annuler",
           "back": "Retour",
           "actions": "Actes",
-          "confirm": "Confirmer"
+          "confirm": "Confirmer",
+          "yes": "Oui",
+          "no": "Non"
         },
         "validation": {
           "required": "Champs requis.",
@@ -373,6 +397,7 @@
       "formActivationError": "Erreur d'activation de formulaire",
       "formSubmissionError": "Erreur de soumission de formulaire",
       "formInvalid": "Le formulaire contient des champs non valides.",
+      "formNotSavedPrompt": "Le formulaire a des modifications non enregistrées. Souhaitez-vous continuer?",
       "ensureFormValid": "Veuillez remplir les champs obligatoires dans toutes les langues.",
       "entitySaveSucceeded": "Entité enregistrée avec succès",
       "entitySaveFailed": "Impossible d'enregistrer l'entité",
@@ -383,6 +408,7 @@
       "personaSaveFailed": "Échec de l'enregistrement des informations personnelles.",
       "identitySaveSucceeded": "Les informations d'identité ont été enregistrées avec succès.",
       "identitySaveFailed": "Échec de l'enregistrement des informations d'identité.",
+      "themeNotFound": "Impossible de charger le thème de l'application sélectionnée",
       "translationLoadingFailed": "Impossible de charger la traduction.",
       "translationSaveSucceeded": "Traduction enregistrée avec succès.",
       "translationSaveFailed": "Impossible de sauvegarder la traduction."
