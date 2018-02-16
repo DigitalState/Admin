@@ -405,6 +405,7 @@
       "entityDeletionSucceeded": "Entity deleted successfully.",
       "entityDeletionFailed": "Failed to delete entity!",
       "entityNotFound": "Entity not found!",
+      "noPersonasFound": "No personas found.",
       "personaSaveSucceeded": "Persona information saved successfully.",
       "personaSaveFailed": "Failed to save persona information.",
       "identitySaveSucceeded": "Identity information saved successfully.",

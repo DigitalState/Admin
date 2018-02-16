@@ -45,6 +45,12 @@
 				</div>
 			</form>
 
+			<div *ngIf="!persona" class="card entity-card animated fadeIn">
+				<div class="card-block entity-body entity-data">
+					{{ 'ds.messages.noPersonasFound' | translate }}
+				</div>
+			</div>
+
 			<form *ngIf="persona" class="card entity-card animated fadeIn">
 				<div class="card-header">
 					<div class="row justify-content-between">

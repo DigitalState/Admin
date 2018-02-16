@@ -116,7 +116,6 @@ export class DsProfileComponent {
             if (personas.length > 0) {
                 this.persona = personas[0];
                 this.persona.route += '/' + this.persona.uuid;
-                // console.log(this.persona);
             }
         });
     }
