@@ -99,4 +99,38 @@
 	</div>
 	<!-- end: ng-content[select=".entity-body"] -->
 
+	<!-- begin: ng-content[select=".additional-card"] -->
+	<div class="card entity-card additional-card animated fadeIn">
+		<div *ngIf="!personas || personas.length === 0" class="card-block entity-body entity-data">
+			{{ 'ds.messages.noPersonasFound' | translate }}
+		</div>
+
+		<div *ngFor="let persona of personas">
+			<div class="card-header">
+				<div class="row justify-content-between">
+					<div class="col-sm-12">
+						<h3 class="card-title mb-0">
+							{{ 'ds.microservices.entity.types.persona' | translate }}
+							({{ persona.title[lang] }})
+						</h3>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-block entity-body entity-data">
+				<div class="row">
+					<div *ngFor="let item of persona.data | keyValue"
+						 [ngSwitch]="item.key"
+						 class="col-sm-6">
+						<dl>
+							<dt>{{ ('ds.microservices.entity.property.' + item.key) | translate }}</dt>
+							<dd>{{ persona.data[item.key] }}</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end: ng-content[select=".additional-card"] -->
+
 </ds-entity-show>
