@@ -37,6 +37,8 @@ export class LocalApiUtils {
         switch (entityPrefix) {
             case 'scenario': entityPrefix = 'scenarios';
             case 'scenarios':
+                link.routerLink = ['/pages', 'services', entityPrefix, uuid, 'show'];
+                break;
             case 'submission': entityPrefix = 'submissions';
             case 'submissions':
                 link.routerLink = ['/pages', 'services', entityPrefix, uuid, 'show'];
