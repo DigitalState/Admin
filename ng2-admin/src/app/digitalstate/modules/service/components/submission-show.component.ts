@@ -51,6 +51,8 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
         return super.prepareEntity().flatMap((prepared) => {
             let entity = prepared.entity;
             this.scenarioLink = LocalApiUtils.createEntityLinkFromUri(entity.scenario);
+            console.log(this.entity.scenario);
+            console.log(this.scenarioLink);
             return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
         });
     }

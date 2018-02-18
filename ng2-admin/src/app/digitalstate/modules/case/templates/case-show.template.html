@@ -47,8 +47,8 @@
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.identity' | translate }}</dt>
 					<dd>
-						{{entity.identity}}
-						<span *ngIf="identityPersonaEntity && identityPersonaEntity.data.firstName">({{ identityPersonaEntity.data.firstName }})</span>
+						<!--<span *ngIf="identityPersonaEntity && identityPersonaEntity.data.firstName">({{ identityPersonaEntity.data.firstName }})</span>-->
+						<identity-link [identityType]="entity.identity" [identityUuid]="entity.identityUuid" [language]="lang"></identity-link>
 					</dd>
 				</dl>
 			</div>

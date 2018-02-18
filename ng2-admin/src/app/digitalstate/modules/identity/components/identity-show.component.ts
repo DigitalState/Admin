@@ -11,6 +11,7 @@ import { Link } from '../../../models/link';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { LocalApiUtils } from '../../../utils/local-api.utils';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'ds-identity-show',
@@ -27,6 +28,9 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
     /** Links to User entities that are associated with the identity */
     userLinks: Array<any>;
 
+    protected routeParamsChange = 0;
+    protected prepareEntitySubscription: Subscription;
+
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
                 protected entityApiService: EntityApiService) {
@@ -38,6 +42,24 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
     ngOnInit() {
         this.identitySingularName = IdentityUtils.getSingular(this.entityUrlPrefix);
         super.ngOnInit();
+
+        // @workaround for Component life-cycle methods (ngOnInit) not being triggered by Router when navigating to a route that is handled by the same component
+        this.route.params.subscribe(params => { // on Route params change
+            this.routeParamsChange++;
+
+            if (this.routeParamsChange > 1) {
+                // Reset the local `entity` var so `prepareEntity()` can request a fresh copy
+                this.entity = null;
+                this.entityParent = null;
+
+                // Avoid multiple subscriptions
+                if (this.prepareEntitySubscription) {
+                    this.prepareEntitySubscription.unsubscribe();
+                }
+
+                this.prepareEntitySubscription = this.prepareEntity().subscribe();
+            }
+        });
     }
 
     onEntityPrepared(): void {
@@ -48,6 +70,12 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
                 return LocalApiUtils.createEntityLink('user', user.uuid, user.uuid);
             });
         });
+    }
+
+    ngOnDestroy() {
+        if (this.prepareEntitySubscription) {
+            this.prepareEntitySubscription.unsubscribe();
+        }
     }
 }
 

@@ -35,18 +35,18 @@ export class DsCaseShowComponent extends DsBaseEntityShowComponent {
         return super.prepareEntity().flatMap((prepared) => {
             let entity = prepared.entity;
 
-            let ownerResource = this.identityApiService.oneByType(entity.owner, entity.ownerUuid);
-            ownerResource.get().subscribe(ownerEntity => {
-                this.ownerEntity = ownerEntity;
-            }, () => {
-                console.log('Unable to fetch Case owner', entity.owner, entity.ownerUuid);
-            });
-
-            this.identityApiService.getPersonas(entity.identity, entity.identityUuid).subscribe(personas => {
-                if (personas && personas.length > 0) {
-                    this.identityPersonaEntity = personas[0];
-                }
-            });
+            // let ownerResource = this.identityApiService.oneByType(entity.owner, entity.ownerUuid);
+            // ownerResource.get().subscribe(ownerEntity => {
+            //     this.ownerEntity = ownerEntity;
+            // }, () => {
+            //     console.log('Unable to fetch Case owner', entity.owner, entity.ownerUuid);
+            // });
+            //
+            // this.identityApiService.getPersonas(entity.identity, entity.identityUuid).subscribe(personas => {
+            //     if (personas && personas.length > 0) {
+            //         this.identityPersonaEntity = personas[0];
+            //     }
+            // });
 
             return Observable.of({'entity': entity});
         });
