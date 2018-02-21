@@ -404,6 +404,7 @@
       "entityDeletionSucceeded": "Entité supprimée avec succès",
       "entityDeletionFailed": "Échec de la suppression de l'entité",
       "entityNotFound": "Entité introuvable!",
+      "noPersonasFound": "Aucune personne trouvée.",
       "personaSaveSucceeded": "Les informations personnalisées ont été enregistrées avec succès.",
       "personaSaveFailed": "Échec de l'enregistrement des informations personnelles.",
       "identitySaveSucceeded": "Les informations d'identité ont été enregistrées avec succès.",
