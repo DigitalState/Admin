@@ -1,6 +1,15 @@
 import { Component, Injector } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { TranslateService } from '@ngx-translate/core';
+
+import { DsStaticTranslationService } from '../services/static-translation.service';
+import { BreadcrumbsService } from '../modules/breadcrumbs/breadcrumbs.service';
+import { Breadcrumb } from '../modules/breadcrumbs/breadcrumb';
 
 import { GlobalState } from "../../global.state";
+
 
 @Component({
 
@@ -12,19 +21,35 @@ export class DsPageComponent {
      */
     protected pageTitle: string;
     protected pageSubtitle: string;
+    protected pageBreadcrumbData: { title?: string | any, subtitle?: string | any, tags?: Array<string> } = {};
 
     // Dependency-Injected objects
 
     protected globalState: GlobalState;
 
+    // protected translate: TranslateService;
+    protected staticTranslate: DsStaticTranslationService;
+    protected route: ActivatedRoute;
+    protected location: Location;
+    protected breadcrumbService: BreadcrumbsService;
+
+
     constructor(protected injector: Injector) {
+        this.route = this.injector.get(ActivatedRoute);
+        this.location = this.injector.get(Location);
+        // this.translate = this.injector.get(TranslateService);
+        this.staticTranslate = this.injector.get(DsStaticTranslationService);
         this.globalState = this.injector.get(GlobalState);
+        this.breadcrumbService = this.injector.get(BreadcrumbsService);
     }
 
     ngOnInit() {
         if (this.pageTitle) {
             this.applyPageTitle();
         }
+
+        console.log('Location: ', this.location.path(), 'ActivatedRoute Data: ', this.route.snapshot.data);
+        // console.log('ActivatedRoute: ', this.route.snapshot.data);
     }
 
     /**
@@ -44,5 +69,28 @@ export class DsPageComponent {
                 });
             });
         }
+    }
+
+    /**
+     * Commit the page's breadcrumb data to the Breadcrumb service.
+     */
+    commitBreadcrumb(): void {
+        // Break path components to be used in tags
+        let tags = this.location.path().split('/').slice(2, 3).map(cmp => 'path-' + cmp);
+
+        let crumb = {
+            title: (typeof this.pageBreadcrumbData.title) === 'string'
+                ? this.staticTranslate.instantAll(this.pageBreadcrumbData.title)
+                : this.pageBreadcrumbData.title,
+            subtitle: (typeof this.pageBreadcrumbData.subtitle) === 'string'
+                ? this.staticTranslate.instantAll(this.pageBreadcrumbData.subtitle)
+                : this.pageBreadcrumbData.subtitle,
+            link: this.location.path(),
+            tags: [].concat(tags, this.pageBreadcrumbData.tags),
+            routeData: this.route.snapshot.data,
+        } as Breadcrumb;
+
+        console.log('routeSnapshot', this.route.snapshot);
+        this.breadcrumbService.push(crumb);
     }
 }

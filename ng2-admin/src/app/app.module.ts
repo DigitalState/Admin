@@ -27,8 +27,10 @@ import { FormioModule, FormioAppConfig } from 'angular-formio';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import {LaddaModule} from 'angular2-ladda';
 import { WindowTokenModule } from 'ngx-window-token';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { DsSharedModule } from './shared/shared.module';
 import { DsMicroservicesModule } from './digitalstate/microservices.module';
+import { BreadcrumbsModule } from './shared/modules/breadcrumbs/breadcrumbs.module';
 
 import * as _ from 'lodash';
 
@@ -141,8 +143,10 @@ const storageLockerConfig = {
         CustomFormsModule,
         LaddaModule,
         WindowTokenModule,
+        PerfectScrollbarModule,
         PagesModule,
         DsSharedModule.forRoot(),
+        BreadcrumbsModule.forRoot(),
         DsMicroservicesModule,
         routing
     ],
@@ -176,7 +180,8 @@ const storageLockerConfig = {
         }
     ],
     exports: [
-        TranslateModule
+        TranslateModule,
+        BreadcrumbsModule,
     ],
 })
 

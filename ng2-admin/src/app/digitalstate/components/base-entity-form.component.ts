@@ -12,7 +12,7 @@ import { LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-component';
 
 import 'rxjs/Rx';
-import { Subscriber } from 'rxjs/Subscriber';
+import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 import merge from 'lodash/merge';
@@ -79,9 +79,10 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
     protected auth: AuthService;
 
     /**
-     * Language-change stream subscriber
+     * Component subscriptions
+     * @type {Subscription[]}
      */
-    protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
+    protected subscriptions: { [subName: string]: Subscription } = {};
 
     /**
      * Alias for the current interface language. Ex: `en`, `fr`, ec...
@@ -120,7 +121,7 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
         this.lang = this.translate.currentLang;
 
         // Subscribe to language-change events
-        this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.subscriptions['lang'] = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             // this.prepareEntity();
             this.lang = this.translate.currentLang;
 
@@ -138,14 +139,13 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
             this.formErrors[propertyName] = '';
         });
 
-        this.prepareEntity().subscribe();
+        this.subscriptions['entity'] = this.prepareEntity().subscribe(result => this.prepareEntitySubscriptionHandler(result));
     }
 
     ngOnDestroy() {
-        // Unsubscribe from language-change events
-        if (this.languageChangeSubscriber) {
-            this.languageChangeSubscriber.unsubscribe();
-        }
+        // Unsubscribe from all subscriptions
+        Object.keys(this.subscriptions).forEach(key => this.subscriptions[key].unsubscribe());
+        this.subscriptions = undefined;
     }
 
     /**
@@ -264,6 +264,41 @@ export abstract class DsBaseEntityFormComponent extends DsEntityCrudComponent {
                 }
             }
         }
+    }
+
+    /**
+     * Called from the Observer that waits for entity preparation to complete.
+     * @param result
+     */
+    prepareEntitySubscriptionHandler(preparedEntity: any) {
+        this.onEntityPrepared(preparedEntity);
+
+        this.setBreadcrumbData();
+
+        // This is where we commit the breadcrumb after subclasses are done overriding `onEntityPrepared()`
+        this.commitBreadcrumb();
+    }
+
+    /**
+     * Stub called when the entity is prepared.
+     */
+    onEntityPrepared(preparedEntity?: any): void {
+
+    }
+
+    protected setBreadcrumbData(): void {
+        this.pageBreadcrumbData.title = this.isNew
+            ? this.headerTitle
+            : this.entity ? this.entity.title: null;
+
+        this.pageBreadcrumbData.subtitle = this.isNew
+            ? 'ds.microservices.entity.action.create'
+            : 'ds.microservices.entity.action.edit';
+
+        this.pageBreadcrumbData.tags = [
+            'crud-' + (this.isNew ? 'create' : 'edit'),
+            'prefix-' + this.entityUrlPrefix,
+        ];
     }
 
     onFormInit(form: NgForm) {

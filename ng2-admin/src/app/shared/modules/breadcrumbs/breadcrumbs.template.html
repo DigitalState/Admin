@@ -1,0 +1,11 @@
+<!--<pre>{{ crumbs | json }}</pre>-->
+<ol *ngIf="crumbs && crumbs.length" class="breadcrumb">
+	<li *ngFor="let crumb of crumbs; let last = last" [ngClass]="{ 'active': last }" class="breadcrumb-item">
+		<!--<a *ngIf="!last" [href]="crumb.link">{{ crumb.title[lang] }}</a>-->
+		<a [routerLink]="crumb.link">
+			<span class="crumb-title" translate>{{ crumb.title[lang] }}</span>
+			<span *ngIf="crumb.subtitle" class="crumb-subtitle">({{ crumb.subtitle[lang] }})</span>
+		</a>
+		<!--<span *ngIf="last">{{ crumb.text }}</span>-->
+	</li>
+</ol>

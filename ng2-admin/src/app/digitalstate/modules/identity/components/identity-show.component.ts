@@ -62,20 +62,20 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
         });
     }
 
-    onEntityPrepared(): void {
-        super.onEntityPrepared();
+    ngOnDestroy() {
+        if (this.prepareEntitySubscription) {
+            this.prepareEntitySubscription.unsubscribe();
+        }
+    }
+
+    onEntityPrepared(preparedEntity?: any): void {
+        super.onEntityPrepared(preparedEntity);
 
         this.userApi.loadUsersByIdentity(this.entity.uuid).subscribe((users: Array<any>) => {
             this.userLinks = users.map(user => {
                 return LocalApiUtils.createEntityLink('user', user.uuid, user.uuid);
             });
         });
-    }
-
-    ngOnDestroy() {
-        if (this.prepareEntitySubscription) {
-            this.prepareEntitySubscription.unsubscribe();
-        }
     }
 }
 
