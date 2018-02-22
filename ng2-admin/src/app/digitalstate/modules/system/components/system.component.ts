@@ -16,4 +16,9 @@ export class DsSystemComponent extends DsPageComponent {
     constructor(protected injector: Injector) {
         super(injector);
     }
+
+    ngOnInit() {
+        super.ngOnInit();
+        this.commitBreadcrumb();
+    }
 }

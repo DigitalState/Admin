@@ -29,7 +29,6 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
     userLinks: Array<any>;
 
     protected routeParamsChange = 0;
-    protected prepareEntitySubscription: Subscription;
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,
@@ -41,7 +40,6 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
 
     ngOnInit() {
         this.identitySingularName = IdentityUtils.getSingular(this.entityUrlPrefix);
-        super.ngOnInit();
 
         // @workaround for Component life-cycle methods (ngOnInit) not being triggered by Router when navigating to a route that is handled by the same component
         this.route.params.subscribe(params => { // on Route params change
@@ -53,19 +51,15 @@ export class DsIdentityShowComponent extends DsBaseEntityShowComponent {
                 this.entityParent = null;
 
                 // Avoid multiple subscriptions
-                if (this.prepareEntitySubscription) {
-                    this.prepareEntitySubscription.unsubscribe();
+                if (this.subscriptions['entity']) {
+                    this.subscriptions['entity'].unsubscribe();
                 }
 
-                this.prepareEntitySubscription = this.prepareEntity().subscribe();
+                this.subscriptions['entity'] = this.prepareEntity().subscribe(result => this.prepareEntitySubscriptionHandler(result));
             }
         });
-    }
 
-    ngOnDestroy() {
-        if (this.prepareEntitySubscription) {
-            this.prepareEntitySubscription.unsubscribe();
-        }
+        super.ngOnInit();
     }
 
     onEntityPrepared(preparedEntity?: any): void {

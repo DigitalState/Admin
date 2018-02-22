@@ -14,6 +14,7 @@ export class DsUserListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'users';
     pageTitle = 'general.menu.users';
+    headerTitle = 'general.menu.users';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,

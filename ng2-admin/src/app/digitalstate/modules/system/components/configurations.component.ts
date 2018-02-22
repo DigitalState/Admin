@@ -60,6 +60,7 @@ export class DsConfigurationsComponent extends DsPageComponent {
 
     ngOnInit() {
         super.ngOnInit();
+        this.commitBreadcrumb();
 
         // Determine whether a default microservice is set in the route paraemeters
         this.route.params.subscribe((params: Params) => {

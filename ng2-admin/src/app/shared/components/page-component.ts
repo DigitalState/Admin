@@ -43,13 +43,12 @@ export class DsPageComponent {
         this.breadcrumbService = this.injector.get(BreadcrumbsService);
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (this.pageTitle) {
             this.applyPageTitle();
         }
 
-        console.log('Location: ', this.location.path(), 'ActivatedRoute Data: ', this.route.snapshot.data);
-        // console.log('ActivatedRoute: ', this.route.snapshot.data);
+        this.setBreadcrumbData();
     }
 
     /**
@@ -71,6 +70,12 @@ export class DsPageComponent {
         }
     }
 
+    protected setBreadcrumbData(): void {
+        if (this.pageTitle) {
+            this.pageBreadcrumbData.title = this.pageTitle;
+        }
+    }
+
     /**
      * Commit the page's breadcrumb data to the Breadcrumb service.
      */
@@ -79,18 +84,21 @@ export class DsPageComponent {
         let tags = this.location.path().split('/').slice(2, 3).map(cmp => 'path-' + cmp);
 
         let crumb = {
-            title: (typeof this.pageBreadcrumbData.title) === 'string'
+            'title': (typeof this.pageBreadcrumbData.title) === 'string'
                 ? this.staticTranslate.instantAll(this.pageBreadcrumbData.title)
                 : this.pageBreadcrumbData.title,
-            subtitle: (typeof this.pageBreadcrumbData.subtitle) === 'string'
+
+            'subtitle': (typeof this.pageBreadcrumbData.subtitle) === 'string'
                 ? this.staticTranslate.instantAll(this.pageBreadcrumbData.subtitle)
                 : this.pageBreadcrumbData.subtitle,
-            link: this.location.path(),
-            tags: [].concat(tags, this.pageBreadcrumbData.tags),
-            routeData: this.route.snapshot.data,
+
+            'link': this.location.path(),
+
+            'tags': [].concat(tags, this.pageBreadcrumbData.tags),
+
+            'routeData': this.route.snapshot.data,
         } as Breadcrumb;
 
-        console.log('routeSnapshot', this.route.snapshot);
         this.breadcrumbService.push(crumb);
     }
 }
