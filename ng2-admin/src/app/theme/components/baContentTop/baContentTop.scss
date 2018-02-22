@@ -25,7 +25,7 @@ ds-breadcrumbs {
   /deep/
   .breadcrumb {
     margin-bottom: $grid-gutter-width-base;
-    overflow: hidden;
+    overflow: visible;
     white-space: nowrap;
 
     &::-webkit-scrollbar {
@@ -33,10 +33,10 @@ ds-breadcrumbs {
     }
 
     .breadcrumb-item {
-      max-width: 20%;
+      //max-width: 20%;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      //text-overflow: ellipsis;
       display: inline-block;
       vertical-align: middle;
       float: none;
