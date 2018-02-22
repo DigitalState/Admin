@@ -1,4 +1,3 @@
-import { RouterLink } from '@angular/router';
 
 export interface Breadcrumb {
     link: string,

@@ -2,6 +2,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { BreadcrumbsService } from './breadcrumbs.service';
 
@@ -12,7 +14,8 @@ import { AppTranslationModule } from '../../../app.translation.module';
     imports: [
         CommonModule,
         RouterModule,
-        AppTranslationModule, // This is added to
+        AppTranslationModule,
+        PerfectScrollbarModule,
     ],
     declarations: [
         BreadcrumbsComponent,

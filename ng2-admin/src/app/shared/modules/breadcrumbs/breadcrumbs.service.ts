@@ -12,7 +12,10 @@ import last from 'lodash/last';
 @Injectable()
 export class BreadcrumbsService {
 
+    protected maxNumOfCrumbs = 5;
+
     protected crumbsSubject = new BehaviorSubject<Breadcrumb[]>([]);
+
 
     constructor() {
 
@@ -27,7 +30,7 @@ export class BreadcrumbsService {
         let crumbs = this.crumbsSubject.getValue();
 
         if (isEmpty(newCrumb.title) || isEmpty(newCrumb.link)) {
-            console.warn('Skipped pushing invalid breadcrumb', newCrumb);
+            // console.warn('Skipped pushing invalid breadcrumb', newCrumb);
             return;
         }
 
@@ -37,7 +40,7 @@ export class BreadcrumbsService {
             //     return;
             // }
             if (isEqual(last(crumbs).link, newCrumb.link)) {
-                console.warn('Skipped pushing breadcrumb with link identical to the last breadcrumb', newCrumb.link);
+                // console.warn('Skipped pushing breadcrumb with link identical to the last breadcrumb', newCrumb.link);
                 return;
             }
         }
@@ -48,6 +51,11 @@ export class BreadcrumbsService {
         }
 
         crumbs.push(newCrumb);
+
+        if (crumbs.length > this.maxNumOfCrumbs) {
+            crumbs.shift();
+        }
+
         this.crumbsSubject.next(crumbs);
     }
 }
