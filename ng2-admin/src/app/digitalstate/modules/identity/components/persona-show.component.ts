@@ -54,4 +54,13 @@ export class DsPersonaShowComponent extends DsBaseEntityShowComponent {
         backLink.routerLink.splice(2, 0, 'identities');
         return backLink;
     }
+
+    protected setBreadcrumbData(): void {
+        super.setBreadcrumbData();
+
+        if (this.entity) {
+            this.pageBreadcrumbData.title = this.headerTitle;
+            this.pageBreadcrumbData.subtitle = this.entity.title;
+        }
+    }
 }

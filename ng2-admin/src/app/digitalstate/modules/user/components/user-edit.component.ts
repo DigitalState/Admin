@@ -29,4 +29,12 @@ export class DsUserEditComponent extends DsBaseEntityFormComponent {
             'roles',
         );
     }
+
+    protected setBreadcrumbData(): void {
+        super.setBreadcrumbData();
+
+        if (this.entity) {
+            this.pageBreadcrumbData.title = this.headerTitle;
+        }
+    }
 }

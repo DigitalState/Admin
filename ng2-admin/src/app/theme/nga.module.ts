@@ -3,7 +3,11 @@ import { CommonModule }  from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgUploaderModule } from 'ngx-uploader';
+
+import { BreadcrumbsModule } from '../shared/modules/breadcrumbs/breadcrumbs.module';
+
 import { AppTranslationModule } from '../app.translation.module';
+import { DsMicroservicesModule } from '../digitalstate/microservices.module';
 
 import {
   BaThemeConfig
@@ -28,7 +32,7 @@ import {
   BaPageTop,
   BaPictureUploader,
   BaSidebar,
-  BaFileUploader
+  BaFileUploader,
 } from './components';
 
 import { BaCardBlur } from './components/baCard/baCardBlur.directive';
@@ -56,7 +60,6 @@ import {
   EmailValidator,
   EqualPasswordsValidator
 } from './validators';
-import {DsMicroservicesModule} from '../digitalstate/microservices.module';
 
 const NGA_COMPONENTS = [
   BaAmChart,
@@ -115,6 +118,7 @@ const NGA_VALIDATORS = [
     AppTranslationModule,
     NgUploaderModule,
     DsMicroservicesModule,
+    BreadcrumbsModule,
   ],
   exports: [
     ...NGA_PIPES,

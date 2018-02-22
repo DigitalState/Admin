@@ -15,6 +15,7 @@ import { DsEntityCrudComponent } from '../../shared/components/base-entity-crud-
 import 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
@@ -59,9 +60,10 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     protected entityMetadata = {};
 
     /**
-     * Language change observer
+     * Component subscriptions
+     * @type {Subscription[]}
      */
-    protected languageChangeSubscriber: Subscriber<LangChangeEvent>;
+    protected subscriptions: { [subName: string]: Subscription } = {};
 
     /**
      * Alias for the current interface language. Ex: `en`, `fr`, ec...
@@ -103,7 +105,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
         this.lang = this.translate.currentLang;
 
         // Subscribe to language-change events
-        this.languageChangeSubscriber = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.subscriptions['lang'] = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
 
             if (this.initialLang === event.lang) {
                 this.initialLang = null;
@@ -112,18 +114,17 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
             this.lang = event.lang;
             this.initialLang = event.lang;
-            this.prepareEntity().subscribe();
+            this.subscriptions['entity'] = this.prepareEntity().subscribe(result => this.prepareEntitySubscriptionHandler(result));
         });
 
-        this.prepareEntity().subscribe();
+        this.subscriptions['entity'] = this.prepareEntity().subscribe(result => this.prepareEntitySubscriptionHandler(result));
         this.entitySubscribed = true;
     }
 
     ngOnDestroy() {
-        // Unsubscribe from language-change events
-        if (this.languageChangeSubscriber) {
-            this.languageChangeSubscriber.unsubscribe();
-        }
+        // Unsubscribe from all subscriptions
+        Object.keys(this.subscriptions).forEach(key => this.subscriptions[key].unsubscribe());
+        this.subscriptions = undefined;
     }
 
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
@@ -139,7 +140,7 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
 
                 return this.entityApiService.getOne(this.entityUrlPrefix, uuid).flatMap(entity => {
                     this.entity = entity;
-                    this.onEntityPrepared();
+                    // this.onEntityPrepared();
 
                     return this.prepareEntityParent(this.entityParentUrlPrefix, parentUuid).flatMap(entityParent => {
                         return Observable.of({'entity': entity, 'entityParent': entityParent});
@@ -238,10 +239,31 @@ export abstract class DsBaseEntityShowComponent extends DsEntityCrudComponent {
     }
 
     /**
-     * Stub called when the entity is fetched.
+     * Called from the Observer that waits for entity preparation to complete.
+     * @param result
      */
-    onEntityPrepared(): void {
+    prepareEntitySubscriptionHandler(preparedEntity: any) {
+        this.onEntityPrepared(preparedEntity);
 
+        this.setBreadcrumbData();
+
+        // This is where we commit the breadcrumb after subclasses are done overriding `onEntityPrepared()`
+        this.commitBreadcrumb();
+    }
+
+    /**
+     * Stub called when the entity is prepared.
+     */
+    onEntityPrepared(preparedEntity?: any): void {
+
+    }
+
+    protected setBreadcrumbData(): void {
+        if (this.entity) {
+            this.pageBreadcrumbData.title = this.headerTitle;
+            this.pageBreadcrumbData.subtitle = this.entity.title;
+            this.pageBreadcrumbData.tags = ['crud-show'];
+        }
     }
 
     /**

@@ -14,7 +14,7 @@ export class DsPageListComponent extends DsBaseEntityListComponent {
 
     entityUrlPrefix = 'pages';
     pageTitle = 'general.menu.cms';
-    headerTitle = 'ds.microservices.entity.types.page';
+    headerTitle = 'general.menu.pages';
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,

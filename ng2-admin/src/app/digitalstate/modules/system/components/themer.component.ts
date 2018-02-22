@@ -150,6 +150,7 @@ export class DsThemerComponent extends DsPageComponent {
 
     ngOnInit() {
         super.ngOnInit();
+        this.commitBreadcrumb();
 
         this.route.params.subscribe((params: Params) => {
             this.routeParams = params;

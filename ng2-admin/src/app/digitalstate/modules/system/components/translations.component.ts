@@ -8,6 +8,7 @@ import { GlobalState } from '../../../../global.state';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService, IdentityApiService } from '../entity-api.service';
 import { CmsApiService } from '../../../../shared/services/cms.service';
+import { DsPageComponent } from '../../../../shared/components/page-component';
 
 import { Subscriber } from 'rxjs/Subscriber';
 import assign from 'lodash/assign';
@@ -21,7 +22,9 @@ import { Observable } from 'rxjs/Observable';
     selector: 'ds-translations',
     templateUrl: '../templates/translations.template.html',
 })
-export class DsTranslationsComponent {
+export class DsTranslationsComponent extends DsPageComponent {
+
+    protected pageTitle = 'general.menu.translations';
 
     translationSlugs: Array<string> = ['translation', 'admin-translation', 'portal-translation'];
 
@@ -54,11 +57,15 @@ export class DsTranslationsComponent {
                 protected cms: CmsApiService,
                 protected microserviceConfig: MicroserviceConfig,
                 protected toastr: ToastsManager) {
+        super(injector);
 
         this.buildForm();
     }
 
     ngOnInit() {
+        super.ngOnInit();
+        this.commitBreadcrumb();
+
         // Update page title
         setTimeout(() => {
             this.globalState.notifyDataChanged('menu.activeLink', {

@@ -39,6 +39,7 @@ export class DsHealthComponent extends DsPageComponent {
 
     ngOnInit() {
         super.ngOnInit();
+        this.commitBreadcrumb();
 
         // Gather http requests to health endpoints for each microservice from the metadata config
         forEach(this.appState.get('microservices'), (msConfig: any, msName: string) => {
