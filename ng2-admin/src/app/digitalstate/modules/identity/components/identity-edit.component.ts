@@ -35,9 +35,17 @@ export class DsIdentityEditComponent extends DsBaseEntityFormComponent {
      */
     protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
         return super.prepareEntity().flatMap((prepared) => {
-            this.entity = prepared.entity
-            return Observable.of({'entity': this.entity });
+            this.entity = prepared.entity;
+            return Observable.of({'entity': this.entity, 'entityParent': prepared.entityParent });
         });
+    }
+
+    protected setBreadcrumbData(): void {
+        super.setBreadcrumbData();
+
+        if (this.entity) {
+            this.pageBreadcrumbData.title = this.headerTitle;
+        }
     }
 }
 

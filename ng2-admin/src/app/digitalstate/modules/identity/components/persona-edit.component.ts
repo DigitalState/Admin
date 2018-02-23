@@ -52,6 +52,14 @@ export class DsPersonaEditComponent extends DsPersonaFormComponent {
         super.ngOnDestroy();
     }
 
+    protected setBreadcrumbData(): void {
+        super.setBreadcrumbData();
+
+        if (this.entity) {
+            this.pageBreadcrumbData.title = this.headerTitle;
+        }
+    }
+
     /**
      * Overriding default validators to add the custom JSON validator from ng2-validation
      *
