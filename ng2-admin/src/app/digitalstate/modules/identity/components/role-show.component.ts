@@ -20,36 +20,13 @@ export class DsRoleShowComponent extends DsBaseEntityShowComponent {
     headerTitle = 'ds.microservices.entity.types.role';
     backLink = new Link(['../../list'], 'general.list');
 
-    identityPersonaEntity: any;
-    ownerEntity: any;
 
     constructor(protected injector: Injector,
                 protected microserviceConfig: MicroserviceConfig,
-                protected entityApiService: EntityApiService,
-                protected identityApiService: IdentityApiService) {
+                protected entityApiService: EntityApiService) {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
     }
 
-    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
-        return super.prepareEntity().flatMap((prepared) => {
-            let entity = prepared.entity;
-
-            let ownerResource = this.identityApiService.oneByType(entity.owner, entity.ownerUuid);
-            ownerResource.get().subscribe(ownerEntity => {
-                this.ownerEntity = ownerEntity;
-            }, () => {
-                console.log('Unable to fetch Role owner', entity.owner, entity.ownerUuid);
-            });
-
-            this.identityApiService.getPersonas(entity.identity, entity.identityUuid).subscribe(personas => {
-                if (personas && personas.length > 0) {
-                    this.identityPersonaEntity = personas[0];
-                }
-            });
-
-            return Observable.of({'entity': entity});
-        });
-    }
 }
