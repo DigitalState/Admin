@@ -18,6 +18,7 @@ import findIndex from 'lodash/findIndex';
 import isArray from 'lodash/isArray';
 import pick from 'lodash/pick';
 import sortBy from 'lodash/sortBy';
+import { ListQuery } from '../../../models/api-query';
 
 
 @Component({
@@ -42,6 +43,11 @@ export class DsConfigurationsComponent extends DsPageComponent {
     configs: Array<any>;
 
     /**
+     * Default list query parameters to the `configs` endpoint
+     */
+    listQueryParams: any;
+
+    /**
      * Progress indicator
      */
     protected showProgressIndicator: boolean;
@@ -56,6 +62,10 @@ export class DsConfigurationsComponent extends DsPageComponent {
                 protected auth: AuthService,
                 protected dsEnv: DsEnvironmentConfig) {
         super(injector);
+
+        this.listQueryParams = {
+            'limit': 1000
+        };
     }
 
     ngOnInit() {
@@ -97,7 +107,7 @@ export class DsConfigurationsComponent extends DsPageComponent {
         this.showProgressIndicator = true;
 
         this.restangular = microserviceRestangularFactory(this.restangular, this.auth, this.microservice);
-        this.restangular.all('configs').getList()
+        this.restangular.all('configs').getList(this.listQueryParams)
             .finally(() => {
                 this.showProgressIndicator = false;
             })
