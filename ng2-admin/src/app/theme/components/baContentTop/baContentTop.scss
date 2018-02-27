@@ -24,6 +24,7 @@ h1.al-title {
 ds-breadcrumbs {
   /deep/
   .breadcrumb {
+    min-height: 48px;
     margin-bottom: $grid-gutter-width-base;
     overflow: visible;
     white-space: nowrap;
