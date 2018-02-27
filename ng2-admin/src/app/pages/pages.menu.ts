@@ -33,6 +33,7 @@ export class PagesMenu {
                                 path: ['profile'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/profile',
                                         title: 'general.menu.profile',
                                         class: 'profile'
                                     }
@@ -42,6 +43,7 @@ export class PagesMenu {
                                 path: ['logout'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/logout',
                                         title: 'login.signOut',
                                     }
                                 }
@@ -49,9 +51,10 @@ export class PagesMenu {
                         ]
                     },
                     {
-                        path: '',
+                        path: ['services', 'list'],
                         data: {
                             menu: {
+                                url: '#/pages/services/list',
                                 title: 'general.menu.dashboard',
                                 icon: 'ion-ios-speedometer',
                                 path: ['dashboard'],
@@ -76,6 +79,7 @@ export class PagesMenu {
                                 path: ['services/list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/services/list',
                                         title: 'general.menu.services'
                                     }
                                 }
@@ -84,6 +88,7 @@ export class PagesMenu {
                                 path: ['services/submissions/list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/services/submissions/list',
                                         title: 'general.menu.submissions'
                                     }
                                 }
@@ -92,8 +97,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.anonymousCaseLookup',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -117,8 +122,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.definitions',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -142,6 +147,7 @@ export class PagesMenu {
                                 path: ['tasks/list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/tasks/list',
                                         title: 'general.menu.taskListing',
                                     }
                                 }
@@ -150,6 +156,7 @@ export class PagesMenu {
                                 path: ['tasks/submissions/list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/tasks/submissions/list',
                                         title: 'general.menu.submissions'
                                     }
                                 }
@@ -161,6 +168,7 @@ export class PagesMenu {
                         path: 'cases',
                         data: {
                             menu: {
+                                url: '#/pages/cases/list',
                                 title: 'general.menu.cases',
                                 icon: 'ion-ios-list-outline',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
@@ -188,6 +196,7 @@ export class PagesMenu {
                                 path: ['cms', 'data', 'list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/cms/data/list',
                                         title: 'general.menu.data',
                                     }
                                 }
@@ -196,6 +205,7 @@ export class PagesMenu {
                                 path: ['cms', 'text', 'list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/cms/text/list',
                                         title: 'general.menu.text',
                                     }
                                 }
@@ -204,6 +214,7 @@ export class PagesMenu {
                                 path: ['cms', 'pages', 'list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/cms/pages/list',
                                         title: 'general.menu.pages',
                                     }
                                 }
@@ -212,6 +223,7 @@ export class PagesMenu {
                                 path: ['cms', 'files', 'list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/cms/files/list',
                                         title: 'general.menu.files',
                                     }
                                 }
@@ -236,8 +248,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
-                                        title: 'general.menu.camunda',
                                         url: this.dsDiscoveryEnv && this.dsDiscoveryEnv.camunda ? `http://${this.dsDiscoveryEnv.camunda.host}/camunda` : '',
+                                        title: 'general.menu.camunda',
                                         target: '_blank'
                                     }
                                 }
@@ -246,8 +258,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.configs',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -271,8 +283,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.discovery',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -280,8 +292,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.logging',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -289,8 +301,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.antiVirus',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -298,8 +310,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.deployment',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -307,8 +319,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.metal',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -317,8 +329,8 @@ export class PagesMenu {
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
                                 data: {
                                     menu: {
+                                        url: '#/pages/settings/health',
                                         title: 'general.menu.healthCheck',
-                                        url: '#/pages/settings/health'
                                     }
                                 },
                             },
@@ -326,8 +338,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.search',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -335,8 +347,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.apiGateway',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -344,8 +356,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.messageQueue',
-                                        url: '#'
                                     }
                                 },
                             },
@@ -369,8 +381,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.definitions',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -394,6 +406,7 @@ export class PagesMenu {
                                 path: ['identities/business-units/list'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/identities/business-units/list',
                                         title: 'general.menu.businessUnits',
                                     }
                                 }
@@ -402,7 +415,8 @@ export class PagesMenu {
                                 path: ['identities/organizations/list'],
                                 data: {
                                     menu: {
-                                        title: 'general.menu.organizations'
+                                        url: '#/pages/identities/organizations/list',
+                                        title: 'general.menu.organizations',
                                     }
                                 }
                             },
@@ -410,7 +424,8 @@ export class PagesMenu {
                                 path: ['identities/individuals/list'],
                                 data: {
                                     menu: {
-                                        title: 'general.menu.individuals'
+                                        url: '#/pages/identities/individuals/list',
+                                        title: 'general.menu.individuals',
                                     }
                                 }
                             },
@@ -418,7 +433,8 @@ export class PagesMenu {
                                 path: ['identities/staffs/list'],
                                 data: {
                                     menu: {
-                                        title: 'general.menu.staffs'
+                                        url: '#/pages/identities/staffs/list',
+                                        title: 'general.menu.staffs',
                                     }
                                 }
                             },
@@ -426,7 +442,8 @@ export class PagesMenu {
                                 path: ['identities/anonymouses/list'],
                                 data: {
                                     menu: {
-                                        title: 'general.menu.anonymouses'
+                                        url: '#/pages/identities/anonymouses/list',
+                                        title: 'general.menu.anonymouses',
                                     }
                                 }
                             },
@@ -434,7 +451,8 @@ export class PagesMenu {
                                 path: ['identities/roles/list'],
                                 data: {
                                     menu: {
-                                        title: 'general.menu.roles'
+                                        url: '#/pages/identities/anonymouses/list',
+                                        title: 'general.menu.roles',
                                     }
                                 }
                             },
@@ -445,6 +463,7 @@ export class PagesMenu {
                         path: 'users',
                         data: {
                             menu: {
+                                url: '#/pages/users/list',
                                 title: 'general.menu.users',
                                 icon: 'ion-ios-people',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
@@ -459,13 +478,13 @@ export class PagesMenu {
                         path: '',
                         data: {
                             menu: {
+                                url: this.dsDiscoveryEnv && this.dsDiscoveryEnv.formio ? `http://${this.dsDiscoveryEnv.formio.host}` : '',
                                 title: 'general.menu.formio',
                                 icon: 'ion-android-list',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
                                 selected: false,
                                 expanded: false,
                                 order: 0,
-                                url: this.dsDiscoveryEnv && this.dsDiscoveryEnv.formio ? `http://${this.dsDiscoveryEnv.formio.host}` : '',
                                 target: '_blank'
                             }
                         },
@@ -488,8 +507,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.directory',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -497,8 +516,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.subscriptions',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -506,8 +525,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.taxonomies',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -531,6 +550,7 @@ export class PagesMenu {
                                 path: ['settings/systems'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/settings/systems',
                                         title: 'general.menu.systems',
                                     }
                                 }
@@ -539,6 +559,7 @@ export class PagesMenu {
                                 path: ['settings/configurations/services'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/settings/configurations/services',
                                         title: 'general.menu.configurations',
                                     }
                                 }
@@ -547,6 +568,7 @@ export class PagesMenu {
                                 path: ['settings/translations'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/settings/translations',
                                         title: 'general.menu.translations',
                                     }
                                 }
@@ -555,6 +577,7 @@ export class PagesMenu {
                                 path: ['settings/themer/admin'],
                                 data: {
                                     menu: {
+                                        url: '#/pages/settings/themer/admin',
                                         title: 'general.menu.themeEditor',
                                     }
                                 }
@@ -593,8 +616,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.channels',
-                                        url: '#'
                                     }
                                 },
                                 children: [
@@ -602,8 +625,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.phoneCall',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -611,8 +634,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.inbox',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -620,8 +643,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.sms',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -629,8 +652,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.letterMail',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -638,8 +661,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.email',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -647,8 +670,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.fax',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -656,8 +679,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.inPerson',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -665,8 +688,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.push',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -674,8 +697,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.socialMedia',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -685,8 +708,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.communications',
-                                        url: '#'
                                     }
                                 },
                                 children: [
@@ -694,8 +717,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.builder',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -703,8 +726,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.transports',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -712,8 +735,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.profiles',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -721,8 +744,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.queue',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -732,8 +755,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.bulletins',
-                                        url: '#'
                                     }
                                 },
                                 children: [
@@ -741,8 +764,8 @@ export class PagesMenu {
                                         path: '',
                                         data: {
                                             menu: {
+                                                url: '#',
                                                 title: 'general.menu.definitions',
-                                                url: '#'
                                             }
                                         }
                                     },
@@ -767,8 +790,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.reportBuilder',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -776,8 +799,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.warehouse',
-                                        url: '#'
                                     }
                                 }
                             }
@@ -800,8 +823,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.developerDocumentation',
-                                        url: '#'
                                     }
                                 }
                             },
@@ -809,8 +832,8 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
+                                        url: '#',
                                         title: 'general.menu.userGuides',
-                                        url: '#'
                                     }
                                 }
                             }
@@ -821,13 +844,13 @@ export class PagesMenu {
                         path: '',
                         data: {
                             menu: {
+                                url: 'https://github.com/DigitalState',
                                 title: 'general.menu.githubRepos',
                                 icon: 'ion-social-github',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
                                 selected: false,
                                 expanded: false,
                                 order: 0,
-                                url: 'https://github.com/DigitalState',
                                 target: '_blank'
                             }
                         },
@@ -836,13 +859,13 @@ export class PagesMenu {
                         path: '',
                         data: {
                             menu: {
+                                url: 'https://github.com/DigitalState/Sdk/tree/master/docs/postman',
                                 title: 'general.menu.digitalStateAPI',
                                 icon: 'ion-paper-airplane',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
                                 selected: false,
                                 expanded: false,
                                 order: 0,
-                                url: 'https://github.com/DigitalState/Sdk/tree/master/docs/postman',
                                 target: '_blank'
                             }
                         },
