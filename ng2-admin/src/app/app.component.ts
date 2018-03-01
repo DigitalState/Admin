@@ -68,7 +68,7 @@ export class App {
         else {
             this.globalState.subscribe('cms.ready', () => {
                 this.onCmsReady();
-                console.log('AppComponent received `cms.ready`');
+                // console.log('AppComponent received `cms.ready`');
             });
         }
     }
@@ -93,8 +93,7 @@ export class App {
         // The parameter `results` contains all results of observables
         // in the order in which they registered in the preloader
         BaThemePreloader.load().subscribe((results: Array<any>) => {
-            // console.log('Results', results);
-            this._spinner.hide();
+            this._spinner.hide(1000);
             this.router.initialNavigation();
         }, (error) => {
             console.error('Theme preloading error', error);
