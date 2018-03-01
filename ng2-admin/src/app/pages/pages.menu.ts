@@ -1,16 +1,15 @@
-import { WINDOW } from 'ngx-window-token';
-import { Inject } from '@angular/core';
 
 export class PagesMenu {
 
-    // Window-injected environment variables
-    dsDiscoveryEnv: any;
+    constructor() {
 
-    constructor(@Inject(WINDOW) protected window) {
-        this.dsDiscoveryEnv = this.window['dsDiscoveryEnv']
     }
 
-    getMenu(): Array<any> {
+    /**
+     * @param discovery {Object} Microservices Discovery data
+     * @return Array<any>
+     */
+    getMenu(discovery: any): Array<any> {
         return [
             {
                 path: 'pages',
@@ -248,7 +247,7 @@ export class PagesMenu {
                                 path: '',
                                 data: {
                                     menu: {
-                                        url: this.dsDiscoveryEnv && this.dsDiscoveryEnv.camunda ? `http://${this.dsDiscoveryEnv.camunda.host}/camunda` : '',
+                                        url: discovery && discovery.camunda ? `http://${discovery.camunda.replace('engine-rest', 'camunda')}` : '',
                                         title: 'general.menu.camunda',
                                         target: '_blank'
                                     }
@@ -478,7 +477,7 @@ export class PagesMenu {
                         path: '',
                         data: {
                             menu: {
-                                url: this.dsDiscoveryEnv && this.dsDiscoveryEnv.formio ? `http://${this.dsDiscoveryEnv.formio.host}` : '',
+                                url: discovery && discovery.formio ? `http://${discovery.formio}` : '',
                                 title: 'general.menu.formio',
                                 icon: 'ion-android-list',
                                 pathMatch: 'prefix', // use it if item children not displayed in menu
