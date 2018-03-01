@@ -1,4 +1,4 @@
-import { ApplicationRef, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
@@ -37,9 +37,11 @@ import * as _ from 'lodash';
 import APP_CONFIG from './app.config';
 import { CmsTranslateLoader } from './shared/services/cms-translation-loader.service';
 import { CmsApiService } from './shared/services/cms.service';
+import { AppInitService } from './shared/services/app-init.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
+    AppInitService,
     AppState,
     GlobalState
 ];
@@ -49,6 +51,10 @@ export type StoreType = {
     restoreInputValues: () => void,
     disposeOldHosts: () => void
 };
+
+export function appInitProviderFactory(provider: AppInitService) {
+    return () => provider.load();
+}
 
 // Function for setting the default restangular configuration
 export function restangularConfigFactory(restangularProvider) {
@@ -156,6 +162,12 @@ const storageLockerConfig = {
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
         APP_PROVIDERS,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: appInitProviderFactory,
+            deps: [AppInitService],
+            multi: true,
+        },
         {
             provide: FormioAppConfig,
             useValue: {
