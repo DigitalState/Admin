@@ -75,7 +75,7 @@ export class DsConfigurationsComponent extends DsPageComponent {
         // Determine whether a default microservice is set in the route paraemeters
         this.route.params.subscribe((params: Params) => {
             // Determine microservices eligible for configuration by intersecting them with ones provided by the environment
-            const envMicroservicesKeys = sortBy(Object.keys(this.dsEnv.dsDiscoveryEnv));
+            const envMicroservicesKeys = sortBy(Object.keys(this.dsEnv.discovery));
             this.microservices = pick(this.appState.get('microservices'), envMicroservicesKeys);
             this.microservice = new MicroserviceConfig();
 
