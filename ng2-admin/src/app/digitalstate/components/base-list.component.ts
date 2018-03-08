@@ -1,4 +1,6 @@
 import { AfterViewInit, Injector, TemplateRef, ViewChild } from '@angular/core';
+import { Response } from '@angular/http';
+
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import enquire from 'enquire.js';
 
@@ -141,6 +143,11 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * EnquireJS media queries and their handlers in key/value format.
      */
     protected mediaQueryHandlers = {};
+
+    /**
+     * Holds the toastr promise to avoid queueing multiple toasts for the same error.
+     */
+    protected listRefershErrorToastrPromise: any;
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -311,6 +318,26 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
             this.pager = pagedData.pager;
             this.rows = this.preprocessRowsData(pagedData.data);
             this.loading = false;
+        }, error => {
+            if (error instanceof Response) {
+                this.handleListRefreshError(error);
+            } else {
+                console.error('Unexpected error occurred while fetching list: ', error);
+            }
+            this.loading = false;
+        });
+    }
+
+    protected handleListRefreshError(response: Response): void {
+        if (this.listRefershErrorToastrPromise) {
+            return;
+        }
+
+        const title = this.translate.instant('ds.messages.http.' + response.status);
+        const data = response.json()
+        const message = (data && data.error) ? data.error : '';
+        this.listRefershErrorToastrPromise = this.toastr.error(message, title, {
+            'dismiss': 'click'
         });
     }
 
