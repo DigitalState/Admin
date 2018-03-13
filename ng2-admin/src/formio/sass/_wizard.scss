@@ -1,0 +1,125 @@
+$wiz-theme-color: $brand-primary;
+$wiz-page-default-text-color: inherit;
+$wiz-page-active-text-color: $link-color;
+$wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pager items that are ahead of the active item
+
+.formio-form {
+  // Wizard steps
+  nav {
+    position: relative;
+    display: table;
+    width: 100%;
+    padding-bottom: 2em;
+
+    ul.pagination {
+      display: table-row;
+
+      &:before { // Thick line across round dots
+        content: '';
+        display: block;
+        position: absolute;
+        margin: 0 auto;
+        width: 100%;
+        height: 10px;
+        top: 10px;
+        background-color: $wiz-theme-color;
+        border-color: greenyellow;
+        border-radius: 3px;
+        border-width: 10px;
+      }
+
+      li.page-item {
+        display: table-cell;
+        text-align: center;
+
+        // Disable navigation via pager
+        cursor: default !important;
+        pointer-events: none;
+
+        &.active {
+          .page-link {
+            //color: $wiz-page-active-text-color;
+            font-weight: bold;
+
+            &:before { // Round dots above page name
+              @extend .fa-circle;
+              color: $wiz-theme-color;
+              background-color: white;
+            }
+          }
+        }
+
+        &.active ~ .page-item {
+          .page-link {
+            color: $wiz-page-unvisited-text-color;
+
+            &:before { // Round dots above page name
+              //border-width: 1px;
+              background-color: white;
+            }
+          }
+        }
+
+        // Normalize page-link
+        .page-link {
+          color: $wiz-page-default-text-color;
+          background-color: transparent;
+          font-size: 0.9em;
+          float: none;
+          padding: 0;
+          margin: 0;
+          border: 0;
+
+          &:before { // Round dots above page name
+            @include fa-icon();
+            @extend .fa-circle;
+            display: block;
+            position: relative;
+            margin: 0 auto 0.5em;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 30px;
+            border-width: 0px;
+            border-style: solid;
+            background-color: $wiz-theme-color;
+            border-color: $wiz-theme-color;
+            color: transparent;
+          }
+        }
+      }
+    }
+
+    @media (min-width: $screen-sm-min) {
+      background-color: pink;
+      ul.pagination {
+
+        li.page-item {
+          &.active {
+            .page-link {
+              &:before {
+
+              }
+            }
+          }
+
+          &.active ~ .page-item {
+            .page-link {
+
+              &:before {
+
+              }
+            }
+          }
+
+          .page-link {
+
+            &:before {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
