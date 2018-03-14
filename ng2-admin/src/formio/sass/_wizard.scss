@@ -3,6 +3,18 @@ $wiz-page-default-text-color: inherit;
 $wiz-page-active-text-color: $link-color;
 $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pager items that are ahead of the active item
 
+
+@mixin pager-icon-commons() {
+  position: relative;
+  margin: 0 auto 0.5em;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  border-width: 0px;
+  border-style: solid;
+}
+
 .formio-form {
   // Wizard steps
   nav {
@@ -29,20 +41,37 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
       }
 
       li.page-item {
-        display: table-cell;
         text-align: center;
 
         // Disable navigation via pager
-        cursor: default !important;
-        pointer-events: none;
+        //pointer-events: none;
+
+        &:before, &:after {
+          @include fa-icon();
+          @include pager-icon-commons();
+          content: $fa-var-ellipsis-h;
+          position: absolute;
+          top: 0px;
+          background-color: white;
+          border-color: $wiz-theme-color;
+          color: $wiz-theme-color;
+          display: none;
+        }
+
+        &:not(.active) {
+          display: none;
+        }
 
         &.active {
+          display: table-cell;
+
           .page-link {
             //color: $wiz-page-active-text-color;
             font-weight: bold;
 
             &:before { // Round dots above page name
-              @extend .fa-circle;
+              //content: "SM Active";
+              content: $fa-var-circle;
               color: $wiz-theme-color;
               background-color: white;
             }
@@ -55,7 +84,9 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
 
             &:before { // Round dots above page name
               //border-width: 1px;
+              //content: "SM Unvisited";
               background-color: white;
+              color: $wiz-theme-color;
             }
           }
         }
@@ -72,7 +103,8 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
 
           &:before { // Round dots above page name
             @include fa-icon();
-            @extend .fa-circle;
+            content: $fa-var-circle;
+            //content: "SM Normal";
             display: block;
             position: relative;
             margin: 0 auto 0.5em;
@@ -82,23 +114,48 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
             border-radius: 30px;
             border-width: 0px;
             border-style: solid;
-            background-color: $wiz-theme-color;
+            background-color: white;
             border-color: $wiz-theme-color;
-            color: transparent;
+            color: $wiz-theme-color;
           }
         }
       }
     }
+  }
+}
 
-    @media (min-width: $screen-sm-min) {
-      background-color: pink;
+.has-previous-page nav ul.pagination li.page-item.active {
+  &:before {
+    display: inline-block;
+    left: 0px;
+  }
+}
+
+.has-next-page nav ul.pagination li.page-item.active {
+  &:after {
+    display: inline-block;
+    right: 0px;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .formio-form {
+    nav {
       ul.pagination {
-
         li.page-item {
+
+          &:before, &:after {
+            display: none !important;
+          }
+
+          &:not(.active) {
+            display: table-cell;
+          }
+
           &.active {
             .page-link {
               &:before {
-
+                //content: "LG Active";
               }
             }
           }
@@ -107,7 +164,8 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
             .page-link {
 
               &:before {
-
+                //content: "LG Unvisited";
+                color: transparent;
               }
             }
           }
@@ -115,7 +173,9 @@ $wiz-page-unvisited-text-color: $nav-disabled-link-color;        // Unvisited pa
           .page-link {
 
             &:before {
-
+              //content: "LG Normal";
+              background-color: $wiz-theme-color;
+              color: transparent;
             }
           }
         }

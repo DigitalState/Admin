@@ -10282,7 +10282,7 @@ button.close {
 }
 
 /* line 278, ../../../node_modules/font-awesome/scss/_icons.scss */
-.fa-circle:before, .formio-form nav ul.pagination li.page-item.active .page-link:before, .formio-form nav ul.pagination li.page-item .page-link:before {
+.fa-circle:before {
   content: "";
 }
 
@@ -12600,18 +12600,18 @@ label {
   font-size: 16px;
 }
 
-/* line 8, ../sass/_wizard.scss */
+/* line 20, ../sass/_wizard.scss */
 .formio-form nav {
   position: relative;
   display: table;
   width: 100%;
   padding-bottom: 2em;
 }
-/* line 14, ../sass/_wizard.scss */
+/* line 26, ../sass/_wizard.scss */
 .formio-form nav ul.pagination {
   display: table-row;
 }
-/* line 17, ../sass/_wizard.scss */
+/* line 29, ../sass/_wizard.scss */
 .formio-form nav ul.pagination:before {
   content: '';
   display: block;
@@ -12625,31 +12625,63 @@ label {
   border-radius: 3px;
   border-width: 10px;
 }
-/* line 31, ../sass/_wizard.scss */
+/* line 43, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item {
-  display: table-cell;
   text-align: center;
   cursor: default !important;
-  pointer-events: none;
 }
-/* line 40, ../sass/_wizard.scss */
+/* line 50, ../sass/_wizard.scss */
+.formio-form nav ul.pagination li.page-item:before, .formio-form nav ul.pagination li.page-item:after {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  margin: 0 auto 0.5em;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  border-width: 0px;
+  border-style: solid;
+  content: "";
+  position: absolute;
+  top: 0px;
+  background-color: white;
+  border-color: #67a4c8;
+  color: #67a4c8;
+  display: none;
+}
+/* line 62, ../sass/_wizard.scss */
+.formio-form nav ul.pagination li.page-item:not(.active) {
+  display: none;
+}
+/* line 66, ../sass/_wizard.scss */
+.formio-form nav ul.pagination li.page-item.active {
+  display: table-cell;
+}
+/* line 69, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item.active .page-link {
   font-weight: bold;
 }
-/* line 44, ../sass/_wizard.scss */
+/* line 73, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item.active .page-link:before {
+  content: "";
   color: #67a4c8;
   background-color: white;
 }
-/* line 53, ../sass/_wizard.scss */
+/* line 83, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item.active ~ .page-item .page-link {
   color: #777777;
 }
-/* line 56, ../sass/_wizard.scss */
+/* line 86, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item.active ~ .page-item .page-link:before {
   background-color: white;
+  color: #67a4c8;
 }
-/* line 64, ../sass/_wizard.scss */
+/* line 96, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item .page-link {
   color: inherit;
   background-color: transparent;
@@ -12659,7 +12691,7 @@ label {
   margin: 0;
   border: 0;
 }
-/* line 73, ../sass/_wizard.scss */
+/* line 105, ../sass/_wizard.scss */
 .formio-form nav ul.pagination li.page-item .page-link:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -12667,6 +12699,7 @@ label {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  content: "";
   display: block;
   position: relative;
   margin: 0 auto 0.5em;
@@ -12676,17 +12709,42 @@ label {
   border-radius: 30px;
   border-width: 0px;
   border-style: solid;
-  background-color: #67a4c8;
+  background-color: white;
   border-color: #67a4c8;
-  color: transparent;
-}
-@media (min-width: 768px) {
-  /* line 8, ../sass/_wizard.scss */
-  .formio-form nav {
-    background-color: pink;
-  }
+  color: #67a4c8;
 }
 
+/* line 129, ../sass/_wizard.scss */
+.has-previous-page nav ul.pagination li.page-item.active:before {
+  display: inline-block;
+  left: 0px;
+}
+
+/* line 136, ../sass/_wizard.scss */
+.has-next-page nav ul.pagination li.page-item.active:after {
+  display: inline-block;
+  right: 0px;
+}
+
+@media (min-width: 768px) {
+  /* line 148, ../sass/_wizard.scss */
+  .formio-form nav ul.pagination li.page-item:before, .formio-form nav ul.pagination li.page-item:after {
+    display: none !important;
+  }
+  /* line 152, ../sass/_wizard.scss */
+  .formio-form nav ul.pagination li.page-item:not(.active) {
+    display: table-cell;
+  }
+  /* line 167, ../sass/_wizard.scss */
+  .formio-form nav ul.pagination li.page-item.active ~ .page-item .page-link:before {
+    color: transparent;
+  }
+  /* line 176, ../sass/_wizard.scss */
+  .formio-form nav ul.pagination li.page-item .page-link:before {
+    background-color: #67a4c8;
+    color: transparent;
+  }
+}
 /* line 6, ../sass/_formio-overrides.scss */
 .choices__input {
   font-size: inherit;
