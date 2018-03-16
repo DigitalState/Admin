@@ -57,7 +57,7 @@ export class FormioApiService {
             // });
             return this.cms.getFormioFormTranslations(form.id).flatMap((translations) => {
                 return Observable.of({
-                    form: form,
+                    forms: form,
                     translations: translations
                 });
             }).catch((error) => {
