@@ -742,3 +742,41 @@ label.custom-checkbox {
     }
   }
 }
+
+.custom-filters {
+  background-color: $gray-lightest;
+
+  .fieldset-title {
+    margin-bottom: 1em;
+  }
+
+  .form-control {
+    background-color: transparent;
+  }
+
+  .form-inline {
+    .form-group {
+      margin-right: 1em;
+
+      .form-control {
+        padding: 0px;
+      }
+    }
+  }
+
+  .mat-input-wrapper {
+    padding-bottom: 0px;
+  }
+
+  .mat-input-underline {
+    margin-top: 1px;
+  }
+
+  .mat-input-element {
+    min-height: 26px;
+  }
+
+  .mat-select-value {
+    color: $default-text;
+  }
+}

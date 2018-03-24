@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule }  from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MdProgressSpinnerModule, MdSelect, MdSelectModule } from '@angular/material';
+import { MdInputModule, MdProgressSpinnerModule, MdSelectModule } from '@angular/material';
 import { MdProgressBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule, DateFormatPipe, LocalTimePipe, LocalePipe, TimeAgoPipe } from 'angular2-moment';
@@ -50,6 +50,7 @@ import { Http, RequestOptions } from '@angular/http';
         CommonModule,
         RouterModule,
         FormsModule,
+        MdInputModule,
         MdProgressSpinnerModule,
         MdSelectModule,
         TranslateModule,
@@ -83,6 +84,7 @@ import { Http, RequestOptions } from '@angular/http';
         // Singleton providers are defined in the static forRoot() method below
     ],
     exports: [
+        MdInputModule,
         MdProgressSpinnerModule,
         MdSelectModule,
         TranslateModule,

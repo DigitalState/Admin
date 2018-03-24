@@ -1,21 +1,22 @@
 import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsManager } from 'ng2-toastr';
-import { TranslateService } from '@ngx-translate/core';
 
 import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
+import { Link } from '../../../models/link';
+
 import 'rxjs/Rx';
 
 @Component({
     selector: 'ds-record-show',
-    templateUrl: '../templates/show.template.html'
+    templateUrl: '../templates/record-show.template.html'
 })
 export class DsRecordShowComponent extends DsBaseEntityShowComponent {
 
     entityUrlPrefix = 'records';
+    pageTitle = 'general.menu.records';
+    headerTitle = 'ds.microservices.entity.types.record';
+    backLink = new Link(['../../list'], 'general.list');
 
     constructor(injector: Injector,
                 microserviceConfig: MicroserviceConfig,

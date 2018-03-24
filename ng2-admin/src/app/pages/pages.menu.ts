@@ -118,6 +118,15 @@ export class PagesMenu {
                         },
                         children: [
                             {
+                                path: ['records/list'],
+                                data: {
+                                    menu: {
+                                        url: '#/pages/records/list',
+                                        title: 'general.menu.records',
+                                    }
+                                }
+                            },
+                            {
                                 path: '',
                                 data: {
                                     menu: {

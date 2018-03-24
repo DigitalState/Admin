@@ -1,31 +1,53 @@
 import { Component, Injector } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { ToastsManager } from 'ng2-toastr';
+import { TranslateService } from '@ngx-translate/core';
+
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
 import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
+import { Link } from '../../../models/link';
+
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
     selector: 'ds-record-create',
-    templateUrl: '../templates/form.template.html'
+    templateUrl: '../templates/record-form.template.html'
 })
 export class DsRecordCreateComponent extends DsBaseEntityFormComponent {
 
     entityUrlPrefix = 'records';
-    headerTitle = 'Create Record';
+    headerTitle = 'ds.microservices.entity.types.record';
+    backLink = new Link(['../list'], 'general.list');
     isNew = true;
 
     constructor(injector: Injector,
-                route: ActivatedRoute,
-                router: Router,
-                location: Location,
-                toastr: ToastsManager,
+                translate: TranslateService,
                 microserviceConfig: MicroserviceConfig,
                 entityApiService: EntityApiService) {
 
         super(injector, microserviceConfig);
+
+        this.translate = translate;
         this.entityApiService = entityApiService;
+    }
+
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            let entity = prepared.entity;
+
+            try {
+                if (entity.data) {
+                    Object.keys(entity.data).forEach(function(key) {
+                        entity.data[key] = JSON.stringify(entity.data[key], null, 2);
+                    });
+                }
+            }
+            catch(e) {
+                console.warn('Error parsing incoming JSON', e)
+            }
+
+            return Observable.of({'entity': entity});
+        });
     }
 }
