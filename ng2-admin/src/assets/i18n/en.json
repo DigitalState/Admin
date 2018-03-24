@@ -44,6 +44,8 @@
     "fileName": "File Name",
     "fileType": "File Type",
     "businessUnit": "Business Unit",
+    "associatedEntity": "Associated Entity",
+    "any": "Any",
     "form": "Form",
     "forms": {
       "option1": "Option 1",
@@ -258,6 +260,7 @@
           "submission": "Soumission",
           "case": "Case",
           "caseStatus": "Case Status",
+          "record": "Record",
           "identity": "Identity",
           "task": "Task",
           "user": "User",
@@ -354,6 +357,8 @@
           "cancel": "Cancel",
           "back": "Back",
           "actions": "Actions",
+          "apply": "Apply",
+          "filter": "Filter",
           "confirm": "Confirm",
           "yes": "Yes",
           "no": "No"

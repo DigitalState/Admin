@@ -44,6 +44,8 @@
     "fileName": "Nom de fichier",
     "fileType": "Type de fichier",
     "businessUnit": "Unité d'affaires",
+    "associatedEntity": "Entité associée",
+    "any": "Tout",
     "form": "Form",
     "forms": {
       "option1": "Option 1",
@@ -257,6 +259,7 @@
           "submission": "Soumission",
           "case": "Cas",
           "caseStatus": "État de cas",
+          "record": "Record",
           "identity": "Identité",
           "task": "Tâche",
           "user": "Utilisateur",
@@ -353,6 +356,8 @@
           "cancel": "Annuler",
           "back": "Retour",
           "actions": "Actes",
+          "apply": "Appliquer",
+          "filter": "Filtre",
           "confirm": "Confirmer",
           "yes": "Oui",
           "no": "Non"

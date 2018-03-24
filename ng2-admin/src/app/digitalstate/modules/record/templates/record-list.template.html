@@ -1,0 +1,75 @@
+<ds-entity-list [headerTitle]="headerTitle"
+				[headerSubtitle]="headerSubtitle"
+				[actions]="actions"
+				[headerActions]="headerActions"
+				(headerActionEmitter)="handleHeaderEvent($event)">
+
+	<div *ngIf="showCustomFilters" class="card-header custom-filters flat">
+		<form [formGroup]="customFiltersForm">
+			<div class="fieldset-title">{{ 'general.associatedEntity' | translate }}</div>
+			<div class="form-inline">
+				<div class="form-group">
+					<!--<label for="filter-associatedEntity" class="form-control-static w-auto">{{ 'general.associatedEntity' | translate }}</label>-->
+					<md-select id="filter-associatedEntity" formControlName="associatedEntity" class="form-control border-0" placeholder="{{ 'ds.microservices.entity.property.entity' | translate }}">
+						<md-option *ngFor="let associatedEntity of associatedEntities | keyValue" [value]="associatedEntity.key">
+							{{ associatedEntity.value | translate }}
+						</md-option>
+					</md-select>
+				</div>
+				<div class="form-group">
+					<!--<label for="filter-associatedEntity" class="form-control-static w-auto">{{ 'general.associatedEntity' | translate }}</label>-->
+					<md-input-container class="form-control border-0">
+						<input mdInput type="text" id="filter-associatedEntityUuid" formControlName="associatedEntityUuid" size="32" placeholder="{{ 'ds.microservices.entity.property.entityUuid' | translate }}">
+					</md-input-container>
+				</div>
+				<div class="form-group">
+					<div class="form-control border-0">
+						<button class="btn btn-primary btn-with-icon" (click)="applyCustomFilters()">
+							<i class="ion-funnel">{{ 'ds.microservices.entity.action.filter' | translate }}</i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!--<button (click)="resetCustomFilters()">Reset</button>-->
+		</form>
+	</div>
+
+	<ngx-datatable #datatable
+				   [loadingIndicator]="loading"
+				   [sorts]="sorts"
+				   [rows]="rows"
+				   [columns]="columns"
+				   [count]="pager.totalItems"
+				   [offset]="pager.pageNumber"
+				   [limit]="pager.size"
+				   (page)="setPage($event)"
+				   (sort)="onSort($event)"
+				   (activate)="onRowActivation($event)"
+				   class="material">
+	</ngx-datatable>
+</ds-entity-list>
+
+<ng-template #headerTpl let-column="column" let-sorts="sorts" let-sortDir="sortDir" let-sort="sortFn">
+	<ds-datatable-header sortType="single"
+						 sortAscendingIcon="datatable-icon-up"
+						 sortDescendingIcon="datatable-icon-down"
+						 [column]="column"
+						 [sort]="sort"
+						 [sortDir]="sortDir"
+						 (onFilterValueChange)="onFilterValueChange($event)"
+	>
+	</ds-datatable-header>
+</ng-template>
+
+<ng-template #textCellTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell [column]="column" [row]="row" [value]="value"></ds-datatable-cell>
+</ng-template>
+
+<ng-template #textCellUuidTpl let-column="column" let-row="row" let-value="value">
+	<ds-datatable-cell-uuid [column]="column" [row]="row" [value]="value"></ds-datatable-cell-uuid>
+</ng-template>
+
+<!--<ng-container *ngTemplateOutlet="actionsTpl; context: {actions: actions}"></ng-container>-->
+<ng-template #actionsTpl let-column="column" let-row="row">
+	<ds-datatable-cell-actions [row]="row" (rowActionEmitter)="handleRowEvent($event)"></ds-datatable-cell-actions>
+</ng-template>
