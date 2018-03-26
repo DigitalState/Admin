@@ -218,14 +218,21 @@ export class DsTaskShowComponent extends DsBaseEntityShowComponent implements Fo
 
     submitFormioForm(formData: any): Observable<any> {
         return this.formioApiService.submitFormUsingPut('tasks', this.entity.uuid, formData, 'submission').flatMap(submissionResult => {
-            this.formioModal.close();
-            this.toastr.success(this.translate.instant('ds.microservices.entity.task.submissionSuccess'));
+            // Possible use of flatmap here is to manipulate the API response before passing it on to the observer
             return Observable.of(submissionResult);
         });
     }
 
     handleFormioFormEvent(lifeCycleMethod: string, arg: any) {
-        // Do nothing
+        switch (lifeCycleMethod) {
+            case 'submissionResult':
+                this.formioModal.close();
+                this.toastr.success(this.translate.instant('ds.microservices.entity.task.submissionSuccess'));
+                this.navigateAfterDeletion();
+                break;
+            default:
+                break;
+        }
     }
 
 }
