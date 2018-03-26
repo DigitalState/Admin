@@ -51,7 +51,6 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
     // ];
 
     // @todo Hardcoded "Public Works" UUID is used as a default OwnerUuid in Tasks custom filter
-    defaultOwnerUuid = '8454c987-cbc5-4a24-ba1a-d420283caabd';
     businessUnits: Array<any>;
     authUser: User;
 
@@ -129,16 +128,15 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
 
     protected setupQuery(): void {
         super.setupQuery();
-        this.query.setFilter('ownerUuid', this.defaultOwnerUuid);
+        this.query.setFilter('ownerUuid', this.appState.get('filter.tasks.ownerUuid'));
     }
 
     protected setupCustomFilters(): any {
         // Load all the Business Units in the system and use them to populate the `ownerUuid` filter dropdown
         this.identityApiService.getIdentityResource('BusinessUnit').getList().subscribe(businessUnits => {
-            console.log(businessUnits);
             this.businessUnits = businessUnits;
             this.customFiltersForm = this.formBuilder.group({
-                'ownerUuid': this.defaultOwnerUuid
+                'ownerUuid': this.appState.get('filter.tasks.ownerUuid')
             });
 
             this.showCustomFilters = true;
@@ -156,6 +154,9 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
      * @param formData
      */
     protected onCustomFiltersChange(formData) {
+        // Cache the filter value
+        this.appState.set('filter.tasks.ownerUuid', formData.ownerUuid);
+
         this.query.setFilter('ownerUuid', formData.ownerUuid);
         this.refreshList()
     }
@@ -165,7 +166,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
      */
     protected resetCustomFilters() {
         this.customFiltersForm.reset({
-            'ownerUuid': this.defaultOwnerUuid
+            'ownerUuid': this.appState.get('filter.tasks.ownerUuid')
         });
     }
 

@@ -9,7 +9,7 @@
 			<div class="form-group">
 				<label for="filter-ownerUuid" class="form-control-static w-auto">{{ 'general.businessUnit' | translate }}</label>
 				<select id="filter-ownerUuid" formControlName="ownerUuid" class="form-control">
-					<option *ngFor="let bu of businessUnits" [value]="bu.uuid" [selected]="bu.uuid === defaultOwnerUuid">
+					<option *ngFor="let bu of businessUnits" [value]="bu.uuid">
 						{{ bu.title[lang] }}
 					</option>
 				</select>
