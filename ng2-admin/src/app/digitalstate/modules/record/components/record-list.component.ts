@@ -21,7 +21,7 @@ export class DsRecordListComponent extends DsBaseEntityListComponent {
     protected associatedEntities: any = {
         ' ': 'general.any', // Blank space in key to workaround md-select empty-key default value assignement issue
         'Case': 'ds.microservices.entity.types.case',
-        'Service': 'ds.microservices.entity.types.service'
+        // 'Service': 'ds.microservices.entity.types.service',
     };
 
 

@@ -1292,12 +1292,12 @@ export class MicroservicesDefinition {
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
-                                default: 'Individual',
+                                default: '',
                             },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
-                                default: 'd0daa7e4-07d1-47e6-93f2-0629adaa3b49',
+                                default: '',
                             },
                             'owner': {
                                 label: 'Owner',
@@ -1323,6 +1323,52 @@ export class MicroservicesDefinition {
                                 validation: {
                                     'json': { message: 'json' },
                                     'required': { message: 'required' },
+                                },
+                            },
+                            'createdAt': {
+                                label: 'Created At',
+                                type: 'date',
+                            },
+                            'updatedAt': {
+                                label: 'Updated At',
+                                type: 'date',
+                            },
+                        },
+                    },
+                    'record-associations': {
+                        properties: {
+                            'uuid': {
+                                label: 'UUID',
+                                type: 'string',
+                            },
+                            'entity': {
+                                label: 'Entity',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                                default: '',
+                            },
+                            'entityUuid': {
+                                label: 'Entity UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                            },
+                            'owner': {
+                                label: 'Owner',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'},
+                                },
+                                default: 'BusinessUnit',
+                            },
+                            'ownerUuid': {
+                                label: 'Owner UUID',
+                                type: 'string',
+                                validation: {
+                                    'required': {message: 'required'},
                                 },
                             },
                             'createdAt': {

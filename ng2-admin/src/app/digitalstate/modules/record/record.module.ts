@@ -14,6 +14,10 @@ import { DsRecordListComponent } from './components/record-list.component';
 import { DsRecordShowComponent } from './components/record-show.component';
 import { DsRecordCreateComponent } from './components/record-create.component';
 import { DsRecordEditComponent } from './components/record-edit.component';
+import { DsRecordAssociationListComponent } from './components/record-association-list.component';
+import { DsRecordAssociationShowComponent } from './components/record-association-show.component';
+import { DsRecordAssociationCreateComponent } from './components/record-association-create.component';
+import { DsRecordAssociationEditComponent } from './components/record-association-edit.component';
 
 export const MICROSERVICE_NAME = 'records';
 
@@ -31,6 +35,10 @@ export const MICROSERVICE_NAME = 'records';
         DsRecordShowComponent,
         DsRecordCreateComponent,
         DsRecordEditComponent,
+        DsRecordAssociationListComponent,
+        DsRecordAssociationShowComponent,
+        DsRecordAssociationCreateComponent,
+        DsRecordAssociationEditComponent,
     ],
     providers: [
         EntityApiService,
