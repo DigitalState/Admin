@@ -732,12 +732,12 @@ export class MicroservicesDefinition {
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
-                                default: 'Individual',
+                                default: '',
                             },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
-                                default: 'd0daa7e4-07d1-47e6-93f2-0629adaa3b49',
+                                default: '',
                             },
                             'owner': {
                                 label: 'Owner',
