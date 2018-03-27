@@ -37,6 +37,7 @@ import { DsFileUploadComponent } from './components/file-upload.component';
 import { DsThemerPipe } from './components/pipes/themer.pipe';
 import { OwnerSelectComponent } from './components/form/owner-select.component';
 import { IdentityLinkComponent } from './components/identity-link.component';
+import { EntityLinkComponent } from './components/entity-link.component';
 
 import { authHttpServiceFactory, DsAuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/auth.service';
@@ -74,6 +75,7 @@ import { Http, RequestOptions } from '@angular/http';
         CredentialsVerificationModalComponent,
         OwnerSelectComponent,
         IdentityLinkComponent,
+        EntityLinkComponent,
     ],
     entryComponents: [
         FormioModalFrameComponent,
@@ -105,6 +107,7 @@ import { Http, RequestOptions } from '@angular/http';
         DsThemerPipe,
         OwnerSelectComponent,
         IdentityLinkComponent,
+        EntityLinkComponent,
     ]
 })
 export class DsSharedModule {

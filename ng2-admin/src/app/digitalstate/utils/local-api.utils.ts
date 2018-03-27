@@ -34,6 +34,8 @@ export class LocalApiUtils {
             title: title ? title : uuid,
         };
 
+        entityPrefix = entityPrefix.toLowerCase();
+
         switch (entityPrefix) {
             case 'scenario': entityPrefix = 'scenarios';
             case 'scenarios':
@@ -42,6 +44,10 @@ export class LocalApiUtils {
             case 'submission': entityPrefix = 'submissions';
             case 'submissions':
                 link.routerLink = ['/pages', 'services', entityPrefix, uuid, 'show'];
+                break;
+            case 'case':
+            case 'cases':
+                link.routerLink = ['/pages', 'cases', uuid, 'show'];
                 break;
             case 'case-statuses':
                 // @Todo Implement case statuses link by changing the route to the case-status component in a similar way to how scenarios are implemented
