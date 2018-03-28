@@ -49,6 +49,13 @@ export class DsPersonaShowComponent extends DsBaseEntityShowComponent {
         super.ngOnDestroy();
     }
 
+    /**
+     * After deletion, navigate back to the Service's `show` component.
+     */
+    navigateAfterDeletion(): void {
+        this.router.navigate(['../../../show'], { relativeTo: this.route });
+    }
+
     protected generateBackLink(): Link {
         let backLink = super.generateBackLink();
         backLink.routerLink.splice(2, 0, 'identities');
