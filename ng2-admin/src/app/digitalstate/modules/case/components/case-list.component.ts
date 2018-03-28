@@ -26,7 +26,7 @@ export class DsCaseListComponent extends DsBaseEntityListComponent {
         super.setupList();
         this.columns = [
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
-            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
+            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'customId', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'state', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },
