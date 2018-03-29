@@ -61,8 +61,6 @@ export class DsPersonaCreateComponent extends DsPersonaFormComponent {
             return super.createBlankEntity().flatMap(entity => {
                 const identitySingular = IdentityUtils.getSingular(params['identityPlural']);
                 entity[identitySingular] = '/' + this.entityParentUrlPrefix + '/' + params[this.entityParentUrlParam];
-                entity.identity = IdentityUtils.getUppercaseIdentityName(this.entityParentUrlPrefix);
-                entity.identityUuid = this.entityParent.uuid;
                 entity.owner = this.entityParent.owner;
                 entity.ownerUuid = this.entityParent.ownerUuid;
                 console.log(this.entityParent.plain());

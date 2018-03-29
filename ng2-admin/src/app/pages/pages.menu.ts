@@ -459,7 +459,7 @@ export class PagesMenu {
                                 path: ['identities/roles/list'],
                                 data: {
                                     menu: {
-                                        url: '#/pages/identities/anonymouses/list',
+                                        url: '#',
                                         title: 'general.menu.roles',
                                     }
                                 }

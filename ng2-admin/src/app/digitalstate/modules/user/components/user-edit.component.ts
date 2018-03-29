@@ -4,6 +4,7 @@ import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityFormComponent } from '../../../components/base-entity-form.component';
 
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'ds-user-edit',
@@ -21,6 +22,13 @@ export class DsUserEditComponent extends DsBaseEntityFormComponent {
 
         super(injector, microserviceConfig);
         this.entityApiService = entityApiService;
+    }
+
+    protected prepareEntity(): Observable<{'entity': any, 'entityParent'?: any}> {
+        return super.prepareEntity().flatMap((prepared) => {
+            this.entity = prepared.entity;
+            return Observable.of({'entity': this.entity});
+        });
     }
 
     getPropertiesToRemoveOnSave(): Array<string> {

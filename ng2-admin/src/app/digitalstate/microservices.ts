@@ -9,13 +9,13 @@ export class MicroservicesDefinition {
     getAll() {
         const scheme = this.dsEnv.msUrlScheme;
         const discovery = this.dsEnv.discovery;
-        const pathPrefix = 'app_dev.php';
+        const pathPrefix = this.dsEnv.isDev ? '/app_dev.php' : ''; // Use '/app_dev.php' for debugging
 
         return {
             'authentication': {
                 label: 'Authentication',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['authentication'] ? discovery['authentication'] : '') + '/' + pathPrefix + '/', // Formerly `:8010`
+                    url: scheme + '://' + (discovery['authentication'] ? discovery['authentication'] : '') + pathPrefix + '/', // Formerly `:8010`
                 },
                 paths: {
                     registration: 'registration',
@@ -109,7 +109,7 @@ export class MicroservicesDefinition {
             'cms': {
                 label: 'CMS',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['cms'] ? discovery['cms'] : '') + '/' + pathPrefix + '/', // Formerly `:8056`
+                    url: scheme + '://' + (discovery['cms'] ? discovery['cms'] : '') + pathPrefix + '/', // Formerly `:8056`
                 },
                 paths: {
                     content: 'content',
@@ -388,7 +388,7 @@ export class MicroservicesDefinition {
             'services': {
                 label: 'Services',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['services'] ? discovery['services'] : '') + '/' + pathPrefix + '/', // Formerly `:8051`
+                    url: scheme + '://' + (discovery['services'] ? discovery['services'] : '') + pathPrefix + '/', // Formerly `:8051`
                 },
                 entities: {
                     'services': {
@@ -691,7 +691,7 @@ export class MicroservicesDefinition {
             'cases': {
                 label: 'Cases',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['cases'] ? discovery['cases'] : '') + '/' + pathPrefix + '/', // Formerly `:8050`
+                    url: scheme + '://' + (discovery['cases'] ? discovery['cases'] : '') + pathPrefix + '/', // Formerly `:8050`
                 },
                 entities: {
                     'cases': {
@@ -732,12 +732,12 @@ export class MicroservicesDefinition {
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
-                                default: 'Individual',
+                                default: '',
                             },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
-                                default: 'd0daa7e4-07d1-47e6-93f2-0629adaa3b49',
+                                default: '',
                             },
                             'owner': {
                                 label: 'Owner',
@@ -829,7 +829,7 @@ export class MicroservicesDefinition {
             'identities': {
                 label: 'Identities',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['identities'] ? discovery['identities'] : '') + '/' + pathPrefix + '/', // Formerly `:8054`
+                    url: scheme + '://' + (discovery['identities'] ? discovery['identities'] : '') + pathPrefix + '/', // Formerly `:8054`
                 },
                 entities: {
                     'business-units': {
@@ -1136,7 +1136,7 @@ export class MicroservicesDefinition {
             'assets': {
                 label: 'Assets',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['assets'] ? discovery['assets'] : '') + '/' + pathPrefix + '/', // Formerly `:8053`
+                    url: scheme + '://' + (discovery['assets'] ? discovery['assets'] : '') + pathPrefix + '/', // Formerly `:8053`
                 },
                 entities: {
                     'assets': {
@@ -1156,7 +1156,7 @@ export class MicroservicesDefinition {
             'topics': {
                 label: 'Topics',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['topics'] ? discovery['topics'] : '') + '/' + pathPrefix + '/', // Formerly `:8016`
+                    url: scheme + '://' + (discovery['topics'] ? discovery['topics'] : '') + pathPrefix + '/', // Formerly `:8016`
                 },
                 entities: {
                     'topics': {
@@ -1176,7 +1176,7 @@ export class MicroservicesDefinition {
             'tasks': {
                 label: 'Tasks',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['tasks'] ? discovery['tasks'] : '') + '/' + pathPrefix + '/', // Formerly `:8060`
+                    url: scheme + '://' + (discovery['tasks'] ? discovery['tasks'] : '') + pathPrefix + '/', // Formerly `:8060`
                 },
                 entities: {
                     'tasks': {
@@ -1267,7 +1267,7 @@ export class MicroservicesDefinition {
             'records': {
                 label: 'Records',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['records'] ? discovery['records'] : '') + '/' + pathPrefix + '/', // Formerly `:8052`
+                    url: scheme + '://' + (discovery['records'] ? discovery['records'] : '') + pathPrefix + '/', // Formerly `:8052`
                 },
                 entities: {
                     'records': {
@@ -1386,7 +1386,7 @@ export class MicroservicesDefinition {
             'interactions': {
                 label: 'Interactions',
                 entrypoint: {
-                    url: scheme + '://' + (discovery['interactions'] ? discovery['interactions'] : '') + '/' + pathPrefix + '/', // Formerly `:8017`
+                    url: scheme + '://' + (discovery['interactions'] ? discovery['interactions'] : '') + pathPrefix + '/', // Formerly `:8017`
                 },
                 entities: {
                     'communications': {

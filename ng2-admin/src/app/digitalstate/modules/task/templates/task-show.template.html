@@ -67,19 +67,19 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
+			<div *ngIf="entity.createdAt" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.createdAt' | translate }}</dt>
 					<dd>{{ entity.createdAt | amLocal | amDateFormat: config.date.format.long }}</dd>
 				</dl>
 			</div>
-			<div class="col-sm-6">
+			<div *ngIf="entity.dueAt" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.dueAt' | translate }}</dt>
 					<dd>{{ entity.dueAt | amLocal | amDateFormat: config.date.format.long }}</dd>
 				</dl>
 			</div>
-			<div class="col-sm-6">
+			<div *ngIf="entity.followUpAt" class="col-sm-6">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.followUpAt' | translate }}</dt>
 					<dd>{{ entity.followUpAt | amLocal | amDateFormat: config.date.format.long }}</dd>
@@ -93,7 +93,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div *ngIf="entity.description" class="col-sm-12">
 				<dl>
 					<dt>{{ 'ds.microservices.entity.property.description' | translate }}</dt>
 					<dd class="ws-pre-line">{{ entity.description }}</dd>

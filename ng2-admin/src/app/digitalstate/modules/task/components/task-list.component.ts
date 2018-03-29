@@ -118,7 +118,7 @@ export class DsTaskListComponent extends DsBaseEntityListComponent implements Fo
         super.setupList();
         this.columns = [
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
-            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false },
+            { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
             { prop: 'identityUuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
             { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },
             { prop: 'dueAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: false, sortable: false },

@@ -258,7 +258,7 @@
         "types": {
           "service": "Service",
           "scenario": "Scenario",
-          "submission": "Soumission",
+          "submission": "Submission",
           "case": "Case",
           "caseStatus": "Case Status",
           "record": "Record",

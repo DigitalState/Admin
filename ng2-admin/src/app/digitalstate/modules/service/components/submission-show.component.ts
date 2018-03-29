@@ -1,7 +1,9 @@
 import { Component, Injector } from '@angular/core';
 
-import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
 import { MicroserviceConfig } from '../../../../shared/providers/microservice.provider';
+import { ApiUtils } from '../../../../shared/utils/api.utils';
+
+import { DsBaseEntityShowComponent } from '../../../components/base-entity-show.component';
 import { EntityApiService } from '../entity-api.service';
 import { Link } from '../../../models/link';
 
@@ -51,8 +53,7 @@ export class DsSubmissionShowComponent extends DsBaseEntityShowComponent {
         return super.prepareEntity().flatMap((prepared) => {
             let entity = prepared.entity;
             this.scenarioLink = LocalApiUtils.createEntityLinkFromUri(entity.scenario);
-            console.log(this.entity.scenario);
-            console.log(this.scenarioLink);
+            this.scenarioLink.title = ApiUtils.getUuidFromUri(entity.scenario);
             return Observable.of({'entity': entity, 'entityParent': prepared.entityParent});
         });
     }
