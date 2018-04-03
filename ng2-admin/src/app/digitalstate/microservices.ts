@@ -1292,12 +1292,17 @@ export class MicroservicesDefinition {
                             'identity': {
                                 label: 'Identity',
                                 type: 'string',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
                                 default: '',
                             },
                             'identityUuid': {
                                 label: 'Identity UUID',
                                 type: 'string',
-                                default: '',
+                                validation: {
+                                    'required': {message: 'required'}, // translation key prefixed by 'ds.microservices.entity.validation'
+                                },
                             },
                             'owner': {
                                 label: 'Owner',
