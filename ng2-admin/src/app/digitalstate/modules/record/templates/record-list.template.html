@@ -39,12 +39,14 @@
 				   [sorts]="sorts"
 				   [rows]="rows"
 				   [columns]="columns"
+				   [selected]="selectedRows"
 				   [count]="pager.totalItems"
 				   [offset]="pager.pageNumber"
 				   [limit]="pager.size"
 				   (page)="setPage($event)"
 				   (sort)="onSort($event)"
 				   (activate)="onRowActivation($event)"
+				   (select)="onRowSelection($event)"
 				   class="material">
 	</ngx-datatable>
 </ds-entity-list>

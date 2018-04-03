@@ -31,6 +31,8 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     rows = [];
     columns = [];
     sorts = [];
+    selectedRows = [];
+    allowRowSelection: boolean = false;
     query: ListQuery;
     pager = new Pager();
 
@@ -227,7 +229,7 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * Setup the UI.
      * This can be overridden by subclasses to further configure the UI.
      */
-    protected setupUi() {
+    protected setupUi(): void {
         this.setupMediaQueries();
         this.setupCustomFilters();
 
@@ -291,17 +293,24 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
     protected setupList() {}
 
     /**
-     * Perform additional configurations on the Data-table settings after subcalsses complete their
-     * own configurations in `setupList`;
+     * Perform additional configurations on the Data-table settings after subclasses complete their
+     * own configurations in `setupList`
      */
     protected postSetupList() {
+        // If enabled, prepend the row selection column of checkboxes
+        if (this.allowRowSelection) {
+            this.columns.unshift(
+                { id: 'checkboxes', label: '_blank_', sortable: false, width: 30, canAutoResize: false, draggable: false, resizeable: false, headerCheckboxable: true, checkboxable: true }
+            );
+        }
+
         this.columns.forEach((column) => {
             column.propertyMetadata = this.entityMetadata[column.prop];
         });
 
         // Append the Actions column
         this.columns.push(
-            { id: 'actions', name: 'actions', label: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, sortable: false }
+            { id: 'actions', name: 'actions', label: 'ds.microservices.entity.action.actions', cellTemplate: this.actionsCellTpl, headerTemplate: this.headerTpl, cellClass: 'cell-actions', sortable: false }
         );
 
         this.updateTranslations(this.translate.currentLang);
@@ -509,17 +518,44 @@ export class DsBaseEntityListComponent extends DsEntityCrudComponent implements 
      * }
      */
     protected onRowActivation(event) {
-        // Do not trigger the event if the activation source is the `Actions` column
-        // since this will interfere with the dropdown and the action buttons
-        if (event.column.id !== 'actions') {
-            const rowEvent = {
-                'action': find(this.actions, { 'name': 'show' }),
-                'row': event.row
-            };
+        if (event.type === 'click') {
+            // Do not trigger the event if the activation source is the `Actions` column
+            // since this will interfere with the dropdown and the action buttons
+            // if (!includes(['actions', 'checkboxes'], event.column.id)) {
+            if (['actions', 'checkboxes'].indexOf(event.column.id) === -1) {
+                const rowEvent = {
+                    'action': find(this.actions, { 'name': 'show' }),
+                    'row': event.row
+                };
 
-            this.handleRowEvent(rowEvent);
+                this.handleRowEvent(rowEvent);
+            }
         }
     }
+
+    /**
+     * Event handler for Datatable row selection.
+     *
+     * @param event:
+     * {
+     *      selected
+     * }
+     */
+    protected onRowSelection(event): void {
+        // console.log('Row Selected: ', event);
+    }
+
+    /**
+     * Determines whether to show a checkbox for a row.
+     * @param row
+     * @param column
+     * @param value
+     * @return {boolean}
+     */
+    protected isRowSelected(row, column, value): boolean {
+        return true;
+    }
+
 
     /**
      * Dynamically update localized strings that are not rendered through the `translate` pipe.

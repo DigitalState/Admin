@@ -7,6 +7,8 @@ import { EntityApiService } from '../entity-api.service';
 import { DsBaseEntityListComponent } from '../../../components/base-list.component';
 import 'rxjs/Rx';
 
+import assign from 'lodash/assign';
+
 @Component({
     selector: 'ds-record-list',
     templateUrl: '../templates/record-list.template.html'
@@ -16,6 +18,8 @@ export class DsRecordListComponent extends DsBaseEntityListComponent {
     entityUrlPrefix = 'records';
     pageTitle = 'general.menu.records';
     headerTitle = 'general.menu.records';
+
+    allowRowSelection = true;
 
     // Options map of the associated entity types. We use translatable labels as values.
     protected associatedEntities: any = {
@@ -33,9 +37,18 @@ export class DsRecordListComponent extends DsBaseEntityListComponent {
         this.entityApiService = entityApiService;
     }
 
+    protected setupUi(): void {
+        assign(this.datatableAttributes, {
+            'selectionType': 'checkbox'
+        });
+
+        super.setupUi();
+    }
+
     setupList() {
         super.setupList();
         this.columns = [
+            // { sortable: false, canAutoResize: false, draggable: false, resizeable: false, headerCheckboxable: true, checkboxable: true },
             { prop: 'uuid', cellTemplate: this.textCellUuidTpl, headerTemplate: this.headerTpl, filterable: true, sortable: false },
             { prop: 'title', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, filterable: true },
             { prop: 'createdAt', cellTemplate: this.textCellTpl, headerTemplate: this.headerTpl, sortable: true, filterable: false },

@@ -49,6 +49,11 @@
       display: flex;
       padding: 0.5em;
 
+      &.cell-actions {
+        // Override default overflow settings to make the floating actions toolbar visible
+        overflow: visible;
+      }
+
       .datatable-body-cell-label {
         align-self: center;
 
