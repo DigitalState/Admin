@@ -1,32 +1,30 @@
-# admin
+# Admin
 Frontend Administration
 
-#### Requirements
+### Requirements
 
-Make sure you have Node version >= 6.0 and NPM >= 3
+Refer to *ng2-admin* Documentation and Installation Guide: https://akveo.github.io/ng2-admin/
 
-#### Run (Node and NPM)
-
-Run the following command from the project directory:
+### Development
+Run DEV mode from the `ng2-admin` directory:
 
 ```
-cd ng2-admin
 npm start
 ```
 
-Then point your browser to [http://localhost:3000]()
+Then point your browser to:
 ```
 http://localhost:3000/
 ```
 
-##### Run (Docker container)
+While in DEV mode, all updates to (*.ts, *.scss, etc..) files under the `src` directory will cause Webpack Dev Server to compile the changes and reload the app.
+
+
+### Production
+Compile PROD distribution from the `ng2-admin` directory:
+
 ```
-docker-compose up
+npm run build:prod
 ```
 
-Then browse to [http://localhost:3000]()
-
-Notes: 
-- The docker container takes a long time to download, build and compile dependencies.
-- All instructions above run the "dev" mode which syncs `src` directory changes with the browser sessoin.
-- Login as `admin@digitalstate.ca`.
+The `build:prod` command erases the contents of the `dist` directory and compiles the newly built app in there.
